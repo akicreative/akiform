@@ -1,0 +1,17 @@
+{
+    "name": "akicreative/akiforms",
+    "description": "Bootstrap integrated form generator.",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Steven Ishiwara",
+            "email": "info@akicreative.net"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "akicreative\\akiforms\\": "src/"
+        }
+    }
+}
