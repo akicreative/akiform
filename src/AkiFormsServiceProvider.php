@@ -9,6 +9,8 @@
         public function boot()
         {
 
+            require_once __DIR__ . '/helpers.php';
+
         }
         
         public function register()
@@ -22,5 +24,6 @@
         {
             
         }
+
     }
 ?>
