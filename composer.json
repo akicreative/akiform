@@ -1,13 +1,16 @@
 {
     "name": "akicreative/akiforms",
     "description": "Bootstrap integrated form generator.",
-    "type": "library",
+    "type": "package",
+    "license": "MIT",
     "authors": [
         {
             "name": "Steven Ishiwara",
             "email": "info@akicreative.net"
         }
     ],
+    "version": "3.0.4",
+    "minimum-stability": "dev",
     "require": {},
     "autoload": {
         "psr-4": {
