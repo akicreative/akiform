@@ -15,6 +15,8 @@ class Form
 	var $echo = true;
 	var $csrf = true;
 	var $horizontal = false;
+	var $horizontalleft = 'col-md-3';
+	var $horizontalright = 'col-md-9';
 	var $size = 'form-control-sm';
 	var $defaults = [];
 
@@ -124,6 +126,9 @@ class Form
 			'size' => $this->size,
 			'class' => '',
 			'horizontal' => $this->horizontal,
+			'horizontalleft' => $this->horizontalleft,
+			'horizontalright' => $this->horizontalright,
+			'labelclass' => '',
 			'required' => false,
 			'default' => '',
 			'selectoptions' => [],
@@ -191,8 +196,26 @@ class Form
 
 		if(!$cfg['fieldonly']){
 
-			echo '<div class="form-group">';
-			echo '<label for="' .  $attrs['id'] . '">' . $label . '</label>';
+			$horizontal = '';
+			$horizontalleft = '';
+			$horizontalright = '';
+
+			if($cfg['horizontal']){
+
+				$horizontal = 'row';
+				$horizontalleft = $cfg['horizontalleft'] . ' col-form-label';
+				$horizontalright = $cfg['horizontalright'];
+			}
+
+			echo '<div class="form-group ' . $horizontal . '">';
+
+			echo '<label for="' .  $attrs['id'] . '" class="' . $horizontalleft . ' ' . $cfg['labelclass'] . '">' . $label . '</label>';
+
+			if($cfg['horizontal']){
+
+				echo '<div class="' . $horizontalright . '">';
+			}
+
 		}
 
 		$required = '';
@@ -331,6 +354,11 @@ class Form
 
 				echo '<small id="' . $attrs['id'] . 'Help" class="form-text text-muted">' . $cfg['blockhelp'] . '</small>';
 
+			}
+
+			if($cfg['horizontal']){
+
+				echo '</div>';
 			}
 
 			echo '</div>';
