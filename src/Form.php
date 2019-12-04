@@ -19,6 +19,7 @@ class Form
 	var $horizontalright = 'col-md-9';
 	var $size = 'form-control-sm';
 	var $defaults = [];
+	var $constrainform = '';
 
 	private function parse($args, $arguments)
 	{
@@ -86,6 +87,11 @@ class Form
 
 		];
 
+		if($this->constrainform != ''){
+
+			echo '<div class="row"><div class="' . $this->constrainform . '">';
+		}
+
 		echo '<form ' . $this->parse($args, $arguments) . '>';
 
 		echo csrf_field();
@@ -113,6 +119,11 @@ class Form
 	public function close(){
 
 		echo '</form>' . "\n";
+
+		if($this->constrainform != ''){
+
+			echo '</div></div>';
+		}
 
 	}
 
