@@ -127,7 +127,7 @@ class Form
 
 	}
 
-	public function build($type, $label, $name, $cfgs = []){
+	public function build($type, $label, $name = '', $cfgs = []){
 
 		$cfg = [
 
@@ -220,7 +220,14 @@ class Form
 
 			echo '<div class="form-group ' . $horizontal . '">';
 
-			echo '<label for="' .  $attrs['id'] . '" class="' . $horizontalleft . ' ' . $cfg['labelclass'] . '">' . $label . '</label>';
+			$labeltext = $label;
+
+			if(in_array($type, ['button', 'submit'])){
+
+				$labeltext = '';
+			}
+
+			echo '<label for="' .  $attrs['id'] . '" class="' . $horizontalleft . ' ' . $cfg['labelclass'] . '">' . $labeltext . '</label>';
 
 			if($cfg['horizontal']){
 
@@ -353,6 +360,30 @@ class Form
   				}
 
   				
+
+				break;
+
+			case 'button':
+			case 'submit':
+
+				$size = '';
+
+				switch($cfg['size']){
+
+					case "form-control-lg":
+						$size = 'btn-lg';
+						break;
+					case "form-control-sm":
+						$size = 'btn-sm';
+						break;
+				}
+
+				if($cfg['class'] == ''){
+
+					$cfg['class'] = 'btn-primary';
+				}
+
+				echo '<button type="' . $type . '" class="btn ' . $size . ' ' . $cfg['class'] . '" id="' . $attrs['id'] . '">' . $label . '</button>';
 
 				break;
 
