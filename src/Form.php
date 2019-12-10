@@ -2,6 +2,8 @@
 
 namespace akicreative\akiforms;
 
+use Illuminate\Support\Str;
+
 /**
  * FormService class
  *
@@ -20,6 +22,7 @@ class Form
 	var $size = 'form-control-sm';
 	var $defaults = [];
 	var $constrainform = '';
+	var $inlinelist = false;
 
 	private function parse($args, $arguments)
 	{
@@ -81,7 +84,7 @@ class Form
 
 		$args = [
 
-			'action' => '',
+			'action' => url()->current(),
 			'id' => 'entryform',
 			'method' => 'POST'
 
@@ -114,9 +117,25 @@ class Form
 
 		echo "\n";
 
+		if($this->inlinelist){
+
+			echo '<ul class="list-inline">';
+
+			echo "\n";
+
+		}
+
 	}
 
 	public function close(){
+
+		if($this->inlinelist){
+
+			echo '</ul>';
+
+			echo "\n";
+
+		}
 
 		echo '</form>' . "\n";
 
@@ -147,7 +166,8 @@ class Form
 			'selectshortcut' => '',
 			'checkboxvalues' => [], // [[name, label, value]]
 			'testmode' => false,
-			'dateparams' => []
+			'dateparams' => [],
+			'attrs' => []
 
 		];
 
@@ -185,6 +205,17 @@ class Form
 
 			if($key == 'attrs' && is_array($value)){
 
+				if($this->inlinelist){
+
+					if(!array_key_exists('style', $value)){
+
+						$value['style'] = '';
+					}
+
+					$value['style'] .= ' width: auto;';
+
+				}
+
 				foreach($value as $akey => $avalue){
 
 					$fieldattributes[] = $akey . '="' . $avalue . '"';
@@ -198,6 +229,12 @@ class Form
 		if(old($name)){
 
 			$cfg['default'] = old($name);
+		}
+
+		if($this->inlinelist){
+
+			$cfg['fieldonly'] = true;
+
 		}
 
 		foreach($attrs as $key => $value){
@@ -258,15 +295,38 @@ class Form
 	    	}
 		}
 
+		if($this->inlinelist){
+
+			echo '<li class="list-inline-item">';
+
+		}
+
 		switch($type){
 
 			case 'text':
 			case 'email':
+			case 'password':
 
 				
 				echo '<input type="' . $type . '" class="form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . ' value="' . $cfg['default'] . '">';
     
 				echo $errorfeedback;
+
+				break;
+
+			case 'plaintext':
+
+				echo '<input type="text" readonly class="form-control-plaintext" id="plaintext' . Str::slug($name, '') . '" value="' . $name . '">';
+
+				break;
+
+			case 'show':
+
+				echo '<div class="mt-1">';
+
+				echo $name;
+
+				echo '</div>';
 
 				break;
 
@@ -329,8 +389,10 @@ class Form
 
 			case 'checkbox':
 			case 'checkbox-inline':
+			case 'switch':
 
-				
+				$controlclass = 'form-check-input';
+				$labelclass = 'form-check-label';
 
 				$array = $cfg['checkboxvalues'];
 
@@ -339,6 +401,13 @@ class Form
 					if($type == 'checkbox-inline'){
 
 						echo '<div class="form-check form-check-inline">';
+
+					}elseif($type == 'switch'){
+
+						echo '<div class="custom-control custom-switch">';
+
+						$controlclass = 'custom-control-input';
+						$labelclass = 'custom-control-label';
 
 					}else{
 
@@ -352,14 +421,13 @@ class Form
 						$value = $a[2];
 					}
 
-					echo '<input class="form-check-input" type="checkbox" name="' . $name . '" id="' . $name . $a[0] . '" value="' . $value . '">
-  					<label class="form-check-label" for="' . $name . $a[0] . '">' . $a[1] . '</label>';
+					echo '<input class="' . $controlclass . '" type="checkbox" name="' . $name . '" id="' . $name . $a[0] . '" value="' . $value . '">
+  					<label class="' . $labelclass . '" for="' . $name . $a[0] . '">' . $a[1] . '</label>';
 
   					echo '</div>';
 
   				}
 
-  				
 
 				break;
 
@@ -404,6 +472,12 @@ class Form
 			}
 
 			echo '</div>';
+		}
+
+		if($this->inlinelist){
+
+			echo '</li>';
+
 		}
 
 		if($cfg['testmode']){
