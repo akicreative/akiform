@@ -23,6 +23,7 @@ class Form
 	var $defaults = [];
 	var $constrainform = '';
 	var $inlinelist = false;
+	var $openform = false;
 
 	private function parse($args, $arguments)
 	{
@@ -78,6 +79,11 @@ class Form
 
 		$this->errors = $errors;
 
+		if($this->constrainform != ''){
+
+			echo '<div class="row"><div class="' . $this->constrainform . '">';
+		}
+
 	}
 
 	public function open($arguments = [], $fill = false){
@@ -89,11 +95,6 @@ class Form
 			'method' => 'POST'
 
 		];
-
-		if($this->constrainform != ''){
-
-			echo '<div class="row"><div class="' . $this->constrainform . '">';
-		}
 
 		echo '<form ' . $this->parse($args, $arguments) . '>';
 
@@ -119,11 +120,13 @@ class Form
 
 		if($this->inlinelist){
 
-			echo '<ul class="list-inline">';
+			echo '<ul class="list-inline mb-0">';
 
 			echo "\n";
 
 		}
+
+		$this->openform = true;
 
 	}
 
@@ -137,7 +140,11 @@ class Form
 
 		}
 
-		echo '</form>' . "\n";
+		if($this->openform){
+
+			echo '</form>' . "\n";
+
+		}
 
 		if($this->constrainform != ''){
 
