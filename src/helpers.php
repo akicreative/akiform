@@ -93,7 +93,13 @@ if (! function_exists('formatphone')) {
        $text = preg_replace("![^0-9]+!", "", $text);
 
        if($text == ''){
+
        		return $text;
+       }
+
+       if($version == 'clean'){
+
+            return $text;
        }
 
        $text = preg_replace("!^1!", "", $text);
