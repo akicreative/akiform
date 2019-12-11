@@ -388,7 +388,7 @@ class Form
 
 			case 'show':
 
-				echo '<div class="mt-0">';
+				echo '<div class="mt-1">';
 
 				echo $name;
 
