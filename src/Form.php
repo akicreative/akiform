@@ -24,6 +24,7 @@ class Form
 	var $constrainform = '';
 	var $inlinelist = false;
 	var $openform = false;
+	var $viewmode = false;
 
 	private function parse($args, $arguments)
 	{
@@ -86,6 +87,34 @@ class Form
 
 	}
 
+	public function fill($values)
+	{
+
+		if(is_array($values)){
+
+			$array = $values;
+
+		}elseif(is_object($values)){
+
+			$array  = $values->toArray();
+		
+		}else{
+
+			return;
+		}
+
+		foreach($array as $key => $value){
+
+			if(old($key)){
+
+				$array[$key] = old($key);
+			}
+		}
+	
+		$this->defaults = $array;
+
+	}
+
 	public function open($arguments = [], $fill = false){
 
 		$args = [
@@ -102,17 +131,7 @@ class Form
 
 		if($fill){
 
-			$array  = $fill->toArray();
-
-			foreach($array as $key => $value){
-
-				if(old($key)){
-
-					$array[$key] = old($key);
-				}
-			}
-		
-			$this->defaults = $array;
+			$this->fill($fill);
 
 		}
 
@@ -174,7 +193,8 @@ class Form
 			'checkboxvalues' => [], // [[name, label, value]]
 			'testmode' => false,
 			'dateparams' => [],
-			'attrs' => []
+			'attrs' => [],
+			'viewmode' => $this->viewmode
 
 		];
 
@@ -193,7 +213,6 @@ class Form
 			$cfg['default'] = $this->defaults[$name];
 		}
 
-		
 		$fieldattributes = ['name="' . $name . '"'];
 
 		foreach($cfgs as $key => $value){
@@ -306,6 +325,10 @@ class Form
 
 			echo '<li class="list-inline-item">';
 
+		}elseif($this->viewmode){
+
+			echo '<div class="pt-2">';
+
 		}
 
 		switch($type){
@@ -313,17 +336,35 @@ class Form
 			case 'text':
 			case 'email':
 			case 'password':
+			case 'number':
+
+				if($this->viewmode){
+
+					echo $cfg['default'];
+
+
+				}else{
 
 				
-				echo '<input type="' . $type . '" class="form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . ' value="' . $cfg['default'] . '">';
+					echo '<input type="' . $type . '" class="form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . ' value="' . $cfg['default'] . '">';
+
+					echo $errorfeedback;
     
-				echo $errorfeedback;
+				}
 
 				break;
 
 			case 'plaintext':
 
-				echo '<input type="text" readonly class="form-control-plaintext" id="plaintext' . Str::slug($name, '') . '" value="' . $name . '">';
+				if($this->viewmode){
+
+					echo $name;
+				
+				}else{
+
+					echo '<input type="text" readonly class="form-control-plaintext" id="plaintext' . Str::slug($name, '') . '" value="' . $name . '">';
+
+				}
 
 				break;
 
@@ -339,9 +380,17 @@ class Form
 
 			case 'textarea':
 
-				echo '<textarea class="form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . '>' . $cfg['default'] . '</textarea>';
-    
-				echo $errorfeedback;
+				if($this->viewmode){
+
+					echo $cfg['default'];
+
+				}else{
+
+					echo '<textarea class="form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . '>' . $cfg['default'] . '</textarea>';
+	    
+					echo $errorfeedback;
+
+				}
 
 				break;
 
@@ -359,38 +408,65 @@ class Form
 
 				}
 
-				echo '<select class="form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . '>';
+				if($this->viewmode){
 
-				
+					if($cfg['default'] == '') $cfg['default'] = 0;
 
-				if($cfg['selectblankfirst'] != ''){
+					if(array_key_exists($cfg['default'], $cfg['selectoptions'])){
 
-					echo '<option value="">' . $cfg['selectblankfirst'] . '</option>';
+						$a = $cfg['selectoptions'];
 
-				}
+						echo $a["$cfg[default]"];
+					
+					}else{
 
-				foreach($cfg['selectoptions'] as $key => $option){
-
-					$selected = '';
-
-					if($key == $cfg['default']){
-
-						$selected = 'selected';
+						echo '';
 					}
 
-					echo '<option value="' . $key . '" ' . $selected . '>' . $option . '</option>';
+				}else{
+
+					echo '<select class="form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . '>';
+
+					
+
+					if($cfg['selectblankfirst'] != ''){
+
+						echo '<option value="">' . $cfg['selectblankfirst'] . '</option>';
+
+					}
+
+					foreach($cfg['selectoptions'] as $key => $option){
+
+						$selected = '';
+
+						if($key == $cfg['default']){
+
+							$selected = 'selected';
+						}
+
+						echo '<option value="' . $key . '" ' . $selected . '>' . $option . '</option>';
+
+					}
+
+					echo '</select>';
+	    
+					echo $errorfeedback;
 
 				}
-
-				echo '</select>';
-    
-				echo $errorfeedback;
 
 				break;
 
 			case 'dateselect':
 
-				echo dateselect($name, $cfg['dateparams'] + ['default' => $cfg['default']]);
+				if($this->viewmode){
+
+					echo outdate($cfg['default']);
+
+				}else{
+
+					echo dateselect($name, $cfg['dateparams'] + ['default' => $cfg['default']]);
+
+				}
 
 				break;
 
@@ -398,12 +474,27 @@ class Form
 			case 'checkbox-inline':
 			case 'switch':
 
+
 				$controlclass = 'form-check-input';
 				$labelclass = 'form-check-label';
 
 				$array = $cfg['checkboxvalues'];
 
 				foreach($array as $a){
+
+					$cfg['default'] = 0;
+
+					if(array_key_exists($a[0], $this->defaults)){
+
+						$cfg['default'] = $this->defaults["$a[0]"];
+					}
+
+					if(old($a[0])){
+
+						$cfg['default'] = old($a[0]);
+					}
+
+					$checked = '';
 
 					if($type == 'checkbox-inline'){
 
@@ -428,7 +519,17 @@ class Form
 						$value = $a[2];
 					}
 
-					echo '<input class="' . $controlclass . '" type="checkbox" name="' . $name . '" id="' . $name . $a[0] . '" value="' . $value . '">
+					if($cfg['default'] == $value){
+
+						$checked = 'checked';
+					}
+
+					if($this->viewmode){
+
+						$checked .= ' disabled';
+					}
+
+					echo '<input class="' . $controlclass . '" type="checkbox" name="' . $a[0] . '" id="' . $name . $a[0] . '" value="' . $value . '" ' . $checked . '>
   					<label class="' . $labelclass . '" for="' . $name . $a[0] . '">' . $a[1] . '</label>';
 
   					echo '</div>';
@@ -458,7 +559,11 @@ class Form
 					$cfg['class'] = 'btn-primary';
 				}
 
-				echo '<button type="' . $type . '" class="btn ' . $size . ' ' . $cfg['class'] . '" id="' . $attrs['id'] . '">' . $label . '</button>';
+				if(!$this->viewmode){
+
+					echo '<button type="' . $type . '" class="btn ' . $size . ' ' . $cfg['class'] . '" id="' . $attrs['id'] . '">' . $label . '</button>';
+
+				}
 
 				break;
 
@@ -484,6 +589,10 @@ class Form
 		if($this->inlinelist){
 
 			echo '</li>';
+
+		}elseif($this->viewmode){
+
+			echo '</div>';
 
 		}
 

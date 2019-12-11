@@ -621,3 +621,19 @@ if (! function_exists('datesql')) {
     }
 
 }
+
+if (! function_exists('outdate')) {
+
+    function outdate($val, $format = 'M j, Y'){
+
+        if($val == NULL || $val == '0000-00-00' || $val == '0000-00-00 00:00:00'){
+
+            return '';
+        }else{
+
+            return date($format, strtotime($val));
+        }
+
+    }
+
+}

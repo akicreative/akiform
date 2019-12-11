@@ -10,6 +10,28 @@ This package is also being used to learn how to build packages so it is not expe
 
 # Usage
 
+## Initialization
+
+```
+$ar = new Akiform($errors, []);
+```
+
+### Arguments
+
+var $errors = [];
+var $tabindex = 1;
+var $echo = true;
+var $csrf = true;
+var $horizontal = false;
+var $horizontalleft = 'col-md-3';
+var $horizontalright = 'col-md-9';
+var $size = 'form-control-sm';
+var $defaults = [];
+var $constrainform = '';
+var $inlinelist = false;
+var $openform = false;
+var $viewmode = false;
+
 ## Checkbox Switch
 
 ```
