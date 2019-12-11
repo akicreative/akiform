@@ -25,7 +25,7 @@ class Form
 	var $inlinelist = false;
 	var $openform = false;
 	var $viewmode = false;
-	var $divider = '<hr class="my-1">';
+	var $divider = '<hr class="my-0">';
 
 	private function parse($args, $arguments)
 	{
@@ -280,6 +280,12 @@ class Form
 				$horizontal = 'row';
 				$horizontalleft = $cfg['horizontalleft'] . ' col-form-label';
 				$horizontalright = $cfg['horizontalright'];
+			}
+
+			if($this->viewmode){
+
+				$horizontal .= ' mb-0';
+
 			}
 
 			echo '<div class="form-group ' . $horizontal . '">';
