@@ -25,6 +25,7 @@ class Form
 	var $inlinelist = false;
 	var $openform = false;
 	var $viewmode = false;
+	var $divider = '<hr class="my-1">';
 
 	private function parse($args, $arguments)
 	{
@@ -593,6 +594,8 @@ class Form
 		}elseif($this->viewmode){
 
 			echo '</div>';
+
+			echo $this->divider;
 
 		}
 
