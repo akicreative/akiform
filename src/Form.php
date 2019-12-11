@@ -173,15 +173,17 @@ class Form
 
 	}
 
-	public function build($type, $label, $name = '', $cfgs = []){
+	public function hidden($name, $value, $id = ''){
 
-		if($type == 'hidden'){
+		if($id == ''){
 
-			echo '<input type="hidden" name="' . $label . '" value="' . $name . '">';
-
-			return;
-
+			$id = $name;
 		}
+
+		echo '<input type="hidden" name="' . $name . '" value="' . $value . '" id="' . $id . '">';
+	}
+
+	public function build($type, $label, $name = '', $cfgs = []){
 
 		$cfg = [
 
