@@ -195,7 +195,8 @@ class Form
 			'testmode' => false,
 			'dateparams' => [],
 			'attrs' => [],
-			'viewmode' => $this->viewmode
+			'viewmode' => $this->viewmode,
+			'last' => false
 
 		];
 
@@ -601,7 +602,11 @@ class Form
 
 			echo '</div>';
 
-			echo $this->divider;
+			if(!$cfg['last']){
+
+				echo $this->divider;
+
+			}
 
 		}
 
