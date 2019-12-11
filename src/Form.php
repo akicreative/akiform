@@ -175,6 +175,14 @@ class Form
 
 	public function build($type, $label, $name = '', $cfgs = []){
 
+		if($type == 'hidden'){
+
+			echo '<input type="hidden" name="' . $label . '" value="' . $name . '">';
+
+			return;
+
+		}
+
 		$cfg = [
 
 			'fieldonly' => false,
