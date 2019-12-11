@@ -388,7 +388,7 @@ class Form
 
 			case 'show':
 
-				echo '<div class="mt-1">';
+				echo '<div class="mt-0">';
 
 				echo $name;
 
@@ -421,7 +421,7 @@ class Form
 						break;
 
 					case "noyes":
-						$cfg['selectoptions'] = [0 => 'No', 0 => 'Yes'];
+						$cfg['selectoptions'] = [0 => 'No', 1 => 'Yes'];
 						break;
 
 				}
