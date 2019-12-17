@@ -26,6 +26,7 @@ class Form
 	var $openform = false;
 	var $viewmode = false;
 	var $divider = '<hr class="my-0">';
+	var $compact = true;
 
 	private function parse($args, $arguments)
 	{
@@ -297,6 +298,30 @@ class Form
 
 				$horizontal .= ' mb-0';
 
+			}elseif($this->compact){
+
+				switch($type){
+
+					case "textarea":
+						$horizontal .= ' mb-2';
+						break;
+					case "show":
+						$horizontal .= ' mb-1';
+						$horizontalright .= ' pt-1';
+						break;
+					case "switch":
+					case "checkbox":
+					case "checkbox-inline":
+						$horizontal .= ' mb-1';
+						$horizontalright .= ' pt-1';
+						break;
+					default: 
+
+						$horizontal .= ' mb-1';
+						break;
+				}
+
+				
 			}
 
 			echo '<div class="form-group ' . $horizontal . '">';
