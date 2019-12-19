@@ -620,7 +620,7 @@ class Form
 
 				if(!$this->viewmode){
 
-					echo '<button type="' . $type . '" class="btn ' . $size . ' ' . $cfg['class'] . '" id="' . $attrs['id'] . '">' . $label . '</button>';
+					echo '<button type="' . $type . '" class="btn ' . $size . ' ' . $cfg['class'] . '" id="' . $attrs['id'] . '" ' . implode(' ', $fieldattributes) . '>' . $label . '</button>';
 
 				}
 
