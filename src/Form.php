@@ -405,7 +405,7 @@ class Form
 				}else{
 
 				
-					echo '<input type="' . $type . '" class="form-control-file ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . '>';
+					echo '<input type="' . $type . '" class="form-control-file ' . $this->size . ' ' . $cfg['class'] . ' pl-0" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . '>';
 
 					echo $errorfeedback;
     
