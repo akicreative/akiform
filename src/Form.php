@@ -316,7 +316,6 @@ class Form
 						$horizontalright .= ' pt-1';
 						break;
 					default: 
-
 						$horizontal .= ' mb-1';
 						break;
 				}
@@ -390,6 +389,23 @@ class Form
 
 				
 					echo '<input type="' . $type . '" class="form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . ' value="' . $cfg['default'] . '">';
+
+					echo $errorfeedback;
+    
+				}
+
+				break;
+			case 'file':
+
+				if($this->viewmode){
+
+					//echo $cfg['default'];
+
+
+				}else{
+
+				
+					echo '<input type="' . $type . '" class="form-control-file ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . '>';
 
 					echo $errorfeedback;
     
