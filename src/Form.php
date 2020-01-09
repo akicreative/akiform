@@ -589,7 +589,15 @@ class Form
 					}
 
 					echo '<input class="' . $controlclass . '" type="checkbox" name="' . $a[0] . '" id="' . $name . $a[0] . '" value="' . $value . '" ' . $checked . '>
-  					<label class="' . $labelclass . '" for="' . $name . $a[0] . '">' . $a[1] . '</label>';
+  					<label class="' . $labelclass . '" for="' . $name . $a[0] . '">' . $a[1];
+
+  					if($cfg['blockhelp'] != '' && $cfg['fieldonly']){
+
+						echo '<br><small id="' . $attrs['id'] . 'Help" class="form-text text-muted">' . $cfg['blockhelp'] . '</small>';
+
+					}
+
+  					echo '</label>';
 
   					echo '</div>';
 
