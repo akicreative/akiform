@@ -537,6 +537,9 @@ class Form
 				$controlclass = 'form-check-input';
 				$labelclass = 'form-check-label';
 
+				$fieldattributes = unset($fieldattributes['id']);
+				$fieldattributes = unset($fieldattributes['name']);
+
 				$array = $cfg['checkboxvalues'];
 
 				foreach($array as $a){
@@ -587,9 +590,6 @@ class Form
 
 						$checked .= ' disabled';
 					}
-
-					$fieldattributes = unset($fieldattributes['id']);
-					$fieldattributes = unset($fieldattributes['name']);
 
 					echo '<input class="' . $controlclass . '" type="checkbox" name="' . $a[0] . '" id="' . $name . $a[0] . '" ' . implode(' ', $fieldattributes) . ' value="' . $value . '" ' . $checked . '>
   					<label class="' . $labelclass . '" for="' . $name . $a[0] . '">' . $a[1];
