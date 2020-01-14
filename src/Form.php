@@ -588,7 +588,8 @@ class Form
 						$checked .= ' disabled';
 					}
 
-					$fieldattributes = unset($fieldattributes['id'], $fieldattributes['name']);
+					$fieldattributes = unset($fieldattributes['id']);
+					$fieldattributes = unset($fieldattributes['name']);
 
 					echo '<input class="' . $controlclass . '" type="checkbox" name="' . $a[0] . '" id="' . $name . $a[0] . '" ' . implode(' ', $fieldattributes) . ' value="' . $value . '" ' . $checked . '>
   					<label class="' . $labelclass . '" for="' . $name . $a[0] . '">' . $a[1];
