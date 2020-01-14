@@ -537,8 +537,8 @@ class Form
 				$controlclass = 'form-check-input';
 				$labelclass = 'form-check-label';
 
-				$fieldattributes = unset($fieldattributes['id']);
-				$fieldattributes = unset($fieldattributes['name']);
+				//$fieldattributes = unset($fieldattributes['id']);
+				//$fieldattributes = unset($fieldattributes['name']);
 
 				$array = $cfg['checkboxvalues'];
 
