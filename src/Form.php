@@ -604,6 +604,83 @@ class Form
 
   					echo '</div>';
 
+  					$this->tabindex++;
+
+  				}
+
+
+				break;
+
+			case 'radio':
+			case 'radio-inline':
+
+				$controlclass = 'form-check-input';
+				$labelclass = 'form-check-label';
+
+				//$fieldattributes = unset($fieldattributes['id']);
+				//$fieldattributes = unset($fieldattributes['name']);
+
+				$array = $cfg['checkboxvalues'];
+
+				foreach($array as $a){
+
+					$cfg['default'] = 0;
+
+					if(array_key_exists($a[0], $this->defaults)){
+
+						$cfg['default'] = $this->defaults["$a[0]"];
+					}
+
+					if(old($a[0])){
+
+						$cfg['default'] = old($a[0]);
+					}
+
+					$checked = '';
+
+					if($type == 'checkbox-inline'){
+
+						echo '<div class="form-check form-check-inline">';
+
+					}elseif($type == 'switch'){
+
+						echo '<div class="custom-control custom-switch">';
+
+						$controlclass = 'custom-control-input';
+						$labelclass = 'custom-control-label';
+
+					}else{
+
+						echo '<div class="form-check">';
+					}
+
+					$value = $a[0];
+
+					if($cfg['default'] == $value){
+
+						$checked = 'checked';
+					}
+
+					if($this->viewmode){
+
+						$checked .= ' disabled';
+					}
+
+					echo '<input class="' . $controlclass . '" type="radio" name="' . $name . '" id="' . $name . $a[0] . '" tabindex="' . $this->tabindex . '" value="' . $value . '" ' . $checked . '>
+  					<label class="' . $labelclass . '" for="' . $name . $a[0] . '">' . $a[1];
+
+  					if($cfg['blockhelp'] != '' && $cfg['fieldonly']){
+
+						echo '<br><small id="' . $attrs['id'] . 'Help" class="form-text text-muted">' . $cfg['blockhelp'] . '</small>';
+
+					}
+
+  					echo '</label>';
+
+  					echo '</div>';
+
+  					$this->tabindex++;
+
   				}
 
 
