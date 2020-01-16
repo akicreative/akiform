@@ -591,7 +591,7 @@ class Form
 						$checked .= ' disabled';
 					}
 
-					echo '<input class="' . $controlclass . '" type="checkbox" name="' . $a[0] . '" id="' . $name . $a[0] . '" tabindex="' . $this->tabindex . '" value="' . $value . '" ' . $checked . '>
+					echo '<input class="' . $controlclass . ' ' . $cfg['class'] . '" type="checkbox" name="' . $a[0] . '" id="' . $name . $a[0] . '" tabindex="' . $this->tabindex . '" value="' . $value . '" ' . $checked . '>
   					<label class="' . $labelclass . '" for="' . $name . $a[0] . '">' . $a[1];
 
   					if($cfg['blockhelp'] != '' && $cfg['fieldonly']){
