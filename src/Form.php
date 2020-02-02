@@ -202,7 +202,8 @@ class Form
 			'selectoptions' => [],
 			'selectblankfirst' => false,
 			'selectshortcut' => '',
-			'checkboxvalues' => [], // [[name, label, value]]
+			'checkboxvalues' => [], // [[name, label, value]],
+			'checkboxmulti' => false,
 			'testmode' => false,
 			'dateparams' => [],
 			'attrs' => [],
@@ -581,10 +582,28 @@ class Form
 						$value = $a[2];
 					}
 
-					if($cfg['default'] == $value){
+			
 
-						$checked = 'checked';
+					if(is_array($cfg['checkboxmulti'])){
+
+						if(in_array($value, $cfg['checkboxmulti'])){
+
+							$checked = 'checked';
+						}
+
+
+					}else{
+
+						if($cfg['default'] == $value){
+
+							$checked = 'checked';
+
+						
+						}
+
 					}
+
+
 
 					if($this->viewmode){
 
