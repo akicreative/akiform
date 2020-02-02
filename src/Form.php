@@ -603,15 +603,22 @@ class Form
 
 					}
 
-
-
 					if($this->viewmode){
 
 						$checked .= ' disabled';
 					}
 
-					echo '<input class="' . $controlclass . ' ' . $cfg['class'] . '" type="checkbox" name="' . $a[0] . '" id="' . $name . $a[0] . '" tabindex="' . $this->tabindex . '" value="' . $value . '" ' . $checked . '>
-  					<label class="' . $labelclass . '" for="' . $name . $a[0] . '">' . $a[1];
+					$name = $a[0];
+					$id = $name;
+
+					if(is_array($cfg['checkboxmulti'])){
+
+						$name = $name . '[]';
+						$id = $id . $value;
+					}
+
+					echo '<input class="' . $controlclass . ' ' . $cfg['class'] . '" type="checkbox" name="' . $name . '" id="' . $id . '" tabindex="' . $this->tabindex . '" value="' . $value . '" ' . $checked . '>
+  					<label class="' . $labelclass . '" for="' . $id . '">' . $a[1];
 
   					if($cfg['blockhelp'] != '' && $cfg['fieldonly']){
 
