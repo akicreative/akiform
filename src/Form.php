@@ -650,13 +650,6 @@ class Form
 
 				foreach($array as $a){
 
-					$cfg['default'] = 0;
-
-					if(array_key_exists($a[0], $this->defaults)){
-
-						$cfg['default'] = $this->defaults["$a[0]"];
-					}
-
 					if(old($a[0])){
 
 						$cfg['default'] = old($a[0]);
