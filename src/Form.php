@@ -657,7 +657,7 @@ class Form
 
 					$checked = '';
 
-					if($type == 'checkbox-inline'){
+					if($type == 'radio-inline'){
 
 						echo '<div class="form-check form-check-inline">';
 
