@@ -524,7 +524,7 @@ class Form
 
 				}else{
 
-					echo dateselect($name, $cfg['dateparams'] + ['default' => $cfg['default']]);
+					echo dateselect($name, $cfg['dateparams'] + ['default' => $cfg['default'], 'size' => $cfg['size']]);
 
 				}
 

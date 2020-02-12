@@ -256,47 +256,6 @@ if (! function_exists('timeselect')) {
     }
 }
 
-if (! function_exists('monthselect')) {
-
-    function monthselect($name = 'month', $default = '', $params = []) {
-
-        $above = '';
-        $class = '';
-        $style = 'width: auto;';
-
-        extract($params);
-      
-        $values = montharray();
-
-        ob_start();
-
-        echo '<select class="form-control" id="' . $name . '" name="' . $name . '" type="select" style="' . $style . '">';
-
-        echo $above;
-
-        foreach($values as $key => $value){
-
-            $selected = '';
-
-            if($key == $default){
-
-                $selected = 'selected';
-            }
-
-            echo '<option value="' . $key . '" ' . $selected . '>' . $value . '</option>' . "\n";
-
-        }
-
-        echo '</select>';
-
-        $output = ob_get_contents();
-
-        ob_end_clean();
-
-        return $output;
-    }
-}
-
 if (! function_exists('montharray')) {
 
     function montharray($datecode = "F") {
@@ -323,6 +282,7 @@ if (! function_exists('monthselect')) {
         $above = '';
         $class = '';
         $style = 'width: auto;';
+        $size = '';
 
         extract($params);
       
@@ -330,7 +290,7 @@ if (! function_exists('monthselect')) {
 
         ob_start();
 
-        echo '<select class="form-control" id="' . $name . '" name="' . $name . '" type="select" style="' . $style . '">';
+        echo '<select class="form-control  ' . $size . '" id="' . $name . '" name="' . $name . '" type="select" style="' . $style . '">';
 
         echo $above;
 
@@ -383,6 +343,7 @@ if (! function_exists('dayselect')) {
         $above = '';
         $class = '';
         $style = 'width: auto;';
+        $size = '';
 
         extract($params);
       
@@ -390,7 +351,7 @@ if (! function_exists('dayselect')) {
 
         ob_start();
 
-        echo '<select class="form-control" id="' . $name . '" name="' . $name . '" type="select" style="' . $style . '">';
+        echo '<select class="form-control ' . $size . '" id="' . $name . '" name="' . $name . '" type="select" style="' . $style . '">';
 
         echo $above;
 
@@ -467,6 +428,7 @@ if (! function_exists('yearselect')) {
         $style = 'width: auto;';
         $start = '';
         $end = '';
+        $size = '';
 
         extract($params);
       
@@ -474,7 +436,7 @@ if (! function_exists('yearselect')) {
 
         ob_start();
 
-        echo '<select class="form-control" id="' . $name . '" name="' . $name . '" type="select" style="' . $style . '">';
+        echo '<select class="form-control ' . $size . '" id="' . $name . '" name="' . $name . '" type="select" style="' . $style . '">';
 
         echo $above;
 
@@ -522,7 +484,17 @@ if (! function_exists('dateselect')) {
 
         $label = '';
 
+        $size = '';
+
         extract($params);
+
+        if($size != ''){
+
+            $monthparams['size'] = $size;
+            $dayparams['size'] = $size;
+            $yearparams['size'] = $size;
+
+        }
 
         if($default != ''){
 
@@ -544,7 +516,7 @@ if (! function_exists('dateselect')) {
 
         if(in_array('month', $show)){
 
-            echo '<li class="list-inline-item">';
+            echo '<li class="list-inline-item">';   
 
             echo monthselect($prefix . 'month', $month, $monthparams);
 
