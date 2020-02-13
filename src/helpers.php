@@ -584,6 +584,36 @@ if (! function_exists('datesql')) {
         $day = request()->input($prefix . 'day', '');
         $year = request()->input($prefix . 'year', '');
 
+        if(in_array('month', $show)){
+
+            if($month == '' || in_array($month, ['MM', 'Month', '00'])){
+
+                return '';
+
+            }
+
+        }
+
+        if(in_array('day', $show)){
+
+            if($day == '' || in_array($day, ['DD', 'Day', '00'])){
+
+                return '';
+
+            }
+
+        }
+
+        if(in_array('year', $show)){
+
+            if($year == '' || in_array($year, ['YYYY', 'Year', '0000'])){
+
+                return '';
+
+            }
+
+        }
+
         if(in_array('time', $show)){
 
             $time = request()->input($prefix . 'time', '00:00:00');
