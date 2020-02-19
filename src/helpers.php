@@ -645,3 +645,15 @@ if (! function_exists('outdate')) {
     }
 
 }
+
+if(!function_exists('desclist')){
+
+    function desclist($dt, $dd, $dtclass = 'col-sm-3', $ddclass = 'col-sm-9'){
+
+        echo '<dt class="' . $dtclass . '">' . $dt . '</dt>';
+
+        echo '<dd class="' . $ddclass . '">' . $dd . '</dd>';        
+
+    }
+
+}
