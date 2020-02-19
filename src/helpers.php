@@ -650,9 +650,18 @@ if(!function_exists('desclist')){
 
     function desclist($dt, $dd, $dtclass = 'col-sm-3', $ddclass = 'col-sm-9'){
 
+        ob_start();
+
         echo '<dt class="' . $dtclass . '">' . $dt . '</dt>';
 
-        echo '<dd class="' . $ddclass . '">' . $dd . '</dd>';        
+        echo '<dd class="' . $ddclass . '">' . $dd . '</dd>';  
+
+        $return = ob_get_contents();
+
+        ob_end_clean();
+
+        return $return;
+
 
     }
 
