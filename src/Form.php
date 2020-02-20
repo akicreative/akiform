@@ -186,6 +186,11 @@ class Form
 
 	public function build($type, $label, $name = '', $cfgs = []){
 
+		if($name == ''){
+
+			$name = md5(rand() . time());
+		}
+
 		$cfg = [
 
 			'fieldonly' => false,
@@ -208,7 +213,8 @@ class Form
 			'dateparams' => [],
 			'attrs' => [],
 			'viewmode' => $this->viewmode,
-			'last' => false
+			'last' => false,
+			'html' => ''
 
 		];
 
@@ -281,6 +287,10 @@ class Form
 
 			$fieldattributes[] = $key . '="' . $value . '"';
 		}
+
+		$echo = true;
+
+		ob_start();
 
 		if(!$cfg['fieldonly']){
 
@@ -432,7 +442,14 @@ class Form
 
 				echo '<div class="mt-0">';
 
-				echo $name;
+				if($cfg['html'] != ''){
+
+					echo $cfg['html'];
+
+				}else{
+
+					echo $name;
+				}
 
 				echo '</div>';
 
@@ -729,6 +746,9 @@ class Form
 
 					echo '<button type="' . $type . '" class="btn ' . $size . ' ' . $cfg['class'] . '" id="' . $attrs['id'] . '" ' . implode(' ', $fieldattributes) . '>' . $label . '</button>';
 
+				}else{
+
+					$echo = false;
 				}
 
 				break;
@@ -765,6 +785,16 @@ class Form
 				echo $this->divider;
 
 			}
+
+		}
+
+		$output = ob_get_contents();
+
+		ob_end_clean();
+
+		if($echo){
+
+			echo $output;
 
 		}
 
