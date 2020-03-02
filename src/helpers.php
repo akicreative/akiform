@@ -283,6 +283,7 @@ if (! function_exists('monthselect')) {
         $class = '';
         $style = 'width: auto;';
         $size = '';
+        $blank = '';
 
         extract($params);
       
@@ -291,6 +292,18 @@ if (! function_exists('monthselect')) {
         ob_start();
 
         echo '<select class="form-control  ' . $size . '" id="' . $name . '" name="' . $name . '" type="select" style="' . $style . '">';
+
+        if($blank == 'mask'){
+
+            $selected = '';
+
+            if($default == 'MM' || $default == '00' || $default == NULL){
+
+                $selected = 'selected';
+            }
+
+            echo '<option value="MM" ' . $selected . '>MM</option>' . "\n";
+        }
 
         echo $above;
 
@@ -344,6 +357,7 @@ if (! function_exists('dayselect')) {
         $class = '';
         $style = 'width: auto;';
         $size = '';
+        $blank = '';
 
         extract($params);
       
@@ -352,6 +366,18 @@ if (! function_exists('dayselect')) {
         ob_start();
 
         echo '<select class="form-control ' . $size . '" id="' . $name . '" name="' . $name . '" type="select" style="' . $style . '">';
+
+        if($blank == 'mask'){
+
+            $selected = '';
+
+            if($default == 'DD' || $default == '00' || $default == NULL){
+
+                $selected = 'selected';
+            }
+
+            echo '<option value="DD" ' . $selected . '>DD</option>' . "\n";
+        }
 
         echo $above;
 
@@ -429,6 +455,7 @@ if (! function_exists('yearselect')) {
         $start = '';
         $end = '';
         $size = '';
+        $blank = '';
 
         extract($params);
       
@@ -437,6 +464,19 @@ if (! function_exists('yearselect')) {
         ob_start();
 
         echo '<select class="form-control ' . $size . '" id="' . $name . '" name="' . $name . '" type="select" style="' . $style . '">';
+
+        if($blank == 'mask'){
+
+            $selected = '';
+
+            if($default == 'YYYY' || $default == '00' || $default == NULL){
+
+                $selected = 'selected';
+            
+            }
+
+            echo '<option value="YYYY" ' . $selected . '>YYYY</option>' . "\n";
+        }
 
         echo $above;
 
@@ -486,6 +526,8 @@ if (! function_exists('dateselect')) {
 
         $size = '';
 
+        $blank = '';
+
         extract($params);
 
         if($size != ''){
@@ -493,6 +535,18 @@ if (! function_exists('dateselect')) {
             $monthparams['size'] = $size;
             $dayparams['size'] = $size;
             $yearparams['size'] = $size;
+
+        }
+
+        switch($blank){
+
+            case "mask":
+            case "words":
+            case "blank":
+                $monthparams['blank'] = $blank;
+                $dayparams['blank'] = $blank;
+                $yearparams['blank'] = $blank;
+                break;
 
         }
 
