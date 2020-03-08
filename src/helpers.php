@@ -642,7 +642,7 @@ if (! function_exists('datesql')) {
 
             if($month == '' || in_array($month, ['MM', 'Month', '00'])){
 
-                return '';
+                return NULL;
 
             }
 
@@ -652,7 +652,7 @@ if (! function_exists('datesql')) {
 
             if($day == '' || in_array($day, ['DD', 'Day', '00'])){
 
-                return '';
+                return NULL;
 
             }
 
@@ -662,7 +662,7 @@ if (! function_exists('datesql')) {
 
             if($year == '' || in_array($year, ['YYYY', 'Year', '0000'])){
 
-                return '';
+                return NULL;
 
             }
 

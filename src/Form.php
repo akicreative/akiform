@@ -186,7 +186,7 @@ class Form
 
 	public function build($type, $label, $name = '', $cfgs = []){
 
-		if($name == ''){
+		if($name == '' && $type != 'show'){
 
 			$name = md5(rand() . time());
 		}
@@ -233,7 +233,15 @@ class Form
 			$cfg['default'] = $this->defaults[$name];
 		}
 
-		$fieldattributes = ['name="' . $name . '"'];
+		if($type == 'show'){
+
+			$fieldattributes = [];
+
+		}else{
+
+			$fieldattributes = ['name="' . $name . '"'];
+
+		}
 
 		foreach($cfgs as $key => $value){
 
