@@ -12,7 +12,6 @@
     "version": "0.1.2",
     "minimum-stability": "dev",
     "require": {
-        "intervention/image": "^2.*",
         "irazasyed/telegram-bot-sdk": "^2.0"
     },
     "autoload": {
