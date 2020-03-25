@@ -720,3 +720,103 @@ if(!function_exists('desclist')){
     }
 
 }
+
+if (! function_exists('akiredactor')) {
+
+    function akiredactor($mode = '', $params = []) {
+        
+        if($mode == 'css'){
+
+            echo '<link rel="stylesheet" href="/redactor/redactor.css">';
+
+        }elseif($mode == 'js'){
+
+            echo '
+                <script src="/redactor/redactor.js"></script>
+                <script src="/redactor/plugins/alignment/alignment.min.js"></script>
+                <script src="/redactor/plugins/fontsize/fontsize.min.js"></script>
+                <script src="/redactor/plugins/fontcolor/fontcolor.min.js"></script>
+                <script src="/redactor/plugins/inlinestyle/inlinestyle.js"></script>
+                <script src="/redactor/plugins/table/table.js"></script>
+            ';
+
+        }else{
+
+            $plugins = ['alignment', 'inlinestyle', 'fontsize', 'fontcolor', 'table'];
+            $buttons = ['format', 'bold', 'italic', 'deleted', 'lists', 'link'];
+            $fileupload = '';
+            $imageupload = '';
+            $allplugins = false;
+            $pluginadd = [];
+            $pluginremove = [];
+            $buttonadd = [];
+            $buttonremove = [];
+
+            extract($params);
+
+            for($i = 0; $i < count($pluginremove); $i++){
+
+                $val = $pluginadd[$i];
+
+                unset($plugins[$val]);
+            }
+
+            for($i = 0; $i < count($pluginadd); $i++){
+
+                $val = $pluginadd[$i];
+
+                $plugins[] = $val;
+            }  
+
+            for($i = 0; $i < count($buttonremove); $i++){
+
+                $val = $buttonadd[$i];
+
+                unset($buttons[$val]);
+            }
+
+            for($i = 0; $i < count($buttonadd); $i++){
+
+                $val = $buttonadd[$i];
+
+                $buttons[] = $val;
+            }            
+
+            $vars = [];
+
+            if(count($plugins) > 0){
+
+                $vars[] = "plugins: ['" . implode("', '", $plugins) . "']";
+            } 
+
+            $vars[] = "buttons: ['" . implode("', '", $buttons) . "']";
+
+            echo '<script type="text/javascript">
+
+           
+
+            ';
+
+            echo '$("' . $mode . '").redactor({';
+
+                if(count($vars) > 0){
+
+                    echo implode(", ", $vars);
+
+                }
+
+          
+
+            echo '
+
+                });
+
+                </script>
+
+            ';
+
+
+        }
+        
+    }
+}

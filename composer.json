@@ -11,10 +11,21 @@
     ],
     "version": "0.1.2",
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "intervention/image": "^2.5",
+        "irazasyed/telegram-bot-sdk": "^2.0"
+    },
     "autoload": {
         "psr-4": {
             "akicreative\\akiforms\\": "src/"
         }
+    },
+
+    "extra": {
+      "laravel": {
+        "providers": [
+          "akicreative\\akiforms\\src\\AkiFormsServiceProvider"
+        ]
+      }
     }
 }
