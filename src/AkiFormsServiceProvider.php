@@ -20,6 +20,14 @@
 
             ]);
 
+            $this->publishes([
+
+                __DIR__ . '/../config/akiforms.php' => config_path('akiforms.default.php')
+
+            ]);
+
+
+
             require_once __DIR__ . '/helpers.php';
             require_once __DIR__ . '/telegram.php';
 

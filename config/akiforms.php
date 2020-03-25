@@ -6,8 +6,8 @@ return [
 
 	'akiforms_redactor' => [
 
-		'imagepath' => '/test'
-
+		'imagepath' => '',
+		'filepath' => ''
 	]
 
 ];
