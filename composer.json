@@ -23,7 +23,7 @@
     "extra": {
       "laravel": {
         "providers": [
-          "akicreative\\akiforms\\src\\AkiFormsServiceProvider"
+          "akicreative\\akiforms\\AkiFormsServiceProvider"
         ]
       }
     }
