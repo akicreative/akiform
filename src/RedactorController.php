@@ -1,6 +1,6 @@
 <?php
 
-namespace akicreative\akiforms;
+namespace AkiCreative\AkiForms;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;

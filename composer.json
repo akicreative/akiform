@@ -16,14 +16,14 @@
     },
     "autoload": {
         "psr-4": {
-            "akicreative\\akiforms\\": "src/"
+            "AkiCreative\\AkiForms\\": "src/"
         }
     },
 
     "extra": {
       "laravel": {
         "providers": [
-          "akicreative\\akiforms\\AkiFormsServiceProvider"
+          "AkiCreative\\AkiForms\\AkiFormsServiceProvider"
         ]
       }
     }
