@@ -4,7 +4,7 @@ namespace AkiCreative\AkiForms\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Mail;
-use MailQueue;
+use AkiCreative\AkiForms\Models\MailQueue;
 
 class Akinotification extends Model
 {
