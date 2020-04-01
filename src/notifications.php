@@ -3,10 +3,14 @@
 if (! function_exists('akinotificationqueue')) {
 
     function akinotificationqueue() {
-        
-        $emails = AkiCreative\Akiforms\Akinotification::whereNull('sent_at')->where('toemail', '!=', '')->where('send_at', '<=', now())->take(25)->get();
 
-           
+        echo time();
+
+        /*
+        
+        $emails = AkiCreative\AkiForms\Akinotification::whereNull('sent_at')->where('toemail', '!=', '')->where('send_at', '<=', now())->take(25)->get();
+
+        */
 
         /*
 
