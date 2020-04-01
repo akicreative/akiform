@@ -1,6 +1,6 @@
 <?php
 
-namespace AkiCreative\AkiForms;
+namespace AkiCreative\AkiForms\Models;
 
 use Models\Akinotification;
 use Illuminate\Bus\Queueable;
