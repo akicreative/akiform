@@ -30,7 +30,7 @@ class MailQueue extends Mailable
      * @return $this
      */
     public function build()
-    {
+    {  
 
         return $this->from($this->row->email_fromemail, $this->row->email_fromname)->to($this->row->email_toemail)->html($this->row->body)->subject($this->row->email_subject);
     }

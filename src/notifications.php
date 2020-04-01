@@ -4,9 +4,10 @@ if (! function_exists('akinotificationqueue')) {
 
     function akinotificationqueue() {
         
-        $rows = AkiCreative\AkiForms\Akinotification::whereNull('sent_at')->where('toemail', '!=', '')->where('send_at', '<=', now())->take(25)->get();
+        $rows = AkiCreative\AkiForms\Models\Akinotification::whereNull('sent_at')->where('send_at', '<=', now())->take(25)->get();
 
         foreach($rows as $row){
+
 
             if($row->notificationtype == 'email'){
 
@@ -22,10 +23,11 @@ if (! function_exists('akinotificationqueue')) {
                     $row->email_toemail = 'steven.i@me.com';
                 }
 
-                \Illuminate\Support\Facades\Mail::send(new \App\Mail\MailQueue($email));  
+                \Illuminate\Support\Facades\Mail::send(new \AkiCreative\AkiForms\Models\MailQueue($row)); 
 
-                $email->sent_at = now();
-                $email->save();
+                $row->sent_at = now();
+                $row->save();
+   
 
             }elseif($row->notificationtype == 'telegram'){
 
