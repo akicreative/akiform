@@ -20,7 +20,7 @@ class CreateAkinotificationsTable extends Migration
             $table->string('notificationtype', 20)->default('email');
             $table->dateTime('send_at')->nullable();
             $table->dateTime('sent_at')->nullable();
-            $table->bigInteger('ref_id');
+            $table->bigInteger('ref_id')->default(0);
             $table->string('ref_group')->default('general');
             $table->text('body')->nullable();
             $table->string('email_fromemail')->nullable();

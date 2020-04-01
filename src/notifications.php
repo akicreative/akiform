@@ -22,7 +22,7 @@ if (! function_exists('akinotificationqueue')) {
                     $row->email_toemail = 'steven.i@me.com';
                 }
 
-                Illuminate\Support\Facades\Mail::send(new App\Mail\MailQueue($email));  
+                \Illuminate\Support\Facades\Mail::send(new \App\Mail\MailQueue($email));  
 
                 $email->sent_at = now();
                 $email->save();

@@ -2,7 +2,7 @@
 
 namespace AkiCreative\AkiForms\Models;
 
-use Models\Akinotification;
+use AkiCreative\AkiForms\Models\Akinotification;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
