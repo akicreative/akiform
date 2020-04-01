@@ -17,7 +17,12 @@
     "autoload": {
         "psr-4": {
             "AkiCreative\\AkiForms\\": "src/"
-        }
+        },
+        "classmap": [
+
+            "Models"
+
+        ]
     },
 
     "extra": {
