@@ -29,7 +29,7 @@
 
 
             require_once __DIR__ . '/helpers.php';
-            require_once __DIR__ . '/telegram.php';
+            require_once __DIR__ . '/notifications.php';
 
         }
         
