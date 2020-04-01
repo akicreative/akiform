@@ -4,13 +4,13 @@
 
 return [
 
-	'akiforms_redactor' => [
+	'redactor' => [
 
 		'imagepath' => '',
 		'filepath' => ''
 	],
 
-	'akiforms_emaildefaults' => [
+	'emaildefaults' => [
 
 		'fromemail' => '',
 		'fromname' => '',

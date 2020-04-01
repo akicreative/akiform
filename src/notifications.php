@@ -3,40 +3,37 @@
 if (! function_exists('akinotificationqueue')) {
 
     function akinotificationqueue() {
-
-        echo time();
-
-        /*
         
-        $emails = AkiCreative\AkiForms\Akinotification::whereNull('sent_at')->where('toemail', '!=', '')->where('send_at', '<=', now())->take(25)->get();
+        $rows = AkiCreative\AkiForms\Akinotification::whereNull('sent_at')->where('toemail', '!=', '')->where('send_at', '<=', now())->take(25)->get();
 
-        */
+        foreach($rows as $row){
 
-        /*
+            if($row->notificationtype == 'email'){
 
-        foreach($emails as $email){
+                if($row->email_toname == ''){
 
-            if($email->toname == ''){
+                    $row->email_toname = $row->email_toemail;
+                }
 
-                $email->toname = $email->toemail;
+                if($row->email_test_flg){
+
+                    $row->email_subject = $row->email_subject . ' - ORIG TO: ' . $row->email_toemail;
+
+                    $row->email_toemail = 'steven.i@me.com';
+                }
+
+                Illuminate\Support\Facades\Mail::send(new App\Mail\MailQueue($email));  
+
+                $email->sent_at = now();
+                $email->save();
+
+            }elseif($row->notificationtype == 'telegram'){
+
+
+
             }
-
-            if($email->test_flg){
-
-                $email->subject = $email->subject . ' - ORIG TO: ' . $email->toemail;
-
-                $email->toemail = 'info@akicreative.net';
-            }
-
-            Illuminate\Support\Facades\Mail::send(new App\Mail\MailQueue($email));  
-
-            $email->sent = 1;
-            $email->sent_dt = now();
-            $email->save();
 
         }
-
-        */
 
     }
 }
