@@ -17,7 +17,7 @@ class CreateAkinotificationsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->boolean('test_flg')->default(0);
-            $table->boolean('notificationtype')->default('email');
+            $table->string('notificationtype', 20)->default('email');
             $table->dateTime('send_at')->nullable();
             $table->dateTime('sent_at')->nullable();
             $table->bigInteger('ref_id');
