@@ -13,7 +13,7 @@ class CreateAkinotificationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('akinotifications', function (Blueprint $table) {
+        Schema::create('akiform_notifications', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
             $table->boolean('test_flg')->default(0);
@@ -50,6 +50,6 @@ class CreateAkinotificationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('akinotifications');
+        Schema::dropIfExists('akiform_notifications');
     }
 }

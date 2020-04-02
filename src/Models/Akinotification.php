@@ -8,6 +8,8 @@ use AkiCreative\AkiForms\Models\MailQueue;
 
 class Akinotification extends Model
 {
+
+	protected $table = 'akiform_notifications';
     
 	static public function process()
 	{
