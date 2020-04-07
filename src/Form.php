@@ -74,7 +74,7 @@ class Form
 
 	}
 
-	public function __construct($errors, $arguments = []){
+	public function __construct($errors = [], $arguments = []){
 
 		foreach($arguments as $key => $value){
 
