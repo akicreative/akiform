@@ -19,6 +19,7 @@ class Form
 	var $horizontal = false;
 	var $horizontalleft = 'col-md-3';
 	var $horizontalright = 'col-md-9';
+	var $datepicker = false;
 	var $size = 'form-control-sm';
 	var $defaults = [];
 	var $constrainform = '';
@@ -822,6 +823,69 @@ class Form
 
 		}
 
+
+	}
+
+	public function datepickerjs()
+	{
+
+		echo <<<EOT
+
+			<!-- Modal -->
+			<div class="modal" id="akidatepickermodal" tabindex="-1" role="dialog" aria-labelledby="datepickerTitle" aria-hidden="true">
+			  <div class="modal-dialog modal-dialog-centered" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="datepickerTitle">Modal title</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div id="akidatepickerbody" class="modal-body">
+			        ...
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			        <button type="button" class="btn btn-primary">Save changes</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+EOT;
+
+			?>
+
+			<script type="text/javascript">
+				
+			(function(){
+			
+				$(document).on('click', '.akidatepicker', function(el){
+
+					$('#akidatepickerbody').html('');
+
+					$.ajax({
+
+						url: '<? echo route('akidatepicker') ?>',
+						success: function(result){
+
+							$('#akidatepickerbody').html(result);
+
+						}
+
+
+					});
+
+					$('#akidatepickermodal').modal('show');
+
+				});
+			
+			})();
+
+			</script>
+
+
+			<?
 
 	}
 
