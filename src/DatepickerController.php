@@ -229,7 +229,7 @@ EOT;
 
         }
 
-        echo '</table>'
+        echo '</table>';
 
         echo '</div>';
 
