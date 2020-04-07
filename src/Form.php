@@ -826,10 +826,10 @@ class Form
 
 	}
 
-	public function datepickerjs()
+	public static function datepickerjs()
 	{
 
-		echo <<<EOT
+echo <<<EOT
 
 			<!-- Modal -->
 			<div class="modal" id="akidatepickermodal" tabindex="-1" role="dialog" aria-labelledby="datepickerTitle" aria-hidden="true">
@@ -842,7 +842,11 @@ class Form
 			        </button>
 			      </div>
 			      <div id="akidatepickerbody" class="modal-body">
-			        ...
+EOT;
+	
+				
+
+echo <<<EOT
 			      </div>
 			      <div class="modal-footer">
 			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -862,6 +866,8 @@ EOT;
 			
 				$(document).on('click', '.akidatepicker', function(el){
 
+					/*
+
 					$('#akidatepickerbody').html('');
 
 					$.ajax({
@@ -875,6 +881,8 @@ EOT;
 
 
 					});
+
+					*/
 
 					$('#akidatepickermodal').modal('show');
 

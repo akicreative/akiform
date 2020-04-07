@@ -432,7 +432,7 @@ if (! function_exists('yeararray')) {
 
         }else{
 
-            for($i = $end; $i >= $start; $i--){
+            for($i = $start; $i >= $end; $i--){
 
                 $key = $i;
 

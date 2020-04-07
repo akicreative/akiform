@@ -6,6 +6,7 @@ Route::prefix('akiforms')->namespace('AkiCreative\AkiForms')->group(function(){
 
 
 	Route::get('load/datepicker', 'DatepickerController@index')->name('akidatepicker');
+	Route::post('load/datepicker/calendar', 'DatepickerController@calendar')->name('akidatepickercalendar');
 
 });
 
