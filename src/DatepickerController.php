@@ -62,7 +62,7 @@ class DatepickerController extends Controller
 
         // weekdays, weekends, 0 - 6, dates
 
-        $akidp = new AkiFormTest($errors);
+        $akidp = new \AkiCreative\AkiForms\Form($errors);
 
         $akidp->fill(collect(['akidpmonth' => $currentmonth, 'akidpyear' => $currentyear]));
 
