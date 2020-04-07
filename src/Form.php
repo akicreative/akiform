@@ -215,9 +215,17 @@ class Form
 			'attrs' => [],
 			'viewmode' => $this->viewmode,
 			'last' => false,
-			'html' => ''
+			'html' => '',
+			'datepickerformat' => 'd/m/Y',
+			'datepickertoday' => false
 
 		];
+
+		if($type == 'datepicker'){
+
+			$datepickername = $name;
+			$name = $name . 'display';
+		}
 
 		$attrs = [
 
@@ -242,9 +250,11 @@ class Form
 
 			$fieldattributes = ['name="' . $name . '"'];
 
-		}
+		}	
 
 		foreach($cfgs as $key => $value){
+
+
 
 			if(array_key_exists($key, $attrs)){
 
@@ -269,7 +279,9 @@ class Form
 
 					$value['style'] .= ' width: auto;';
 
-				}
+		
+
+				}	
 
 				foreach($value as $akey => $avalue){
 
@@ -280,6 +292,7 @@ class Form
 			}
 
 		}
+		
 
 		if(old($name)){
 
@@ -551,6 +564,57 @@ class Form
 				}else{
 
 					echo dateselect($name, $cfg['dateparams'] + ['default' => $cfg['default'], 'size' => $cfg['size']]);
+
+				}
+
+				break;
+
+			case 'datepicker':
+
+				if($this->viewmode){
+
+					echo outdate($cfg['default']);
+
+				}else{
+
+
+					echo '<div class="form-row mb-3">';
+
+					echo '<div class="col-auto">';	
+
+					echo '<div class="input-group">';
+
+					echo '<input type="' . $type . '" class="form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . ' value="' . outdate($cfg['default'], $cfg['datepickerformat']) . '">';
+
+					echo '<input type="hidden" name="' . $datepickername . '" id="' . $datepickername . '" value="' . $cfg['default'] . '">';
+
+					echo '<div class="input-group-append">';
+
+					echo '<button type="button" class="btn btn-secondary btn-sm akidppicker" data-target="' . $datepickername . '" data-default="' . $cfg['default'] . '"><i class="fa fa-calendar"></i></button>';
+
+					echo '</div>';
+
+					if($cfg['datepickertoday']){
+
+						echo '<div class="input-group-append">';
+
+						echo '<button type="button" class="btn btn-outline-secondary btn-sm akidptoday" data-target="' . $datepickername . '" data-display="' . date($cfg['datepickerformat']) . '" data-sql="' . date("Y-m-d") . '">TODAY</button>';
+
+						echo '</div>';
+
+					}
+
+					echo '</div>';
+
+					
+
+
+
+					echo $errorfeedback;
+
+					echo '</div>';
+
+					echo '</div>';
 
 				}
 
@@ -861,37 +925,71 @@ EOT;
 			?>
 
 			<script type="text/javascript">
-				
-			(function(){
-			
-				$(document).on('click', '.akidatepicker', function(el){
+          
+            function akidpload()
+            {
 
-					/*
+                var formData = new FormData($('#akidpform')[0]);
 
-					$('#akidatepickerbody').html('');
+                $.ajax({
 
-					$.ajax({
+                    url: '<? echo route('akidatepickercalendar'); ?>',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    
+                    success: function(result){
 
-						url: '<? echo route('akidatepicker') ?>',
-						success: function(result){
+                        $('#akidatepickerbody').html(result);
 
-							$('#akidatepickerbody').html(result);
+                        $('#akidatepickermodal').modal('show');
 
-						}
+                    }
+
+                });
+
+            }
+
+          (function(){
+
+          	$(document).on('click', '.akidptoday', function(){
+
+          		target = $(this).data('target');
+          		display = $(this).data('display');
+          		sql = $(this).data('sql');
+
+          		$('#' + target + 'display').val(display);
+          		$('#' + target).val(sql);
+
+          	});
+          
+            $(document).on('click', '.akidpprevnext', function(el){
+
+                $('#akidpmonth').val($(this).data('month'));
+                $('#akidpyear').val($(this).data('year'));
+
+                akidpload();
+
+            });
+
+            $(document).on('change', '.akidptrigger', function(el){
+
+                akidpload();
+
+            });
+
+            $(document).on('click', '.akidppicker', function(el){
+
+                akidpload();
+
+            });
 
 
-					});
+          
+          })();
 
-					*/
-
-					$('#akidatepickermodal').modal('show');
-
-				});
-			
-			})();
-
-			</script>
-
+        </script>
 
 			<?
 
