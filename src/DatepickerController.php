@@ -25,6 +25,10 @@ class DatepickerController extends Controller
 	public function calendar()
 	{
 
+		return view('akiforms::datepicker.calendar');
+
+		/*
+
         $current = strtotime(request()->input('current', date("Y-m-d")));
         
         $currentday = date("d", $current);
@@ -236,7 +240,9 @@ EOT;
 
         $akidp->close();
 
-       
+       */
+
+        
 
 	}
 
