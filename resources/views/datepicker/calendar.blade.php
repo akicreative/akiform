@@ -112,7 +112,7 @@ for($r = 1; $r <= $totalrows; $r++){
 
         $showingdayofweek = date("w", $showingtime);
 
-        if($value == $showingday){
+        if($value != '' && $value == $showingday){
 
         	$btnclass .= ' btn-success text-white';
 
