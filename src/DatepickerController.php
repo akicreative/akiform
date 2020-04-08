@@ -28,6 +28,8 @@ class DatepickerController extends Controller
 		$target = request()->input('target');
         $value = request()->input('value');
 
+        $default = $value;
+
         $yearstart = request()->input('yearstart', date("Y"));
         $yearend = request()->input('yearend', date("Y") + 5);
 
@@ -72,6 +74,7 @@ class DatepickerController extends Controller
 
         	'target' => $target,
         	'value' => $value,
+            'default' => $default,
         	'currentday' => $currentday,
         	'currentmonth' => $currentmonth,
         	'currentyear' => $currentyear,
