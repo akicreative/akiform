@@ -588,7 +588,7 @@ class Form
 
 					];
 
-					$dpcfg = array_merge($dpcfgs, $datepickercfg);
+					$dpcfg = array_merge($dpcfgs, $cfg['datepickercfg']);
 
 
 					echo '<div class="form-row mb-3">';

@@ -38,4 +38,8 @@ var $viewmode = false;
 $ar->build('switch', 'Label', 'name', ['checkboxvalues' => [['test1', 'This is a test']]]);
 ```
 
+## Date Picker
+
+This date picker uses a Modal Pop up to show a calendar. 
+
 Coming soon.
