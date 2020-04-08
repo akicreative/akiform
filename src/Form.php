@@ -1038,8 +1038,8 @@ EOT;
           		target = $(this).data('target');
         
 
-          		$('#' + target + 'display').val() = '';
-          		$('#' + target).val() = '';
+          		$('#' + target + 'display').val('');
+          		$('#' + target).val('');
 
           	});
           
