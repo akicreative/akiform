@@ -31,6 +31,8 @@ class DatepickerController extends Controller
         $yearstart = request()->input('yearstart', date("Y"));
         $yearend = request()->input('yearend', date("Y") + 5);
 
+        $datepickerformat = request()->input('datepickerformat');
+
         if($value == ''){
 
         	$value = date("Y-m-d");
@@ -82,7 +84,8 @@ class DatepickerController extends Controller
         	'startrange' => $startrange,
         	'endrange' => $endrange,
         	'exclude' => $exclude,
-        	'excludedays' => $excludedays
+        	'excludedays' => $excludedays,
+            'datepickerformat' => $datepickerformat
 
         ];
 
