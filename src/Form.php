@@ -607,7 +607,7 @@ class Form
 						echo ' data-' . $dpkey . '="' . $dpvalue . '"';
 					}
 
-					echo ' data-title="' . $name . '">';
+					echo ' data-title="' . $label . '">';
 
 					echo '<div class="input-group-append">';
 
@@ -981,7 +981,7 @@ EOT;
                     
                     success: function(result){
 
-                    	$('#datepickerTitle').html($target.data('title'));
+                    	$('#akidatepickerTitle').html($target.data('title'));
 
                         $('#akidatepickerbody').html(result);
 
