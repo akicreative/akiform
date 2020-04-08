@@ -1,5 +1,9 @@
 <?
 
+echo "<pre>";
+print_r($target);
+echo "</pre>";	
+
 $akidp = new AkiForm($errors);
 
 $akidp->fill(collect(['akidpmonth' => $currentmonth, 'akidpyear' => $currentyear]));
@@ -112,14 +116,25 @@ for($r = 1; $r <= $totalrows; $r++){
 
         $showingdayofweek = date("w", $showingtime);
 
-        if($value != '' && $value == $showingday){
+        
 
-        	$btnclass .= ' btn-success text-white';
-
-        }elseif(date("Y-m-d") == date("Y-m-d", $showingtime)){
+        if(date("Y-m-d") == date("Y-m-d", $showingtime)){
 
             $btnclass .= ' btn-primary text-white';
-        }
+        
+        }else{
+
+	        if($value != ''){
+
+	        	if($value == $showingday){
+
+	        		$btnclass .= ' btn-success text-white';
+
+	        	}
+
+	        }
+
+    	}
 
         if(in_array($showingday, $excludedays)){
 
@@ -155,7 +170,7 @@ for($r = 1; $r <= $totalrows; $r++){
             $disabled = 'disabled';
         }
 
-        $display = outdate($showingtime, $datepickerformat);
+        $display = outdate($showingday, $datepickerformat);
         $sql = $showingday;
 
         echo '<td style="text-align: center; padding: 0;">';
