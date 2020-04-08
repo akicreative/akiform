@@ -238,9 +238,20 @@ class Form
 
 		$this->tabindex++;
 
-		if(array_key_exists($name, $this->defaults)){
+		if($type == 'datepicker'){
 
-			$cfg['default'] = $this->defaults[$name];
+			if(array_key_exists($datepickername, $this->defaults)){
+
+				$cfg['default'] = $this->defaults[$datepickername];
+			}
+
+		}else{
+
+			if(array_key_exists($name, $this->defaults)){
+
+				$cfg['default'] = $this->defaults[$name];
+			}
+
 		}
 
 		if($type == 'show'){
@@ -293,12 +304,24 @@ class Form
 			}
 
 		}
-		
 
-		if(old($name)){
+		if($type == 'datepicker'){
 
-			$cfg['default'] = old($name);
+
+			if(old($datepickername)){
+
+				$cfg['default'] = old($datepickername);
+			}
+
+		}else{
+
+			if(old($name)){
+
+				$cfg['default'] = old($name);
+			}
+
 		}
+		
 
 		if($this->inlinelist){
 
@@ -598,7 +621,9 @@ class Form
 
 					echo '<div class="input-group">';
 
-					echo '<input type="' . $type . '" class="akidpdisplay form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . ' value="' . $cfg['default'] . '" style="background-color: #FFF;" data-target="' . $datepickername .'" readonly>';
+					echo $cfg['default'] . '---';
+
+					echo '<input type="' . $type . '" class="akidpdisplay form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . ' value="' . outdate($cfg['default'], $dpcfg['datepickerformat']) . '" style="background-color: #FFF;" data-target="' . $datepickername .'" readonly>';
 
 					echo '<input type="hidden" name="' . $datepickername . '" id="' . $datepickername . '" value="' . $cfg['default'] . '"';
 
