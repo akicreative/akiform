@@ -590,7 +590,7 @@ class Form
 
 					echo '<div class="input-group-append">';
 
-					echo '<button type="button" class="btn btn-secondary btn-sm akidppicker" data-target="' . $datepickername . '" data-default="' . $cfg['default'] . '"><i class="fa fa-calendar"></i></button>';
+					echo '<button type="button" class="btn btn-secondary btn-sm akidppicker" data-target="' . $datepickername . '"><i class="fa fa-calendar"></i></button>';
 
 					echo '</div>';
 

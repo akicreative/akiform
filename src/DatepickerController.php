@@ -22,8 +22,12 @@ class DatepickerController extends Controller
 		echo "</pre>";	
 	}
 
-	public function calendar()
+	public function calendar(Request $request)
 	{
+
+		echo "<pre>";
+		print_r($request->all());
+		echo "</pre>";	
 
         $current = strtotime(request()->input('current', date("Y-m-d")));
         
