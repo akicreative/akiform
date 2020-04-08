@@ -14,7 +14,7 @@ echo '<ul class="list-inline my-auto">';
 
 echo '<li class="list-inline-item">';
 
-echo '<button type="button" name="prevnext" class="btn btn-sm btn-link text-dark akidpprevnext" value="' . $prevyear . '-' . $prevmonth . '-01"><<</button>';
+echo '<button type="button" name="prevnext" class="btn btn-sm btn-link text-dark akidpprevnext" value="' . $prev . '"><<</button>';
 
 echo '</li>';
 
@@ -33,7 +33,7 @@ echo '</li>';
 echo '<li class="list-inline-item">';
 
 
-echo '<button type="button" name="prevnext" class="btn btn-sm btn-link text-dark akidpprevnext" value="' . $nextyear . '-' . $nextmonth . '-01">>></button>';
+echo '<button type="button" name="prevnext" class="btn btn-sm btn-link text-dark akidpprevnext" value="' . $next . '">>></button>';
 
 echo '</li>';
 
