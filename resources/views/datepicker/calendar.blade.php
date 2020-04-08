@@ -14,7 +14,7 @@ $akidp->open(['id' => 'akidpform', 'inlinelist' => true]);
 
 $akidp->horiontal = false;
 
-echo '<div style="text-align: center;">';
+echo '<div class="mb-3" style="text-align: center;">';
 
 echo '<ul class="list-inline my-auto">';
 
