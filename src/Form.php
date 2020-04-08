@@ -598,7 +598,7 @@ class Form
 
 					echo '<div class="input-group">';
 
-					echo '<input type="' . $type . '" class="form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . ' value="' . outdate($cfg['default'], $dpcfg['datepickerformat']) . '" readonly>';
+					echo '<input type="' . $type . '" class="akidpdisplay form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . ' value="' . outdate($cfg['default'], $dpcfg['datepickerformat']) . '" style="background-color: #FFF;" data-target="' . $datepickername .'" readonly>';
 
 					echo '<input type="hidden" name="' . $datepickername . '" id="' . $datepickername . '" value="' . $cfg['default'] . '"';
 
@@ -1052,6 +1052,12 @@ EOT;
             $(document).on('change', '.akidptrigger', function(el){
 
                 akidploadselect($('#akidpyear').val() + '-' + $('#akidpmonth').val() + '-01');
+
+            });
+
+            $(document).on('click', '.akidpdisplay', function(el){
+
+                akidpload($(this).data('target'));
 
             });
 

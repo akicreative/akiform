@@ -112,7 +112,9 @@ for($r = 1; $r <= $totalrows; $r++){
 
         $showingdayofweek = date("w", $showingtime);
 
-        
+        echo $value . '<br>';
+
+        echo $showingday . '<br>';
 
         if(date("Y-m-d") == date("Y-m-d", $showingtime)){
 
