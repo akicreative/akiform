@@ -1,5 +1,11 @@
 <?
 
+
+
+echo "<pre>";
+print_r(request()->all());
+echo "</pre>";	
+
 $akidp = new AkiForm($errors);
 
 $akidp->fill(collect(['akidpmonth' => $currentmonth, 'akidpyear' => $currentyear]));
