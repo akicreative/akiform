@@ -28,6 +28,9 @@ class DatepickerController extends Controller
 		$target = request()->input('target');
         $value = request()->input('value');
 
+        $yearstart = request()->input('yearstart', date("Y"));
+        $yearend = request()->input('yearend', date("Y") + 5);
+
         if($value == ''){
 
         	$value = date("Y-m-d");
@@ -38,9 +41,6 @@ class DatepickerController extends Controller
         $currentday = date("d", $current);
         $currentmonth = date("m", $current);
         $currentyear = date("Y", $current);
-
-        $yearstart = date("Y");
-        $yearend = date("Y") + 5;
 
         $prev = date("Y-m-01", mktime(0, 0, 0, $currentmonth - 1, 1, $currentyear));
         $next = date("Y-m-01", mktime(0, 0, 0, $currentmonth + 1, 1, $currentyear));
@@ -62,7 +62,7 @@ class DatepickerController extends Controller
             $endrange  = strtotime($endrange);
         }   
 
-        $exclude = request()->input('exclude');
+        $exclude = request()->input('exclude', '');
 
         $excludedays = explode(":", $exclude);
 

@@ -217,7 +217,8 @@ class Form
 			'last' => false,
 			'html' => '',
 			'datepickerformat' => 'd/m/Y',
-			'datepickertoday' => false
+			'datepickertoday' => false, 
+			'datepickercfg' => []
 
 		];
 
@@ -577,6 +578,18 @@ class Form
 
 				}else{
 
+					$dpcfgs = [
+
+						'yearstart' => date("Y");
+						'yearend' => date("Y") + 5;
+						'startrange' => '';
+						'endrange' => '';
+						'exclude' => '';
+
+					];
+
+					$dpcfg = array_merge($dpcfgs, $datepickercfg);
+
 
 					echo '<div class="form-row mb-3">';
 
@@ -586,11 +599,18 @@ class Form
 
 					echo '<input type="' . $type . '" class="form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . ' value="' . outdate($cfg['default'], $cfg['datepickerformat']) . '" readonly>';
 
-					echo '<input type="hidden" name="' . $datepickername . '" id="' . $datepickername . '" value="' . $cfg['default'] . '">';
+					echo '<input type="hidden" name="' . $datepickername . '" id="' . $datepickername . '" value="' . $cfg['default'] . '"';
+
+					foreach($dpcfg as $dpkey => $dpvalue){
+
+						echo ' data-' . $dpkey . '="' . $dpvalue . '"';
+					}
+
+					echo '>';
 
 					echo '<div class="input-group-append">';
 
-					echo '<button type="button" class="btn btn-secondary btn-sm akidppicker" data-target="' . $datepickername . '"><i class="fa fa-calendar"></i></button>';
+					echo '<button type="button" class="btn btn-secondary btn-sm akidppicker" data-target="' . $datepickername .'"><i class="fa fa-calendar"></i></button>';
 
 					echo '</div>';
 

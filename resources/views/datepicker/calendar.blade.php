@@ -173,6 +173,11 @@ echo '</table>';
 echo '</div>';
 
 $akidp->hidden('target', $target);
+$akidp->hidden('yearstart', $yearstart);
+$akidp->hidden('yearend', $yearend);
+$akidp->hidden('startrange', $startrange);
+$akidp->hidden('endrange', $endrange);
+$akidp->hidden('exclude', $exclude);
 
 $akidp->close();
 
