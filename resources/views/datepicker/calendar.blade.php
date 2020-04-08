@@ -12,7 +12,7 @@ echo '<ul class="list-inline">';
 
 echo '<li class="list-inline-item">';
 
-echo '<button type="button" class="btn btn-sm btn-link text-dark akidpprevnext" data-month="' . $prevmonth . '" data-year="' . $prevyear . '"><<</button>';
+echo '<button type="button" name="prevnext" class="btn btn-sm btn-link text-dark akidpprevnext" value="' . $prevyear . '-' . $prevmonth . '-01"><<</button>';
 
 echo '</li>';
 

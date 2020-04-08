@@ -954,10 +954,12 @@ EOT;
 
             }
 
-            function akidploadselect()
+            function akidploadselect(date)
             {
 
                 var formData = new FormData($('#akidpform')[0]);
+
+                formData.append('value', date);
 
                 $.ajax({
 
@@ -994,13 +996,13 @@ EOT;
           
             $(document).on('click', '.akidpprevnext', function(el){
 
-                akidploadselect();
+                akidploadselect($(this).attr('name'));
 
             });
 
             $(document).on('change', '.akidptrigger', function(el){
 
-                akidploadselect();
+                akidploadselect($('#akidpyear').val() + '-' + $('#akidpmonth').val() + '-01');
 
             });
 
