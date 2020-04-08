@@ -606,7 +606,7 @@ class Form
 						echo ' data-' . $dpkey . '="' . $dpvalue . '"';
 					}
 
-					echo '>';
+					echo ' data-title="' . $name . '">';
 
 					echo '<div class="input-group-append">';
 
@@ -916,11 +916,11 @@ class Form
 echo <<<EOT
 
 			<!-- Modal -->
-			<div class="modal" id="akidatepickermodal" tabindex="-1" role="dialog" aria-labelledby="datepickerTitle" aria-hidden="true">
+			<div class="modal" id="akidatepickermodal" tabindex="-1" role="dialog" aria-labelledby="akidatepickerTitle" aria-hidden="true">
 			  <div class="modal-dialog modal-dialog-centered" role="document">
 			    <div class="modal-content">
 			      <div class="modal-header">
-			        <h5 class="modal-title" id="datepickerTitle"></h5>
+			        <h5 class="modal-title" id="akidatepickerTitle"></h5>
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			          <span aria-hidden="true">&times;</span>
 			        </button>
@@ -969,6 +969,8 @@ EOT;
                     
                     success: function(result){
 
+                    	$('#datepickerTitle').html(target.data('title'));
+
                         $('#akidatepickerbody').html(result);
 
                         $('#akidatepickermodal').modal('show');
@@ -998,13 +1000,13 @@ EOT;
 
                         $('#akidatepickerbody').html(result);
 
-                        $('#akidatepickermodal').modal('show');
-
                     }
 
                 });
 
             }
+
+
 
           (function(){
 
