@@ -580,11 +580,11 @@ class Form
 
 					$dpcfgs = [
 
-						'yearstart' => date("Y");
-						'yearend' => date("Y") + 5;
-						'startrange' => '';
-						'endrange' => '';
-						'exclude' => '';
+						'yearstart' => date("Y"),
+						'yearend' => date("Y") + 5,
+						'startrange' => '',
+						'endrange' => '',
+						'exclude' => ''
 
 					];
 
