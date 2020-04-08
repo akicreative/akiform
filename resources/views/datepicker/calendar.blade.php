@@ -123,7 +123,7 @@ for($r = 1; $r <= $totalrows; $r++){
 	        
 	        }else{
 
-	        	echo $default . ' - ' . $showingday . '<br>';
+	        	//echo $default . ' - ' . $showingday . '<br>';
 
 		        if($default == $showingday){
 
@@ -172,7 +172,7 @@ for($r = 1; $r <= $totalrows; $r++){
 
 	        
 
-	        echo '<button type="button" class="btn btn-link btn-block btn-sm akidpset m-0' . $btnclass . '" style="border-radius: 0;" data-target="' . $target . '" data-display="' . $display . '" data-sql="' . $sql . '" ' . $disabled . '>' . $val[$key] . '</button>';
+	        echo '<button type="button" class="btn btn-link btn-block btn-sm akidpset m-0' . $btnclass . '" style="border-radius: 0;" data-target="' . $target . '" data-display="' . $display . '" data-sql="' . $sql . '" ' . $disabled . '><strong>' . $val[$key] . '</strong></button>';
 
     	}
 
