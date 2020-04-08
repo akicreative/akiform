@@ -31,7 +31,7 @@ echo '</li>';
 echo '<li class="list-inline-item">';
 
 
-echo '<button type="button" class="btn btn-sm btn-link text-dark akidpprevnext" data-month="' . $nextmonth . '" data-year="' . $nextyear . '">>></button>';
+echo '<button type="button" name="prevnext" class="btn btn-sm btn-link text-dark akidpprevnext" value="' . $nextyear . '-' . $nextmonth . '-01">>></button>';
 
 echo '</li>';
 

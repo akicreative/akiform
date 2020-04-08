@@ -27,6 +27,8 @@ class DatepickerController extends Controller
 
 		$target = request()->input('target');
         $value = strtotime(request()->input('value', date("Y-m-d")));
+
+        $current = strtotime($value);
         
         $currentday = date("d", $current);
         $currentmonth = date("m", $current);
