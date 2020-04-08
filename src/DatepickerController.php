@@ -25,11 +25,8 @@ class DatepickerController extends Controller
 	public function calendar(Request $request)
 	{
 
-		echo "<pre>";
-		print_r($request->all());
-		echo "</pre>";	
-
-        $current = strtotime(request()->input('current', date("Y-m-d")));
+		$target = request()->input('target');
+        $value = strtotime(request()->input('value', date("Y-m-d")));
         
         $currentday = date("d", $current);
         $currentmonth = date("m", $current);
@@ -66,7 +63,9 @@ class DatepickerController extends Controller
 
         $data = [
 
-        	'current' => $currentday,
+        	'target' => $target,
+        	'value' => $value,
+        	'currentday' => $currentday,
         	'currentmonth' => $currentmonth,
         	'currentyear' => $currentyear,
         	'yearstart' => $yearstart,

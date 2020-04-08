@@ -573,7 +573,7 @@ class Form
 
 				if($this->viewmode){
 
-					echo outdate($cfg['default']);
+					echo outdate($cfg['default'], $cfg['datepickerformat']);
 
 				}else{
 
@@ -584,7 +584,7 @@ class Form
 
 					echo '<div class="input-group">';
 
-					echo '<input type="' . $type . '" class="form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . ' value="' . outdate($cfg['default'], $cfg['datepickerformat']) . '">';
+					echo '<input type="' . $type . '" class="form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . ' value="' . outdate($cfg['default'], $cfg['datepickerformat']) . '" readonly>';
 
 					echo '<input type="hidden" name="' . $datepickername . '" id="' . $datepickername . '" value="' . $cfg['default'] . '">';
 
@@ -926,10 +926,13 @@ EOT;
 
 			<script type="text/javascript">
           
-            function akidpload()
+            function akidpload(target)
             {
 
                 var formData = new FormData($('#akidpform')[0]);
+
+                formData.append('target', target);
+                formData.append('value', $('#' + target).val());
 
                 $.ajax({
 
@@ -981,7 +984,7 @@ EOT;
 
             $(document).on('click', '.akidppicker', function(el){
 
-                akidpload();
+                akidpload($(this).data('target'));
 
             });
 
