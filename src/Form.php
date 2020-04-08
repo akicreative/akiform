@@ -619,7 +619,7 @@ class Form
 
 						echo '<div class="input-group-append">';
 
-						echo '<button type="button" class="btn btn-outline-secondary btn-sm akidpclear" data-target="' . $datepickername . '"><i class="fa fa-close"></i></button>';
+						echo '<button type="button" class="btn btn-outline-secondary btn-sm akidpclear" data-target="' . $datepickername . '"><i class="fa fa-times"></i></button>';
 
 						echo '</div>';
 
@@ -959,17 +959,17 @@ EOT;
 
                 var formData = new FormData($('#akidpform')[0]);
 
-                var target = $('#' + target);
+                var $target = $('#' + target);
 
                 formData.append('target', target);
-                formData.append('value', target.val());
+                formData.append('value', $target.val());
 
-                formData.append('yearstart', target.data('yearstart'));
-				formData.append('yearend', target.data('yearend'));
-				formData.append('startrange', target.data('startrange'));
-				formData.append('endrange', target.data('endrange'));
-				formData.append('exclude', target.data('exclude'));
-				formData.append('datepickerformat', target.data('datepickerformat'));
+                formData.append('yearstart', $target.data('yearstart'));
+				formData.append('yearend', $target.data('yearend'));
+				formData.append('startrange', $target.data('startrange'));
+				formData.append('endrange', $target.data('endrange'));
+				formData.append('exclude', $target.data('exclude'));
+				formData.append('datepickerformat', $target.data('datepickerformat'));
 
                 $.ajax({
 
