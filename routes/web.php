@@ -1,6 +1,6 @@
 <?
 
-Route::prefix('akiforms')->namespace('AkiCreative\AkiForms')->group(function(){
+Route::prefix('akiforms')->middleware(['web'])->namespace('AkiCreative\AkiForms')->group(function(){
 
 	Route::get('test23', 'RedactorController@image');
 
