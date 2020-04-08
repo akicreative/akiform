@@ -948,7 +948,7 @@ EOT;
 
                 var formData = new FormData($('#akidpform')[0]);
 
-                var target = $('#target');
+                var target = $('#' + target);
 
                 formData.append('target', target);
                 formData.append('value', $('#' + target).val());
@@ -1036,6 +1036,18 @@ EOT;
             $(document).on('click', '.akidppicker', function(el){
 
                 akidpload($(this).data('target'));
+
+            });
+
+            $(document).on('click', '.akidpset', function(el){
+
+            	$this = $(this);
+
+            	target = $this.data('target');
+            	display = $this.data('display');
+            	sql = $this.data('sql');
+
+
 
             });
 

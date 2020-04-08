@@ -155,10 +155,12 @@ for($r = 1; $r <= $totalrows; $r++){
             $disabled = 'disabled';
         }
 
+        $display = outdate($showingtime, 'm/d/Y');
+        $sql = $showingday;
 
         echo '<td style="text-align: center; padding: 0;">';
 
-        echo '<button type="button" class="btn btn-link btn-block btn-sm m-0' . $btnclass . '" style="border-radius: 0;" ' . $disabled . '>' . $val[$key] . '</button>';
+        echo '<button type="button" class="btn btn-link btn-block btn-sm m-0' . $btnclass . '" style="border-radius: 0;" data-target="' . $target . '" data-display="' . $display . '" data-sql="' . $sql . '" ' . $disabled . '>' . $val[$key] . '</button>';
 
         echo '</td>';
 
