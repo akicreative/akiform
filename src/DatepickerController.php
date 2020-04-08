@@ -28,7 +28,7 @@ class DatepickerController extends Controller
 		$target = request()->input('target');
         $value = request()->input('value');
 
-        $default = $value;
+        $default = request()->input('default', date("Y-m-d"));
 
         $yearstart = request()->input('yearstart', date("Y"));
         $yearend = request()->input('yearend', date("Y") + 5);
