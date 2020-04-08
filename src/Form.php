@@ -216,7 +216,6 @@ class Form
 			'viewmode' => $this->viewmode,
 			'last' => false,
 			'html' => '',
-			'datepickerformat' => 'd/m/Y',
 			'datepickertoday' => false, 
 			'datepickercfg' => []
 
@@ -584,7 +583,8 @@ class Form
 						'yearend' => date("Y") + 5,
 						'startrange' => '',
 						'endrange' => '',
-						'exclude' => ''
+						'exclude' => '',
+						'datepickerformat' => 'd/m/Y'
 
 					];
 
@@ -597,7 +597,7 @@ class Form
 
 					echo '<div class="input-group">';
 
-					echo '<input type="' . $type . '" class="form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . ' value="' . outdate($cfg['default'], $cfg['datepickerformat']) . '" readonly>';
+					echo '<input type="' . $type . '" class="form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . ' value="' . outdate($cfg['default'], $cdpcfgs['datepickerformat']) . '" readonly>';
 
 					echo '<input type="hidden" name="' . $datepickername . '" id="' . $datepickername . '" value="' . $cfg['default'] . '"';
 
@@ -958,6 +958,7 @@ EOT;
 				formData.append('startrange', target.data('startrange'));
 				formData.append('endrange', target.data('endrange'));
 				formData.append('exclude', target.data('exclude'));
+				formData.append('datepickerformat', target.data('datepickerformat'));
 
                 $.ajax({
 
@@ -1047,7 +1048,10 @@ EOT;
             	display = $this.data('display');
             	sql = $this.data('sql');
 
+            	$('#' + target).val(sql);
+            	$('#' + target + 'display').val(display);
 
+            	$('#akidatepickermodal').modal('hide');
 
             });
 

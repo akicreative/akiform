@@ -155,7 +155,7 @@ for($r = 1; $r <= $totalrows; $r++){
             $disabled = 'disabled';
         }
 
-        $display = outdate($showingtime, 'm/d/Y');
+        $display = outdate($showingtime, $datepickerformat);
         $sql = $showingday;
 
         echo '<td style="text-align: center; padding: 0;">';
@@ -180,6 +180,7 @@ $akidp->hidden('yearend', $yearend);
 $akidp->hidden('startrange', $startrange);
 $akidp->hidden('endrange', $endrange);
 $akidp->hidden('exclude', $exclude);
+$akidp->hidden('datepickerformat', $datepickerformat);
 
 $akidp->close();
 
