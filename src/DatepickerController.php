@@ -26,7 +26,12 @@ class DatepickerController extends Controller
 	{
 
 		$target = request()->input('target');
-        $value = strtotime(request()->input('value', date("Y-m-d")));
+        $value = request()->input('value');
+
+        if($value == ''){
+
+        	$value = date("Y-m-d");
+        }
 
         $current = strtotime($value);
         
@@ -37,10 +42,8 @@ class DatepickerController extends Controller
         $yearstart = date("Y");
         $yearend = date("Y") + 5;
 
-        $prevmonth = date("m", mktime(0, 0, 0, $currentmonth - 1, 1, $currentyear));
-        $prevyear = date("Y", mktime(0, 0, 0, $currentmonth - 1, 1, $currentyear));
-        $nextmonth = date("m", mktime(0, 0, 0, $currentmonth + 1, 1, $currentyear));
-        $nextyear = date("Y", mktime(0, 0, 0, $currentmonth + 1, 1, $currentyear));
+        $prev = date("Y-m-01", mktime(0, 0, 0, $currentmonth - 1, 1, $currentyear));
+        $next = date("Y-m-01", mktime(0, 0, 0, $currentmonth + 1, 1, $currentyear));
 
         $currentfirstdayofweek = date("w", strtotime($currentyear . '-' . $currentmonth . '-01'));
         $currentlastdayofmonth = date("t", strtotime($currentyear . '-' . $currentmonth . '-01'));
@@ -72,10 +75,8 @@ class DatepickerController extends Controller
         	'currentyear' => $currentyear,
         	'yearstart' => $yearstart,
         	'yearend' => $yearend,
-        	'prevmonth' => $prevmonth,
-        	'prevyear' => $prevyear,
-        	'nextmonth' => $nextmonth,
-        	'nextyear' => $nextyear,
+        	'prev' => $prev,
+        	'next' => $next,
         	'currentfirstdayofweek' => $currentfirstdayofweek,
         	'currentlastdayofmonth' => $currentlastdayofmonth,
         	'startrange' => $startrange,
