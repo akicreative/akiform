@@ -217,6 +217,7 @@ class Form
 			'last' => false,
 			'html' => '',
 			'datepickertoday' => false, 
+			'datepickerclear' => true,
 			'datepickercfg' => []
 
 		];
@@ -613,6 +614,16 @@ class Form
 					echo '<button type="button" class="btn btn-secondary btn-sm akidppicker" data-target="' . $datepickername .'"><i class="fa fa-calendar"></i></button>';
 
 					echo '</div>';
+
+					if($cfg['datepickerclear']){
+
+						echo '<div class="input-group-append">';
+
+						echo '<button type="button" class="btn btn-outline-secondary btn-sm akidpclear" data-target="' . $datepickername . '"><i class="fa fa-close"></i></button>';
+
+						echo '</div>';
+
+					}
 
 					if($cfg['datepickertoday']){
 
@@ -1019,6 +1030,16 @@ EOT;
 
           		$('#' + target + 'display').val(display);
           		$('#' + target).val(sql);
+
+          	});
+
+          	$(document).on('click', '.akidpclear', function(){
+
+          		target = $(this).data('target');
+        
+
+          		$('#' + target + 'display').val('');
+          		$('#' + target).val('');
 
           	});
           
