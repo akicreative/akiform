@@ -981,7 +981,7 @@ EOT;
                     
                     success: function(result){
 
-                    	$('#datepickerTitle').html(target.data('title'));
+                    	$('#datepickerTitle').html($target.data('title'));
 
                         $('#akidatepickerbody').html(result);
 
