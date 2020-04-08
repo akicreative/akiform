@@ -954,6 +954,31 @@ EOT;
 
             }
 
+            function akidploadselect()
+            {
+
+                var formData = new FormData($('#akidpform')[0]);
+
+                $.ajax({
+
+                    url: '<? echo route('akidatepickercalendar'); ?>',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    
+                    success: function(result){
+
+                        $('#akidatepickerbody').html(result);
+
+                        $('#akidatepickermodal').modal('show');
+
+                    }
+
+                });
+
+            }
+
           (function(){
 
           	$(document).on('click', '.akidptoday', function(){
@@ -969,16 +994,13 @@ EOT;
           
             $(document).on('click', '.akidpprevnext', function(el){
 
-                $('#akidpmonth').val($(this).data('month'));
-                $('#akidpyear').val($(this).data('year'));
-
-                akidpload();
+                akidploadselect();
 
             });
 
             $(document).on('change', '.akidptrigger', function(el){
 
-                akidpload();
+                akidploadselect();
 
             });
 

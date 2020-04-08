@@ -171,6 +171,7 @@ echo '</table>';
 
 echo '</div>';
 
+$akidp->hidden('target', $target);
 
 $akidp->close();
 
