@@ -962,7 +962,7 @@ EOT;
                 var target = $('#' + target);
 
                 formData.append('target', target);
-                formData.append('value', $('#' + target).val());
+                formData.append('value', target.val());
 
                 formData.append('yearstart', target.data('yearstart'));
 				formData.append('yearend', target.data('yearend'));
