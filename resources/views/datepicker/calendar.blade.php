@@ -123,9 +123,7 @@ for($r = 1; $r <= $totalrows; $r++){
 	        
 	        }else{
 
-	        	echo $value . ' - ' . $showingday . '<br>';
-
-		        if($value == $showingday){
+		        if($default == $showingday){
 
 		        	$btnclass .= ' btn-success text-white';
 
@@ -189,6 +187,7 @@ echo '</table>';
 echo '</div>';
 
 $akidp->hidden('value', $value);
+$akidp->hidden('default', $default);
 $akidp->hidden('target', $target);
 $akidp->hidden('yearstart', $yearstart);
 $akidp->hidden('yearend', $yearend);
