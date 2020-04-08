@@ -8,7 +8,9 @@ $akidp->open(['id' => 'akidpform', 'inlinelist' => true]);
 
 $akidp->horiontal = false;
 
-echo '<ul class="list-inline">';
+echo '<div style="text-align: center;">';
+
+echo '<ul class="list-inline my-auto">';
 
 echo '<li class="list-inline-item">';
 
@@ -36,6 +38,8 @@ echo '<button type="button" name="prevnext" class="btn btn-sm btn-link text-dark
 echo '</li>';
 
 echo '</ul>';
+
+echo '</div>';
 
 echo '<div id="akidpcalendar">';
 
