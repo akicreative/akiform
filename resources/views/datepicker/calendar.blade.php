@@ -106,74 +106,73 @@ for($r = 1; $r <= $totalrows; $r++){
 
         $day = $val[$key];
 
-        $showingtime = strtotime($currentyear . '-' . $currentmonth . '-' . $day);
+        echo '<td style="text-align: center; padding: 0;">';
 
-        $showingday = date("Y-m-d", $showingtime);
+        if($day != ''){
 
-        $showingdayofweek = date("w", $showingtime);
+	        $showingtime = strtotime($currentyear . '-' . $currentmonth . '-' . $day);
 
-        echo $value . '<br>';
+	        $showingday = date("Y-m-d", $showingtime);
 
-        echo $showingday . '<br>';
+	        $showingdayofweek = date("w", $showingtime);
 
-        if(date("Y-m-d") == date("Y-m-d", $showingtime)){
 
-            $btnclass .= ' btn-primary text-white';
-        
-        }else{
+	        if(date("Y-m-d") == date("Y-m-d", $showingtime)){
 
-	        if($value != ''){
+	            $btnclass .= ' btn-primary text-white';
+	        
+	        }else{
 
-	        	if($value == $showingday){
+		        if($value == $showingday){
 
-	        		//$btnclass .= ' btn-success text-white';
+		        	$btnclass .= ' btn-success text-white';
 
-	        	}
+		        }
+
+	    	}
+
+	        if(in_array($showingday, $excludedays)){
+
+	            $disabled = 'disabled';
 
 	        }
 
+	        if(in_array('weekdays', $excludedays) && in_array($showingdayofweek, [1, 2, 3, 4, 5])){
+
+	            $disabled = 'disabled';
+
+	        }
+
+	        if(in_array('weekends', $excludedays) && in_array($showingdayofweek, [0, 6])){
+
+	            $disabled = 'disabled';
+
+	        }
+
+	        if(in_array($showingdayofweek, $excludedays)){
+
+	            $disabled = 'disabled';
+
+	        }
+
+	        if($showingtime < $startrange && $startrange != ''){
+
+	            $disabled = 'disabled';
+	        }
+
+	        if($showingtime > $endrange && $endrange != ''){
+
+	            $disabled = 'disabled';
+	        }
+
+	        $display = outdate($showingday, $datepickerformat);
+	        $sql = $showingday;
+
+	        
+
+	        echo '<button type="button" class="btn btn-link btn-block btn-sm akidpset m-0' . $btnclass . '" style="border-radius: 0;" data-target="' . $target . '" data-display="' . $display . '" data-sql="' . $sql . '" ' . $disabled . '>' . $val[$key] . '</button>';
+
     	}
-
-        if(in_array($showingday, $excludedays)){
-
-            $disabled = 'disabled';
-
-        }
-
-        if(in_array('weekdays', $excludedays) && in_array($showingdayofweek, [1, 2, 3, 4, 5])){
-
-            $disabled = 'disabled';
-
-        }
-
-        if(in_array('weekends', $excludedays) && in_array($showingdayofweek, [0, 6])){
-
-            $disabled = 'disabled';
-
-        }
-
-        if(in_array($showingdayofweek, $excludedays)){
-
-            $disabled = 'disabled';
-
-        }
-
-        if($showingtime < $startrange && $startrange != ''){
-
-            $disabled = 'disabled';
-        }
-
-        if($showingtime > $endrange && $endrange != ''){
-
-            $disabled = 'disabled';
-        }
-
-        $display = outdate($showingday, $datepickerformat);
-        $sql = $showingday;
-
-        echo '<td style="text-align: center; padding: 0;">';
-
-        echo '<button type="button" class="btn btn-link btn-block btn-sm akidpset m-0' . $btnclass . '" style="border-radius: 0;" data-target="' . $target . '" data-display="' . $display . '" data-sql="' . $sql . '" ' . $disabled . '>' . $val[$key] . '</button>';
 
         echo '</td>';
 
