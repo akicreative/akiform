@@ -996,7 +996,7 @@ EOT;
           
             $(document).on('click', '.akidpprevnext', function(el){
 
-                akidploadselect($(this).attr('name'));
+                akidploadselect($(this).val());
 
             });
 
