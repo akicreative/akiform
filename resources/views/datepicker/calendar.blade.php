@@ -186,6 +186,7 @@ echo '</table>';
 
 echo '</div>';
 
+$akidp->hidden('value', $value);
 $akidp->hidden('target', $target);
 $akidp->hidden('yearstart', $yearstart);
 $akidp->hidden('yearend', $yearend);
