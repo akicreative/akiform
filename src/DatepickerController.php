@@ -82,7 +82,7 @@ class DatepickerController extends Controller
 
         // weekdays, weekends, 0 - 6, dates
 
-        return view('akiforms::datepicker.calendar');
+        return view('akiforms::datepicker.calendar', $data);
 
 
 	}
