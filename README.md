@@ -42,4 +42,35 @@ $ar->build('switch', 'Label', 'name', ['checkboxvalues' => [['test1', 'This is a
 
 This date picker uses a Modal Pop up to show a calendar. 
 
+```
+$ar->build('datepicker', 'Label', 'name', []);
+```
+
+### Options
+
+datepickertoday = [false]
+datepickerclear = [true]
+
+#### Configurations
+
+```
+$dpcfgs = [
+	'yearstart' => date("Y"),
+	'yearend' => date("Y") + 5,
+	'startrange' => '',
+	'endrange' => '',
+	'exclude' => '',
+	'datepickerformat' => 'd/m/Y'
+];
+```
+
+### Include Class
+
+You must include the class at the bottom of the page in the scripts section.
+
+```
+AkiForm::datepickerjs();
+```
+
+
 Coming soon.
