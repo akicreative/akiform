@@ -124,7 +124,7 @@ for($r = 1; $r <= $totalrows; $r++){
 
 	        	if($value == $showingday){
 
-	        		$btnclass .= ' btn-success text-white';
+	        		//$btnclass .= ' btn-success text-white';
 
 	        	}
 
@@ -171,7 +171,7 @@ for($r = 1; $r <= $totalrows; $r++){
 
         echo '<td style="text-align: center; padding: 0;">';
 
-        echo '<button type="button" class="btn btn-link btn-block btn-sm m-0' . $btnclass . '" style="border-radius: 0;" data-target="' . $target . '" data-display="' . $display . '" data-sql="' . $sql . '" ' . $disabled . '>' . $val[$key] . '</button>';
+        echo '<button type="button" class="btn btn-link btn-block btn-sm akidpset m-0' . $btnclass . '" style="border-radius: 0;" data-target="' . $target . '" data-display="' . $display . '" data-sql="' . $sql . '" ' . $disabled . '>' . $val[$key] . '</button>';
 
         echo '</td>';
 
