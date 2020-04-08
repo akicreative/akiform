@@ -123,6 +123,8 @@ for($r = 1; $r <= $totalrows; $r++){
 	        
 	        }else{
 
+	        	echo $value . ' - ' . $showingday . '<br>';
+
 		        if($value == $showingday){
 
 		        	$btnclass .= ' btn-success text-white';
