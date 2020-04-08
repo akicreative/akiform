@@ -85,13 +85,6 @@ for($r = 1; $r <= $totalrows; $r++){
 
                 $v = $day;
 
-            }else{
-
-                if($d < 6){
-
-                    $totalrows = 5;
-            
-                }
             }
 
             $day++;
