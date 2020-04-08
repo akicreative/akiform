@@ -598,7 +598,7 @@ class Form
 
 					echo '<div class="input-group">';
 
-					echo '<input type="' . $type . '" class="form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . ' value="' . outdate($cfg['default'], $cdpcfgs['datepickerformat']) . '" readonly>';
+					echo '<input type="' . $type . '" class="form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . ' value="' . outdate($cfg['default'], $dpcfg['datepickerformat']) . '" readonly>';
 
 					echo '<input type="hidden" name="' . $datepickername . '" id="' . $datepickername . '" value="' . $cfg['default'] . '"';
 
@@ -629,7 +629,7 @@ class Form
 
 						echo '<div class="input-group-append">';
 
-						echo '<button type="button" class="btn btn-outline-secondary btn-sm akidptoday" data-target="' . $datepickername . '" data-display="' . date($cfg['datepickerformat']) . '" data-sql="' . date("Y-m-d") . '">TODAY</button>';
+						echo '<button type="button" class="btn btn-outline-secondary btn-sm akidptoday" data-target="' . $datepickername . '" data-display="' . date($dpcfg['datepickerformat']) . '" data-sql="' . date("Y-m-d") . '">TODAY</button>';
 
 						echo '</div>';
 
