@@ -963,7 +963,7 @@ EOT;
 
                 formData.append('target', target);
                 formData.append('value', $target.val());
-
+                formData.append('default', $target.val());
                 formData.append('yearstart', $target.data('yearstart'));
 				formData.append('yearend', $target.data('yearend'));
 				formData.append('startrange', $target.data('startrange'));
