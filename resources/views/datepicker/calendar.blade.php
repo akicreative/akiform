@@ -193,8 +193,8 @@ $akidp->hidden('default', $default);
 $akidp->hidden('target', $target);
 $akidp->hidden('yearstart', $yearstart);
 $akidp->hidden('yearend', $yearend);
-$akidp->hidden('startrange', date("Y-m-d", strtotime($startrange));
-$akidp->hidden('endrange', date("Y-m-d", strtotime($endrange));
+$akidp->hidden('startrange', date("Y-m-d", strtotime($startrange)));
+$akidp->hidden('endrange', date("Y-m-d", strtotime($endrange)));
 $akidp->hidden('exclude', $exclude);
 $akidp->hidden('datepickerformat', $datepickerformat);
 
