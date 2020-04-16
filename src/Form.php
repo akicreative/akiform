@@ -761,7 +761,7 @@ class Form
 						$id = $id . $value;
 					}
 
-					echo '<input class="' . $controlclass . ' ' . $cfg['class'] . '" type="checkbox" name="' . $name . '" id="' . $id . '" tabindex="' . $this->tabindex . '" value="' . $value . '" ' . $checked . '>
+					echo '<input class="' . $controlclass . ' ' . $cfg['class'] . '" type="checkbox" name="' . $name . '" id="' . $id . '" tabindex="' . $this->tabindex . '" value="' . $value . '" ' . $checked . ' ' . implode(' ', $fieldattributes) . '>
   					<label class="' . $labelclass . '" for="' . $id . '">' . $a[1];
 
   					if($cfg['blockhelp'] != '' && $cfg['fieldonly']){
