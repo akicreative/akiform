@@ -1115,6 +1115,66 @@ EOT;
 
 	}
 
+	public static function lightboxjs()
+	{
+
+		echo <<<EOT
+
+		<div class="modal fade" id="akilightbox" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+		  <div class="modal-dialog model-xl" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		         <h3><div id="akilightboxloading">
+		        		
+		        		<i class="fas fa-spinner fa-spin fa-lg"></i> LOADING
+		        </div>
+		    </h3>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div id="akilightboxbody" class="modal-body">
+		      
+		      </div>
+		      
+		    </div>
+		  </div>
+		</div>
+
+		<script type="text/javascript">
+			
+		$('#akilightbox').on('show.bs.modal', function (event) {
+
+			var button = $(event.relatedTarget) // Button that triggered the modal
+
+			var target = button.data('url');
+
+			$('#akilightboxloading').removeClass('d-none');
+
+			$.ajax({
+
+				url: '{{ URL::to_action('akisuite::ajax@asset') }}',
+				data: { asset : button.data('asset') },
+				type: 'POST',
+				success: function(result){
+
+					$('#akilightboxbody').html(result);
+
+					$('#akilightboxloading').addClass('d-none');
+
+				}
+
+			});
+
+		})
+
+		</script>
+
+
+EOT;
+
+	}
+
 
 	public function test($val)
 	{

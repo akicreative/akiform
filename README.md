@@ -71,6 +71,22 @@ You must include the class at the bottom of the page in the scripts section.
 ```
 AkiForm::datepickerjs();
 ```
+## Light Box
+
+Add a lightbox to a page that will change dynamically to the link you send it.
+
+### Button and Trigger
+
+```
+<a href="#" data-toggle="modal" data-target="#akilightbox" data-url="#">Text</a>
+```
+
+### In Scripts
+
+```
+AkiForm::lightboxjs();
+```
+
 
 
 Coming soon.
