@@ -26,7 +26,7 @@ class CreateAkiassetsTable extends Migration
             $table->string('filename', 255)->nullable();
             $table->string('mimetype')->nullable();
             $table->string('filesize')->nullable();
-            $table->ingteger('orderby')->default(0);
+            $table->integer('orderby')->default(0);
         });
     }
 
