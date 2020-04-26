@@ -1153,7 +1153,7 @@ EOT;
 
 			$.ajax({
 
-				url: '{{ URL::to_action('akisuite::ajax@asset') }}',
+				url: target,
 				data: { asset : button.data('asset') },
 				type: 'POST',
 				success: function(result){
