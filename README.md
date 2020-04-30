@@ -8,7 +8,13 @@ This package is also being used to learn how to build packages so it is not expe
 
 # Installation
 
-# Usage
+# Models
+
+```
+use AkiCreative\AkiForms\Models\Akiasset;
+```
+
+# AkiForm Class
 
 ## Initialization
 

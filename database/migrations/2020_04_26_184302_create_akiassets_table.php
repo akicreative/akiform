@@ -23,6 +23,7 @@ class CreateAkiassetsTable extends Migration
             $table->string('name')->nullable();
             $table->text('description')->nullable();
             $table->string('serverfilename', 255)->nullable();
+            $table->string('serverfilenametn', 255)->nullable();
             $table->string('filename', 255)->nullable();
             $table->string('mimetype')->nullable();
             $table->string('filesize')->nullable();

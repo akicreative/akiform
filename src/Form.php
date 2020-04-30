@@ -1115,7 +1115,7 @@ EOT;
 
 	}
 
-	public static function lightboxjs()
+	public static function lightboxjs($method = 'POST')
 	{
 
 		echo <<<EOT
@@ -1155,7 +1155,7 @@ EOT;
 
 				url: target,
 				data: { asset : button.data('asset') },
-				type: 'POST',
+				type: '{$method}',
 				success: function(result){
 
 					$('#akilightboxbody').html(result);
