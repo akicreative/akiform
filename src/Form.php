@@ -1121,7 +1121,7 @@ EOT;
 		echo <<<EOT
 
 		<div class="modal fade" id="akilightbox" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-		  <div class="modal-dialog model-xl" role="document">
+		  <div class="modal-dialog modal-xl" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
 		         <h3><div id="akilightboxloading">
