@@ -1118,6 +1118,8 @@ EOT;
 	public static function lightboxjs($method = 'POST')
 	{
 
+		// Added Method  
+		
 		echo <<<EOT
 
 		<div class="modal fade" id="akilightbox" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
