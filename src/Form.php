@@ -1118,7 +1118,7 @@ EOT;
 	public static function lightboxjs($method = 'POST')
 	{
 
-		// Added Method  
+		// Fixed Modal 
 		
 		echo <<<EOT
 
