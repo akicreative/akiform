@@ -1115,15 +1115,25 @@ EOT;
 
 	}
 
-	public static function lightboxjs($method = 'POST')
+	public static function lightboxjs($method = 'POST', $params = [])
 	{
+
+		$scrollable = '';
+		$scroll = 'N';
+
+		extract($params);
+		
+		if($scroll == 'Y'){
+
+			$scrollable = 'modal-dialog-scrollable';
+		}
 
 		// Fixed Modal 
 		
 		echo <<<EOT
 
 		<div class="modal fade" id="akilightbox" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-		  <div class="modal-dialog modal-xl" role="document">
+		  <div class="modal-dialog modal-xl {$scrollable}" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
 		         <h3><div id="akilightboxloading">
