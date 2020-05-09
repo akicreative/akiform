@@ -14,6 +14,8 @@ class RedactorController extends Controller
 		echo "<pre>";
 		print_r(config('akiforms'));
 		echo "</pre>";	
+
+		echo "TEST";
 	}
 
 }
