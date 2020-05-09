@@ -12,7 +12,7 @@ class RedactorController extends Controller
 	public function image(){
 
 		echo "<pre>";
-		print_r(config('app'));
+		print_r(config('akiforms'));
 		echo "</pre>";	
 	}
 
