@@ -93,6 +93,8 @@ Add a lightbox to a page that will change dynamically to the link you send it.
 AkiForm::lightboxjs();
 ```
 
+# Update Log
 
+Remove tags.
 
 Coming soon.
