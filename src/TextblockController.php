@@ -27,7 +27,7 @@ class TextblockController extends Controller
                 
     }
 
-    public function store($id, Request, $request){
+    public function store($id, Request $request){
 
         
                 
@@ -39,13 +39,13 @@ class TextblockController extends Controller
                 
     }
 
-    public function update($id, Request, $request){
+    public function update($id, Request $request){
 
         
                 
     }
 
-    public function destroy($id, Request, $request){
+    public function destroy($id, Request $request){
 
 
 
