@@ -727,17 +727,16 @@ if (! function_exists('akiredactor')) {
         
         if($mode == 'css'){
 
-            echo '<link rel="stylesheet" href="/redactor/redactor.css">';
+            echo '<link rel="stylesheet" href="/vendor/akicreative/akiforms/redactor/redactor.css">';
 
         }elseif($mode == 'js'){
 
             echo '
-                <script src="/redactor/redactor.js"></script>
-                <script src="/redactor/plugins/alignment/alignment.min.js"></script>
-                <script src="/redactor/plugins/fontsize/fontsize.min.js"></script>
-                <script src="/redactor/plugins/fontcolor/fontcolor.min.js"></script>
-                <script src="/redactor/plugins/inlinestyle/inlinestyle.js"></script>
-                <script src="/redactor/plugins/table/table.js"></script>
+                <script src="/vendor/akicreative/akiforms/redactor/plugins/alignment/alignment.min.js"></script>
+                <script src="/vendor/akicreative/akiforms/redactor/plugins/fontsize/fontsize.min.js"></script>
+                <script src="/vendor/akicreative/akiforms/redactor/plugins/fontcolor/fontcolor.min.js"></script>
+                <script src="/vendor/akicreative/akiforms/redactor/plugins/inlinestyle/inlinestyle.js"></script>
+                <script src="/vendor/akicreative/akiforms/redactor/plugins/table/table.js"></script>
             ';
 
         }else{
@@ -782,7 +781,7 @@ if (! function_exists('akiredactor')) {
                 $buttons[] = $val;
             }            
 
-            $vars = [];
+            $vars = ["linkNewTab: true"];
 
             if(count($plugins) > 0){
 
