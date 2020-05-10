@@ -16,6 +16,13 @@ return [
 		'fromname' => '',
 		'replyemail' => '',
 		'replyname' => ''
+	],
+
+	'cattype' => [
+
+		'asset' => 'Assets',
+		'textblock' => 'Text Blocks'
+
 	]
 
 ];
