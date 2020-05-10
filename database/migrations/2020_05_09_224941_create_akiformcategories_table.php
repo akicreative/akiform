@@ -19,7 +19,7 @@ class CreateAkiformcategoriesTable extends Migration
             $table->string('slug')->unique();
             $table->string('cattype')->default('asset');
             $table->string('name');
-            $table->text('description');
+            $table->text('description')->nullable();
 
             
         });
