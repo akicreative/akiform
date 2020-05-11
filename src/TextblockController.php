@@ -36,7 +36,9 @@ class TextblockController extends Controller
 
     public function create(){
 
-        return view('akiforms::textblock.create');
+        $data['centercolumn'] = 8;
+
+        return view('akiforms::textblock.create', $data);
                 
     }
 

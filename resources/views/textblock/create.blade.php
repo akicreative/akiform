@@ -6,4 +6,10 @@ Create Text Block
 
 @section('content')
 
+<?
+
+echo 'Form here';
+
+?>
+
 @endsection
