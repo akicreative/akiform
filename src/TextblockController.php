@@ -17,7 +17,7 @@ class TextblockController extends Controller
 
 	public function index(){
 
-		
+		return view('akiforms::textblock.index');
 
 	}
 
