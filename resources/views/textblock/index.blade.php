@@ -8,7 +8,7 @@ Text Blocks
 
 <table class="table table-striped table-bordered table-sm">
 
-<tr><th></th><th></th></tr>
+<tr><th></th><th>Name</th><th></th></tr>
 
 @foreach($rows as $row)
 
@@ -23,6 +23,12 @@ Text Blocks
 		<td>
 
 			{{ $row->name }}
+
+		</td>
+
+		<td class="text-center">
+
+			ID: {{ $row->id }}
 
 		</td>
 
