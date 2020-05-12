@@ -4,6 +4,14 @@
 {{ $text->name }}
 @endsection
 
+@section('head')
+<?
+
+akiredactor('css');
+
+?>
+@endsection
+
 @section('content')
 
 <?

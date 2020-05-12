@@ -727,16 +727,17 @@ if (! function_exists('akiredactor')) {
         
         if($mode == 'css'){
 
-            echo '<link rel="stylesheet" href="/vendor/akicreative/akiforms/redactor/redactor.css">';
+            echo '<link rel="stylesheet" href="' . url('/vendor/akicreative/akiforms/redactor/redactor.min.css') . '">';
 
         }elseif($mode == 'js'){
 
             echo '
-                <script src="/vendor/akicreative/akiforms/redactor/plugins/alignment/alignment.min.js"></script>
-                <script src="/vendor/akicreative/akiforms/redactor/plugins/fontsize/fontsize.min.js"></script>
-                <script src="/vendor/akicreative/akiforms/redactor/plugins/fontcolor/fontcolor.min.js"></script>
-                <script src="/vendor/akicreative/akiforms/redactor/plugins/inlinestyle/inlinestyle.js"></script>
-                <script src="/vendor/akicreative/akiforms/redactor/plugins/table/table.js"></script>
+                <script src="' . url('/vendor/akicreative/akiforms/redactor/redactor.min.js') . '"></script>
+                <script src="' . url('/vendor/akicreative/akiforms/redactor/plugins/alignment/alignment.min.js') . '"></script>
+                <script src="' . url('/vendor/akicreative/akiforms/redactor/plugins/fontsize/fontsize.min.js') . '"></script>
+                <script src="' . url('/vendor/akicreative/akiforms/redactor/plugins/fontcolor/fontcolor.min.js') . '"></script>
+                <script src="' . url('/vendor/akicreative/akiforms/redactor/plugins/inlinestyle/inlinestyle.js') . '"></script>
+                <script src="' . url('/vendor/akicreative/akiforms/redactor/plugins/table/table.js') . '"></script>
             ';
 
         }else{
