@@ -5,7 +5,7 @@ namespace AkiCreative\AkiForms;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Models\Akicategory;
+use AkiCreative\AkiForms\Models\Akicategory;
 
 class TextblockController extends Controller
 {
@@ -47,10 +47,14 @@ class TextblockController extends Controller
                 
     }
 
-    public function store($id, Request $request){
+    public function store(Request $request){
+
+        $validatedData = $request->validate([
+            'name' => 'required'
+        ]);
 
         
-                
+                    
     }
 
     public function edit($id){
