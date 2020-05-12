@@ -5,6 +5,7 @@ namespace AkiCreative\AkiForms;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Models\Akicategory;
 
 class TextblockController extends Controller
 {
@@ -37,6 +38,10 @@ class TextblockController extends Controller
     public function create(){
 
         $data['centercolumn'] = 8;
+
+        $cats = Akicategory::selectoptions('textblock');
+
+        $data['cats'] = $cats;
 
         return view('akiforms::textblock.create', $data);
                 

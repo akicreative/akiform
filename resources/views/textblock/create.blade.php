@@ -8,7 +8,13 @@ Create Text Block
 
 <?
 
-echo 'Form here';
+$ar = new AkiFormTest($errors, ['horizontal' => true, 'constrainform' => 'col-md-8']);
+
+$ar->open();
+
+$ar->build('select', 'Category:', 'category', ['selectoptions' => $cats]);
+
+$ar->close();
 
 ?>
 
