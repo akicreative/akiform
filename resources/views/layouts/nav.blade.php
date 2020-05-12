@@ -27,7 +27,7 @@
          MORE
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{{ route('akiforms::textblocks@index') }}">Text Blocks</a>
+          <a class="dropdown-item" href="{{ route('textblocks.index') }}">Text Blocks</a>
         </div>
       </li>
 
