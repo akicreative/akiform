@@ -65,17 +65,81 @@ class AssetController extends Controller
 
     public function store(Request $request){
 
-        $validatedData = $request->validate([
-            'name' => 'required'
-        ]);
+        $nice = [
 
-        $t = new Akitextblock;
+        ];
+
+        $messages = [
+
+        ];
+
+        $validator = Validator::make($request->all(), [
+            'file' => 'required',
+        ], $messages, $nice);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput()
+                        ->with('pagemessage', 'Please fill out all required fields.');
+        }
+
+        $a = new Akiasset;
+
+        $a->code = md5(time() . rand());
+
+        $a->category = $request->input('category');
         
-        $t->fill($request->all());
+        $a->description = $request->input('description');
 
-        $t->save();
+        $file = $request->file('file');
 
-        return redirect()->route('aki.textblock.edit', [$t->id]);
+        $path = $file->store('public');
+
+        $name = $request->input('name');
+
+        if($name == ''){
+
+            $name = $file->getClientOriginalName();
+        }
+
+        $a->name = $name;
+               
+        $a->serverfilename = $path;
+        $a->filename = $file->getClientOriginalName();
+        $a->mimetype = $file->getClientMimeType();
+        $a->filesize = $file->getClientSize();
+
+        switch($a->mimetype){
+
+            case "image/jpeg":
+            case "image/png":
+            case "image/jpg":
+
+
+                $tn = 'tn_' . $file->hashName();
+
+                $tnpath = storage_path('app/public') . $tn;
+
+                $image = Image::make(storage_path('app/public') . $a->serverfilename);
+
+                $image->fit(400, 400, function($constraint){
+
+                    $constraint->upsize();
+
+                })->orientate();
+
+                $image->save($tnpath);
+
+                $a->serverfilenametn = $tn;
+
+                break;
+
+        }
+
+        $a->save();
+
+        return redirect()->route('aki.asset.edit', [$t->id])->with('pagemessage', 'The file has been uploaded.');
 
 
     }
