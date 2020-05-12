@@ -112,7 +112,7 @@ class AssetController extends Controller
         $a->serverfilename = $path;
         $a->filename = $file->getClientOriginalName();
         $a->mimetype = $file->getClientMimeType();
-        $a->filesize = $file->getClientSize();
+        $a->filesize = $file->getSize();
 
         switch($a->mimetype){
 
