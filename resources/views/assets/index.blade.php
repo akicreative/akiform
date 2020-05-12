@@ -14,7 +14,7 @@ $ar = new AkiForm($errors, ['inlinelist' => true, 'size' => '']);
 
 $ar->open(['method' => 'GET']);
 
-$ar->build('select', 'property', 'property', ['selectoptions' => $cats, 'default' => session('assetcategroy', 'assetgeneral')]);
+$ar->build('select', 'category', 'category', ['selectoptions' => $cats, 'default' => session('assetcategory', 'assetgeneral')]);
 
 $ar->build('submit', 'GO');
 
@@ -36,7 +36,7 @@ $ar->close();
 
 		<td>
 
-			<a href="{{ route('assets.update', [$row->id]) }}" class="btn btn-sm btn-primary">EDIT</a>
+			<a href="{{ route('aki.asset.update', [$row->id]) }}" class="btn btn-sm btn-primary">EDIT</a>
 
 		</td>
 
@@ -48,7 +48,7 @@ $ar->close();
 
 		<td class="text-center">
 
-			ID: {{ $row->id }}
+			
 
 		</td>
 

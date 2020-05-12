@@ -55,11 +55,11 @@ class AssetController extends Controller
 
         $data['centercolumn'] = 8;
 
-        $cats = Akicategory::selectoptions('textblock');
+        $cats = Akicategory::selectoptions('asset');
 
         $data['cats'] = $cats;
 
-        return view('akiforms::textblock.create', $data);
+        return view('akiforms::assets.create', $data);
                 
     }
 
