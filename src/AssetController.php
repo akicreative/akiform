@@ -123,9 +123,9 @@ class AssetController extends Controller
 
                 $tn = 'tn_' . $file->hashName();
 
-                $tnpath = storage_path('app/public') . $tn;
+                $tnpath = storage_path('public') . $tn;
 
-                $image = Image::make(storage_path('app/public') . $a->serverfilename);
+                $image = Image::make(storage_path('public') . $a->serverfilename);
 
                 $image->fit(400, 400, function($constraint){
 
