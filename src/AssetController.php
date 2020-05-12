@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use AkiCreative\AkiForms\Models\Akicategory;
 use AkiCreative\AkiForms\Models\Akiasset;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class AssetController extends Controller
 {
