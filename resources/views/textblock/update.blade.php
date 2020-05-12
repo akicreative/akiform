@@ -10,7 +10,7 @@
 
 $ar = new AkiForm($errors, ['horizontal' => true, 'constrainform' => 'col-md-8']);
 
-$ar->open(['action' => route('textblocks.update')]);
+$ar->open(['action' => route('textblocks.update', [$text->id])]);
 
 $ar->fill($text);
 
