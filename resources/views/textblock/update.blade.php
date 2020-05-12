@@ -22,6 +22,12 @@ $ar = new AkiForm($errors, ['horizontal' => true, 'constrainform' => 'col-md-8']
 
 $ar->open(['action' => route('textblocks.update', [$text->id])]);
 
+?>
+
+ @method('PUT')
+
+ <?
+
 $ar->fill($text);
 
 $ar->build('select', 'Category:', 'category', ['selectoptions' => $cats]);
