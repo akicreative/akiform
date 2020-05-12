@@ -20,7 +20,7 @@ akiredactor('css');
 
 $ar = new AkiForm($errors, ['horizontal' => true, 'constrainform' => 'col-md-8']);
 
-$ar->open(['action' => route('textblocks.update', [$text->id])]);
+$ar->open(['action' => route('aki.textblock.update', [$text->id])]);
 
 ?>
 

@@ -14,7 +14,7 @@ class TextblockController extends Controller
 	public function __construct()
 	{
 
-        view()->share('akisubnavurl', route('textblocks.index'));
+        view()->share('akisubnavurl', route('aki.textblock.index'));
         view()->share('akisubnavtitle', 'Text Blocks');
 
         $akisubnav = [];
@@ -63,7 +63,7 @@ class TextblockController extends Controller
 
         $t->save();
 
-        return redirect()->route('textblocks.edit', [$t->id]);
+        return redirect()->route('aki.textblock.edit', [$t->id]);
 
 
     }
@@ -74,7 +74,7 @@ class TextblockController extends Controller
 
         if(empty($t)){
 
-            return redirect()->route('textblocks.index');
+            return redirect()->route('aki.textblock.index');
 
         }
 
@@ -102,7 +102,7 @@ class TextblockController extends Controller
 
         $t->save();
 
-        return redirect()->route('textblocks.index')->with('pagemessage', 'The text block was saved.');
+        return redirect()->route('aki.textblock.index')->with('pagemessage', 'The text block was saved.');
                 
     }
 

@@ -13,12 +13,11 @@ Route::prefix('akiforms')->middleware(['web'])->namespace('AkiCreative\AkiForms'
 
 Route::prefix('cms')->middleware(['web', 'isadmin'])->namespace('AkiCreative\AkiForms')->group(function(){
 
-	Route::resources([
-
-		'textblocks' => 'TextblockController'
-
-
-	]);
+	Route::get('/textblocks', 'TextblockController@index')->name('aki.textblock.index');
+	Route::get('/textblocks/create', 'TextblockController@create')->name('aki.textblock.create');
+	Route::post('/textblocks/store', 'TextblockController@store')->name('aki.textblock.store');
+	Route::get('/textblocks/{id}/edit', 'TextblockController@edit')->name('aki.textblock.edit');
+	Route::post('/textblocks/{id}/update', 'TextblockController@update')->name('aki.textblock.update');
 
 
 });
