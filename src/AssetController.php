@@ -6,22 +6,22 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use AkiCreative\AkiForms\Models\Akicategory;
-use AkiCreative\AkiForms\Models\Akitextblock;
+use AkiCreative\AkiForms\Models\Akiasset;
 
-class TextblockController extends Controller
+class AssetController extends Controller
 {
 
 	public function __construct()
 	{
 
-        view()->share('akisubnavurl', route('textblocks.index'));
-        view()->share('akisubnavtitle', 'Text Blocks');
+        view()->share('akisubnavurl', route('assets.index'));
+        view()->share('akisubnavtitle', 'Assets');
 
         $akisubnav = [];
 
         $akisubnav[] = '
         <form class="form-inline my-2 my-lg-0">
-          <a href="' . action('\AkiCreative\AkiForms\TextblockController@create') . '" class="btn btn-secondary my-2 my-sm-0">ADD</a>
+          <a href="' . action('\AkiCreative\AkiForms\AssetController@create') . '" class="btn btn-secondary my-2 my-sm-0">ADD</a>
         </form>
         ';
 
@@ -31,11 +31,23 @@ class TextblockController extends Controller
 
 	public function index(){
 
-        $rows = Akitextblock::orderBy('category', 'ASC')->orderBy('name', 'ASC')->get();
+        if(request()->input('go') == 'filter'){
+
+            session(['assetcategory' => request()->input('category')]);
+    
+        }
+
+        $category = session('assetcategory', 'assetgeneral');
+
+        $cats = Akicategory::selectoptions('asset');
+
+        $data['cats'] = $cats;
+
+        $rows = Akiasset::where('category', $category)->orderBy('created_at', 'DESC')->get();
 
         $data['rows'] = $rows;
 
-		return view('akiforms::textblock.index', $data);
+		return view('akiforms::assets.index', $data);
 
 	}
 
@@ -57,7 +69,7 @@ class TextblockController extends Controller
             'name' => 'required'
         ]);
 
-        $t = new Akitextblock;
+        $t = new Akiasset;
         
         $t->fill($request->all());
 
@@ -70,7 +82,7 @@ class TextblockController extends Controller
 
     public function edit($id){
 
-        $t = Akitextblock::find($id);
+        $t = Akiasset::find($id);
 
         if(empty($t)){
 
@@ -90,7 +102,7 @@ class TextblockController extends Controller
             'name' => 'required'
         ]);
 
-        $t = Akitextblock::find($id);
+        $t = Akiasset::find($id);
         
         $t->fill($request->all());
 

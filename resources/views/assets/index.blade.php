@@ -1,10 +1,30 @@
 @extends('cms.layout')
 
 @section('pagetitle')
-Text Blocks
+Assets
 @endsection
 
 @section('content')
+
+<div class="mb-2">
+
+<?
+
+$ar = new AkiForm($errors, ['inlinelist' => true, 'size' => '']);
+
+$ar->open(['method' => 'GET']);
+
+$ar->build('select', 'property', 'property', ['selectoptions' => $cats, 'default' => session('assetcategroy', 'assetgeneral')]);
+
+$ar->build('submit', 'GO');
+
+$ar->hidden('go', 'filter');
+
+$ar->close();
+
+?>
+
+</div>
 
 <table class="table table-striped table-bordered table-sm">
 
@@ -16,7 +36,7 @@ Text Blocks
 
 		<td>
 
-			<a href="{{ route('textblocks.update', [$row->id]) }}" class="btn btn-sm btn-primary">EDIT</a>
+			<a href="{{ route('assets.update', [$row->id]) }}" class="btn btn-sm btn-primary">EDIT</a>
 
 		</td>
 
