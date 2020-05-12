@@ -7,6 +7,8 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
 
+    	@includeIf('cms.nav')
+
     	@isset($akinavs)
 
     		@foreach($akinavs as $akinav)

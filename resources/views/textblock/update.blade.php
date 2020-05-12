@@ -14,6 +14,8 @@ akiredactor('css');
 
 @section('content')
 
+<h1>{{ $text->name }}</h1>
+
 <?
 
 $ar = new AkiForm($errors, ['horizontal' => true, 'constrainform' => 'col-md-8']);
