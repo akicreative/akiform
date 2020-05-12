@@ -14,7 +14,7 @@ class TextblockController extends Controller
 	public function __construct()
 	{
 
-        view()->share('akisubnavurl', route('textblock.index'));
+        view()->share('akisubnavurl', route('textblocks.index'));
         view()->share('akisubnavtitle', 'Text Blocks');
 
         $akisubnav = [];
