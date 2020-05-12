@@ -10,6 +10,8 @@ use AkiCreative\AkiForms\Models\Akiasset;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 
+use Intervention\Image\ImageManagerStatic as Image;
+
 class AssetController extends Controller
 {
 
