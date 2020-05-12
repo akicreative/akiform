@@ -92,10 +92,6 @@ class TextblockController extends Controller
 
     public function update($id, Request $request){
 
-        $validatedData = $request->validate([
-            'name' => 'required'
-        ]);
-
         $t = Akitextblock::find($id);
         
         $t->fill($request->all());
