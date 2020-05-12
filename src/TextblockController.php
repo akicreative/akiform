@@ -78,6 +78,12 @@ class TextblockController extends Controller
 
         }
 
+        $data['centercolumn'] = 8;
+
+        $cats = Akicategory::selectoptions('textblock');
+
+        $data['cats'] = $cats;
+
         $data['text'] = $t;
 
         return view('akiforms::textblock.update', $data);
