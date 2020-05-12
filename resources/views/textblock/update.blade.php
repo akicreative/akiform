@@ -18,16 +18,16 @@ $ar->build('select', 'Category:', 'category', ['selectoptions' => $cats]);
 
 if($text->format == 'html'){
 
-	$ar->build('textarea', '', 'test', ['class' => 'redactor']);
+	$ar->build('textarea', '', 'textblock', ['class' => 'redactor']);
 
 }else{
 
-	$ar->build('textarea', '', 'test', ['class' => 'redactor']);
+	$ar->build('textarea', '', 'textblock');
 
 
 }
 
-$ar->build('submit', 'Create');
+$ar->build('submit', 'Save');
 
 $ar->close();
 

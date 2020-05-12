@@ -14,7 +14,7 @@ class TextblockController extends Controller
 	public function __construct()
 	{
 
-        view()->share('akisubnavurl', '/cms/textblocks');
+        view()->share('akisubnavurl', route('textblock.index'));
         view()->share('akisubnavtitle', 'Text Blocks');
 
         $akisubnav = [];
@@ -60,14 +60,24 @@ class TextblockController extends Controller
 
         $t->save();
 
-        echo "SUCCESS";
+        return redirect()->route('textblocks.edit', [$t->id]);
 
 
     }
 
     public function edit($id){
 
-        
+        $t = Textblock::find($id);
+
+        if(empty($t)){
+
+            return redirect()->route('textblocks.index');
+
+        }
+
+        $data['text'] = $t;
+
+        return view('akiforms::textblock.update');
                 
     }
 
