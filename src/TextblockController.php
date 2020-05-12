@@ -31,8 +31,11 @@ class TextblockController extends Controller
 
 	public function index(){
 
+        $rows = Textblock::orderBy('category', 'ASC')->orderBy('name', 'ASC')->get();
 
-		return view('akiforms::textblock.index');
+        $data['rows'] = $rows;
+
+		return view('akiforms::textblock.index', $data);
 
 	}
 
@@ -83,7 +86,17 @@ class TextblockController extends Controller
 
     public function update($id, Request $request){
 
+        $validatedData = $request->validate([
+            'name' => 'required'
+        ]);
+
+        $t = Textblock::find($id);
         
+        $t->fill($request->all());
+
+        $t->save();
+
+        return redirect()->route('textblocks.index')->with('pagemessage', 'The text block was saved.');
                 
     }
 

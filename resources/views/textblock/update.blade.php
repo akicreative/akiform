@@ -16,6 +16,8 @@ $ar->fill($text);
 
 $ar->build('select', 'Category:', 'category', ['selectoptions' => $cats]);
 
+$ar->build('text', 'Heading:', 'heading');
+
 if($text->format == 'html'){
 
 	$ar->build('textarea', '', 'textblock', ['class' => 'redactor']);
