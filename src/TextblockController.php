@@ -24,7 +24,7 @@ class TextblockController extends Controller
         </form>
         ';
 
-
+        view()->share('akisubnav', $akisubnav);
 
 	}
 
