@@ -57,7 +57,7 @@ class TextblockController extends Controller
             'name' => 'required'
         ]);
 
-        $t = new Textblock;
+        $t = new Akitextblock;
         
         $t->fill($request->all());
 
