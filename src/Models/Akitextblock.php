@@ -11,4 +11,6 @@ class Akitextblock extends Model
 
 	protected $fillable = ['category', 'name', 'heading', 'textblock', 'format', 'orderby'];
 
+	protected $attributes = ['headerasset_id' => 0];
+
 }
