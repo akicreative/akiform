@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use AkiCreative\AkiForms\Models\Akicategory;
 use AkiCreative\AkiForms\Models\Akiasset;
+use Illuminate\Support\Facades\Validator;
 
 class AssetController extends Controller
 {
