@@ -80,7 +80,7 @@ class TextblockController extends Controller
 
         $data['text'] = $t;
 
-        return view('akiforms::textblock.update');
+        return view('akiforms::textblock.update', $data);
                 
     }
 
