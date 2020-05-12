@@ -16,7 +16,7 @@ Text Blocks
 
 		<td>
 
-			<a href="{{ route('textblocks.edit', [$row->id]) }}" class="btn btn-sm btn-primary">EDIT</a>
+			<a href="{{ route('textblocks.update', [$row->id]) }}" class="btn btn-sm btn-primary">EDIT</a>
 
 		</td>
 
