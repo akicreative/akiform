@@ -9,4 +9,6 @@ class Akitextblock extends Model
 
 	protected $table = 'akiform_textblocks';
 
+	protected $fillable = ['category', 'name', 'heading', 'textblock', 'format', 'orderby'];
+
 }
