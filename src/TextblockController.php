@@ -31,7 +31,7 @@ class TextblockController extends Controller
 
 	public function index(){
 
-        $rows = Textblock::orderBy('category', 'ASC')->orderBy('name', 'ASC')->get();
+        $rows = Akitextblock::orderBy('category', 'ASC')->orderBy('name', 'ASC')->get();
 
         $data['rows'] = $rows;
 
@@ -70,7 +70,7 @@ class TextblockController extends Controller
 
     public function edit($id){
 
-        $t = Textblock::find($id);
+        $t = Akitextblock::find($id);
 
         if(empty($t)){
 
@@ -90,7 +90,7 @@ class TextblockController extends Controller
             'name' => 'required'
         ]);
 
-        $t = Textblock::find($id);
+        $t = Akitextblock::find($id);
         
         $t->fill($request->all());
 
