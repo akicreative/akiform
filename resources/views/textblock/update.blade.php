@@ -22,11 +22,6 @@ $ar = new AkiForm($errors, ['horizontal' => true, 'constrainform' => 'col-md-8']
 
 $ar->open(['action' => route('aki.textblock.update', [$text->id])]);
 
-?>
-
- @method('PUT')
-
- <?
 
 $ar->fill($text);
 
