@@ -14,14 +14,14 @@ class AssetController extends Controller
 	public function __construct()
 	{
 
-        view()->share('akisubnavurl', route('assets.index'));
+        view()->share('akisubnavurl', route('aki.asset.index'));
         view()->share('akisubnavtitle', 'Assets');
 
         $akisubnav = [];
 
         $akisubnav[] = '
         <form class="form-inline my-2 my-lg-0">
-          <a href="' . action('\AkiCreative\AkiForms\AssetController@create') . '" class="btn btn-secondary my-2 my-sm-0">ADD</a>
+          <a href="' . route('aki.asset.create') . '" class="btn btn-secondary my-2 my-sm-0">ADD</a>
         </form>
         ';
 
