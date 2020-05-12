@@ -69,26 +69,32 @@ class AssetController extends Controller
             'name' => 'required'
         ]);
 
-        $t = new Akiasset;
+        $t = new Akitextblock;
         
         $t->fill($request->all());
 
         $t->save();
 
-        return redirect()->route('textblocks.edit', [$t->id]);
+        return redirect()->route('aki.textblock.edit', [$t->id]);
 
 
     }
 
     public function edit($id){
 
-        $t = Akiasset::find($id);
+        $t = Akitextblock::find($id);
 
         if(empty($t)){
 
-            return redirect()->route('textblocks.index');
+            return redirect()->route('aki.textblock.index');
 
         }
+
+        $data['centercolumn'] = 10;
+
+        $cats = Akicategory::selectoptions('textblock');
+
+        $data['cats'] = $cats;
 
         $data['text'] = $t;
 
@@ -98,17 +104,13 @@ class AssetController extends Controller
 
     public function update($id, Request $request){
 
-        $validatedData = $request->validate([
-            'name' => 'required'
-        ]);
-
-        $t = Akiasset::find($id);
+        $t = Akitextblock::find($id);
         
         $t->fill($request->all());
 
         $t->save();
 
-        return redirect()->route('textblocks.index')->with('pagemessage', 'The text block was saved.');
+        return redirect()->route('aki.textblock.index')->with('pagemessage', 'The text block was saved.');
                 
     }
 
