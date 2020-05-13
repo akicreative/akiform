@@ -16,13 +16,13 @@ $ar = new AkiForm($errors, ['horizontal' => true, 'constrainform' => 'col-md-8']
 
 $ar->fill($asset);
 
-$ar->open(['action' => route('aki.asset.store', [$asset->id]), 'files' => true]);
+$ar->open(['action' => route('aki.asset.update', [$asset->id]), 'files' => true]);
 
 $ar->build('text', 'Name/Caption:', 'name');
 
 $ar->build('file', 'Replace File:', 'file', []);
 
-$ar->build('select', 'Category:', 'category', ['selectoptions' => $cats]);
+$ar->build('select', 'Category:', 'category', ['selectoptions' => $cats, 'default' => session('assetcategory', 'assetgeneral')]);
 
 $ar->build('textarea', 'Description:', 'description');
 
