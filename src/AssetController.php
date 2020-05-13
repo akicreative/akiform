@@ -142,7 +142,7 @@ class AssetController extends Controller
 
         $a->save();
 
-        return redirect()->route('aki.asset.edit', [$t->id])->with('pagemessage', 'The file has been uploaded.');
+        return redirect()->route('aki.asset.edit', [$a->id])->with('pagemessage', 'The file has been uploaded.');
 
 
     }
