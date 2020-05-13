@@ -22,6 +22,8 @@ $ar->build('text', 'Name/Caption:', 'name');
 
 $ar->build('file', 'Replace File:', 'file', []);
 
+$ar->build('select', 'Category:', 'category', ['selectoptions' => $cats]);
+
 $ar->build('textarea', 'Description:', 'description');
 
 $ar->build('submit', 'Save');

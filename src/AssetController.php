@@ -150,6 +150,9 @@ class AssetController extends Controller
 
     public function edit($id){
 
+        $cats = Akicategory::selectoptions('asset');
+
+        $data['cats'] = $cats;
 
         $data['asset'] = Akiasset::find($id);
 

@@ -52,6 +52,10 @@ $ar->close();
 
 				<img src="{{ asset('storage/' . $row->serverfilenametn) }}" class="img-fluid">
 
+			@else
+
+				<a href="{{ asset('storage/' . $asset->serverfilename) }}" target="_blank" class="btn btn-sm btn-outline-secondary">Download File</a>
+
 			@endif
 
 		</td>
