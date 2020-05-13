@@ -56,6 +56,13 @@ $ar->close();
 
 			<img src="{{ asset('storage/' . $asset->serverfilenametn) }}" class="img-fluid mb-3">
 
+		@else
+
+			<h5>File</h5>
+
+			<a href="{{ asset('storage/' . $asset->serverfilename) }}" target="_blank" class="btn btn-sm btn-outline-secondary">Download File</a>
+
+
 		@endif
 
 		<div class="card mt-5">

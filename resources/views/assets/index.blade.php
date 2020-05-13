@@ -36,7 +36,7 @@ $ar->close();
 
 		<td>
 
-			<a href="{{ route('aki.asset.update', [$row->id]) }}" class="btn btn-sm btn-primary">EDIT</a>
+			<a href="{{ route('aki.asset.edit', [$row->id]) }}" class="btn btn-sm btn-primary">EDIT</a>
 
 		</td>
 
