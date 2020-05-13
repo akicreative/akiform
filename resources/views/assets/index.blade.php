@@ -54,7 +54,7 @@ $ar->close();
 
 			@else
 
-				<a href="{{ asset('storage/' . $asset->serverfilename) }}" target="_blank" class="btn btn-sm btn-outline-secondary">Download File</a>
+				<a href="{{ asset('storage/' . $row->serverfilename) }}" target="_blank" class="btn btn-sm btn-outline-secondary">Download File</a>
 
 			@endif
 
