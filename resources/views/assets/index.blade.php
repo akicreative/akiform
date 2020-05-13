@@ -85,4 +85,6 @@ $ar->close();
 
 </table>
 
+{{ $rows->links() }}
+
 @endsection

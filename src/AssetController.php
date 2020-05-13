@@ -46,7 +46,7 @@ class AssetController extends Controller
 
         $data['cats'] = $cats;
 
-        $rows = Akiasset::where('category', $category)->orderBy('created_at', 'DESC')->get();
+        $rows = Akiasset::where('category', $category)->orderBy('created_at', 'DESC')->paginate(12);
 
         $data['rows'] = $rows;
 
