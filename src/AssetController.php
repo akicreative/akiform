@@ -240,7 +240,6 @@ class AssetController extends Controller
         if(empty($a)){
 
             return redirect()->route('aki.asset.index');
-
         }
 
         Storage::delete($a->serverfilename);
@@ -249,7 +248,7 @@ class AssetController extends Controller
 
         $a->delete();
 
-        return redirect()->route('aki.asset.index')->with('pagemessage', 'The file has been deleted.');
+        return redirect()->route('aki.asset.index')->with('pagemessage', 'The file has been deleted!');
 
     }
 
