@@ -91,7 +91,7 @@ $ar->close();
 
 				$ar = new AkiForm($errors, ['horizontal' => true, 'constrainform' => 'col-md-8']);
 
-				$ar->open(['action' => action('Cms\TestController@destroy', [$asset->id]), 'files' => true]);
+				$ar->open(['action' => route('aki.asset.destroy', [$asset->id]), 'files' => true]);
 
 
 				$ar->build('submit', 'Delete', '', ['fieldonly' => true, 'inline' => true, 'class' => 'btn-danger']);
