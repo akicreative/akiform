@@ -46,9 +46,13 @@ $ar->close();
 
 		</td>
 
-		<td class="text-center">
+		<td class="text-center" style="width: 30%;">
 
-			
+			@if($row->type() == 'image')
+
+				<img src="{{ asset('storage/' . $row->serverfilenametn) }}" class="img-fluid">
+
+			@endif
 
 		</td>
 

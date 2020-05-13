@@ -24,6 +24,7 @@ Route::prefix('cms')->middleware(['web', 'isadmin'])->namespace('AkiCreative\Aki
 	Route::post('/assets/store', 'AssetController@store')->name('aki.asset.store');
 	Route::get('/assets/{id}/edit', 'AssetController@edit')->name('aki.asset.edit');
 	Route::post('/assets/{id}/update', 'AssetController@update')->name('aki.asset.update');
+	Route::post('/assets/{id}/destroy', 'AssetController@destroy')->name('aki.asset.destroy');
 
 
 });

@@ -126,8 +126,9 @@ class AssetController extends Controller
 
                 $image = Image::make(storage_path('app/') . $a->serverfilename);
 
-                $image->fit(400, 400, function($constraint){
+                $image->fit(400, null, function($constraint){
 
+                    $constraint->aspectRatio();
                     $constraint->upsize();
 
                 })->orientate();
@@ -149,41 +150,97 @@ class AssetController extends Controller
 
     public function edit($id){
 
-        $t = Akitextblock::find($id);
 
-        if(empty($t)){
+        $data['asset'] = Akiasset::find($id);
 
-            return redirect()->route('aki.textblock.index');
+        $cat = Akicategory::where('slug', '=', $data['asset']->category)->first();
 
-        }
+        $data['cat'] = $cat;
 
-        $data['centercolumn'] = 10;
-
-        $cats = Akicategory::selectoptions('textblock');
-
-        $data['cats'] = $cats;
-
-        $data['text'] = $t;
-
-        return view('akiforms::textblock.update', $data);
+        return view('akiforms::assets.update', $data);
                 
     }
 
     public function update($id, Request $request){
 
-        $t = Akitextblock::find($id);
+
+        $a = Akiasset::find($id);
+
+        $a->category = $request->input('category');
         
-        $t->fill($request->all());
+        $a->description = $request->input('description');
 
-        $t->save();
+        if($request->hasFile('file')){
 
-        return redirect()->route('aki.textblock.index')->with('pagemessage', 'The text block was saved.');
-                
+            Storage::delete($a->serverfilename);
+
+            $file = $request->file('file');
+
+            $path = $file->store('public');
+
+            $name = $request->input('name');
+
+            if($name == ''){
+
+                $name = $file->getClientOriginalName();
+            }
+
+            $a->name = $name;
+                   
+            $a->serverfilename = $path;
+            $a->filename = preg_replace("([^0-9a-zA-Z\-\.])", "", $file->getClientOriginalName());
+            $a->mimetype = $file->getClientMimeType();
+            $a->filesize = $file->getSize();
+
+            switch($a->mimetype){
+
+                case "image/jpeg":
+                case "image/png":
+                case "image/jpg":
+
+                    Storage::delete($a->serverfilenametn);
+
+                    $tn = 'public/tn_' . $file->hashName();
+
+                    $tnpath = storage_path('app/') . $tn;
+
+                    $image = Image::make(storage_path('app/') . $a->serverfilename);
+
+                    $image->resize(400, null, function($constraint){
+
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+
+                    })->orientate();
+
+                    $image->save($tnpath);
+
+                    $a->serverfilenametn = $tn;
+
+                    break;
+
+            }
+
+        }
+
+        $a->save();
+
+        return redirect()->route('aki.asset.edit', [$a->id])->with('pagemessage', 'The file has been updated.');
+
+
     }
 
     public function destroy($id, Request $request){
 
+        $a = Akiasset::find($id);
 
+        Storage::delete($a->serverfilename);
+
+        Storage::delete($a->serverfilenametn);
+
+        $a->delete();
+
+        return redirect()->route('aki.asset.index', [$t->id])->with('pagemessage', 'The file has been deleted.');
 
     }
 
