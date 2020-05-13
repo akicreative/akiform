@@ -76,7 +76,7 @@ $ar->close();
 
 @if($asset->type() == 'image')
 	
-	<h5>Full Size</h5>
+	<h5 class="mt-3">Full Size</h5>
 
 
 			<img src="{{ asset('storage/' . $asset->serverfilename) }}" class="img-fluid mb-5">
