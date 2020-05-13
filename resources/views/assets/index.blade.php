@@ -42,7 +42,25 @@ $ar->close();
 
 		<td>
 
-			{{ $row->name }}
+			<ul class="list-unstyled">
+
+				<li>
+
+			<strong>{{ $row->name }}</strong>
+
+		</li>
+
+		@if($row->description)
+
+		<li>
+
+			{{ $row->description }}
+
+		</li>
+
+		@endif
+
+	</ul>
 
 		</td>
 
