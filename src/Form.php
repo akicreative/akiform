@@ -218,7 +218,8 @@ class Form
 			'html' => '',
 			'datepickertoday' => false, 
 			'datepickerclear' => true,
-			'datepickercfg' => []
+			'datepickercfg' => [],
+			'textareamin' => 100
 
 		];
 
@@ -266,18 +267,14 @@ class Form
 
 		foreach($cfgs as $key => $value){
 
-
-
 			if(array_key_exists($key, $attrs)){
 
 				$attrs[$key] = $value;
-
 			}
 
 			if(array_key_exists($key, $cfg)){
 
 				$cfg[$key] = $value;
-
 			}
 
 			if($key == 'attrs' && is_array($value)){
@@ -291,9 +288,18 @@ class Form
 
 					$value['style'] .= ' width: auto;';
 
-		
-
 				}	
+
+				if($type == 'textarea'){
+
+					if(!array_key_exists('style', $value)){
+
+						$value['style'] = '';
+					}
+
+					$value['style'] .= ' min-height: ' $cfg['textareamin'] . 'px;';
+
+				}
 
 				foreach($value as $akey => $avalue){
 
