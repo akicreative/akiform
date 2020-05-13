@@ -126,7 +126,7 @@ class AssetController extends Controller
 
                 $image = Image::make(storage_path('app/') . $a->serverfilename);
 
-                $image->fit(400, null, function($constraint){
+                $image->resize(400, null, function($constraint){
 
                     $constraint->aspectRatio();
                     $constraint->upsize();
@@ -243,7 +243,7 @@ class AssetController extends Controller
 
         $a->delete();
 
-        return redirect()->route('aki.asset.index', [$t->id])->with('pagemessage', 'The file has been deleted.');
+        return redirect()->route('aki.asset.index', [$a->id])->with('pagemessage', 'The file has been deleted.');
 
     }
 
