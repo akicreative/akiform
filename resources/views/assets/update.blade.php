@@ -16,7 +16,7 @@ $ar = new AkiForm($errors, ['horizontal' => true, 'constrainform' => 'col-md-8']
 
 $ar->fill($asset);
 
-$ar->open(['action' => action('Cms\TestController@update', [$asset->id]), 'files' => true]);
+$ar->open(['action' => route('aki.asset.store', [$asset->id]), 'files' => true]);
 
 $ar->build('text', 'Name/Caption:', 'name');
 
@@ -34,7 +34,7 @@ $ar->close();
 
 @if($cat->description != '')
 
-<div class="card">
+<div class="card mt-3">
 
 	<div class="card-body">
 
@@ -67,7 +67,23 @@ $ar->close();
 
 		@endif
 
-		<div class="card mt-5">
+		
+
+	</div>
+
+
+</div>
+
+@if($asset->type() == 'image')
+	
+	<h5>Full Size</h5>
+
+
+			<img src="{{ asset('storage/' . $asset->serverfilename) }}" class="img-fluid mb-5">
+
+		@endif
+
+<div class="card mt-5">
 
 			<div class="card-body">
 
@@ -88,19 +104,5 @@ $ar->close();
 
 		</div>
 
-
-	</div>
-
-
-</div>
-
-@if($asset->type() == 'image')
-	
-	<h5>Full Size</h5>
-
-
-			<img src="{{ asset('storage/' . $asset->serverfilename) }}" class="img-fluid mb-5">
-
-		@endif
 
 @endsection
