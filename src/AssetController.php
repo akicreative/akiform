@@ -237,13 +237,19 @@ class AssetController extends Controller
 
         $a = Akiasset::find($id);
 
+        if(empty($a)){
+
+            return redirect()->route('aki.asset.index');
+
+        }
+
         Storage::delete($a->serverfilename);
 
         Storage::delete($a->serverfilenametn);
 
         $a->delete();
 
-        return redirect()->route('aki.asset.index', [$a->id])->with('pagemessage', 'The file has been deleted.');
+        return redirect()->route('aki.asset.index')->with('pagemessage', 'The file has been deleted.');
 
     }
 
