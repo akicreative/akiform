@@ -297,7 +297,7 @@ class Form
 						$value['style'] = '';
 					}
 
-					$value['style'] .= ' min-height: ' $cfg['textareamin'] . 'px;';
+					$value['style'] .= ' min-height: ' . $cfg['textareamin'] . 'px;';
 
 				}
 
