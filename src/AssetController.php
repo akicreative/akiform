@@ -9,8 +9,7 @@ use AkiCreative\AkiForms\Models\Akicategory;
 use AkiCreative\AkiForms\Models\Akiasset;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
-
-use Intervention\Image\ImageManagerStatic as Image;
+use Image;
 
 class AssetController extends Controller
 {
@@ -110,7 +109,7 @@ class AssetController extends Controller
         $a->name = $name;
                
         $a->serverfilename = $path;
-        $a->filename = $file->getClientOriginalName();
+        $a->filename = preg_replace("([^0-9a-zA-Z\-\.])", "", $file->getClientOriginalName());
         $a->mimetype = $file->getClientMimeType();
         $a->filesize = $file->getSize();
 
@@ -121,11 +120,11 @@ class AssetController extends Controller
             case "image/jpg":
 
 
-                $tn = 'tn_' . $file->hashName();
+                $tn = 'public/tn_' . $file->hashName();
 
-                $tnpath = storage_path('public') . $tn;
+                $tnpath = storage_path('app/') . $tn;
 
-                $image = Image::make(storage_path('public') . $a->serverfilename);
+                $image = Image::make(storage_path('app/') . $a->serverfilename);
 
                 $image->fit(400, 400, function($constraint){
 
