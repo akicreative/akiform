@@ -32,19 +32,32 @@ class AssetController extends Controller
 
 	}
 
-	public function index(){
+	public function index($focus = 'none'){
 
-        if(request()->input('go') == 'filter'){
+        if($focus == 'none'){
 
-            session(['assetcategory' => request()->input('category')]);
-    
+            if(request()->input('go') == 'filter'){
+
+                session(['assetcategory' => request()->input('category')]);
+        
+            }
+
+            $category = session('assetcategory', 'assetgeneral');
+
+            $cats = Akicategory::selectoptions('asset');
+
+            $data['cats'] = $cats;
+
+            $data['focus'] = 'none';
+
+        }else{
+
+            $data['focus'] = $focus;
+
+            $data['category'] = Akicategory::where("slug", $focus)->first();
+
+            $category = $focus;
         }
-
-        $category = session('assetcategory', 'assetgeneral');
-
-        $cats = Akicategory::selectoptions('asset');
-
-        $data['cats'] = $cats;
 
         $rows = Akiasset::where('category', $category)->orderBy('created_at', 'DESC')->paginate(12);
 
@@ -54,19 +67,31 @@ class AssetController extends Controller
 
 	}
 
-    public function create(){
+    public function create($focus = 'none'){
 
         $data['centercolumn'] = 8;
 
-        $cats = Akicategory::selectoptions('asset');
+        if($focus == 'none'){
 
-        $data['cats'] = $cats;
+            $cats = Akicategory::selectoptions('asset');
+
+            $data['cats'] = $cats;
+
+            $data['focus'] = 'none';
+
+        }else{
+
+            $data['focus'] = $focus;
+
+            $data['category'] = Akicategory::where("slug", $focus)->first();
+
+        }
 
         return view('akiforms::assets.create', $data);
                 
     }
 
-    public function store(Request $request){
+    public function store($focus = 'none', Request $request){
 
         $nice = [
 
@@ -91,8 +116,16 @@ class AssetController extends Controller
 
         $a->code = md5(time() . rand());
 
-        $a->category = $request->input('category');
+        if($focus == 'none'){
+
+            $a->category = $request->input('category');
         
+        }else{
+
+            $a->category = $focus;
+
+        }
+
         $a->description = $request->input('description');
 
         $file = $request->file('file');
@@ -143,12 +176,20 @@ class AssetController extends Controller
 
         $a->save();
 
-        return redirect()->route('aki.asset.edit', [$a->id])->with('pagemessage', 'The file has been uploaded.');
+        if($focus == 'none'){
+
+            return redirect()->route('aki.asset.edit', [$a->id])->with('pagemessage', 'The file has been uploaded.');
+
+        }else{
+
+            return redirect()->route('aki.asset.category.edit', [$a->id])->with('pagemessage', 'The file has been uploaded.');
+
+        }
 
 
     }
 
-    public function edit($id){
+    public function edit($id, $focus = 'none'){
 
         $cats = Akicategory::selectoptions('asset');
 
@@ -164,7 +205,7 @@ class AssetController extends Controller
                 
     }
 
-    public function update($id, Request $request){
+    public function update($id, $category = 'none', Request $request){
 
 
         $a = Akiasset::find($id);
@@ -233,7 +274,7 @@ class AssetController extends Controller
 
     }
 
-    public function destroy($id, Request $request){
+    public function destroy($id, $category = 'none', Request $request){
 
         $a = Akiasset::find($id);
 
