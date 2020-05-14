@@ -20,6 +20,7 @@ class CreateAkiformcategoriesTable extends Migration
             $table->string('cattype')->default('asset');
             $table->string('name');
             $table->text('description')->nullable();
+            $table->boolean('hidden')->default(0);
 
             
         });

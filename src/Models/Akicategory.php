@@ -9,10 +9,19 @@ class Akicategory extends Model
 
 	protected $table = 'akiform_categories';
 
-    public static function selectoptions($cattype)
+    public static function selectoptions($cattype, $hide = true)
     {
 
-        $cats = Akicategory::where('cattype', $cattype)->get();
+        if($hide){
+
+            $hidden = [0];
+
+        }else{
+
+            $hidden = [0, 1];
+        }
+
+        $cats = Akicategory::where('cattype', $cattype)->whereIn('hidden', $hidden)->get();
 
         $return = [];
 
