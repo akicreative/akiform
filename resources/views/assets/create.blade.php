@@ -16,7 +16,16 @@ $ar->build('text', 'Name/Caption:', 'name');
 
 $ar->build('file', 'Upload File:', 'file', []);
 
-$ar->build('select', 'Category:', 'category', ['selectoptions' => $cats]);
+if($focus == 'none'){
+
+	$ar->build('select', 'Category:', 'category', ['selectoptions' => $cats]);
+
+}else{
+
+	$ar->build('show', 'Category:', $category->name);
+
+	$ar->hidden('category', $category->slug);
+}
 
 $ar->build('textarea', 'Description:', 'description');
 

@@ -6,6 +6,13 @@ Edit
 
 @section('content')
 
+@if($focus != 'none')
+
+<h1>{{ $category->name }}</h1>
+
+@endif
+
+
 <div class="row">
 
 	<div class="col-12 col-md-7">
@@ -22,7 +29,18 @@ $ar->build('text', 'Name/Caption:', 'name');
 
 $ar->build('file', 'Replace File:', 'file', []);
 
-$ar->build('select', 'Category:', 'category', ['selectoptions' => $cats, 'default' => session('assetcategory', 'assetgeneral')]);
+if($focus == 'none'){
+
+	$ar->build('select', 'Category:', 'category', ['selectoptions' => $cats, 'default' => session('assetcategory', 'assetgeneral')]);
+
+}else{
+
+	$ar->build('show', 'Category:', $category->name);
+
+	$ar->hidden('category', $category->slug);
+}
+
+
 
 $ar->build('textarea', 'Description:', 'description');
 
