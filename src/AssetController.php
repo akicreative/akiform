@@ -63,6 +63,8 @@ class AssetController extends Controller
               <a href="' . route('aki.asset.create') . '" class="btn btn-secondary my-2 my-sm-0">ADD 2</a>
             </form>
             ';
+
+            $data['akisubnav'] = $akisubnav;
         }
 
         $rows = Akiasset::where('category', $category)->orderBy('created_at', 'DESC')->paginate(12);
