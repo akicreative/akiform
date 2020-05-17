@@ -6,6 +6,12 @@ Create Asset
 
 @section('content')
 
+@if($focus != 'none')
+
+<h1>{{ $category->name }}</h1>
+
+@endif
+
 <?
 
 $ar = new AkiForm($errors, ['horizontal' => true, 'constrainform' => 'col-md-8']);
