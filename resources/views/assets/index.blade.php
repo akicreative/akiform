@@ -8,6 +8,8 @@ Assets
 
 <div class="mb-2">
 
+@if($focus == 'none')
+
 <?
 
 $ar = new AkiForm($errors, ['inlinelist' => true, 'size' => '']);
@@ -23,6 +25,12 @@ $ar->hidden('go', 'filter');
 $ar->close();
 
 ?>
+
+@else
+
+<h1>{{ $category->name }}</h1>
+
+@endif
 
 </div>
 
