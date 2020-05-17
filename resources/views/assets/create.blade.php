@@ -10,13 +10,19 @@ Create Asset
 
 <h1>{{ $category->name }}</h1>
 
+<? $action = route('aki.asset.category.store', [$focus]); ?>
+
+@else
+
+<? $action = route('aki.asset.store'); ?>
+
 @endif
 
 <?
 
 $ar = new AkiForm($errors, ['horizontal' => true, 'constrainform' => 'col-md-8']);
 
-$ar->open(['action' => route('aki.asset.store'), 'files' => true]);
+$ar->open(['action' => $action, 'files' => true]);
 
 $ar->build('text', 'Name/Caption:', 'name');
 

@@ -10,6 +10,25 @@ Edit
 
 <h1>{{ $category->name }}</h1>
 
+<? 
+
+$action = route('aki.asset.category.update', [$focus, $asset->id]);
+
+$destroyaction = route('aki.asset.category.destroy', [$focus, $asset->id]);
+
+?>
+
+@else
+
+<? 
+
+$action = route('aki.asset.update', [$asset->id]);
+
+$destroyaction = route('aki.asset.destroy', [$asset->id]);
+
+
+?>
+
 @endif
 
 
@@ -23,7 +42,7 @@ $ar = new AkiForm($errors, ['horizontal' => true, 'constrainform' => 'col-md-8']
 
 $ar->fill($asset);
 
-$ar->open(['action' => route('aki.asset.update', [$asset->id]), 'files' => true]);
+$ar->open(['action' => $action, 'files' => true]);
 
 $ar->build('text', 'Name/Caption:', 'name');
 
@@ -109,7 +128,7 @@ $ar->close();
 
 				$ar = new AkiForm($errors, ['horizontal' => true, 'constrainform' => 'col-md-8']);
 
-				$ar->open(['action' => route('aki.asset.destroy', [$asset->id]), 'files' => true]);
+				$ar->open(['action' => $destroyaction, 'files' => true]);
 
 
 				$ar->build('submit', 'Delete', '', ['fieldonly' => true, 'inline' => true, 'class' => 'btn-danger']);
