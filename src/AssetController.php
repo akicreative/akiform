@@ -17,8 +17,8 @@ class AssetController extends Controller
 	public function __construct()
 	{
 
-        view()->share('akisubnavurl', route('aki.asset.index'));
-        view()->share('akisubnavtitle', 'Assets');
+        view()->share('akisubnavurl', session('akisubnavurl', route('aki.asset.index')));
+        view()->share('akisubnavtitle', session('akisubnavtitle', 'Assets'));
 
         $akisubnav = [];
 
@@ -60,7 +60,7 @@ class AssetController extends Controller
 
             $akisubnav[] = '
             <form class="form-inline my-2 my-lg-0">
-              <a href="' . route('aki.asset.create') . '" class="btn btn-secondary my-2 my-sm-0">ADD 2</a>
+              <a href="' . route('aki.asset.category.create', $data['category']->slug) . '" class="btn btn-secondary my-2 my-sm-0">ADD</a>
             </form>
             ';
 

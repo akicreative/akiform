@@ -44,7 +44,20 @@ $ar->close();
 
 		<td>
 
-			<a href="{{ route('aki.asset.edit', [$row->id]) }}" class="btn btn-sm btn-primary">EDIT</a>
+			<?
+
+			if($focus == 'none'){
+
+				$url = route('aki.asset.edit', [$row->id]);
+
+			}else{
+
+				$url = route('aki.asset.category.edit', [$category->slug, $row->id]);
+			}
+
+			?>
+
+			<a href="{{ $url }}" class="btn btn-sm btn-primary">EDIT</a>
 
 		</td>
 
