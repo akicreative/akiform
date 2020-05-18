@@ -52,7 +52,7 @@ $ar->close();
 
 			}else{
 
-				$url = route('aki.asset.category.edit', [$category->slug, $row->id]);
+				$url = route('aki.asset.category.edit', [$row->id, $category->slug]);
 			}
 
 			?>
