@@ -88,8 +88,6 @@ class AssetController extends Controller
 
     public function create($focus = 'none'){
 
-        $data['centercolumn'] = 8;
-
         if($focus != 'none'){
 
             $focuscategory = Akicategory::where("slug", $focus)->first();
@@ -255,7 +253,7 @@ class AssetController extends Controller
                 
     }
 
-    public function update($id, $category = 'none', Request $request){
+    public function update($id, $focus = 'none', Request $request){
 
 
         $a = Akiasset::find($id);

@@ -12,9 +12,9 @@ Edit
 
 <? 
 
-$action = route('aki.asset.category.update', [$focus, $asset->id]);
+$action = route('aki.asset.category.update', [$asset->id, $focus]);
 
-$destroyaction = route('aki.asset.category.destroy', [$focus, $asset->id]);
+$destroyaction = route('aki.asset.category.destroy', [$asset->id, $focus]);
 
 ?>
 
