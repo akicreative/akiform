@@ -19,13 +19,15 @@ class TextblockController extends Controller
 
         $akisubnav = [];
 
-        $akisubnav[] = '
+        $akisubnavform = '
         <form class="form-inline my-2 my-lg-0">
           <a href="' . action('\AkiCreative\AkiForms\TextblockController@create') . '" class="btn btn-secondary my-2 my-sm-0">ADD</a>
         </form>
         ';
 
         view()->share('akisubnav', $akisubnav);
+
+        view()->share('akisubnavform', $akisubnavform);
 
 	}
 

@@ -819,4 +819,73 @@ if (! function_exists('akiredactor')) {
         }
         
     }
+
+    if (! function_exists('akitextblock')) {
+
+        function akitextblock($id, $textonly = false)
+        {
+
+            $block = AkiCreative\AkiForms\Models\Akitextblock::find($id);
+
+            if(empty($block)){
+
+                return false;
+            }
+
+            if($textonly){
+
+                return $block->textblock;
+
+            }else{
+
+                $return = [
+
+                    'heading' => $block->heading,
+                    'textblock' => $block->textblock,
+                    'format' => $block->format
+
+                ];
+
+                return $return;
+
+            }
+
+        }
+
+    }
+
+    if (! function_exists('akiasset')) {
+
+        function akiasset($id, $size = 'full', $obj = false)
+        {
+
+            $asset = AkiCreative\AkiForms\Models\Akiasset::find($id);
+
+            if(empty($asset)){
+
+                return false;
+            }
+
+            if($obj){
+
+                return $obj;
+
+            }else{
+
+                if($size == 'full'){
+
+                    return asset('storage/' . $row->serverfilename);
+
+                }else{
+
+
+                    return asset('storage/' . $row->serverfilenametn);
+                }
+
+            }
+
+        }
+
+    }
+
 }
