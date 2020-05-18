@@ -34,6 +34,17 @@ class AssetController extends Controller
 
 	public function index($focus = 'none'){
 
+        if($focus != 'none'){
+
+            $focuscategory = Akicategory::where("slug", $focus)->first();
+
+            if(empty($focuscategory)){
+
+                $focus = 'none';
+            }
+
+        }
+
         if($focus == 'none'){
 
             if(request()->input('go') == 'filter'){
@@ -54,7 +65,7 @@ class AssetController extends Controller
 
             $data['focus'] = $focus;
 
-            $data['category'] = Akicategory::where("slug", $focus)->first();
+            $data['category'] = $focuscategory;
 
             $category = $focus;
 
@@ -79,6 +90,17 @@ class AssetController extends Controller
 
         $data['centercolumn'] = 8;
 
+        if($focus != 'none'){
+
+            $focuscategory = Akicategory::where("slug", $focus)->first();
+
+            if(empty($focuscategory)){
+
+                $focus = 'none';
+            }
+
+        }
+
         if($focus == 'none'){
 
             $cats = Akicategory::selectoptions('asset');
@@ -91,7 +113,7 @@ class AssetController extends Controller
 
             $data['focus'] = $focus;
 
-            $data['category'] = Akicategory::where("slug", $focus)->first();
+            $data['category'] = $focuscategory;
 
         }
 
@@ -190,7 +212,7 @@ class AssetController extends Controller
 
         }else{
 
-            return redirect()->route('aki.asset.category.edit', [$a->id])->with('pagemessage', 'The file has been uploaded.');
+            return redirect()->route('aki.asset.category.edit', [$focus, $a->id])->with('pagemessage', 'The file has been uploaded.');
 
         }
 
@@ -199,9 +221,29 @@ class AssetController extends Controller
 
     public function edit($id, $focus = 'none'){
 
-        $cats = Akicategory::selectoptions('asset');
+        if($focus != 'none'){
 
-        $data['cats'] = $cats;
+            $focuscategory = Akicategory::where("slug", $focus)->first();
+
+            if(empty($focuscategory)){
+
+                $focus = 'none';
+            }
+
+        }
+
+        if($focus == 'none'){
+
+            $cats = Akicategory::selectoptions('asset');
+
+            $data['cats'] = $cats;
+        
+        }else{
+
+            $data['focus'] = $focus;
+
+            $data['category'] = $focuscategory;
+        }
 
         $data['asset'] = Akiasset::find($id);
 
