@@ -212,7 +212,7 @@ class AssetController extends Controller
 
         }else{
 
-            return redirect()->route('aki.asset.category.edit', [$focus, $a->id])->with('pagemessage', 'The file has been uploaded.');
+            return redirect()->route('aki.asset.category.edit', [$a->id, $focus])->with('pagemessage', 'The file has been uploaded.');
 
         }
 
@@ -319,7 +319,18 @@ class AssetController extends Controller
 
         $a->save();
 
-        return redirect()->route('aki.asset.edit', [$a->id])->with('pagemessage', 'The file has been updated.');
+        if($focus == 'none'){
+
+            return redirect()->route('aki.asset.edit', [$a->id])->with('pagemessage', 'The file has been updated.');
+
+        }else{
+
+            return redirect()->route('aki.asset.category.edit', [$a->id, $focus])->with('pagemessage', 'The file has been updated.');
+
+
+        }
+
+        
 
 
     }
@@ -339,7 +350,17 @@ class AssetController extends Controller
 
         $a->delete();
 
-        return redirect()->route('aki.asset.index')->with('pagemessage', 'The file has been deleted!');
+        if($focus == 'none'){
+
+            return redirect()->route('aki.asset.index')->with('pagemessage', 'The file has been deleted!');
+
+        }else{
+
+            return redirect()->route('aki.asset.category.index', [$focus])->with('pagemessage', 'The file has been deleted!');
+
+        }
+
+        
 
     }
 
