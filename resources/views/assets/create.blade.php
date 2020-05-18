@@ -18,9 +18,13 @@ Create Asset
 
 @endif
 
+<div class="row">
+
+	<div class="col-12 col-md-8">
+
 <?
 
-$ar = new AkiForm($errors, ['horizontal' => true, 'constrainform' => 'col-md-8']);
+$ar = new AkiForm($errors, ['horizontal' => true]);
 
 $ar->open(['action' => $action, 'files' => true]);
 
@@ -46,5 +50,33 @@ $ar->build('submit', 'Create');
 $ar->close();
 
 ?>
+
+	</div>
+
+	<div class="col-12 col-md-4">
+
+		@foreach($categories as $c)
+
+			@if($c->description != '')
+
+			<ul class="list-unstyled">
+
+				<li><strong>{{ $c->name }}</strong></li>
+
+				<li>{{ $c->description }}</li>
+
+			</ul>
+
+			<hr>
+
+			@endif
+
+
+		@endforeach
+
+
+	</div>
+
+</div>
 
 @endsection

@@ -145,6 +145,10 @@ class AssetController extends Controller
 
             $data['cats'] = $cats;
 
+            $categories = Akicategory::where('cattype', 'asset')->where('hidden', 0)->get();
+
+            $data['categories'] = $categories;
+
             $data['focus'] = 'none';
 
         }else{
@@ -241,7 +245,7 @@ class AssetController extends Controller
 
                 $image = Image::make(storage_path('app/') . $a->serverfilename);
 
-                $image->resize(400, null, function($constraint){
+                $image->resize(480, null, function($constraint){
 
                     $constraint->aspectRatio();
                     $constraint->upsize();
@@ -391,7 +395,7 @@ class AssetController extends Controller
 
                     $image = Image::make(storage_path('app/') . $a->serverfilename);
 
-                    $image->resize(400, null, function($constraint){
+                    $image->resize(480, null, function($constraint){
 
                         $constraint->aspectRatio();
                         $constraint->upsize();
