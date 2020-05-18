@@ -35,10 +35,10 @@
 
     <title>@yield('pagetitle')</title>
 
-    {{ $meta_keywords ?? '' }}
-    {{ $meta_description ?? '' }}
-
     <?
+
+    if(!isset($meta_keywords)) $meta_keywords = '';
+    if(!isset($meta_description)) $meta_description = '';
 
     if($meta_keywords != ''){
 
