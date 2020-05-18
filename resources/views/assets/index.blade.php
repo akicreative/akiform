@@ -34,9 +34,15 @@ $ar->close();
 
 </div>
 
+@if(count($rows) == 0)
+
+<h5>There are currently no assets uploaded.</h5>
+
+@else
+
 <?
 
-$ar = new AkiForm($errors, ['horizontal' => true, 'constrainform' => 'col-md-8']);
+$ar = new AkiForm($errors, ['horizontal' => true]);
 
 $ar->open(['action' => url()->current(), 'files' => true]);
 
@@ -132,5 +138,7 @@ $ar->open(['action' => url()->current(), 'files' => true]);
 $ar->close();
 
 ?>
+
+@endif
 
 @endsection
