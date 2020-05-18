@@ -44,10 +44,6 @@ class AssetController extends Controller
 
                 DB::table('akiform_assets')->where('id', '=', $key)->update(['orderby' => $order]);
 
-                echo $key . '-' . $order;
-
-                die();
-
             }
 
             if($focus == 'none'){
