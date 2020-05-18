@@ -19,6 +19,12 @@ Route::prefix('cms')->middleware(['web', 'isadmin'])->namespace('AkiCreative\Aki
 	Route::get('/textblocks/{id}/edit', 'TextblockController@edit')->name('aki.textblock.edit');
 	Route::post('/textblocks/{id}/update', 'TextblockController@update')->name('aki.textblock.update');
 
+	Route::get('/pages', 'PageController@index')->name('aki.page.index');
+	Route::get('/pages/create', 'PageController@create')->name('aki.page.create');
+	Route::post('/pages/store', 'PageController@store')->name('aki.page.store');
+	Route::get('/pages/{id}/edit', 'PageController@edit')->name('aki.page.edit');
+	Route::post('/pages/{id}/update', 'PageController@update')->name('aki.page.update');
+
 	Route::get('/assets', 'AssetController@index')->name('aki.asset.index');
 	Route::post('/assets', 'AssetController@index')->name('aki.asset.index');
 	Route::get('/assets/create', 'AssetController@create')->name('aki.asset.create');

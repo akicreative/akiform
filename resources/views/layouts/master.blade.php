@@ -35,6 +35,23 @@
 
     <title>@yield('pagetitle')</title>
 
+    <?
+
+    if($meta_keywords != ''){
+
+        echo '<meta name="keywords" content="' . $meta_keywords . '">';
+
+    }
+
+    if($meta_description != ''){
+
+        echo '<meta name="description" content="' . $meta_description . '">';
+        
+    }
+
+
+    ?>
+
     <!-- Scripts -->
     
     <!-- Fonts -->
