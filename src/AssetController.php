@@ -22,13 +22,14 @@ class AssetController extends Controller
 
         $akisubnav = [];
 
-        $akisubnav[] = '
+        $akisubnavform[] = '
         <form class="form-inline my-2 my-lg-0">
           <a href="' . route('aki.asset.create') . '" class="btn btn-secondary my-2 my-sm-0">ADD</a>
         </form>
         ';
 
         view()->share('akisubnav', $akisubnav);
+        view()->share('akisubnavform', $akisubnavform);
 
 	}
 
@@ -46,6 +47,10 @@ class AssetController extends Controller
         }
 
         if($focus == 'none'){
+
+            session()->forget('akisubnavtitle');
+
+            session()->forget('akisubnavurl');
 
             if(request()->input('go') == 'filter'){
 
@@ -75,17 +80,19 @@ class AssetController extends Controller
 
             $akisubnav[] = '
              <li class="nav-item">
-                <a class="nav-link" href="' . session('akisubnavurl', route('aki.asset.index')) . '">Return</a>
+                <a class="nav-link" href="' . session('akisubnavurl', route('aki.asset.index')) . '">Return to Project</a>
              </li>
             ';
 
-            $akisubnav[] = '
+            $akisubnavform = '
             <form class="form-inline my-2 my-lg-0">
               <a href="' . route('aki.asset.category.create', $data['category']->slug) . '" class="btn btn-secondary my-2 my-sm-0">ADD</a>
             </form>
             ';
 
             $data['akisubnav'] = $akisubnav;
+
+            $data['akisubnavform'] = $akisubnavform;
         }
 
         $rows = Akiasset::where('category', $category)->orderBy('created_at', 'DESC')->paginate(12);
@@ -122,6 +129,20 @@ class AssetController extends Controller
             $data['focus'] = $focus;
 
             $data['category'] = $focuscategory;
+
+            $data['akisubnavtitle'] = session('akisubnavtitle', 'Assets');
+
+            $data['akisubnavurl'] = session('akisubnavurl', route('aki.asset.index'));
+
+            $akisubnav[] = '
+             <li class="nav-item">
+                <a class="nav-link" href="' . route('aki.asset.category.index', $data['category']->slug) . '">Return to Assets</a>
+             </li>
+            ';
+
+            $data['akisubnav'] = $akisubnav;
+
+            $data['akisubnavform'] = '';
 
         }
 
@@ -266,17 +287,19 @@ class AssetController extends Controller
 
             $akisubnav[] = '
              <li class="nav-item">
-                <a class="nav-link" href="' . route('aki.asset.category.index', $data['categroy']->slug) . '">Return to Assets</a>
+                <a class="nav-link" href="' . route('aki.asset.category.index', $data['category']->slug) . '">Return to Assets</a>
              </li>
             ';
 
-            $akisubnav[] = '
+            $akisubnavform = '
             <form class="form-inline my-2 my-lg-0">
               <a href="' . route('aki.asset.category.create', $data['category']->slug) . '" class="btn btn-secondary my-2 my-sm-0">Add Asset</a>
             </form>
             ';
 
             $data['akisubnav'] = $akisubnav;
+
+            $data['akisubnavform'] = $akisubnavform;
         }
 
         $data['asset'] = Akiasset::find($id);
