@@ -187,6 +187,8 @@ class Form
 
 	public function build($type, $label, $name = '', $cfgs = []){
 
+		// Text Area Minimum
+
 		if($name == '' && $type != 'show'){
 
 			$name = md5(rand() . time());
@@ -220,7 +222,6 @@ class Form
 			'datepickerclear' => true,
 			'datepickercfg' => [],
 			'textareamin' => 100
-
 		];
 
 		if($type == 'datepicker'){
