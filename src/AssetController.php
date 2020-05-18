@@ -46,6 +46,16 @@ class AssetController extends Controller
 
             }
 
+            if($focus == 'none'){
+
+                return redirect()->route('aki.asset.index');
+
+            }else{
+
+                return redirect()->route('aki.asset.category.index', [$focus]);
+
+            }
+
         }
 
         if($focus != 'none'){

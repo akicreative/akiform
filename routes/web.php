@@ -20,6 +20,7 @@ Route::prefix('cms')->middleware(['web', 'isadmin'])->namespace('AkiCreative\Aki
 	Route::post('/textblocks/{id}/update', 'TextblockController@update')->name('aki.textblock.update');
 
 	Route::get('/assets', 'AssetController@index')->name('aki.asset.index');
+	Route::post('/assets', 'AssetController@index')->name('aki.asset.index');
 	Route::get('/assets/create', 'AssetController@create')->name('aki.asset.create');
 	Route::post('/assets/store', 'AssetController@store')->name('aki.asset.store');
 	Route::get('/assets/{id}/edit', 'AssetController@edit')->name('aki.asset.edit');
@@ -28,6 +29,7 @@ Route::prefix('cms')->middleware(['web', 'isadmin'])->namespace('AkiCreative\Aki
 
 
 	Route::get('/assets/{category}', 'AssetController@index')->name('aki.asset.category.index');
+	Route::post('/assets/{category}', 'AssetController@index')->name('aki.asset.category.index');
 	Route::get('/assets/{category}/create', 'AssetController@create')->name('aki.asset.category.create');
 	Route::post('/assets/{category}/store', 'AssetController@store')->name('aki.asset.category.store');
 	Route::get('/assets/{id}/{category}/edit', 'AssetController@edit')->name('aki.asset.category.edit');
