@@ -235,6 +235,8 @@ class AssetController extends Controller
             $cats = Akicategory::selectoptions('asset');
 
             $data['cats'] = $cats;
+
+            $data['focus'] = 'none';
         
         }else{
 
