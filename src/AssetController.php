@@ -44,6 +44,10 @@ class AssetController extends Controller
 
                 DB::table('akiform_assets')->where('id', '=', $key)->update(['orderby' => $order]);
 
+                echo $key . '-' . $order;
+
+                die();
+
             }
 
             if($focus == 'none'){
@@ -254,6 +258,16 @@ class AssetController extends Controller
 
                 break;
 
+        }
+
+        $last = Akiasset::where('category', $a->category)->orderBy('orderby', 'DESC')->first();
+
+        if(empty($last)){
+
+            $a->orderby = 1;
+        }else{
+
+            $a->orderby = $last->orderby + 1;
         }
 
         $a->save();
