@@ -51,7 +51,7 @@ $ar->open(['action' => url()->current(), 'files' => true]);
 
 <table class="table table-striped table-bordered table-sm">
 
-<tr><th></th><th class="text-center"><button type="submit" name="savebutton" value="order" class="btn btn-sm btn-primary btn-block">Order</button></th><th>Name</th><th></th></tr>
+<tr><th></th><th class="text-center" style="width: 150px;"><button type="submit" name="savebutton" value="order" class="btn btn-sm btn-primary btn-block">Order</button></th><th>Name</th><th></th></tr>
 
 @foreach($rows as $row)
 
