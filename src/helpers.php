@@ -888,4 +888,48 @@ if (! function_exists('akiredactor')) {
 
     }
 
+    if (! function_exists('akipicture')) {
+
+        function akipicture($id, $srcinput = [])
+        {
+
+            $src = [
+
+                'sm' => '',
+                'md' => '',
+                'lg' => ''
+            ];
+
+            foreach($srcinput as $key => $value){
+
+                $src[$key] = $value;
+            }
+
+            $asset = AkiCreative\AkiForms\Models\Akiasset::find($id);
+
+            if(empty($asset)){
+
+                return false;
+            }
+
+            ob_start();
+
+            echo '<picture>';
+            echo '<source media="(min-width: 650px)" srcset="' . asset('storage/' . $asset->serverfilename) . '" ' . $md . '>';
+            echo '<source media="(min-width: 465px)" srcset="' . asset('storage/' . $asset->serverfilenametn) . '" ' . $sm . '>';
+            echo '<img src="' . asset('storage/' . $asset->serverfilename) . '" alt="' . $asset->name . '"' . $lg . '>';
+
+
+            echo '</picture>';
+
+            $output = ob_get_contents();
+
+            ob_end_clean();
+
+            return $output;
+
+        }
+
+    }    
+
 }
