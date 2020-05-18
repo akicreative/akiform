@@ -55,9 +55,9 @@ class Akiasset extends Model
         ob_start();
 
         echo '<picture>';
-        echo '<source media="(min-width: 650px)" srcset="' . asset('storage/' . $asset->serverfilename) . '" ' . $md . '>';
-        echo '<source media="(min-width: 465px)" srcset="' . asset('storage/' . $asset->serverfilenametn) . '" ' . $sm . '>';
-        echo '<img src="' . asset('storage/' . $asset->serverfilename) . '" class="img-fluid" alt="' . $asset->name . '"' . $lg . '>';
+        echo '<source media="(min-width: 650px)" srcset="' . asset('storage/' . $asset->serverfilename) . '" ' . $src['md'] . '>';
+        echo '<source media="(min-width: 465px)" srcset="' . asset('storage/' . $asset->serverfilenametn) . '" ' . $src['sm'] . '>';
+        echo '<img src="' . asset('storage/' . $asset->serverfilename) . '" class="img-fluid" alt="' . $asset->name . '"' . $src['lg'] . '>';
 
 
         echo '</picture>';
