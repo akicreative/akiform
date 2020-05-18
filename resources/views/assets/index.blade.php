@@ -38,7 +38,7 @@ $ar->close();
 
 $ar = new AkiForm($errors, ['horizontal' => true, 'constrainform' => 'col-md-8']);
 
-$ar->open(['action' => $action, 'files' => true]);
+$ar->open(['action' => url()->current(), 'files' => true]);
 
 
 ?>
