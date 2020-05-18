@@ -295,6 +295,7 @@ class AssetController extends Controller
             <form class="form-inline my-2 my-lg-0">
               <a href="' . route('aki.asset.category.create', $data['category']->slug) . '" class="btn btn-secondary my-2 my-sm-0">Add Asset</a>
             </form>
+            
             ';
 
             $data['akisubnav'] = $akisubnav;
