@@ -36,7 +36,7 @@ class AssetController extends Controller
 
 	public function index($focus = 'none', Request $request){
 
-        if($request->input('savebutton') == 'orderby'){
+        if($request->input('savebutton') == 'order'){
 
             $orderby = $request->input('orderby');
 
