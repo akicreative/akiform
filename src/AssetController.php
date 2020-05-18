@@ -9,6 +9,7 @@ use AkiCreative\AkiForms\Models\Akicategory;
 use AkiCreative\AkiForms\Models\Akiasset;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 use Image;
 
 class AssetController extends Controller
@@ -33,7 +34,19 @@ class AssetController extends Controller
 
 	}
 
-	public function index($focus = 'none'){
+	public function index($focus = 'none', Request $request){
+
+        if($request->input('savebutton') == 'orderby'){
+
+            $orderby = $request->input('orderby');
+
+            foreach($orderby as $key => $order){
+
+                DB::table('akiform_assets')->where('id', '=', $key)->update(['orderby' => $order]);
+
+            }
+
+        }
 
         if($focus != 'none'){
 
@@ -95,7 +108,7 @@ class AssetController extends Controller
             $data['akisubnavform'] = $akisubnavform;
         }
 
-        $rows = Akiasset::where('category', $category)->orderBy('created_at', 'DESC')->paginate(12);
+        $rows = Akiasset::where('category', $category)->orderBy('orderby', 'ASC')->orderBy('created_at', 'DESC')->paginate(12);
 
         $data['rows'] = $rows;
 
