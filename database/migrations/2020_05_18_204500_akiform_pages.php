@@ -21,8 +21,8 @@ class AkiformPages extends Migration
             $table->text('metakeywords')->nullable();
             $table->text('body')->nullable();
             $table->boolean('sitemap')->default(0);
-            $table->decimal('sitemappriority', 2, 1);
-            $table->string('url', 255);
+            $table->decimal('sitemappriority', 2, 1)->default(1);
+            $table->string('url', 255)->nullable();
 
         });
     }

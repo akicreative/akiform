@@ -20,7 +20,7 @@ class PageController extends Controller
 
         $akisubnavform = '
         <form class="form-inline my-2 my-lg-0">
-          <a href="' . action('\AkiCreative\AkiForms\PageController@create') . '" class="btn btn-secondary my-2 my-sm-0">ADD</a>
+          <a href="' . action('\AkiCreative\AkiForms\PageController@create') . '" class="btn btn-success my-2 my-sm-0">ADD</a>
         </form>
         ';
 
@@ -79,7 +79,7 @@ class PageController extends Controller
 
         $data['page'] = $p;
 
-        return view('akiforms::page.update', $data);
+        return view('akiforms::pages.update', $data);
                 
     }
 
