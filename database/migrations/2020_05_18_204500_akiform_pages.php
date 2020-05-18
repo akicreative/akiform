@@ -17,9 +17,9 @@ class AkiformPages extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->string('pagetitle');
-            $table->textarea('metadescription')->nullable();
-            $table->textarea('metakeywords')->nullable();
-            $table->textarea('body')->nullable();
+            $table->text('metadescription')->nullable();
+            $table->text('metakeywords')->nullable();
+            $table->text('body')->nullable();
             $table->boolean('sitemap')->default(0);
             $table->decimal('sitemappriority', 2, 1);
             $table->string('url', 255);
