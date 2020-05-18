@@ -33,4 +33,41 @@ class Akiasset extends Model
 
 	}
 
+
+    public function picture($srcinput = [])
+    {
+
+        $asset = $this;
+
+        $src = [
+
+            'sm' => '',
+            'md' => '',
+            'lg' => ''
+        ];
+
+        foreach($srcinput as $key => $value){
+
+            $src[$key] = $value;
+        }
+
+
+        ob_start();
+
+        echo '<picture>';
+        echo '<source media="(min-width: 650px)" srcset="' . asset('storage/' . $asset->serverfilename) . '" ' . $md . '>';
+        echo '<source media="(min-width: 465px)" srcset="' . asset('storage/' . $asset->serverfilenametn) . '" ' . $sm . '>';
+        echo '<img src="' . asset('storage/' . $asset->serverfilename) . '" class="img-fluid" alt="' . $asset->name . '"' . $lg . '>';
+
+
+        echo '</picture>';
+
+        $output = ob_get_contents();
+
+        ob_end_clean();
+
+        return $output;
+
+    }
+
 }
