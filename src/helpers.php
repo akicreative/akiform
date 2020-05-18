@@ -874,12 +874,12 @@ if (! function_exists('akiredactor')) {
 
                 if($size == 'full'){
 
-                    return asset('storage/' . $row->serverfilename);
+                    return asset('storage/' . $asset->serverfilename);
 
                 }else{
 
 
-                    return asset('storage/' . $row->serverfilenametn);
+                    return asset('storage/' . $asset->serverfilenametn);
                 }
 
             }
