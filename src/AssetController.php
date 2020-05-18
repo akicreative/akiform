@@ -253,6 +253,30 @@ class AssetController extends Controller
             $data['focus'] = $focus;
 
             $data['category'] = $focuscategory;
+
+            $data['akisubnavtitle'] = session('akisubnavtitle', 'Assets');
+
+            $data['akisubnavurl'] = session('akisubnavurl', route('aki.asset.index'));
+
+            $akisubnav[] = '
+             <li class="nav-item">
+                <a class="nav-link" href="' . session('akisubnavurl', route('aki.asset.index')) . '">Return to Project</a>
+             </li>
+            ';
+
+            $akisubnav[] = '
+             <li class="nav-item">
+                <a class="nav-link" href="' . route('aki.asset.category.index', $data['categroy']->slug) . '">Return to Assets</a>
+             </li>
+            ';
+
+            $akisubnav[] = '
+            <form class="form-inline my-2 my-lg-0">
+              <a href="' . route('aki.asset.category.create', $data['category']->slug) . '" class="btn btn-secondary my-2 my-sm-0">Add Asset</a>
+            </form>
+            ';
+
+            $data['akisubnav'] = $akisubnav;
         }
 
         $data['asset'] = Akiasset::find($id);
