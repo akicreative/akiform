@@ -35,6 +35,9 @@
 
     <title>@yield('pagetitle')</title>
 
+    {{ $meta_keywords ?? '' }}
+    {{ $meta_description ?? '' }}
+
     <?
 
     if($meta_keywords != ''){
