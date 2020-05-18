@@ -34,9 +34,18 @@ $ar->close();
 
 </div>
 
+<?
+
+$ar = new AkiForm($errors, ['horizontal' => true, 'constrainform' => 'col-md-8']);
+
+$ar->open(['action' => $action, 'files' => true]);
+
+
+?>
+
 <table class="table table-striped table-bordered table-sm">
 
-<tr><th></th><th>Name</th><th></th></tr>
+<tr><th></th><th class="text-center"><button type="submit" name="savebutton" value="order" class="btn btn-sm btn-primary btn-block">Order</button></th><th>Name</th><th></th></tr>
 
 @foreach($rows as $row)
 
@@ -58,6 +67,16 @@ $ar->close();
 			?>
 
 			<a href="{{ $url }}" class="btn btn-sm btn-primary">EDIT</a>
+
+		</td>
+
+		<td>
+
+			<?
+
+			$ar->build('text', 'Order By:', 'orderby[' . $row->id . ']', ['fieldonly' => true, 'inline' => true, 'default' => $row->orderby]);
+
+			?>
 
 		</td>
 
@@ -107,5 +126,11 @@ $ar->close();
 </table>
 
 {{ $rows->links() }}
+
+<?
+
+$ar->close();
+
+?>
 
 @endsection
