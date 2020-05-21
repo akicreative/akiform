@@ -171,6 +171,10 @@ class AssetController extends Controller
 
             $data['akisubnavform'] = '';
 
+            $categories = Akicategory::where('cattype', 'asset')->where('slug', $focus)->get();
+
+            $data['categories'] = $categories;
+
         }
 
         return view('akiforms::assets.create', $data);

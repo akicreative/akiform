@@ -35,9 +35,9 @@ class CreateAkinotificationsTable extends Migration
             $table->string('email_cc')->nullable();
             $table->string('email_bcc')->nullable();
             $table->string('telegram_action')->default('send');
-            $table->string('telegram_chat_id');
+            $table->string('telegram_chat_id')->nullable();
             $table->string('telegram_parse_mode')->default('Markdown');
-            $table->string('telegram_message_id');
+            $table->string('telegram_message_id')->nullable();
             $table->boolean('error')->default(0);
             $table->text('errorinfo')->nullable();
         });
