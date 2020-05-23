@@ -216,7 +216,7 @@ class AssetController extends Controller
 
         }
 
-        $assetcategory = Akicategory::find($a->category);
+        $assetcategory = Akicategory::where('slug', $a->category)->first();
 
         $tnresize = 'resize';
         $tnw = 480;
@@ -438,7 +438,7 @@ class AssetController extends Controller
 
 
 
-                    $assetcategory = Akicategory::find($a->category);
+                    $assetcategory = Akicategory::where('slug', $a->category)->first();
 
                     $tnresize = 'resize';
                     $tnw = 480;
