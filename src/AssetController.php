@@ -216,6 +216,37 @@ class AssetController extends Controller
 
         }
 
+        $assetcategory = Akicategory::find($a->category);
+
+        $tnresize = 'resize';
+        $tnw = 480;
+        $tnh = null;
+
+        if(!empty($assetcategory)){
+
+            $tnresize = $assetcategory->assettnresize;
+
+            if($assetcategory->assettnw > 0){
+
+                $tnw = $assetcategory->assettnw;
+            
+            }else{
+
+                $tnw = null;
+            }
+
+            if($assetcategory->assettnh > 0){
+
+                $tnh = $assetcategory->assettnh;
+            
+            }else{
+
+                $tnh = null;
+
+            }
+
+        }
+
         $a->description = $request->input('description');
 
         $file = $request->file('file');
@@ -249,12 +280,24 @@ class AssetController extends Controller
 
                 $image = Image::make(storage_path('app/') . $a->serverfilename);
 
-                $image->resize(480, null, function($constraint){
+                if($tnresize == 'fit'){
 
-                    $constraint->aspectRatio();
-                    $constraint->upsize();
+                    $image->fit($tnw, $tnh, function($constraint){
 
-                })->orientate();
+                        $constraint->upsize();
+
+                    })->orientate();
+
+                }else{
+
+                    $image->resize($tnw, $tnh, function($constraint){
+
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+
+                    })->orientate();
+
+                }
 
                 $image->save($tnpath);
 
