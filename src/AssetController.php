@@ -421,6 +421,8 @@ class AssetController extends Controller
                 $name = $file->getClientOriginalName();
             }
 
+
+
             $a->name = $name;
                    
             $a->serverfilename = $path;
@@ -434,6 +436,39 @@ class AssetController extends Controller
                 case "image/png":
                 case "image/jpg":
 
+
+
+                    $assetcategory = Akicategory::find($a->category);
+
+                    $tnresize = 'resize';
+                    $tnw = 480;
+                    $tnh = null;
+
+                    if(!empty($assetcategory)){
+
+                        $tnresize = $assetcategory->assettnresize;
+
+                        if($assetcategory->assettnw > 0){
+
+                            $tnw = $assetcategory->assettnw;
+                        
+                        }else{
+
+                            $tnw = null;
+                        }
+
+                        if($assetcategory->assettnh > 0){
+
+                            $tnh = $assetcategory->assettnh;
+                        
+                        }else{
+
+                            $tnh = null;
+
+                        }
+
+                    }
+
                     Storage::delete($a->serverfilenametn);
 
                     $tn = 'public/tn_' . $file->hashName();
@@ -442,12 +477,24 @@ class AssetController extends Controller
 
                     $image = Image::make(storage_path('app/') . $a->serverfilename);
 
-                    $image->resize(480, null, function($constraint){
+                    if($tnresize == 'fit'){
 
-                        $constraint->aspectRatio();
-                        $constraint->upsize();
+                        $image->fit($tnw, $tnh, function($constraint){
 
-                    })->orientate();
+                            $constraint->upsize();
+
+                        })->orientate();
+
+                    }else{
+
+                        $image->resize($tnw, $tnh, function($constraint){
+
+                            $constraint->aspectRatio();
+                            $constraint->upsize();
+
+                        })->orientate();
+
+                    }
 
                     $image->save($tnpath);
 
