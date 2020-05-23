@@ -44,7 +44,7 @@ class Carousel
         ob_start();
 
         echo '
-            <div id="carousel' . $this->id . '" class="carousel ' . $transition . '" ' . $this->carouselclass . '" data-ride="carousel">
+            <div id="carousel' . $this->id . '" class="carousel ' . $this->transition . '" ' . $this->carouselclass . '" data-ride="carousel">
         ';
 
         if($this->showIndicators) {
