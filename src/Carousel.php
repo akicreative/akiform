@@ -10,6 +10,7 @@ class Carousel
     var $id;
     var $showIndicators = true;
     var $showControls = false;
+    var $transition = 'slide';
     var $items;
     var $carouselclass = 'mb-3 carousel-fade';
 
@@ -43,7 +44,7 @@ class Carousel
         ob_start();
 
         echo '
-            <div id="carousel' . $this->id . '" class="carousel slide ' . $this->carouselclass . '" data-ride="carousel">
+            <div id="carousel' . $this->id . '" class="carousel ' . $transition . '" ' . $this->carouselclass . '" data-ride="carousel">
         ';
 
         if($this->showIndicators) {
