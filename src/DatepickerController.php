@@ -56,14 +56,14 @@ class DatepickerController extends Controller
 
         if($startrange != ''){
 
-            $startrange  = strtotime($startrange);
+            $startrange  = date("Y-m-d", strtotime($startrange));
         }
 
         $endrange = request()->input('endrange', '');
 
         if($endrange != ''){
 
-            $endrange  = strtotime($endrange);
+            $endrange  = date("Y-m-d", strtotime($endrange));
         }   
 
         $exclude = request()->input('exclude', '');

@@ -157,12 +157,12 @@ for($r = 1; $r <= $totalrows; $r++){
 
 	        }
 
-	        if($showingtime < $startrange && $startrange != ''){
+	        if($showingtime < strtotime($startrange) && $startrange != ''){
 
 	            $disabled = 'disabled';
 	        }
 
-	        if($showingtime > $endrange && $endrange != ''){
+	        if($showingtime > strtotime($endrange) && $endrange != ''){
 
 	            $disabled = 'disabled';
 	        }
@@ -193,8 +193,8 @@ $akidp->hidden('default', $default);
 $akidp->hidden('target', $target);
 $akidp->hidden('yearstart', $yearstart);
 $akidp->hidden('yearend', $yearend);
-$akidp->hidden('startrange', date("Y-m-d", $startrange));
-$akidp->hidden('endrange', date("Y-m-d", $endrange));
+$akidp->hidden('startrange', $startrange);
+$akidp->hidden('endrange', $endrange);
 $akidp->hidden('exclude', $exclude);
 $akidp->hidden('datepickerformat', $datepickerformat);
 
