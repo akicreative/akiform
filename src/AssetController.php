@@ -278,7 +278,7 @@ class AssetController extends Controller
 
                 $tnpath = storage_path('app/') . $tn;
 
-                $image = Image::make(storage_path('app/') . $a->serverfilename);
+                $image = Image::configure(array('driver' => 'imagick'))->make(storage_path('app/') . $a->serverfilename);
 
                 if($tnresize == 'fit'){
 
