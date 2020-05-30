@@ -429,7 +429,7 @@ class Form
 
 		if($this->inlinelist){
 
-			echo '<li class="list-inline-item">';
+			echo '<li class="list-inline-item align-top">';
 
 		}elseif($this->viewmode){
 
