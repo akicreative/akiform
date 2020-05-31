@@ -820,71 +820,89 @@ if (! function_exists('akiredactor')) {
         
     }
 
-    if (! function_exists('akitextblock')) {
+}
 
-        function akitextblock($id, $textonly = false)
-        {
+if (! function_exists('akitextblock')) {
 
-            $block = AkiCreative\AkiForms\Models\Akitextblock::find($id);
+    function akitextblock($id, $textonly = false)
+    {
 
-            if(empty($block)){
+        $block = AkiCreative\AkiForms\Models\Akitextblock::find($id);
 
-                return false;
-            }
+        if(empty($block)){
 
-            if($textonly){
+            return false;
+        }
 
-                return $block->textblock;
+        if($textonly){
+
+            return $block->textblock;
+
+        }else{
+
+            $return = [
+
+                'heading' => $block->heading,
+                'textblock' => $block->textblock,
+                'format' => $block->format
+
+            ];
+
+            return $return;
+
+        }
+
+    }
+
+}
+
+if (! function_exists('akiasset')) {
+
+    function akiasset($id, $size = 'full', $obj = false)
+    {
+
+        $asset = AkiCreative\AkiForms\Models\Akiasset::find($id);
+
+        if(empty($asset)){
+
+            return false;
+        }
+
+        if($obj){
+
+            return $obj;
+
+        }else{
+
+            if($size == 'full'){
+
+                return asset('storage/' . $asset->serverfilename);
 
             }else{
 
-                $return = [
 
-                    'heading' => $block->heading,
-                    'textblock' => $block->textblock,
-                    'format' => $block->format
-
-                ];
-
-                return $return;
-
+                return asset('storage/' . $asset->serverfilenametn);
             }
 
         }
 
     }
 
-    if (! function_exists('akiasset')) {
+}
 
-        function akiasset($id, $size = 'full', $obj = false)
-        {
+if (! function_exists('akimoney')) {
 
-            $asset = AkiCreative\AkiForms\Models\Akiasset::find($id);
+    function akimoney($amount, $integer = false)
+    {
 
-            if(empty($asset)){
+        if(!$integer){
 
-                return false;
-            }
-
-            if($obj){
-
-                return $obj;
-
-            }else{
-
-                if($size == 'full'){
-
-                    return asset('storage/' . $asset->serverfilename);
-
-                }else{
-
-
-                    return asset('storage/' . $asset->serverfilenametn);
-                }
-
-            }
-
+            $amount  = ($amount * 100) / 100;
         }
+
+        $fmt = new \NumberFormatter( 'en_CA', \NumberFormatter::CURRENCY );
+
+        return $fmt->formatCurrency($amount, "CAD");
 
     }
 
