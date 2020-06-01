@@ -907,3 +907,14 @@ if (! function_exists('akimoney')) {
     }
 
 }
+
+if (! function_exists('akidollar')) {
+
+    function akidollar($amount, $comma = '')
+    {
+
+        return number_format($amount, 2, ".", $comma);
+
+    }
+
+}
