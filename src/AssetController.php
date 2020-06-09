@@ -577,13 +577,13 @@ class AssetController extends Controller
     public function getpublic($id, $filename)
     {
 
-        $a = Akiasset::where('id', $id)->where('serverfilename', $scope . '/' . $filename)->first();
+        $a = Akiasset::where('id', $id)->where('serverfilename',  'public/' . $filename)->first();
 
         $filepath = '';
 
         if(empty($a)){
 
-            $a = Akiasset::where('id', $id)->where('serverfilenametn', $scope . '/' .  $filename)->first();
+            $a = Akiasset::where('id', $id)->where('serverfilenametn', 'public/' .  $filename)->first();
 
             $filepath = storage_path('app') . '/' . $a->serverfilenametn;
             
@@ -631,13 +631,13 @@ class AssetController extends Controller
     public function getprivate($id, $filename)
     {
 
-        $a = Akiasset::where('id', $id)->where('serverfilename', $scope . '/' . $filename)->first();
+        $a = Akiasset::where('id', $id)->where('serverfilename', 'private/' . $filename)->first();
 
         $filepath = '';
 
         if(empty($a)){
 
-            $a = Akiasset::where('id', $id)->where('serverfilenametn', $scope . '/' .  $filename)->first();
+            $a = Akiasset::where('id', $id)->where('serverfilenametn', 'private/' .  $filename)->first();
 
             $filepath = storage_path('app') . '/' . $a->serverfilenametn;
             
