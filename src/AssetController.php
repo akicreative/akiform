@@ -230,19 +230,12 @@ class AssetController extends Controller
 
                 $tnw = $assetcategory->assettnw;
             
-            }else{
-
-                $tnw = null;
             }
 
             if($assetcategory->assettnh > 0){
 
                 $tnh = $assetcategory->assettnh;
             
-            }else{
-
-                $tnh = null;
-
             }
 
         }
@@ -454,7 +447,7 @@ class AssetController extends Controller
                         
                         }else{
 
-                            $tnw = null;
+                            $tnw = $tnw;
                         }
 
                         if($assetcategory->assettnh > 0){
@@ -463,7 +456,7 @@ class AssetController extends Controller
                         
                         }else{
 
-                            $tnh = null;
+                            $tnh = $tnh;
 
                         }
 
