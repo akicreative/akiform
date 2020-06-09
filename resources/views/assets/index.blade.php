@@ -114,11 +114,11 @@ $ar->open(['action' => url()->current(), 'files' => true]);
 
 			@if($row->type() == 'image')
 
-				<img src="{{ akiasseturl($row->id, $row->serverfilenametn) }}" class="img-fluid">
+				<img src="{{ akiasseturl($row->id, 'tn') }}" class="img-fluid" style="max-height: 200px;">
 
 			@else
 
-				<a href="{{ akiasseturl($row->id, $row->serverfilename) }}" target="_blank" class="btn btn-sm btn-outline-secondary">Download File</a>
+				<a href="{{ akiasseturl($row->id) }}" target="_blank" class="btn btn-sm btn-outline-secondary">Download File</a>
 
 			@endif
 

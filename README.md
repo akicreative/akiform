@@ -14,6 +14,13 @@ This package is also being used to learn how to build packages so it is not expe
 use AkiCreative\AkiForms\Models\Akiasset;
 ```
 
+# Assets
+
+```
+Route::get('/asset/download/{id}/{filename}', 'AkiCreative\AkiForms\AssetController@public')->name('aki.asset.public');
+Route::get('/asset/private/{id}/{filename}', 'AkiCreative\AkiForms\AssetController@private')->name('aki.asset.private');
+```
+
 # AkiForm Class
 
 ## Initialization
@@ -96,5 +103,6 @@ AkiForm::lightboxjs();
 # Update Log
 
 Remove tags.
+
 
 Coming soon.

@@ -911,13 +911,13 @@ if (! function_exists('akiasseturl')) {
             $scope = 'private';
         }
 
-        if($mode == 'full'){
+        if($mode == 'full' || $a->type() != 'image'){
 
-            return url('/download/' . $id . '/' . $a->serverfilename);
+            return route('aki.asset.' . $scope, [$id, $a->serverfilename]);
         
         }else{
 
-            return url('/download/' . $id . '/' . $a->serverfilenametn);
+            return route('aki.asset.' . $scope, [$id, $a->serverfilenametn]);
 
         }
         

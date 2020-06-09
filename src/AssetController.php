@@ -574,7 +574,7 @@ class AssetController extends Controller
 
     }
 
-    public function show($id, $scope, $filename)
+    public function getpublic($id, $filename)
     {
 
         $a = Akiasset::where('id', $id)->where('serverfilename', $scope . '/' . $filename)->first();
@@ -601,17 +601,57 @@ class AssetController extends Controller
 
         if($c->private){
 
-            if (Auth::user() && Auth::user()->aki_admin == 1){
+            abort(404);
+        }
 
-                // Logged in.
+        switch($a->type()){
 
-            }else{
+            case "image":
 
-                abort(404);
+                return response()->file($filepath, ['Content-Type' => $a->mimetype]);
 
-            }
+                break;
+
+            case "pdf":
+
+                return response()->file($filepath, $a->filename, ['Content-Type' => $a->mimetype]);
+
+                break;
+
+            default:
+
+                return response()->download($filepath, $a->filename, ['Content-Type' => $a->mimetype]);
+
+                break;
 
         }
+        
+    }
+
+    public function getprivate($id, $filename)
+    {
+
+        $a = Akiasset::where('id', $id)->where('serverfilename', $scope . '/' . $filename)->first();
+
+        $filepath = '';
+
+        if(empty($a)){
+
+            $a = Akiasset::where('id', $id)->where('serverfilenametn', $scope . '/' .  $filename)->first();
+
+            $filepath = storage_path('app') . '/' . $a->serverfilenametn;
+            
+        }else{
+
+            $filepath = storage_path('app') . '/' . $a->serverfilename;
+        }
+
+        if(empty($a)){
+
+            abort(404);
+        }
+
+        $c = Akicategory::where('slug', $a->category)->first();
 
         switch($a->type()){
 
