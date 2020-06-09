@@ -244,7 +244,15 @@ class AssetController extends Controller
 
         $file = $request->file('file');
 
-        $path = $file->store('public');
+        if($assetcategory->private){
+
+            $path = $file->store('private');
+
+        }else{
+
+            $path = $file->store('public');
+
+        }
 
         $name = $request->input('name');
 
@@ -266,8 +274,15 @@ class AssetController extends Controller
             case "image/png":
             case "image/jpg":
 
+                if($assetcategory->private){
 
-                $tn = 'public/tn_' . $file->hashName();
+                    $tn = 'private/tn_' . $file->hashName();
+
+                }else{
+
+                    $tn = 'public/tn_' . $file->hashName();
+
+                }
 
                 $tnpath = storage_path('app/') . $tn;
 
@@ -399,13 +414,23 @@ class AssetController extends Controller
         
         $a->description = $request->input('description');
 
+        $assetcategory = Akicategory::where('slug', $a->category)->first();
+
         if($request->hasFile('file')){
 
             Storage::delete($a->serverfilename);
 
             $file = $request->file('file');
 
-            $path = $file->store('public');
+            if($assetcategory->private){
+
+                $path = $file->store('private');
+
+            }else{
+
+                $path = $file->store('public');
+
+            }
 
             $name = $request->input('name');
 
@@ -413,8 +438,6 @@ class AssetController extends Controller
 
                 $name = $file->getClientOriginalName();
             }
-
-
 
             $a->name = $name;
                    
@@ -428,10 +451,6 @@ class AssetController extends Controller
                 case "image/jpeg":
                 case "image/png":
                 case "image/jpg":
-
-
-
-                    $assetcategory = Akicategory::where('slug', $a->category)->first();
 
                     $tnresize = 'resize';
                     $tnw = 480;
@@ -464,7 +483,15 @@ class AssetController extends Controller
 
                     Storage::delete($a->serverfilenametn);
 
-                    $tn = 'public/tn_' . $file->hashName();
+                    if($assetcategory->private){
+
+                        $tn = 'private/tn_' . $file->hashName();
+
+                    }else{
+
+                        $tn = 'public/tn_' . $file->hashName();
+
+                    }
 
                     $tnpath = storage_path('app/') . $tn;
 

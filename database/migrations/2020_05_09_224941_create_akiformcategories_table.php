@@ -21,6 +21,7 @@ class CreateAkiformcategoriesTable extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->boolean('hidden')->default(0);
+            $table->boolean('private')->default(0);
             
         });
 
