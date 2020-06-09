@@ -1,6 +1,6 @@
 <?
 
-Route::get('/download/{id}/{scope}/{filename}', 'AssetController@show')->name('aki.asset.show');
+Route::get('/download/{id}/{scope}/{filename}', 'AkiCreative\AkiForms\AssetController@show')->name('aki.asset.show');
 
 Route::prefix('akiforms')->middleware(['web'])->namespace('AkiCreative\AkiForms')->group(function(){
 
