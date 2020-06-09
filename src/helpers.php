@@ -890,6 +890,41 @@ if (! function_exists('akiasset')) {
 
 }
 
+if (! function_exists('akiasseturl')) {
+
+    function akiasseturl($id, $mode = 'full')
+    {
+
+        $a = \AkiCreative\AkiForms\Models\Akiasset::where('id', $id)->first();
+
+        if(empty($a)){
+
+            return '#';
+        }
+
+        $c = \AkiCreative\AkiForms\Models\Akicategory::where('slug', $a->category)->first();
+
+        $scope = 'public';
+
+        if($c->private){
+
+            $scope = 'private';
+        }
+
+        if($mode == 'full'){
+
+            return url('/download/' . $id . '/' . $a->serverfilename);
+        
+        }else{
+
+            return url('/download/' . $id . '/' . $a->serverfilenametn);
+
+        }
+        
+    }
+
+}
+
 if (! function_exists('akimoney')) {
 
     function akimoney($amount, $integer = false)

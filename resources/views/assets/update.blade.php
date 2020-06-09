@@ -93,13 +93,13 @@ $ar->close();
 
 			<h5>Thumbnail</h5>
 
-			<img src="{{ asset('storage/' . $asset->serverfilenametn) }}" class="img-fluid mb-3">
+			<img src="{{ akiasseturl($asset->id, $asset->serverfilenametn) }}" class="img-fluid mb-3">
 
 		@else
 
 			<h5>File</h5>
 
-			<a href="{{ asset('storage/' . $asset->serverfilename) }}" target="_blank" class="btn btn-sm btn-outline-secondary">Download File</a>
+			<a href="{{ akiasseturl($asset->id, $asset->serverfilename) }}" target="_blank" class="btn btn-sm btn-outline-secondary">Download File</a>
 
 
 		@endif
@@ -116,7 +116,7 @@ $ar->close();
 	<h5 class="mt-3">Full Size Image</h5>
 
 
-			<img src="{{ asset('storage/' . $asset->serverfilename) }}" class="img-fluid mb-5">
+			<img src="{{ akiasseturl($asset->id, $asset->serverfilename) }}" class="img-fluid mb-5">
 
 		@endif
 

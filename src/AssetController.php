@@ -10,6 +10,7 @@ use AkiCreative\AkiForms\Models\Akiasset;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Image;
 
 class AssetController extends Controller
@@ -571,6 +572,69 @@ class AssetController extends Controller
 
         
 
+    }
+
+    public function show($id, $scope, $filename)
+    {
+
+        $a = Akiasset::where('id', $id)->where('serverfilename', $scope . '/' . $filename)->first();
+
+        $filepath = '';
+
+        if(empty($a)){
+
+            $a = Akiasset::where('id', $id)->where('serverfilenametn', $scope . '/' .  $filename)->first();
+
+            $filepath = storage_path('app') . '/' . $a->serverfilenametn;
+            
+        }else{
+
+            $filepath = storage_path('app') . '/' . $a->serverfilename;
+        }
+
+        if(empty($a)){
+
+            abort(404);
+        }
+
+        $c = Akicategory::where('slug', $a->category)->first();
+
+        if($c->private){
+
+            if (Auth::user() && Auth::user()->aki_admin == 1){
+
+                // Logged in.
+
+            }else{
+
+                abort(404);
+
+            }
+
+        }
+
+        switch($a->type()){
+
+            case "image":
+
+                return response()->file($filepath, ['Content-Type' => $a->mimetype]);
+
+                break;
+
+            case "pdf":
+
+                return response()->file($filepath, $a->filename, ['Content-Type' => $a->mimetype]);
+
+                break;
+
+            default:
+
+                return response()->download($filepath, $a->filename, ['Content-Type' => $a->mimetype]);
+
+                break;
+
+        }
+        
     }
 
 }
