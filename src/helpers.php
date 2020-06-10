@@ -913,11 +913,15 @@ if (! function_exists('akiasseturl')) {
 
         if($mode == 'full' || $a->type() != 'image'){
 
-            return route('aki.asset.' . $scope, [$id, $a->serverfilename]);
+            $fn = preg_replace("!^(.*?\/)?!", "", $a->serverfilename);
+
+            return route('aki.asset.' . $scope, [$id, $fn]);
         
         }else{
 
-            return route('aki.asset.' . $scope, [$id, $a->serverfilenametn]);
+            $fn = preg_replace("!^(.*?\/)?!", "", $a->serverfilenametn);
+
+            return route('aki.asset.' . $scope, [$id, $fn]);
 
         }
         
