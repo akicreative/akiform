@@ -577,6 +577,12 @@ class AssetController extends Controller
     public function getpublic($id, $filename)
     {
 
+        echo $id . '<br>';
+
+        echo $filename . '<br>';
+
+        die();
+
         $a = Akiasset::where('id', $id)->where('serverfilename',  'public/' . $filename)->first();
 
         $filepath = '';
