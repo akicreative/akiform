@@ -581,8 +581,6 @@ class AssetController extends Controller
 
         echo $filename . '<br>';
 
-        die();
-
         $a = Akiasset::where('id', $id)->where('serverfilename',  'public/' . $filename)->first();
 
         $filepath = '';
@@ -597,6 +595,10 @@ class AssetController extends Controller
 
             $filepath = storage_path('app') . '/' . $a->serverfilename;
         }
+
+        echo $filepath;
+
+        die();
 
         if(empty($a)){
 
