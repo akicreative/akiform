@@ -118,7 +118,15 @@ $ar->open(['action' => url()->current(), 'files' => true]);
 
 			@else
 
-				<a href="{{ akiasseturl($row->id) }}" target="_blank" class="btn btn-sm btn-outline-secondary">Download File</a>
+				<ul class="list-unstyled mb-0">
+
+					<li>{{ $row->filename }}</li>
+
+					<li>
+
+				<a href="{{ akiasseturl($row->id) }}" class="btn btn-sm btn-outline-secondary">Download File</a>		</li>
+
+			</ul>
 
 			@endif
 

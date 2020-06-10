@@ -21,7 +21,7 @@ class Akicategory extends Model
             $hidden = [0, 1];
         }
 
-        $cats = Akicategory::where('cattype', $cattype)->whereIn('hidden', $hidden)->get();
+        $cats = Akicategory::where('cattype', $cattype)->whereIn('hidden', $hidden)->orderBy('private', 'ASC')->orderBy('name', 'ASC')->get();
 
         $return = [];
 
@@ -29,7 +29,16 @@ class Akicategory extends Model
 
             $key = $cat->slug;
 
-            $return[$key] = $cat->name;
+            if($cat->private){
+
+                $return[$key] = $cat->name . ' [PRIVATE]';
+                
+            }else{
+
+                $return[$key] = $cat->name;
+        
+            }
+
         }
 
         return $return;

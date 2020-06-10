@@ -14,6 +14,8 @@ Create Asset
 
 @else
 
+<h1>Add Asset</h1>
+
 <? $action = route('aki.asset.store'); ?>
 
 @endif
@@ -27,6 +29,8 @@ Create Asset
 $ar = new AkiForm($errors, ['horizontal' => true]);
 
 $ar->open(['action' => $action, 'files' => true]);
+
+$ar->fill(['category' => session('assetcategory', 'assetgeneral')]);
 
 $ar->build('text', 'Name/Caption:', 'name');
 
