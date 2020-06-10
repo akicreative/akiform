@@ -17,8 +17,7 @@ use AkiCreative\AkiForms\Models\Akiasset;
 # Assets
 
 ```
-Route::get('/asset/download/{id}/{filename}', 'AkiCreative\AkiForms\AssetController@public')->name('aki.asset.public');
-Route::get('/asset/private/{id}/{filename}', 'AkiCreative\AkiForms\AssetController@private')->name('aki.asset.private');
+Route::get('/asset/private/{id}/private/{filename}', 'AkiCreative\AkiForms\AssetController@private')->name('aki.asset.private');
 ```
 
 # AkiForm Class

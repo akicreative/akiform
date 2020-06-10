@@ -9,8 +9,10 @@ class Akicategory extends Model
 
 	protected $table = 'akiform_categories';
 
-    public static function selectoptions($cattype, $hide = true)
+    public static function selectoptions($cattype, $hide = true, $private = 'NA')
     {
+
+        // Private = Y, N, A
 
         if($hide){
 
@@ -21,7 +23,20 @@ class Akicategory extends Model
             $hidden = [0, 1];
         }
 
-        $cats = Akicategory::where('cattype', $cattype)->whereIn('hidden', $hidden)->orderBy('private', 'ASC')->orderBy('name', 'ASC')->get();
+        $cats = Akicategory::where('cattype', $cattype)->whereIn('hidden', $hidden);
+
+        switch($private){
+
+            case "1":
+                $cats = $cats->where('private', 1);
+                break;
+            case "0":
+                $cats = $cats->where('private', 0);
+                break;
+
+        }
+
+        $cats = $cats->orderBy('private', 'ASC')->orderBy('name', 'ASC')->get();
 
         $return = [];
 

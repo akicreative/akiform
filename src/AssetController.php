@@ -343,6 +343,10 @@ class AssetController extends Controller
 
     public function edit($id, $focus = 'none'){
 
+        $asset = Akiasset::find($id);
+
+        $cat = Akicategory::where('slug', '=', $asset->category)->first();
+
         if($focus != 'none'){
 
             $focuscategory = Akicategory::where("slug", $focus)->first();
@@ -356,7 +360,7 @@ class AssetController extends Controller
 
         if($focus == 'none'){
 
-            $cats = Akicategory::selectoptions('asset');
+            $cats = Akicategory::selectoptions('asset', true, $cat->private);
 
             $data['cats'] = $cats;
 
@@ -396,9 +400,7 @@ class AssetController extends Controller
             $data['akisubnavform'] = $akisubnavform;
         }
 
-        $data['asset'] = Akiasset::find($id);
-
-        $cat = Akicategory::where('slug', '=', $data['asset']->category)->first();
+        $data['asset'] = $asset;
 
         $data['cat'] = $cat;
 
