@@ -1143,11 +1143,11 @@ EOT;
 		  <div class="modal-dialog modal-xl {$scrollable}" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		         <h3><div id="akilightboxloading">
+		         <h4><div id="akilightboxloading">
 		        		
 		        		<i class="fas fa-spinner fa-spin fa-lg"></i> LOADING
 		        </div>
-		    </h3>
+		    </h4>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		        </button>
