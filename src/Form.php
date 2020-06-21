@@ -443,6 +443,13 @@ class Form
 			case 'email':
 			case 'password':
 			case 'number':
+			case 'phone':
+
+				if($type == 'phone'){
+
+					$cfg['default'] = formatphone($cfg['default']);
+
+				}
 
 				if($this->viewmode){
 
