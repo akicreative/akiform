@@ -129,6 +129,9 @@ for($r = 1; $r <= $totalrows; $r++){
 
 		        	$btnclass .= ' btn-success text-white';
 
+		        }else{
+
+		        	$btnclass .= ' text-dark';
 		        }
 
 	    	}
