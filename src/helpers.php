@@ -962,6 +962,18 @@ if (! function_exists('akidl')) {
 
     function akidl($dd, $dt, $cfg = []){
 
+        if($dd == 'akidlopen'){
+
+            echo '<dl class="row mb-0">';
+            return;
+        }
+
+        if($dd == 'akidlclose'){
+
+            echo '</dl>';
+            return;
+        }
+
         $complete = false;
         $divider = true;
         $dtclass = 'col-sm-5';
