@@ -958,6 +958,52 @@ if (! function_exists('akidollar')) {
 
 }
 
+if (! function_exists('akidl')) {
+
+    function akidl($dd, $dt, $cfg = []){
+
+        $complete = false;
+        $divider = true;
+        $dtclass = 'col-sm-5';
+        $ddclass = 'col-sm-7';
+        $hideblank = true;
+
+        extract($cfg);
+        
+        if($dt == '' && $hideblank){
+
+
+        }else{
+
+            if($complete){
+
+                echo '<dl class="row mb-0">';
+            }
+
+            echo '
+
+            <dt class="' . $dtclass . '">' . $dd . '</dt>
+            <dd class="' . $ddclass . '">' . $dt . '</dd>
+
+            ';
+
+            if($complete){
+
+                echo '</dl>';
+
+                if($divider){
+
+                    echo '<hr class="mt-0 mb-1">';
+                }
+            }
+
+            
+        }
+
+    }
+
+}
+
 if(! function_exists('akicountry')){
 
 
