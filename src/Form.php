@@ -28,6 +28,8 @@ class Form
 	var $viewmode = false;
 	var $divider = '<hr class="my-0">';
 	var $compact = true;
+	var $switchon = '<i class="fal fa-check-square"></i>';
+	var $switchoff = '<i class="fal fa-check-square"></i>';
 
 	private function parse($args, $arguments)
 	{
@@ -221,7 +223,9 @@ class Form
 			'datepickertoday' => false, 
 			'datepickerclear' => true,
 			'datepickercfg' => [],
-			'textareamin' => 100
+			'textareamin' => 100,
+			'switchon' => $this->switchon,
+			'switchoff' => $this->switchoff
 		];
 
 		if($type == 'datepicker'){
@@ -775,8 +779,37 @@ class Form
 						$id = $id . $value;
 					}
 
-					echo '<input class="' . $controlclass . ' ' . $cfg['class'] . '" type="checkbox" name="' . $name . '" id="' . $id . '" tabindex="' . $this->tabindex . '" value="' . $value . '" ' . $checked . ' ' . implode(' ', $fieldattributes) . '>
+					if($this->viewmode){
+
+						echo '<ul class="list-inline mb-0">';
+
+						echo '<li class="list-inline-item">';
+
+						if($checked == 'checked'){
+
+							echo $cfg['switchon'];
+
+						}else{
+
+							echo $cfg['switchoff'];
+						}
+
+						echo '</li>';
+
+						echo '<li class="list-inline-item">';
+
+						echo $a[1];
+
+						echo '</li>';						
+
+						echo '</ul>';
+
+					}else{
+
+						echo '<input class="' . $controlclass . ' ' . $cfg['class'] . '" type="checkbox" name="' . $name . '" id="' . $id . '" tabindex="' . $this->tabindex . '" value="' . $value . '" ' . $checked . ' ' . implode(' ', $fieldattributes) . '>
   					<label class="' . $labelclass . '" for="' . $id . '">' . $a[1];
+
+  					}
 
   					if($cfg['blockhelp'] != '' && $cfg['fieldonly']){
 
