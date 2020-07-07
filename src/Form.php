@@ -869,11 +869,37 @@ class Form
 
 					if($this->viewmode){
 
-						$checked .= ' disabled';
+						echo '<ul class="list-inline mb-0">';
+
+						echo '<li class="list-inline-item">';
+
+						if($checked == 'checked'){
+
+							echo $cfg['switchon'];
+
+						}else{
+
+							echo $cfg['switchoff'];
+						}
+
+						echo '</li>';
+
+						echo '<li class="list-inline-item">';
+
+						echo $a[1];
+
+						echo '</li>';						
+
+						echo '</ul>';
+
+					}else{
+
+
+						echo '<input class="' . $controlclass . '" type="radio" name="' . $name . '" id="' . $name . $a[0] . '" tabindex="' . $this->tabindex . '" value="' . $value . '" ' . $checked . '>
+	  					<label class="' . $labelclass . '" for="' . $name . $a[0] . '">' . $a[1];
+
 					}
 
-					echo '<input class="' . $controlclass . '" type="radio" name="' . $name . '" id="' . $name . $a[0] . '" tabindex="' . $this->tabindex . '" value="' . $value . '" ' . $checked . '>
-  					<label class="' . $labelclass . '" for="' . $name . $a[0] . '">' . $a[1];
 
   					if($cfg['blockhelp'] != '' && $cfg['fieldonly']){
 
