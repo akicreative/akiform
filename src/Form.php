@@ -779,7 +779,7 @@ class Form
 
 						echo '<ul class="list-inline mb-0">';
 
-						echo '<li class="list-inline-item">';
+						echo '<li class="list-inline-item mb-2">';
 
 						if($checked == 'checked'){
 
@@ -792,7 +792,7 @@ class Form
 
 						echo '</li>';
 
-						echo '<li class="list-inline-item">';
+						echo '<li class="list-inline-item mb-2">';
 
 						echo $a[1];
 
@@ -864,7 +864,7 @@ class Form
 
 						echo '<ul class="list-inline mb-0">';
 
-						echo '<li class="list-inline-item">';
+						echo '<li class="list-inline-item mb-2">';
 
 						if($checked == 'checked'){
 
@@ -877,7 +877,7 @@ class Form
 
 						echo '</li>';
 
-						echo '<li class="list-inline-item">';
+						echo '<li class="list-inline-item mb-2">';
 
 						echo $a[1];
 
