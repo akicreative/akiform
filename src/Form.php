@@ -848,13 +848,6 @@ class Form
 
 						echo '<div class="form-check form-check-inline">';
 
-					}elseif($type == 'switch'){
-
-						echo '<div class="custom-control custom-switch">';
-
-						$controlclass = 'custom-control-input';
-						$labelclass = 'custom-control-label';
-
 					}else{
 
 						echo '<div class="form-check">';
@@ -976,7 +969,7 @@ class Form
 
 			echo '</div>';
 
-			if(!$cfg['last']){
+			if(!$cfg['last'] && !in_array($type, ['switch', 'radio', 'radio-inline', 'checkbox', 'checkbox-inline'])){
 
 				echo $this->divider;
 
