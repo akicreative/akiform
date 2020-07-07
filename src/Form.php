@@ -765,10 +765,6 @@ class Form
 
 					}
 
-					if($this->viewmode){
-
-						$checked .= ' disabled';
-					}
 
 					$name = $a[0];
 					$id = $name;
