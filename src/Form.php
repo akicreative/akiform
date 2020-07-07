@@ -29,7 +29,7 @@ class Form
 	var $divider = '<hr class="my-0">';
 	var $compact = true;
 	var $switchon = '<i class="fas fa-lg fa-check-square"></i>';
-	var $switchoff = '<i class="fa fa-lg fa-square"></i>';
+	var $switchoff = '<i class="far fa-lg fa-square"></i>';
 
 	private function parse($args, $arguments)
 	{
