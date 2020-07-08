@@ -628,7 +628,7 @@ class Form
 
 				if($this->viewmode){
 
-					echo outdate($cfg['default'], $dpcfgs['datepickerformat']);
+					echo outdate($cfg['default'], $dpcfg['datepickerformat']);
 
 				}else{
 
