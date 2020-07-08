@@ -811,7 +811,7 @@ class Form
 
   					if($cfg['blockhelp'] != '' && $cfg['fieldonly']){
 
-						echo '<br><small id="' . $attrs['id'] . 'Help" class="form-text text-muted">' . $cfg['blockhelp'] . '</small>';
+						echo '<div style="block"><small id="' . $attrs['id'] . 'Help" class="form-text text-muted">' . $cfg['blockhelp'] . '</small></div>';
 
 					}
 
