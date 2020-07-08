@@ -721,7 +721,11 @@ class Form
 
 					$checked = '';
 
-					if($type == 'checkbox-inline'){
+					if($this->viewmode){
+
+						echo '<div>';
+
+					}elseif($type == 'checkbox-inline'){
 
 						echo '<div class="form-check form-check-inline">';
 
@@ -844,7 +848,11 @@ class Form
 
 					$checked = '';
 
-					if($type == 'radio-inline'){
+					if($this->viewmode){
+
+						echo '<div>';
+
+					}elseif($type == 'radio-inline'){
 
 						echo '<div class="form-check form-check-inline">';
 
