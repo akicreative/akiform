@@ -613,24 +613,26 @@ class Form
 
 			case 'datepicker':
 
+				$dpcfgs = [
+
+					'yearstart' => date("Y"),
+					'yearend' => date("Y") + 5,
+					'startrange' => '',
+					'endrange' => '',
+					'exclude' => '',
+					'datepickerformat' => 'd/m/Y'
+
+				];
+
+				$dpcfg = array_merge($dpcfgs, $cfg['datepickercfg']);
+
 				if($this->viewmode){
 
-					echo outdate($cfg['default'], $cfg['datepickerformat']);
+					echo outdate($cfg['default'], $dpcfgs['datepickerformat']);
 
 				}else{
 
-					$dpcfgs = [
-
-						'yearstart' => date("Y"),
-						'yearend' => date("Y") + 5,
-						'startrange' => '',
-						'endrange' => '',
-						'exclude' => '',
-						'datepickerformat' => 'd/m/Y'
-
-					];
-
-					$dpcfg = array_merge($dpcfgs, $cfg['datepickercfg']);
+					
 
 
 					echo '<div class="form-row mb-3">';
