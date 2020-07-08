@@ -632,8 +632,6 @@ class Form
 
 				}else{
 
-					
-
 
 					echo '<div class="form-row mb-3">';
 
