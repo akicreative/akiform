@@ -224,6 +224,7 @@ class Form
 			'datepickerclear' => true,
 			'datepickercfg' => [],
 			'textareamin' => 100,
+			'textarearows' => 5,
 			'switchon' => $this->switchon,
 			'switchoff' => $this->switchoff
 		];
@@ -527,7 +528,7 @@ class Form
 
 				}else{
 
-					echo '<textarea class="form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . '>' . $cfg['default'] . '</textarea>';
+					echo '<textarea class="form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes + ['rows' => $cfg['textarearows']]) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . '>' . $cfg['default'] . '</textarea>';
 	    
 					echo $errorfeedback;
 
