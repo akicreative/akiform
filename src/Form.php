@@ -14,6 +14,7 @@ class Form
 
 	var $errors = [];
 	var $tabindex = 1;
+	var $fieldonly = false;
 	var $echo = true;
 	var $csrf = true;
 	var $horizontal = false;
@@ -30,6 +31,7 @@ class Form
 	var $compact = true;
 	var $switchon = '<i class="fas fa-lg fa-check-square"></i>';
 	var $switchoff = '<i class="far fa-lg fa-square"></i>';
+	var $formgroupclass = '';
 
 	private function parse($args, $arguments)
 	{
@@ -198,7 +200,7 @@ class Form
 
 		$cfg = [
 
-			'fieldonly' => false,
+			'fieldonly' => $this->fieldonly,
 			'blockhelp' => '',
 			'echo' => $this->echo,
 			'size' => $this->size,
@@ -226,7 +228,8 @@ class Form
 			'textareamin' => 100,
 			'textarearows' => 5,
 			'switchon' => $this->switchon,
-			'switchoff' => $this->switchoff
+			'switchoff' => $this->switchoff,
+			'formgroupclass' => $this->formgroupclass
 		];
 
 		if($type == 'datepicker'){
@@ -392,7 +395,7 @@ class Form
 				
 			}
 
-			echo '<div class="form-group ' . $horizontal . '">';
+			echo '<div class="form-group ' . $horizontal . ' ' . $cfg['formgroupclass'] . '">';
 
 			$labeltext = $label;
 
