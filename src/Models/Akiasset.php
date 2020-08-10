@@ -53,7 +53,9 @@ class Akiasset extends Model
 
         $cfg = [
 
-            'custompath' => ''
+            'custompath' => '',
+            'imgonly' => false,
+            'imgclass' => ''
 
         ];
 
@@ -76,13 +78,21 @@ class Akiasset extends Model
 
         ob_start();
 
-        echo '<picture>';
-        echo '<source media="(min-width: 650px)" srcset="' . $mdpath . '" ' . $src['md'] . '>';
-        echo '<source media="(min-width: 465px)" srcset="' . $smpath . '" ' . $src['sm'] . '>';
-        echo '<img src="' . $path . '" class="img-fluid" alt="' . $asset->name . '"' . $src['lg'] . '>';
+        if(!$cfg['imgonly']){
 
+            echo '<picture>';
+            echo '<source media="(min-width: 650px)" srcset="' . $mdpath . '" ' . $src['md'] . '>';
+            echo '<source media="(min-width: 465px)" srcset="' . $smpath . '" ' . $src['sm'] . '>';
 
-        echo '</picture>';
+        }
+
+        echo '<img src="' . $path . '" class="img-fluid ' . $cfg['imgclass'] . '" alt="' . $asset->name . '"' . $src['lg'] . '>';
+
+        if(!$cfg['imgonly']){
+
+            echo '</picture>';
+
+        }
 
         $output = ob_get_contents();
 
