@@ -34,25 +34,16 @@ class Akiasset extends Model
 	}
 
 
-    public function picture($srcinput = [], $cfgs = [])
+    public function picture($cfgs = [])
     {
 
         $asset = $this;
 
-        $src = [
+        $cfg = [
 
             'sm' => '',
             'md' => '',
-            'lg' => ''
-        ];
-
-        foreach($srcinput as $key => $value){
-
-            $src[$key] = $value;
-        }
-
-        $cfg = [
-
+            'lg' => '',
             'custompath' => '',
             'imgonly' => false,
             'imgclass' => ''
@@ -81,12 +72,12 @@ class Akiasset extends Model
         if(!$cfg['imgonly']){
 
             echo '<picture>';
-            echo '<source media="(min-width: 650px)" srcset="' . $mdpath . '" ' . $src['md'] . '>';
-            echo '<source media="(min-width: 465px)" srcset="' . $smpath . '" ' . $src['sm'] . '>';
+            echo '<source media="(min-width: 650px)" srcset="' . $mdpath . '" ' . $cfg['md'] . '>';
+            echo '<source media="(min-width: 465px)" srcset="' . $smpath . '" ' . $cfg['sm'] . '>';
 
         }
 
-        echo '<img src="' . $path . '" class="img-fluid ' . $cfg['imgclass'] . '" alt="' . $asset->name . '"' . $src['lg'] . '>';
+        echo '<img src="' . $path . '" class="img-fluid ' . $cfg['imgclass'] . '" alt="' . $asset->name . '"' . $cfg['lg'] . '>';
 
         if(!$cfg['imgonly']){
 
