@@ -34,7 +34,7 @@ class Akiasset extends Model
 	}
 
 
-    public function picture($srcinput = [])
+    public function picture($srcinput = [], $cfgs = [])
     {
 
         $asset = $this;
@@ -51,13 +51,35 @@ class Akiasset extends Model
             $src[$key] = $value;
         }
 
+        $cfg = [
+
+            'custompath' => ''
+
+        ];
+
+        foreach($cfgs as $key => $value){
+
+            $cfg[$key] = $value;
+        }
+
+        $path = asset('storage/' . $asset->serverfilename);
+        $mdpath = asset('storage/' . $asset->serverfilename);
+        $smpath = asset('storage/' . $asset->serverfilenametn);
+
+        if($cfg['custompath'] != ''){
+
+            $path = $cfg['custompath'] . $asset->serverfilename;
+            $mdpath = $cfg['custompath'] . $asset->serverfilename;
+            $smpath = $cfg['custompath'] . $asset->serverfilenametn;
+
+        }
 
         ob_start();
 
         echo '<picture>';
-        echo '<source media="(min-width: 650px)" srcset="' . asset('storage/' . $asset->serverfilename) . '" ' . $src['md'] . '>';
-        echo '<source media="(min-width: 465px)" srcset="' . asset('storage/' . $asset->serverfilenametn) . '" ' . $src['sm'] . '>';
-        echo '<img src="' . asset('storage/' . $asset->serverfilename) . '" class="img-fluid" alt="' . $asset->name . '"' . $src['lg'] . '>';
+        echo '<source media="(min-width: 650px)" srcset="' . $mdpath . '" ' . $src['md'] . '>';
+        echo '<source media="(min-width: 465px)" srcset="' . $smpath . '" ' . $src['sm'] . '>';
+        echo '<img src="' . $path . '" class="img-fluid" alt="' . $asset->name . '"' . $src['lg'] . '>';
 
 
         echo '</picture>';
