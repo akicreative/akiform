@@ -929,6 +929,51 @@ if (! function_exists('akiasseturl')) {
 
 }
 
+if (! function_exists('akitelegramsend')) {
+
+    function akitelegramsend($chatid, $message, $params = []) {
+        // ...
+
+        $silent = true;
+
+        $botToken = env('TELEGRAMBOT', '');
+
+        if($botToken == ''){
+
+            return;
+        }
+
+        $chat_id = $chatid;
+        $bot_url    = "https://api.telegram.org/bot$botToken/";
+        $url = $bot_url . "sendMessage";
+
+        extract($params);
+
+        $postfields = array(
+
+            'chat_id' => $chat_id,
+            'text' => $message,
+            'parse_mode' => 'Markdown',
+            'disable_web_page_preview' => true,
+            'disable_notification' => $silent
+
+        );
+
+        $curld = curl_init();
+
+        curl_setopt($curld, CURLOPT_POST, true);
+        curl_setopt($curld, CURLOPT_POSTFIELDS, $postfields);
+        curl_setopt($curld, CURLOPT_URL,$url);
+        curl_setopt($curld, CURLOPT_RETURNTRANSFER, true);
+
+        $output = curl_exec($curld);
+
+        curl_close ($curld);
+
+    }
+
+}
+
 if (! function_exists('akimoney')) {
 
     function akimoney($amount, $integer = false)
@@ -960,7 +1005,7 @@ if (! function_exists('akidollar')) {
 
 if (! function_exists('akidl')) {
 
-    function akidl($dd, $dt, $cfg = []){
+    function akidl($dd, $dt = '', $cfg = []){
 
         if($dd == 'akidlopen'){
 
