@@ -353,6 +353,8 @@ class Form
 
 		ob_start();
 
+		echo '<div id="' . $attrs['id'] . '-div">';
+
 		if(!$cfg['fieldonly']){
 
 			$horizontal = '';
@@ -988,6 +990,8 @@ class Form
 			}
 
 		}
+
+		echo '</div>';
 
 		$output = ob_get_contents();
 
