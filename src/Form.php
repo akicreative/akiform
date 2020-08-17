@@ -229,7 +229,8 @@ class Form
 			'textarearows' => 5,
 			'switchon' => $this->switchon,
 			'switchoff' => $this->switchoff,
-			'formgroupclass' => $this->formgroupclass
+			'formgroupclass' => $this->formgroupclass,
+			'groupmb' => 'mb-2'
 		];
 
 		if($type == 'datepicker'){
@@ -733,11 +734,11 @@ class Form
 
 					}elseif($type == 'checkbox-inline'){
 
-						echo '<div class="form-check form-check-inline">';
+						echo '<div class="form-check form-check-inline ' . $cfg['groupmb'] . '">';
 
 					}elseif($type == 'switch'){
 
-						echo '<div class="custom-control custom-switch">';
+						echo '<div class="custom-control custom-switch ' . $cfg['groupmb'] . '">';
 
 						$controlclass = 'custom-control-input';
 						$labelclass = 'custom-control-label';
