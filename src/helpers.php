@@ -970,6 +970,8 @@ if (! function_exists('akitelegramsend')) {
 
         curl_close ($curld);
 
+        return json_decode($output, true);
+
     }
 
 }
