@@ -354,7 +354,11 @@ class Form
 
 		ob_start();
 
-		echo '<div id="' . $attrs['id'] . '-div">';
+		if(!$cfg['fieldonly']){
+
+			echo '<div id="' . $attrs['id'] . '-div">';
+
+		}
 
 		if(!$cfg['fieldonly']){
 
@@ -992,7 +996,11 @@ class Form
 
 		}
 
-		echo '</div>';
+		if(!$cfg['fieldonly']){
+
+			echo '</div>';
+
+		}
 
 		$output = ob_get_contents();
 
