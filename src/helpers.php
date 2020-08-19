@@ -987,6 +987,7 @@ if (! function_exists('akimoney')) {
         }
 
         $fmt = new \NumberFormatter( 'en_CA', \NumberFormatter::CURRENCY );
+        $fmt->setAttribute($fmt::FRACTION_DIGITS, 2)
 
         return $fmt->formatCurrency($amount, "CAD");
 
