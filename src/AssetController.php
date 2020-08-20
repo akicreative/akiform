@@ -326,6 +326,8 @@ class AssetController extends Controller
             $a->orderby = $last->orderby + 1;
         }
 
+        $a->domain = $_SERVER['HTTP_HOST'];
+
         $a->save();
 
         if($focus == 'none'){
