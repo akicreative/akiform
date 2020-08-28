@@ -892,7 +892,7 @@ if (! function_exists('akiasset')) {
 
 if (! function_exists('akiasseturl')) {
 
-    function akiasseturl($id, $mode = 'full')
+    function akiasseturl($id, $mode = 'full', $auth = false)
     {
 
         $a = \AkiCreative\AkiForms\Models\Akiasset::where('id', $id)->first();
@@ -906,22 +906,56 @@ if (! function_exists('akiasseturl')) {
 
         $scope = 'public';
 
+        $target = env('AKIASSETPUBLIC', 'local');
+
         if($c->private){
 
             $scope = 'private';
+
+            $target = env('AKIASSETPRIVATE', 'local');
         }
 
-        if($mode == 'full' || $a->type() != 'image'){
+        if($target != 'local'){
 
-            $fn = preg_replace("!^(.*?\/)?!", "", $a->serverfilename);
+            if($mode == 'full'){
 
-            return route('aki.asset.' . $scope, [$id, $fn]);
-        
+                if($scope == 'public'){
+
+                    return Storage::disk($target)->url($a->serverfilename);
+
+                }else{
+
+                    return Storage::disk($target)->temporaryUrl($a->serverfilename, now()->addMinutes(5));
+                }
+
+            }else{
+
+                if($scope == 'public'){
+
+                    return Storage::disk($target)->url($a->serverfilenametn);
+
+                }else{
+
+                    return Storage::disk($target)->temporaryUrl($a->serverfilenametn, now()->addMinutes(5));
+                }
+            }
+
+
         }else{
 
-            $fn = preg_replace("!^(.*?\/)?!", "", $a->serverfilenametn);
+            if($mode == 'full' || $a->type() != 'image'){
 
-            return route('aki.asset.' . $scope, [$id, $fn]);
+                $fn = preg_replace("!^(.*?\/)?!", "", $a->serverfilename);
+
+                return route('aki.asset.' . $scope, [$id, $fn]);
+            
+            }else{
+
+                $fn = preg_replace("!^(.*?\/)?!", "", $a->serverfilenametn);
+
+                return route('aki.asset.' . $scope, [$id, $fn]);
+
+            }
 
         }
         
