@@ -17,24 +17,10 @@ use Image;
 class AssetController extends Controller
 {
 
-    var $target = 'local';
-
     private function target($private = false)
     {
 
-        $target = $this->target;
-
-        if($private){
-
-            $target = env('AKIASSETPRIVATE', 'local');
-
-        }else{
-
-            $target = env('AKIASSETPUBLIC', 'local');
-
-        }
-
-        return $target;
+        return env('AKIASSETLOCATION', 'local');
 
     }
 
@@ -275,9 +261,13 @@ class AssetController extends Controller
 
             $path = $file->store('private');
 
+            $visibility = 'private';
+
         }else{
 
             $path = $file->store('public');
+
+            $visibility = 'public';
 
         }
 
@@ -356,27 +346,18 @@ class AssetController extends Controller
 
         $a->save();
 
-        if($target != 'local'){
+        if($target == 's3'){
 
-            if($target == 's3public'){
-
-                $filelocation = storage_path('app/') . $a->serverfilename;
-                $filelocationtn = storage_path('app/') . $a->serverfilenametn;
-
-            }else{
-
-                $filelocation = storage_path('app/') . $a->serverfilename;
-                $filelocationtn = storage_path('app/') . $a->serverfilenametn;
-
-            }
+            $filelocation = storage_path('app/') . $a->serverfilename;
+            $filelocationtn = storage_path('app/') . $a->serverfilenametn;
 
             $content = File::get($filelocation);
-            $result = Storage::disk($target)->put($a->serverfilename, $content);
+            $result = Storage::disk($target)->put($a->serverfilename, $content, $visibility);
 
             if($a->serverifilenametn){
 
                 $content = File::get($filelocationtn);
-                $result = Storage::disk($target)->put($a->serverfilenametn, $content);
+                $result = Storage::disk($target)->put($a->serverfilenametn, $content, $visibility);
 
             }
 
@@ -492,9 +473,13 @@ class AssetController extends Controller
 
                 $path = $file->store('private');
 
+                $visibility = 'private';
+
             }else{
 
                 $path = $file->store('public');
+
+                $visibility = 'public';
 
             }
 
@@ -601,29 +586,26 @@ class AssetController extends Controller
 
         $a->save();
 
-        if($target != 'local'){
+        if($target == 's3'){
 
-            if($target == 's3public'){
-
-                $filelocation = storage_path('app/') . $a->serverfilename;
-                $filelocationtn = storage_path('app/') . $a->serverfilenametn;
-
-            }else{
-
-                $filelocation = storage_path('app/') . $a->serverfilename;
-                $filelocationtn = storage_path('app/') . $a->serverfilenametn;
-
-            }
+            $filelocation = storage_path('app/') . $a->serverfilename;
+            $filelocationtn = storage_path('app/') . $a->serverfilenametn;
 
             $content = File::get($filelocation);
-            $result = Storage::disk($target)->put($a->serverfilename, $content);
+            $result = Storage::disk($target)->put($a->serverfilename, $content, $visibility);
+
+            File::delete($filelocation);
 
             if($a->serverifilenametn){
 
                 $content = File::get($filelocationtn);
-                $result = Storage::disk($target)->put($a->serverfilenametn, $content);
+                $result = Storage::disk($target)->put($a->serverfilenametn, $content, $visibility);
+
+                File::delete($filelocationtn);
 
             }
+
+
 
         }
 
