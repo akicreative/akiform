@@ -360,13 +360,13 @@ class AssetController extends Controller
 
             if($target == 's3public'){
 
-                $filelocation = storage_path('app/public/') . $a->serverfilename;
-                $filelocationtn = storage_path('app/public/') . $a->serverfilenametn;
+                $filelocation = storage_path('app/') . $a->serverfilename;
+                $filelocationtn = storage_path('app/') . $a->serverfilenametn;
 
             }else{
 
-                $filelocation = storage_path('app/private/') . $a->serverfilename;
-                $filelocationtn = storage_path('app/private/') . $a->serverfilenametn;
+                $filelocation = storage_path('app/') . $a->serverfilename;
+                $filelocationtn = storage_path('app/') . $a->serverfilenametn;
 
             }
 
@@ -473,9 +473,18 @@ class AssetController extends Controller
 
         $assetcategory = Akicategory::where('slug', $a->category)->first();
 
+        $target = $this->target($assetcategory->private);
+
         if($request->hasFile('file')){
 
-            Storage::delete($a->serverfilename);
+            if($target == 'local'){
+
+                Storage::delete($a->serverfilename);
+
+            }else{
+
+                Storage::disk($target)->delete($serverfilename);
+            }
 
             $file = $request->file('file');
 
@@ -538,7 +547,14 @@ class AssetController extends Controller
 
                     }
 
-                    Storage::delete($a->serverfilenametn);
+                    if($target == 'local'){
+
+                        Storage::delete($a->serverfilenametn);
+
+                    }else{
+
+                        Storage::disk($target)->delete($serverfilenametn);
+                    }
 
                     if($assetcategory->private){
 
@@ -584,6 +600,32 @@ class AssetController extends Controller
         }
 
         $a->save();
+
+        if($target != 'local'){
+
+            if($target == 's3public'){
+
+                $filelocation = storage_path('app/') . $a->serverfilename;
+                $filelocationtn = storage_path('app/') . $a->serverfilenametn;
+
+            }else{
+
+                $filelocation = storage_path('app/') . $a->serverfilename;
+                $filelocationtn = storage_path('app/') . $a->serverfilenametn;
+
+            }
+
+            $content = File::get($filelocation);
+            $result = Storage::disk($target)->put($a->serverfilename, $content);
+
+            if($a->serverifilenametn){
+
+                $content = File::get($filelocationtn);
+                $result = Storage::disk($target)->put($a->serverfilenametn, $content);
+
+            }
+
+        }
 
         if($focus == 'none'){
 
