@@ -272,13 +272,21 @@ class AssetController extends Controller
 
         $target = $this->target($assetcategory->private);
 
-        if($assetcategory->private){
+        if($target != 'local'){
 
-            $path = $file->store('private');
+            $path = $file->store();
 
         }else{
 
-            $path = $file->store('public');
+            if($assetcategory->private){
+
+                $path = $file->store('private');
+
+            }else{
+
+                $path = $file->store('public');
+
+            }
 
         }
 
@@ -302,13 +310,21 @@ class AssetController extends Controller
             case "image/png":
             case "image/jpg":
 
-                if($assetcategory->private){
+                if($target != 'local'){
 
-                    $tn = 'private/tn_' . $file->hashName();
+                    $tn = 'tn_' . $file->hashName();
 
                 }else{
 
-                    $tn = 'public/tn_' . $file->hashName();
+                    if($assetcategory->private){
+
+                        $tn = 'private/tn_' . $file->hashName();
+
+                    }else{
+
+                        $tn = 'public/tn_' . $file->hashName();
+
+                    }
 
                 }
 
@@ -489,6 +505,8 @@ class AssetController extends Controller
 
         $target = $this->target($assetcategory->private);
 
+
+
         if($assetcategory->private){
 
             $visibility = 'private';
@@ -512,17 +530,25 @@ class AssetController extends Controller
 
             $file = $request->file('file');
 
-            if($assetcategory->private){
+            if($target != 'local'){
 
-                $path = $file->store('private');
-
-                $visibility = 'private';
+                $path = $file->store();
 
             }else{
 
-                $path = $file->store('public');
+                if($assetcategory->private){
 
-                $visibility = 'public';
+                    $path = $file->store('private');
+
+                    $visibility = 'private';
+
+                }else{
+
+                    $path = $file->store('public');
+
+                    $visibility = 'public';
+
+                }
 
             }
 
@@ -584,13 +610,21 @@ class AssetController extends Controller
                         Storage::disk($target)->delete($a->serverfilenametn);
                     }
 
-                    if($assetcategory->private){
+                    if($target != 'local'){
 
-                        $tn = 'private/tn_' . $file->hashName();
+                        $tn = 'tn_' . $file->hashName();
 
                     }else{
 
-                        $tn = 'public/tn_' . $file->hashName();
+                        if($assetcategory->private){
+
+                            $tn = 'private/tn_' . $file->hashName();
+
+                        }else{
+
+                            $tn = 'public/tn_' . $file->hashName();
+
+                        }
 
                     }
 
