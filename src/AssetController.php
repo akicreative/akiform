@@ -229,6 +229,16 @@ class AssetController extends Controller
 
         $assetcategory = Akicategory::where('slug', $a->category)->first();
 
+        if($assetcategory->private){
+
+            $visibility = 'private';
+
+        }else{
+
+            $visibility = 'public';
+
+        }
+
         $tnresize = 'resize';
         $tnw = 480;
         $tnh = null;
@@ -261,13 +271,9 @@ class AssetController extends Controller
 
             $path = $file->store('private');
 
-            $visibility = 'private';
-
         }else{
 
             $path = $file->store('public');
-
-            $visibility = 'public';
 
         }
 
@@ -354,6 +360,11 @@ class AssetController extends Controller
             $content = File::get($filelocation);
             $result = Storage::disk($target)->put($a->serverfilename, $content);
 
+            if($visibility == 'public'){
+
+                Storage::setVisibility($a->serverfilename, 'public');
+            }
+
             File::delete($filelocation);
 
             if($a->serverfilenametn != ''){
@@ -362,6 +373,11 @@ class AssetController extends Controller
                 $result = Storage::disk($target)->put($a->serverfilenametn, $content);
 
                 File::delete($filelocationtn);
+
+                if($visibility == 'public'){
+
+                    Storage::setVisibility($a->serverfilenametn, 'public');
+                }
 
             }
 
@@ -458,7 +474,17 @@ class AssetController extends Controller
 
         $assetcategory = Akicategory::where('slug', $a->category)->first();
 
-        $target = $this->target($assetcategory->private);
+        $target = $this->target();
+
+        if($assetcategory->private){
+
+            $visibility = 'private';
+
+        }else{
+
+            $visibility = 'public';
+
+        }
 
         if($request->hasFile('file')){
 
@@ -600,12 +626,22 @@ class AssetController extends Controller
 
             File::delete($filelocation);
 
+            if($visibility == 'public'){
+
+                Storage::setVisibility($a->serverfilename, 'public');
+            }
+
             if($a->serverifilenametn){
 
                 $content = File::get($filelocationtn);
                 $result = Storage::disk($target)->put($a->serverfilenametn, $content, $visibility);
 
                 File::delete($filelocationtn);
+
+                if($visibility == 'public'){
+
+                    Storage::setVisibility($a->serverfilenametn, 'public');
+                }
 
             }
 
