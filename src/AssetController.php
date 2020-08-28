@@ -274,7 +274,7 @@ class AssetController extends Controller
 
         if($target != 'local'){
 
-            $path = $file->store('');
+            $path = $file->store('assets');
 
         }else{
 
@@ -532,7 +532,7 @@ class AssetController extends Controller
 
             if($target != 'local'){
 
-                $path = $file->store('');
+                $path = $file->store('assets');
 
             }else{
 
