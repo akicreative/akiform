@@ -915,6 +915,11 @@ if (! function_exists('akiasseturl')) {
             $target = env('AKIASSETPRIVATE', 'local');
         }
 
+        if($scope == 'private' && !$auth){
+
+            return '#';
+        }
+
         if($target != 'local'){
 
             if($mode == 'full'){
