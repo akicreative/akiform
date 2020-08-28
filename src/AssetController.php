@@ -635,7 +635,7 @@ class AssetController extends Controller
             $filelocationtn = storage_path('app/') . $a->serverfilenametn;
 
             $content = File::get($filelocation);
-            $result = Storage::disk($target)->put($a->serverfilename, $content, $visibility);
+            $result = Storage::disk($target)->put($a->serverfilename, $content);
 
             File::delete($filelocation);
 
@@ -648,10 +648,10 @@ class AssetController extends Controller
 
             */
 
-            if($a->serverifilenametn){
+            if($a->serverifilenametn != ''){
 
                 $content = File::get($filelocationtn);
-                $result = Storage::disk($target)->put($a->serverfilenametn, $content, $visibility);
+                $result = Storage::disk($target)->put($a->serverfilenametn, $content);
 
                 File::delete($filelocationtn);
 
