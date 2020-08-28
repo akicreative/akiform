@@ -17,10 +17,15 @@ use Image;
 class AssetController extends Controller
 {
 
-    private function target()
+    private function target($private = true)
     {
 
-        return env('AKIASSETLOCATION', 'local');
+        if($private){
+
+            return env('AKIASSETPRIVATE', 'local');
+        }
+
+        return env('AKIASSETPUBLIC', 'local');
 
     }
 
@@ -360,10 +365,14 @@ class AssetController extends Controller
             $content = File::get($filelocation);
             $result = Storage::disk($target)->put($a->serverfilename, $content);
 
+            /*
+
             if($visibility == 'public'){
 
                 Storage::disk($target)->setVisibility($a->serverfilename, 'public');
             }
+
+            */
 
             File::delete($filelocation);
 
@@ -374,10 +383,14 @@ class AssetController extends Controller
 
                 File::delete($filelocationtn);
 
+                /*
+
                 if($visibility == 'public'){
 
                     Storage::disk($target)->setVisibility($a->serverfilenametn, 'public');
                 }
+
+                */
 
             }
 
@@ -474,7 +487,7 @@ class AssetController extends Controller
 
         $assetcategory = Akicategory::where('slug', $a->category)->first();
 
-        $target = $this->target();
+        $target = $this->target($assetcategory->private);
 
         if($assetcategory->private){
 
@@ -626,10 +639,14 @@ class AssetController extends Controller
 
             File::delete($filelocation);
 
+            /*
+
             if($visibility == 'public'){
 
                 Storage::disk($target)->setVisibility($a->serverfilename, 'public');
             }
+
+            */
 
             if($a->serverifilenametn){
 
@@ -638,10 +655,13 @@ class AssetController extends Controller
 
                 File::delete($filelocationtn);
 
+                /*
+
                 if($visibility == 'public'){
 
                     Storage::disk($target)->setVisibility($a->serverfilenametn, 'public');
                 }
+                */
 
             }
 
