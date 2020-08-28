@@ -358,13 +358,25 @@ class AssetController extends Controller
 
         if($target != 'local'){
 
-            $content = File::get($a->serverfilename);
+            if($target == 's3public'){
+
+                $filelocation = storage_path('app/public/') . $a->serverfilename;
+                $filelocationtn = storage_path('app/public/') . $a->serverfilenametn;
+
+            }else{
+
+                $filelocation = storage_path('app/private/') . $a->serverfilename;
+                $filelocationtn = storage_path('app/private/') . $a->serverfilenametn;
+
+            }
+
+            $content = File::get($filelocation);
             $result = Storage::disk($target)->put($a->serverfilename, $content);
 
             if($a->serverifilenametn){
 
-                $content = File::get($a->serverfilename);
-                $result = Storage::disk($target)->put($a->serverfilename, $content);
+                $content = File::get($filelocationtn);
+                $result = Storage::disk($target)->put($a->serverfilenametn, $content);
 
             }
 
