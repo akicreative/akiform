@@ -598,9 +598,22 @@ class AssetController extends Controller
             return redirect()->route('aki.asset.index');
         }
 
-        Storage::delete($a->serverfilename);
+        $assetcategory = Akicategory::where('slug', $a->category)->first();
 
-        Storage::delete($a->serverfilenametn);
+        $target = $this->target($assetcategory->private);
+
+        if($target == 'local'){
+
+            Storage::delete($a->serverfilename);
+
+            Storage::delete($a->serverfilenametn);
+
+        }else{
+
+            Storage::disk($target)->delete($a->serverfilename);
+
+            Storage::disk($target)->delete($a->serverfilenametn);
+        }
 
         $a->delete();
 
