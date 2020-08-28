@@ -114,7 +114,7 @@ $ar->open(['action' => url()->current(), 'files' => true]);
 
 			@if($row->type() == 'image')
 
-				<img src="{{ akiasseturl($row->id, 'tn') }}" class="img-fluid" style="max-height: 200px;">
+				<img src="{{ akiasseturl($row->id, 'tn', true) }}" class="img-fluid" style="max-height: 200px;">
 
 			@else
 
@@ -124,7 +124,7 @@ $ar->open(['action' => url()->current(), 'files' => true]);
 
 					<li>
 
-				<a href="{{ akiasseturl($row->id) }}" class="btn btn-sm btn-outline-secondary">Download File</a>		</li>
+				<a href="{{ akiasseturl($row->id, '', true) }}" class="btn btn-sm btn-outline-secondary">Download File</a>		</li>
 
 			</ul>
 
