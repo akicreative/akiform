@@ -346,7 +346,7 @@ class AssetController extends Controller
 
         $a->save();
 
-        if($target == 's3'){
+        if($target != 'local'){
 
             $filelocation = storage_path('app/') . $a->serverfilename;
             $filelocationtn = storage_path('app/') . $a->serverfilenametn;
@@ -354,10 +354,14 @@ class AssetController extends Controller
             $content = File::get($filelocation);
             $result = Storage::disk($target)->put($a->serverfilename, $content, $visibility);
 
-            if($a->serverifilenametn){
+            File::delete($filelocation);
+
+            if($a->serverfilenametn != ''){
 
                 $content = File::get($filelocationtn);
                 $result = Storage::disk($target)->put($a->serverfilenametn, $content, $visibility);
+
+                File::delete($filelocationtn);
 
             }
 
@@ -464,7 +468,7 @@ class AssetController extends Controller
 
             }else{
 
-                Storage::disk($target)->delete($serverfilename);
+                Storage::disk($target)->delete($a->serverfilename);
             }
 
             $file = $request->file('file');
@@ -538,7 +542,7 @@ class AssetController extends Controller
 
                     }else{
 
-                        Storage::disk($target)->delete($serverfilenametn);
+                        Storage::disk($target)->delete($a->serverfilenametn);
                     }
 
                     if($assetcategory->private){
@@ -586,7 +590,7 @@ class AssetController extends Controller
 
         $a->save();
 
-        if($target == 's3'){
+        if($target != 'local'){
 
             $filelocation = storage_path('app/') . $a->serverfilename;
             $filelocationtn = storage_path('app/') . $a->serverfilenametn;
@@ -604,8 +608,6 @@ class AssetController extends Controller
                 File::delete($filelocationtn);
 
             }
-
-
 
         }
 
