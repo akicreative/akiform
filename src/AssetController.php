@@ -362,7 +362,7 @@ class AssetController extends Controller
 
             if($visibility == 'public'){
 
-                Storage::setVisibility($a->serverfilename, 'public');
+                Storage::disk($target)->setVisibility($a->serverfilename, 'public');
             }
 
             File::delete($filelocation);
@@ -376,7 +376,7 @@ class AssetController extends Controller
 
                 if($visibility == 'public'){
 
-                    Storage::setVisibility($a->serverfilenametn, 'public');
+                    Storage::disk($target)->setVisibility($a->serverfilenametn, 'public');
                 }
 
             }
@@ -628,7 +628,7 @@ class AssetController extends Controller
 
             if($visibility == 'public'){
 
-                Storage::setVisibility($a->serverfilename, 'public');
+                Storage::disk($target)->setVisibility($a->serverfilename, 'public');
             }
 
             if($a->serverifilenametn){
@@ -640,7 +640,7 @@ class AssetController extends Controller
 
                 if($visibility == 'public'){
 
-                    Storage::setVisibility($a->serverfilenametn, 'public');
+                    Storage::disk($target)->setVisibility($a->serverfilenametn, 'public');
                 }
 
             }
