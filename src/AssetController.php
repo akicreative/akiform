@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use AkiCreative\AkiForms\Models\Akicategory;
 use AkiCreative\AkiForms\Models\Akiasset;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -15,6 +16,27 @@ use Image;
 
 class AssetController extends Controller
 {
+
+    var $target = 'local';
+
+    private function target($private = false)
+    {
+
+        $target = $this->target;
+
+        if($private){
+
+            $target = env('AKIASSETPRIVATE', 'local');
+
+        }else{
+
+            $target = env('AKIASSETPUBLIC', 'local');
+
+        }
+
+        return $target;
+
+    }
 
 	public function __construct()
 	{
@@ -184,6 +206,8 @@ class AssetController extends Controller
 
     public function store($focus = 'none', Request $request){
 
+
+
         $nice = [
 
         ];
@@ -244,6 +268,8 @@ class AssetController extends Controller
         $a->description = $request->input('description');
 
         $file = $request->file('file');
+
+        $target = $this->target($assetcategory->private);
 
         if($assetcategory->private){
 
@@ -329,6 +355,20 @@ class AssetController extends Controller
         $a->domain = $_SERVER['HTTP_HOST'];
 
         $a->save();
+
+        if($target != 'local'){
+
+            $content = File::get($a->serverfilename);
+            $result = Storage::disk($target)->put($a->serverfilename, $content);
+
+            if($a->serverifilenametn){
+
+                $content = File::get($a->serverfilename);
+                $result = Storage::disk($target)->put($a->serverfilename, $content);
+
+            }
+
+        }
 
         if($focus == 'none'){
 
