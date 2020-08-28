@@ -648,7 +648,7 @@ class AssetController extends Controller
 
             */
 
-            if($a->serverifilenametn != ''){
+            if($a->serverfilenametn != ''){
 
                 $content = File::get($filelocationtn);
                 $result = Storage::disk($target)->put($a->serverfilenametn, $content);
