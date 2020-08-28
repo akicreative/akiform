@@ -17,7 +17,7 @@ use Image;
 class AssetController extends Controller
 {
 
-    private function target($private = false)
+    private function target()
     {
 
         return env('AKIASSETLOCATION', 'local');
