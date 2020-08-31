@@ -752,7 +752,7 @@ if(!function_exists('desclist')){
 
         if($dt == 'close' || $cfg['complete']){
 
-            echo '<dl>';
+            echo '</dl>';
         }
 
         $return = ob_get_contents();
@@ -812,10 +812,8 @@ if(!function_exists('akidesclist')){
 
         if($dt == 'close' || $cfg['complete']){
 
-            echo '<dl>';
+            echo '</dl>';
         }
-
-        dump($cfg);
 
         return;
 
