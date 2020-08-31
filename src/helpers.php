@@ -702,13 +702,53 @@ if (! function_exists('outdate')) {
 
 if(!function_exists('desclist')){
 
-    function desclist($dt, $dd, $dtclass = 'col-sm-3', $ddclass = 'col-sm-9'){
+    function desclist($dt, $dd = '', $dtclass = 'col-sm-5 col-md-3', $ddclass = 'col-sm-7 col-md-9', $params = []){
+
+        $cfg = [
+
+            'dlclass' => 'mb-0',
+            'complete' => false,
+            'dtclass' => 'col-sm-5 col-md-3',
+            'ddclass' => 'col-sm-7 col-md-9'
+
+        ];
+
+        if(is_array($dtclass)){
+
+            $params = $dtclass;
+        
+        }else{
+
+            $cfg['dtclass'] = $dtclass;
+            $cfg['ddclass'] = $ddclass;
+
+        }
+
+        foreach($params as $key => $value){
+
+            $cfg[$key] = $value;
+
+        }
 
         ob_start();
 
-        echo '<dt class="' . $dtclass . '">' . $dt . '</dt>';
+        if($dt == 'open' || $cfg['complete']){
 
-        echo '<dd class="' . $ddclass . '">' . $dd . '</dd>';  
+            echo '<dl class="row ' . $cfg['dlclass'] . '">';
+        }
+
+        if($dt != 'open' && $dt != 'close'){
+
+            echo '<dt class="' . $cfg['dtclass'] . '">' . $dt . '</dt>';
+
+            echo '<dd class="' . $cfg['ddclass'] . '">' . $dd . '</dd>'; 
+
+        }
+
+        if($dt == 'close' || $cfg['complete']){
+
+            echo '<dl>';
+        }
 
         $return = ob_get_contents();
 
