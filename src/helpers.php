@@ -709,7 +709,8 @@ if(!function_exists('desclist')){
             'dlclass' => 'mb-0',
             'complete' => false,
             'dtclass' => 'col-sm-5 col-md-3',
-            'ddclass' => 'col-sm-7 col-md-9'
+            'ddclass' => 'col-sm-7 col-md-9',
+            'divider' => '<hr class="my-1">'
 
         ];
 
@@ -732,6 +733,8 @@ if(!function_exists('desclist')){
 
         ob_start();
 
+
+
         if($dt == 'open' || $cfg['complete']){
 
             echo '<dl class="row ' . $cfg['dlclass'] . '">';
@@ -742,6 +745,8 @@ if(!function_exists('desclist')){
             echo '<dt class="' . $cfg['dtclass'] . '">' . $dt . '</dt>';
 
             echo '<dd class="' . $cfg['ddclass'] . '">' . $dd . '</dd>'; 
+
+            echo $cfg['divider'];
 
         }
 
