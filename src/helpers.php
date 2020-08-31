@@ -768,14 +768,14 @@ if(!function_exists('desclist')){
 
 if(!function_exists('akidesclist')){
 
-    function akidesclist($dt, $dd = '', $dtclass = 'col-sm-5 col-md-3', $ddclass = 'col-sm-7 col-md-9', $params = []){
+    function akidesclist($dt, $dd = '', $dtclass = 'col-sm-5 col-md-4', $ddclass = 'col-sm-7 col-md-8', $params = []){
 
         $cfg = [
 
             'dlclass' => 'mb-0',
             'complete' => false,
-            'dtclass' => 'col-sm-5 col-md-3',
-            'ddclass' => 'col-sm-7 col-md-9',
+            'dtclass' => 'col-sm-5 col-md-4',
+            'ddclass' => 'col-sm-7 col-md-8',
             'divider' => '<hr class="my-1">'
 
         ];
