@@ -128,13 +128,17 @@ class Form
 
 			'action' => url()->current(),
 			'id' => 'entryform',
-			'method' => 'POST'
+			'method' => 'POST',
 
 		];
 
 		echo '<form ' . $this->parse($args, $arguments) . '>';
 
-		echo csrf_field();
+		if($this->csrf){
+
+			echo csrf_field();
+
+		}
 
 		if($fill){
 
