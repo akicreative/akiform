@@ -181,7 +181,7 @@ class Akiasset extends Model
                 }
 
                 $content = File::get(storage_path('app/') . $tn);
-                $result = Storage::disk($disk)->put($tn, $tn);
+                $result = Storage::disk($disk)->put($tn, $content);
 
                 File::delete(storage_path('app/') . $hashname);
                 File::delete(storage_path('app/') . $tn);
