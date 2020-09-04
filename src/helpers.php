@@ -992,6 +992,28 @@ if (! function_exists('akiasset')) {
 
 }
 
+
+if (! function_exists('akiassetadd')) {
+
+    function akiassetadd($category, $file) {
+        
+        return \AkiCreative\AkiForms\Models\Akiasset::assetadd($category, $file);
+
+    }
+
+}
+
+if (! function_exists('akiassetdelete')) {
+
+    function akiassetdelete($id) {
+        
+        \AkiCreative\AkiForms\Models\Akiasset::assetdelete($id);
+
+    }
+
+}
+
+
 if (! function_exists('akiasseturl')) {
 
     function akiasseturl($id, $mode = 'full', $auth = false)

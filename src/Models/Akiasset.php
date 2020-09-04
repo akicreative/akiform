@@ -3,6 +3,11 @@
 namespace AkiCreative\AkiForms\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use AkiCreative\AkiForms\Models\Akiasset;
+use AkiCreative\AkiForms\Models\Akicategory;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Image;
 
 class Akiasset extends Model
 {
@@ -90,6 +95,165 @@ class Akiasset extends Model
         ob_end_clean();
 
         return $output;
+
+    }
+
+    static public function assetadd($category, $file)
+    {
+
+        $cat = Akicategory::where('slug', $category)->first();
+
+        if(empty($cat)){
+
+            return false;
+        }
+
+        if($cat->private){
+
+            if(env('AKIASSETPRIVATE', '') == ''){
+
+                die('Private Key not set');
+            
+            }else{
+
+                $disk = env('AKIASSETPRIVATE');
+
+            }
+
+        }else{
+
+            if(env('AKIASSETPUBLIC', '') == ''){
+
+                die('Public Key not set');
+
+            }else{
+
+                $disk = env('AKIASSETPUBLIC');
+
+            }
+        }
+
+        if(!$file){
+
+            return false;
+        }
+
+        $hashname = $file->hashName();
+        $mime = $file->getClientMimeType();
+        $filename = $file->getClientOriginalName();
+
+        switch($mime){
+
+            case "image/jpeg":
+            case "image/png":
+            case "image/jpg":
+
+                $tn = 'tn_' . $hashname;
+
+                $fullpath = Image::make($file)->resize($cat->assetw, $cat->asseth, function($constraint){
+
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+
+                    })->orientate()->save(storage_path('app/') . $hashname);
+
+                $content = File::get(storage_path('app/') . $hashname);
+                $result = Storage::disk($disk)->put($hashname, $content);
+
+                if($cat->assettnresize == 'resize'){
+
+                    $tnpath = Image::make($file)->resize($cat->assettnw, $cat->assettnh, function($constraint){
+
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+
+                    })->orientate()->save(storage_path('app/') . $tn);
+
+                }else{
+
+                    $tnpath = Image::make($file)->fit($cat->assettnw, $cat->assettnh, function($constraint){
+
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+
+                    })->orientate()->save(storage_path('app/') . $tn);
+
+                }
+
+                $content = File::get(storage_path('app/') . $tn);
+                $result = Storage::disk($disk)->put($tn, $tn);
+
+                File::delete(storage_path('app/') . $hashname);
+                File::delete(storage_path('app/') . $tn);
+
+                break;
+            default:
+
+                echo $file->store('', $disk);
+
+                break;
+
+        }
+
+        $a = new Akiasset;
+        $a->code = md5(time() . rand());
+        $a->category = $cat->slug;
+        $a->serverfilename = $hashname;
+        $a->serverfilenametn = $tn;
+        $a->filename = $filename;
+        $a->mimetype = $mime;
+        $a->save();
+
+        return $a;
+
+    }
+
+    static public function assetdelete($id)
+    {
+
+        $asset = Akiasset::find($id);
+
+        if(empty($asset)){
+
+            return false;
+        }
+
+        $cat = Akicategory::where('slug', $asset->category)->first();
+
+        if($cat->private){
+
+            if(env('AKIASSETPRIVATE', '') == ''){
+
+                die('Private Key not set');
+            
+            }else{
+
+                $disk = env('AKIASSETPRIVATE');
+
+            }
+
+        }else{
+
+            if(env('AKIASSETPUBLIC', '') == ''){
+
+                die('Public Key not set');
+
+            }else{
+
+                $disk = env('AKIASSETPUBLIC');
+
+            }
+        }
+
+        Storage::disk($disk)->delete($asset->serverfilename);
+
+        if($asset->serverfilenametn != ''){
+
+            Storage::disk($disk)->delete($asset->serverfilenametn);
+
+        }
+
+        $asset->delete();
 
     }
 
