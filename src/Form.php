@@ -648,7 +648,7 @@ class Form
 				}else{
 
 
-					echo '<div class="form-row mb-3">';
+					echo '<div class="form-row">';
 
 					echo '<div class="col-auto">';	
 
