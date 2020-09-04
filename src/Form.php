@@ -647,8 +647,15 @@ class Form
 
 				}else{
 
+					$mbclass = 'mb-3';
 
-					echo '<div class="form-row">';
+					if($cfg['fieldonly']){
+
+						$mbclass = '';
+					}
+
+
+					echo '<div class="form-row ' . $mbclass . '">';
 
 					echo '<div class="col-auto">';	
 
