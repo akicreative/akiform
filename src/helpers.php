@@ -265,7 +265,7 @@ if (! function_exists('montharray')) {
         for($i = 1; $i <= 12; $i++){
 
             $key = date("m", strtotime("2000-" . $i . "-01"));
-            $label = date("F", strtotime("2000-" . $i . "-01"));
+            $label = date($datecode, strtotime("2000-" . $i . "-01"));
 
             $return[$key] = $label;
 
