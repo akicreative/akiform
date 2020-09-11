@@ -4,7 +4,7 @@ namespace AkiCreative\AkiForms\Casts;
 
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 
-class Cleanmoney implements CastsAttributes
+class Akicleanmoney implements CastsAttributes
 {
     /**
      * Cast the given value.
