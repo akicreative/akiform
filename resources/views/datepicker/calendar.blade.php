@@ -119,7 +119,7 @@ for($r = 1; $r <= $totalrows; $r++){
 
 	        if(date("Y-m-d") == date("Y-m-d", $showingtime)){
 
-	            $btnclass .= ' btn-light text-dark';
+	            $btnclass .= ' text-primary';
 	        
 	        }else{
 
