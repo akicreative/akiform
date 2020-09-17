@@ -12,7 +12,7 @@
     "version": "2.0.0",
     "minimum-stability": "dev",
     "require": {
-        "irazasyed/telegram-bot-sdk": "^2.0",
+        "irazasyed/telegram-bot-sdk": "dev-develop",
         "intervention/image": "^2.0"
     },
     "autoload": {
