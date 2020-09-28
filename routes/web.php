@@ -4,12 +4,11 @@ Route::middleware(['web'])->group(function(){
 
 	Route::get('/asset/download/{id}/{filename}', 'AkiCreative\AkiForms\AssetController@getpublic')->name('aki.asset.public');
 
+	Route::post('/ajax/akiforms/toast', 'AkiCreative\AkiForms\HomeController@toast')->name('aki.toast');
+
 });
 
 Route::prefix('akiforms')->middleware(['web'])->namespace('AkiCreative\AkiForms')->group(function(){
-
-	Route::get('test23', 'RedactorController@image');
-
 
 	Route::get('load/datepicker', 'DatepickerController@index')->name('akidatepicker');
 	Route::post('load/datepicker/calendar', 'DatepickerController@calendar')->name('akidatepickercalendar');

@@ -1516,3 +1516,32 @@ if(! function_exists('akicountry')){
     }
 
 }
+
+if (! function_exists('akitoast')) {
+
+    function akitoast()
+    {
+
+        $route = route('aki.toast');
+
+echo <<<EOT
+<div id="toastcontainer" style="position: fixed; bottom: 10px; right: 10px; z-index: 5000;">
+</div>
+<script type="text/javascript">
+
+function addToast(header, body, headerclass = '', delay = 5000){
+
+    $.post('{$route}', { header: header, body: body, headerclass: headerclass, delay: delay }, function(result) {
+
+        $('#toastcontainer').append(result);
+
+    });
+
+}
+
+</script>
+EOT;
+
+    }
+
+}

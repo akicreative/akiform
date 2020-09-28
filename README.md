@@ -103,5 +103,18 @@ AkiForm::lightboxjs();
 
 Remove tags.
 
+# Description List
+
+General a list that will compact down responsively. It will also put in line dividers
+
+## Toast
+
+```
+$.post('{{ route('aki.toast') }}', { header: header, body: body }, function(result) {
+
+	$('#toastcontainer').append(result);
+
+});
+```
 
 Coming soon.
