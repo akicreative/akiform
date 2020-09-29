@@ -122,7 +122,7 @@ for($r = 1; $r <= $totalrows; $r++){
 
 	            $btnclass .= ' text-primary';
 
-	            if($default == $showingdate){
+	            if($default == $showingday){
 
 	            	$btnclass .= ' btn-success';
 	            }
