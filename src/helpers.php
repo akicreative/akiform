@@ -1519,14 +1519,35 @@ if(! function_exists('akicountry')){
 
 if (! function_exists('akitoast')) {
 
-    function akitoast()
+    function akitoast($placement = 'bottom')
     {
 
         $route = route('aki.toast');
 
+        if($placement == 'top'){
+echo <<<EOT
+<div id="toastcontainer" style="position: fixed; top: 10px; right: 10px; z-index: 5000;">
+</div>
+EOT;
+        }elseif($placement == 'middle'){
+
+echo <<<EOT
+<div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center" style="height: 200px; z-index: 5000;">
+EOT;
+
+
+        }else{
+
 echo <<<EOT
 <div id="toastcontainer" style="position: fixed; bottom: 10px; right: 10px; z-index: 5000;">
 </div>
+EOT;
+
+        }
+
+
+
+echo <<<EOT
 <script type="text/javascript">
 
 function addToast(header, body, headerclass = '', delay = 5000){
