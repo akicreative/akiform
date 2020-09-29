@@ -1073,7 +1073,7 @@ if (! function_exists('akiasseturl')) {
 
             }else{
 
-                return route('aki.asset.aws', [$a->id, $scope, $a->serverfilename]);
+                return route('aki.asset.aws', [$a->id, $a->serverfilename]);
 
             }
 
