@@ -107,7 +107,7 @@ for($r = 1; $r <= $totalrows; $r++){
 
         $day = $val[$key];
 
-        $datatext = '';
+        $datetext = '';
         
         if($day != ''){
 
