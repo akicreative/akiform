@@ -882,11 +882,11 @@ class AssetController extends Controller
 
         if($scope == 'public'){
 
-            $url = Storage::disk($target)->url($a->serverfilenametn);
+            $url = Storage::disk($target)->url($a->serverfilename);
 
         }else{
 
-            $url = Storage::disk($target)->temporaryUrl($a->serverfilenametn, now()->addMinutes(15));
+            $url = Storage::disk($target)->temporaryUrl($a->serverfilename, now()->addMinutes(15));
         }
 
         return response()->download($url, $a->filename, ['Content-Type' => $a->mimetype]);
