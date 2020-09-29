@@ -886,7 +886,7 @@ class AssetController extends Controller
 
         }else{
 
-            $url = Storage::disk($target)->temporaryUrl($a->serverfilenametn, now()->addMinutes(5));
+            $url = Storage::disk($target)->temporaryUrl($a->serverfilenametn, now()->addMinutes(15));
         }
 
         return response()->download($url, $a->filename, ['Content-Type' => $a->mimetype]);
