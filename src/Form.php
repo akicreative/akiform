@@ -32,6 +32,7 @@ class Form
 	var $switchon = '<i class="fas fa-lg fa-check-square"></i>';
 	var $switchoff = '<i class="far fa-lg fa-square"></i>';
 	var $formgroupclass = '';
+	var $labelclass = '';
 	var $requiredappend = '';
 	var $requiredlabelclass = '';
 
@@ -214,7 +215,7 @@ class Form
 			'horizontal' => $this->horizontal,
 			'horizontalleft' => $this->horizontalleft,
 			'horizontalright' => $this->horizontalright,
-			'labelclass' => '',
+			'labelclass' => $this->labelclass,
 			'required' => false,
 			'default' => '',
 			'selectoptions' => [],
