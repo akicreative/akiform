@@ -238,8 +238,8 @@ class Form
 			'switchoff' => $this->switchoff,
 			'formgroupclass' => $this->formgroupclass,
 			'groupmb' => 'mb-2',
-			'requiredappend' = $this->requiredappend;
-			'requiredlabelclass' = $this->requiredlabelclass;
+			'requiredappend' = $this->requiredappend,
+			'requiredlabelclass' = $this->requiredlabelclass
 
 		];
 
