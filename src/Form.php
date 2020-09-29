@@ -32,6 +32,8 @@ class Form
 	var $switchon = '<i class="fas fa-lg fa-check-square"></i>';
 	var $switchoff = '<i class="far fa-lg fa-square"></i>';
 	var $formgroupclass = '';
+	var $requiredappend = '';
+	var $requiredlabelclass = '';
 
 	private function parse($args, $arguments)
 	{
@@ -234,7 +236,10 @@ class Form
 			'switchon' => $this->switchon,
 			'switchoff' => $this->switchoff,
 			'formgroupclass' => $this->formgroupclass,
-			'groupmb' => 'mb-2'
+			'groupmb' => 'mb-2',
+			'requiredappend' = $this->requiredappend;
+			'requiredlabelclass' = $this->requiredlabelclass;
+
 		];
 
 		if($type == 'datepicker'){
@@ -413,6 +418,16 @@ class Form
 			if(in_array($type, ['button', 'submit'])){
 
 				$labeltext = '';
+			}
+
+			if($cfg['required'] && $cfg['requiredappend'] != ''){
+
+				$labeltext .= ' ' . $cfg['requiredappend'];
+			}
+
+			if($cfg['required'] && $cfg['requiredlabelclass'] != ''){
+
+				$cfg['labelclass'] .= ' ' . $cfg['requiredlabelclass'];
 			}
 
 			echo '<label for="' .  $attrs['id'] . '" class="' . $horizontalleft . ' ' . $cfg['labelclass'] . '">' . $labeltext . '</label>';
