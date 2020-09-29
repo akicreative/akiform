@@ -1532,7 +1532,7 @@ EOT;
         }elseif($placement == 'middle'){
 
 echo <<<EOT
-<div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center" style="height: 200px; z-index: 5000;">
+<div id="toastcontainer" aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center" style="height: 200px; z-index: 5000;">
 EOT;
 
 

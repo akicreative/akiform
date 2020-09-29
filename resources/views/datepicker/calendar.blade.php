@@ -101,13 +101,14 @@ for($r = 1; $r <= $totalrows; $r++){
 
         $btnclass = '';
         $disabled = '';
+        $disabledbg = '';
 
         $key = $r . '-' . $d;
 
         $day = $val[$key];
 
-        echo '<td style="text-align: center; padding: 0;">';
-
+        $datatext = '';
+        
         if($day != ''){
 
 	        $showingtime = strtotime($currentyear . '-' . $currentmonth . '-' . $day);
@@ -173,11 +174,18 @@ for($r = 1; $r <= $totalrows; $r++){
 	        $display = outdate($showingday, $datepickerformat);
 	        $sql = $showingday;
 
-	        
+	        if($disabled == 'disabled'){
 
-	        echo '<button type="button" class="btn btn-link btn-block btn-sm akidpset m-0' . $btnclass . '" style="border-radius: 0;" data-target="' . $target . '" data-display="' . $display . '" data-sql="' . $sql . '" ' . $disabled . '><strong>' . $val[$key] . '</strong></button>';
+	        	$disabledbg = 'background-color: #E9E9E9;';
+	        }
+
+	        $datetext = '<button type="button" class="btn btn-link btn-block btn-sm akidpset m-0' . $btnclass . '" style="border-radius: 0;" data-target="' . $target . '" data-display="' . $display . '" data-sql="' . $sql . '" ' . $disabled . '><strong>' . $val[$key] . '</strong></button>';
 
     	}
+
+    	echo '<td style="text-align: center; padding: 0; ' . $disabledbg . '">';
+
+    	echo $datetext;
 
         echo '</td>';
 
