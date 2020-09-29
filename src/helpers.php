@@ -1046,27 +1046,35 @@ if (! function_exists('akiasseturl')) {
 
         if($target != 'local'){
 
-            if($mode == 'full'){
+            if($a->type() == "image"){
 
-                if($scope == 'public'){
+                if($mode == 'full'){
 
-                    return Storage::disk($target)->url($a->serverfilename);
+                    if($scope == 'public'){
+
+                        return Storage::disk($target)->url($a->serverfilename);
+
+                    }else{
+
+                        return Storage::disk($target)->temporaryUrl($a->serverfilename, now()->addMinutes(5));
+                    }
 
                 }else{
 
-                    return Storage::disk($target)->temporaryUrl($a->serverfilename, now()->addMinutes(5));
+                    if($scope == 'public'){
+
+                        return Storage::disk($target)->url($a->serverfilenametn);
+
+                    }else{
+
+                        return Storage::disk($target)->temporaryUrl($a->serverfilenametn, now()->addMinutes(5));
+                    }
                 }
 
             }else{
 
-                if($scope == 'public'){
+                return route('aki.asset.aws', [$a->id, $scope, $a->serverfilename]);
 
-                    return Storage::disk($target)->url($a->serverfilenametn);
-
-                }else{
-
-                    return Storage::disk($target)->temporaryUrl($a->serverfilenametn, now()->addMinutes(5));
-                }
             }
 
 

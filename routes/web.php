@@ -4,6 +4,8 @@ Route::middleware(['web'])->group(function(){
 
 	Route::get('/asset/download/{id}/{filename}', 'AkiCreative\AkiForms\AssetController@getpublic')->name('aki.asset.public');
 
+	Route::get('/asset/download/aws/{id}/{fn}', 'AkiCreative\AkiForms\AssetController@aws')->name('aki.asset.aws');
+
 	Route::post('/ajax/akiforms/toast', 'AkiCreative\AkiForms\HomeController@toast')->name('aki.toast');
 
 });

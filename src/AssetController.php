@@ -862,4 +862,35 @@ class AssetController extends Controller
         
     }
 
+    public function aws($id, $filename)
+    {
+
+        $a = Akiasset::where('id', $id)->where('serverfilename', $filename)->first();
+
+        $c = Akicategory::where('slug', $a->category)->first();
+
+        $scope = 'public';
+
+        $target = env('AKIASSETPUBLIC', 'local');
+
+        if($c->private){
+
+            $scope = 'private';
+
+            $target = env('AKIASSETPRIVATE', 'local');
+        }
+
+        if($scope == 'public'){
+
+            $url = Storage::disk($target)->url($a->serverfilenametn);
+
+        }else{
+
+            $url = Storage::disk($target)->temporaryUrl($a->serverfilenametn, now()->addMinutes(5));
+        }
+
+        return response()->download($url, $a->filename, ['Content-Type' => $a->mimetype]);
+
+    }
+
 }
