@@ -141,6 +141,7 @@ class Akiasset extends Model
         $hashname = $file->hashName();
         $mime = $file->getClientMimeType();
         $filename = $file->getClientOriginalName();
+        $tn = '';
 
         switch($mime){
 
