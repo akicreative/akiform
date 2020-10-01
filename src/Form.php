@@ -414,6 +414,11 @@ class Form
 					case "checkbox-inline":
 						$horizontal .= ' mb-1';
 						$horizontalright .= ' pt-1';
+					case "button":
+					case "submit":
+
+						if($cfg['formgroupclass'] == '') $cfg['formgroupclass'] = 'mt-2 mb-2';
+
 						break;
 					default: 
 						$horizontal .= ' mb-1';
