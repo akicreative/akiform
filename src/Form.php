@@ -163,6 +163,17 @@ class Form
 
 	}
 
+	public function newinline()
+	{
+
+		if($this->inlinelist){
+
+			echo '</ul><ul class="list-inline mt-3">';
+
+		}
+
+	}
+
 	public function close(){
 
 		if($this->inlinelist){
@@ -464,7 +475,7 @@ class Form
 
 		if($this->inlinelist){
 
-			echo '<li class="list-inline-item align-top">';
+			echo '<li class="list-inline-item align-top mb-2">';
 
 		}elseif($this->viewmode){
 
