@@ -174,6 +174,17 @@ class Form
 
 	}
 
+	public function newli($value = '')
+	{
+
+		if($this->inlinelist && $value != ''){
+
+			echo '<li class="list-inline-item">' . $value . '</li>';
+
+		}
+
+	}
+
 	public function close(){
 
 		if($this->inlinelist){
