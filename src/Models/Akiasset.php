@@ -98,7 +98,7 @@ class Akiasset extends Model
 
     }
 
-    static public function assetadd($category, $file)
+    static public function assetadd($category, $file, $deleteid)
     {
 
         $cat = Akicategory::where('slug', $category)->first();
@@ -204,6 +204,11 @@ class Akiasset extends Model
         $a->filename = $filename;
         $a->mimetype = $mime;
         $a->save();
+
+        if($deleteid > 0){
+
+            Akiasset::assetdelete($deleteid);
+        }
 
         return $a;
 
