@@ -995,9 +995,9 @@ if (! function_exists('akiasset')) {
 
 if (! function_exists('akiassetadd')) {
 
-    function akiassetadd($category, $file) {
+    function akiassetadd($category, $file, $deleteid = 0) {
         
-        return \AkiCreative\AkiForms\Models\Akiasset::assetadd($category, $file);
+        return \AkiCreative\AkiForms\Models\Akiasset::assetadd($category, $file, $deleteid);
 
     }
 
