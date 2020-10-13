@@ -98,8 +98,15 @@ class Akiasset extends Model
 
     }
 
-    static public function assetadd($category, $file, $deleteid)
+    static public function assetadd($category, $file, $deleteid, $c = [])
     {
+
+        $cfg = [];
+
+        foreach($c as $key => $value){
+
+            $cfg[$key] = $value;
+        }
 
         $cat = Akicategory::where('slug', $category)->first();
 
@@ -209,6 +216,140 @@ class Akiasset extends Model
 
             Akiasset::assetdelete($deleteid);
         }
+
+        return $a;
+
+    }
+
+    static public function assetreplace($id, $file, $scope = 'both')
+    {
+
+        // Scope can be both, full, tn
+
+        $asset = Akiasset::find($id);
+
+        if(empty($asset)){
+
+            return false;
+        }
+
+        $cat = Akicategory::where('slug', $asset->category)->first();
+
+        if($cat->private){
+
+            if(env('AKIASSETPRIVATE', '') == ''){
+
+                die('Private Key not set');
+            
+            }else{
+
+                $disk = env('AKIASSETPRIVATE');
+
+            }
+
+        }else{
+
+            if(env('AKIASSETPUBLIC', '') == ''){
+
+                die('Public Key not set');
+
+            }else{
+
+                $disk = env('AKIASSETPUBLIC');
+
+            }
+        }
+
+        if(!$file){
+
+            return false;
+        }
+
+        $hashname = $file->hashName();
+        $mime = $file->getClientMimeType();
+        $filename = $file->getClientOriginalName();
+        $tn = '';
+
+        switch($mime){
+
+            case "image/jpeg":
+            case "image/png":
+            case "image/jpg":
+
+                $tn = 'tn_' . $hashname;
+
+                if($scope == 'both' || $scope == 'full'){
+
+                    $fullpath = Image::make($file)->resize($cat->assetw, $cat->asseth, function($constraint){
+
+                            $constraint->aspectRatio();
+                            $constraint->upsize();
+
+                        })->orientate()->save(storage_path('app/') . $hashname);
+
+                    $content = File::get(storage_path('app/') . $hashname);
+                    $result = Storage::disk($disk)->put($hashname, $content);
+
+                    File::delete(storage_path('app/') . $hashname);
+
+                }
+
+                if($scope == 'both' || $scope == 'tn'){
+
+                    if($cat->assettnresize == 'resize'){
+
+                        $tnpath = Image::make($file)->resize($cat->assettnw, $cat->assettnh, function($constraint){
+
+                            $constraint->aspectRatio();
+                            $constraint->upsize();
+
+                        })->orientate()->save(storage_path('app/') . $tn);
+
+                    }else{
+
+                        $tnpath = Image::make($file)->fit($cat->assettnw, $cat->assettnh, function($constraint){
+
+                            $constraint->aspectRatio();
+                            $constraint->upsize();
+
+                        })->orientate()->save(storage_path('app/') . $tn);
+
+                    }
+
+                    $content = File::get(storage_path('app/') . $tn);
+                    $result = Storage::disk($disk)->put($tn, $content);
+
+                    File::delete(storage_path('app/') . $tn);
+
+                }
+
+
+                break;
+            default:
+
+                echo $file->store('', $disk);
+
+                $scope = 'full';
+
+                break;
+
+        }
+
+        if($scope == 'both' || $scope == 'full'){
+
+            Storage::disk($disk)->delete($asset->serverfilename);
+            $a->serverfilename = $hashname;
+        }
+
+        if($scope == 'both' || $scope == 'tn'){
+
+            Storage::disk($disk)->delete($asset->serverfilenametn);
+            $a->serverfilenametn = $tn;
+        }
+        
+        $a->filename = $filename;
+        $a->mimetype = $mime;
+        $a->save();
 
         return $a;
 
