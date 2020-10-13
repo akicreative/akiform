@@ -1036,6 +1036,16 @@ if (! function_exists('akiassetadd')) {
 
 }
 
+if (! function_exists('akiassetreplace')) {
+
+    function akiassetreplace($id, $file, $scope = 'both') {
+        
+        return \AkiCreative\AkiForms\Models\Akiasset::assetreplace($id, $file, $scope);
+
+    }
+
+}
+
 if (! function_exists('akiassetdelete')) {
 
     function akiassetdelete($id) {
