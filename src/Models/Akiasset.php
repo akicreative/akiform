@@ -228,12 +228,12 @@ class Akiasset extends Model
 
         $a = Akiasset::find($id);
 
-        if(empty($asset)){
+        if(empty($a)){
 
             return false;
         }
 
-        $cat = Akicategory::where('slug', $asset->category)->first();
+        $cat = Akicategory::where('slug', $a->category)->first();
 
         if($cat->private){
 
