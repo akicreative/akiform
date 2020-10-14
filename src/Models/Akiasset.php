@@ -226,7 +226,7 @@ class Akiasset extends Model
 
         // Scope can be both, full, tn
 
-        $asset = Akiasset::find($id);
+        $a = Akiasset::find($id);
 
         if(empty($asset)){
 
@@ -337,13 +337,13 @@ class Akiasset extends Model
 
         if($scope == 'both' || $scope == 'full'){
 
-            Storage::disk($disk)->delete($asset->serverfilename);
+            Storage::disk($disk)->delete($a->serverfilename);
             $a->serverfilename = $hashname;
         }
 
         if($scope == 'both' || $scope == 'tn'){
 
-            Storage::disk($disk)->delete($asset->serverfilenametn);
+            Storage::disk($disk)->delete($a->serverfilenametn);
             $a->serverfilenametn = $tn;
         }
         
