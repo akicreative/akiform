@@ -1187,25 +1187,22 @@ if (! function_exists('akiassetpicture')) {
 
         if($a->type() == "image"){
 
-                if($scope == 'public'){
+            if($scope == 'public'){
 
-                    $full = Storage::disk($target)->url($a->serverfilename);
-
-                }else{
-
-                    $full = Storage::disk($target)->temporaryUrl($a->serverfilename, now()->addMinutes(5));
-                }
+                $full = Storage::disk($target)->url($a->serverfilename);
 
             }else{
 
-                if($scope == 'public'){
+                $full = Storage::disk($target)->temporaryUrl($a->serverfilename, now()->addMinutes(5));
+            }
 
-                    $thumb = Storage::disk($target)->url($a->serverfilenametn);
+            if($scope == 'public'){
 
-                }else{
+                $thumb = Storage::disk($target)->url($a->serverfilenametn);
 
-                    $thumb = Storage::disk($target)->temporaryUrl($a->serverfilenametn, now()->addMinutes(5));
-                }
+            }else{
+
+                $thumb = Storage::disk($target)->temporaryUrl($a->serverfilenametn, now()->addMinutes(5));
             }
 
             ob_start();
@@ -1227,8 +1224,9 @@ if (! function_exists('akiassetpicture')) {
             return '';
 
         }
-        
+
     }
+        
 
 }
 
