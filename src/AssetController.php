@@ -218,21 +218,17 @@ class AssetController extends Controller
                         ->with('pagemessage', 'Please fill out all required fields.');
         }
 
-        $a = new Akiasset;
-
-        $a->code = md5(time() . rand());
-
         if($focus == 'none'){
 
-            $a->category = $request->input('category');
+            $category = $request->input('category');
         
         }else{
 
-            $a->category = $focus;
+            $category = $focus;
 
         }
 
-        $assetcategory = Akicategory::where('slug', $a->category)->first();
+        $assetcategory = Akicategory::where('slug', $category)->first();
 
         if($assetcategory->private){
 
@@ -266,7 +262,7 @@ class AssetController extends Controller
 
         }
 
-        $a->description = $request->input('description');
+        
 
         $file = $request->file('file');
 
@@ -274,10 +270,32 @@ class AssetController extends Controller
 
         if($target != 'local'){
 
-            $path = $file->store('');
+            $asset = akiassetadd($category, $file);
+
+            $asset->description = $request->input('description');
+
+            $last = Akiasset::where('category', $category)->orderBy('orderby', 'DESC')->first();
+
+            if(empty($last)){
+
+                $asset->orderby = 1;
+            }else{
+
+                $asset->orderby = $last->orderby + 1;
+            }
+
+            $asset->save();
+
+            $assetid = $asset->id;
 
         }else{
 
+            $a = new Akiasset;
+
+            $a->code = md5(time() . rand());
+
+            $a->description = $request->input('description');
+            
             if($assetcategory->private){
 
                 $path = $file->store('private');
@@ -288,92 +306,96 @@ class AssetController extends Controller
 
             }
 
-        }
+            $name = $request->input('name');
 
-        $name = $request->input('name');
+            if($name == ''){
 
-        if($name == ''){
+                $name = $file->getClientOriginalName();
+            }
 
-            $name = $file->getClientOriginalName();
-        }
+            $a->name = $name;
+                   
+            $a->serverfilename = $path;
+            $a->filename = preg_replace("([^0-9a-zA-Z\-\.])", "", $file->getClientOriginalName());
+            $a->mimetype = $file->getClientMimeType();
+            $a->filesize = $file->getSize();
 
-        $a->name = $name;
-               
-        $a->serverfilename = $path;
-        $a->filename = preg_replace("([^0-9a-zA-Z\-\.])", "", $file->getClientOriginalName());
-        $a->mimetype = $file->getClientMimeType();
-        $a->filesize = $file->getSize();
+            switch($a->mimetype){
 
-        switch($a->mimetype){
+                case "image/jpeg":
+                case "image/png":
+                case "image/jpg":
 
-            case "image/jpeg":
-            case "image/png":
-            case "image/jpg":
+                    if($target != 'local'){
 
-                if($target != 'local'){
-
-                    $tn = 'tn_' . $file->hashName();
-
-                }else{
-
-                    if($assetcategory->private){
-
-                        $tn = 'private/tn_' . $file->hashName();
+                        $tn = 'tn_' . $file->hashName();
 
                     }else{
 
-                        $tn = 'public/tn_' . $file->hashName();
+                        if($assetcategory->private){
+
+                            $tn = 'private/tn_' . $file->hashName();
+
+                        }else{
+
+                            $tn = 'public/tn_' . $file->hashName();
+
+                        }
 
                     }
 
-                }
+                    $tnpath = storage_path('app/') . $tn;
 
-                $tnpath = storage_path('app/') . $tn;
+                    $image = Image::configure(array('driver' => 'imagick'))->make(storage_path('app/') . $a->serverfilename);
 
-                $image = Image::configure(array('driver' => 'imagick'))->make(storage_path('app/') . $a->serverfilename);
+                    if($tnresize == 'fit'){
 
-                if($tnresize == 'fit'){
+                        $image->fit($tnw, $tnh, function($constraint){
 
-                    $image->fit($tnw, $tnh, function($constraint){
+                            $constraint->upsize();
 
-                        $constraint->upsize();
+                        })->orientate();
 
-                    })->orientate();
+                    }else{
 
-                }else{
+                        $image->resize($tnw, $tnh, function($constraint){
 
-                    $image->resize($tnw, $tnh, function($constraint){
+                            $constraint->aspectRatio();
+                            $constraint->upsize();
 
-                        $constraint->aspectRatio();
-                        $constraint->upsize();
+                        })->orientate();
 
-                    })->orientate();
+                    }
 
-                }
+                    $image->save($tnpath);
 
-                $image->save($tnpath);
+                    $a->serverfilenametn = $tn;
 
-                $a->serverfilenametn = $tn;
+                    break;
 
-                break;
+            }
+
+            $last = Akiasset::where('category', $a->category)->orderBy('orderby', 'DESC')->first();
+
+            if(empty($last)){
+
+                $a->orderby = 1;
+            }else{
+
+                $a->orderby = $last->orderby + 1;
+            }
+
+            $a->domain = $_SERVER['HTTP_HOST'];
+
+            $a->save();
+
+            $assetid = $a->id;
 
         }
 
-        $last = Akiasset::where('category', $a->category)->orderBy('orderby', 'DESC')->first();
+        
 
-        if(empty($last)){
-
-            $a->orderby = 1;
-        }else{
-
-            $a->orderby = $last->orderby + 1;
-        }
-
-        $a->domain = $_SERVER['HTTP_HOST'];
-
-        $a->save();
-
-        if($target != 'local'){
+        if(false){
 
             $filelocation = storage_path('app/') . $a->serverfilename;
             $filelocationtn = storage_path('app/') . $a->serverfilenametn;
@@ -414,11 +436,11 @@ class AssetController extends Controller
 
         if($focus == 'none'){
 
-            return redirect()->route('aki.asset.edit', [$a->id])->with('pagemessage', 'The file has been uploaded.');
+            return redirect()->route('aki.asset.edit', [$assetid])->with('pagemessage', 'The file has been uploaded.');
 
         }else{
 
-            return redirect()->route('aki.asset.category.edit', [$a->id, $focus])->with('pagemessage', 'The file has been uploaded.');
+            return redirect()->route('aki.asset.category.edit', [$assetid, $focus])->with('pagemessage', 'The file has been uploaded.');
 
         }
 
@@ -723,9 +745,6 @@ class AssetController extends Controller
 
         }
 
-        
-
-
     }
 
     public function destroy($id, $focus = 'none', Request $request){
@@ -747,14 +766,14 @@ class AssetController extends Controller
 
             Storage::delete($a->serverfilenametn);
 
+             $a->delete();
+
         }else{
 
-            Storage::disk($target)->delete($a->serverfilename);
-
-            Storage::disk($target)->delete($a->serverfilenametn);
+            akiassetdelete($a->id);
         }
 
-        $a->delete();
+       
 
         if($focus == 'none'){
 
