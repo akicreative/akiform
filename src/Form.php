@@ -132,6 +132,7 @@ class Form
 			'action' => url()->current(),
 			'id' => 'entryform',
 			'method' => 'POST',
+			'class' => ''
 
 		];
 
