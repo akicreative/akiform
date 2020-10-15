@@ -1709,10 +1709,14 @@ EOT;
 
 if(!function_exists('akiphpvalidation')) {
 
-    function akiphpvalidation()
+    function akiphpvalidation($url = '')
     {
 
-        $url = action('ValidateController@phpvalidate');
+        if($url == ''){
+
+            $url = action('ValidateController@phpvalidate');
+
+        }
 
 echo <<<EOT
         <script type="text/javascript">
@@ -1731,51 +1735,54 @@ echo <<<EOT
                 }
             });
 
-        })();
+            $('.phpvalidate').on('submit', function(el){
 
-        function phpvalidateform(formid, validategroup)
-        {
+                var formData = new FormData($(this)[0]);
+                var $el = el;
 
-            var formData = new FormData($(formid)[0]);
+                $.ajax({
 
-            formData.append('validategroup', validategroup);
+                    url: '{$url}',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    dataType: 'json',
+                    success: function(validation){
 
-            $.ajax({
+                        $('#toastcontainer').html('');
 
-                url: '{$url}',
-                type: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false,
-                dataType: 'json'
+                        console.log(validation);
 
-            }).done(function(validation){
+                        returnresult = validation.result;
 
-                $('#toastcontainer').html('');
+                        console.log(validation.result);
 
-                returnresult = validation.result;
+                        for (i = 0; i < validation.toasts.length; i++) { 
+                          
+                            addToast(validation.toasts[i].header, validation.toasts[i].body, 'bg-primary text-white', 10000);
+                        
+                        }
 
-                for (i = 0; i < validation.toasts.length; i++) { 
-                  
-                    addToast(validation.toasts[i].header, validation.toasts[i].body, 'bg-primary text-white', 10000);
-                
-                }
+                        if(returnresult == 'FAILED'){
 
-                if(returnresult == 'FAILED'){
+                            validationpassed = 'N';
 
-                    console.log('FAILED');
+                            $el.preventDefault();
 
-                }else{
+                        }else{
 
-                    console.log('SUBMITTING ' + formid);
+                            validationpassed = 'Y';
 
-                    $(formid).submit();
+                        }
 
-                }
+                    }
+
+                });
 
             });
 
-        }
+        })();
 
         </script>
 EOT;
