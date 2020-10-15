@@ -1712,6 +1712,8 @@ if(!function_exists('akiphpvalidation')) {
     function akiphpvalidation()
     {
 
+        $url = action('ValidateController@phpvalidate');
+
 echo <<<EOT
         <script type="text/javascript">
 
@@ -1724,7 +1726,7 @@ echo <<<EOT
 
             $.ajax({
 
-                url: '{{ action('ValidateController@phpvalidate') }}',
+                url: '{$url}',
                 type: 'POST',
                 data: formData,
                 processData: false,
