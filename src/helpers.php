@@ -1150,7 +1150,7 @@ if (! function_exists('akiassetpicture')) {
 
         $cfg = [
 
-            'class' => '';
+            'class' => ''
 
         ];
 
