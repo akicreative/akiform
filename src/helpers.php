@@ -1143,6 +1143,95 @@ if (! function_exists('akiasseturl')) {
 
 }
 
+if (! function_exists('akiassetpicture')) {
+
+    function akiassetpicture($id, $auth = false, $cfgin = [])
+    {
+
+        $cfg = [
+
+            'class' => '';
+
+        ];
+
+        foreach($cfgin as $key => $value){
+
+            $cfg[$key] = $value;
+        }
+
+        $a = \AkiCreative\AkiForms\Models\Akiasset::where('id', $id)->first();
+
+        if(empty($a)){
+
+            return '';
+        }
+
+        $c = \AkiCreative\AkiForms\Models\Akicategory::where('slug', $a->category)->first();
+
+        $scope = 'public';
+
+        $target = env('AKIASSETPUBLIC', 'local');
+
+        if($c->private){
+
+            $scope = 'private';
+
+            $target = env('AKIASSETPRIVATE', 'local');
+        }
+
+        if($scope == 'private' && !$auth){
+
+            return '';
+
+        }
+
+        if($a->type() == "image"){
+
+                if($scope == 'public'){
+
+                    $full = Storage::disk($target)->url($a->serverfilename);
+
+                }else{
+
+                    $full = Storage::disk($target)->temporaryUrl($a->serverfilename, now()->addMinutes(5));
+                }
+
+            }else{
+
+                if($scope == 'public'){
+
+                    $thumb = Storage::disk($target)->url($a->serverfilenametn);
+
+                }else{
+
+                    $thumb = Storage::disk($target)->temporaryUrl($a->serverfilenametn, now()->addMinutes(5));
+                }
+            }
+
+            ob_start();
+
+            echo '<picture>';
+            echo '<source media="(min-width: 650px)" srcset="' . $full . '>';
+            echo '<source media="(min-width: 465px)" srcset="' . $thumb . '>';
+            echo '<img src="' . $full . '" class="img-fluid ' . $cfg['class'] . '" alt="' . $a->name . '">';
+            echo '</picture>';
+
+            $output = ob_get_contents();
+
+            ob_end_clean();
+
+            return $output;
+
+        }else{
+
+            return '';
+
+        }
+        
+    }
+
+}
+
 if (! function_exists('akitelegramsend')) {
 
     function akitelegramsend($chatid, $message, $params = []) {
