@@ -996,7 +996,7 @@ if (! function_exists('akiasset')) {
     function akiasset($id, $size = 'full', $obj = false)
     {
 
-        $asset = AkiCreative\AkiForms\Models\Akiasset::find($id);
+        $asset = \AkiCreative\AkiForms\Models\Akiasset::find($id);
 
         if(empty($asset)){
 
@@ -1055,6 +1055,8 @@ if (! function_exists('akiassetdelete')) {
     }
 
 }
+
+
 
 
 if (! function_exists('akiasseturl')) {
@@ -1699,6 +1701,63 @@ function addToast(header, body, headerclass = '', delay = 5000){
 }
 
 </script>
+EOT;
+
+    }
+
+}
+
+if(!function_exists('akiphpvalidation')) {
+
+    function akiphpvalidation()
+    {
+
+echo <<<EOT
+        <script type="text/javascript">
+
+        function phpvalidateform(formid, validategroup)
+        {
+
+            var formData = new FormData($(formid)[0]);
+
+            formData.append('validategroup', validategroup);
+
+            $.ajax({
+
+                url: '{{ action('ValidateController@phpvalidate') }}',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                success: function(validation){
+
+                    $('#toastcontainer').html('');
+
+                    result = validation.result;
+
+                    for (i = 0; i < validation.toasts.length; i++) { 
+                      
+                        addToast(validation.toasts[i].header, validation.toasts[i].body, 'bg-primary text-white', 10000);
+                    
+                    }
+
+                    if(result == 'VALID'){
+
+                        return true;
+                    
+                    }else{
+
+                        return false;
+                    }
+
+                }
+
+            });
+
+        }
+
+        </script>
 EOT;
 
     }
