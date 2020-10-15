@@ -503,6 +503,13 @@ class AssetController extends Controller
 
         $assetcategory = Akicategory::where('slug', $a->category)->first();
 
+        if($request->hasFile('file')){
+
+            akiassetreplace($a->id, $request->file('file'));
+        }
+
+        /*
+
         $target = $this->target($assetcategory->private);
 
 
@@ -661,7 +668,11 @@ class AssetController extends Controller
 
         }
 
+        */
+
         $a->save();
+
+        /*
 
         if($target != 'local'){
 
@@ -682,6 +693,8 @@ class AssetController extends Controller
 
             */
 
+            /*
+
             if($a->serverfilenametn != ''){
 
                 $content = File::get($filelocationtn);
@@ -689,17 +702,15 @@ class AssetController extends Controller
 
                 File::delete($filelocationtn);
 
-                /*
-
-                if($visibility == 'public'){
-
-                    Storage::disk($target)->setVisibility($a->serverfilenametn, 'public');
-                }
-                */
+               
 
             }
 
         }
+
+        */
+
+
 
         if($focus == 'none'){
 
