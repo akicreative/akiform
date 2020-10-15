@@ -1737,6 +1737,8 @@ echo <<<EOT
 
             $('.phpvalidate').on('submit', function(el){
 
+                console.log('Submitting...');
+
                 var formData = new FormData($(this)[0]);
                 var el = el;
 
