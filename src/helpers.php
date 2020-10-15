@@ -1208,8 +1208,8 @@ if (! function_exists('akiassetpicture')) {
             ob_start();
 
             echo '<picture>';
-            echo '<source media="(min-width: 650px)" srcset="' . $full . '>';
-            echo '<source media="(min-width: 465px)" srcset="' . $thumb . '>';
+            echo '<source media="(min-width: 650px)" srcset="' . $full . '">';
+            echo '<source media="(min-width: 465px)" srcset="' . $thumb . '">';
             echo '<img src="' . $full . '" class="img-fluid ' . $cfg['class'] . '" alt="' . $a->name . '">';
             echo '</picture>';
 
