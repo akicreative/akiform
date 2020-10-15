@@ -1717,6 +1717,22 @@ if(!function_exists('akiphpvalidation')) {
 echo <<<EOT
         <script type="text/javascript">
 
+        (function(){
+            
+            $(window).keydown(function(event){
+
+                if(!$("textarea").is(":focus")){
+
+                    if(event.keyCode == 13) {
+                        event.preventDefault();
+                        return false;
+                    }
+
+                }
+            });
+
+        })();
+
         function phpvalidateform(formid, validategroup)
         {
 
@@ -1731,27 +1747,29 @@ echo <<<EOT
                 data: formData,
                 processData: false,
                 contentType: false,
-                dataType: 'json',
-                success: function(validation){
+                dataType: 'json'
 
-                    $('#toastcontainer').html('');
+            }).done(function(validation){
 
-                    result = validation.result;
+                $('#toastcontainer').html('');
 
-                    for (i = 0; i < validation.toasts.length; i++) { 
-                      
-                        addToast(validation.toasts[i].header, validation.toasts[i].body, 'bg-primary text-white', 10000);
-                    
-                    }
+                returnresult = validation.result;
 
-                    if(result == 'VALID'){
+                for (i = 0; i < validation.toasts.length; i++) { 
+                  
+                    addToast(validation.toasts[i].header, validation.toasts[i].body, 'bg-primary text-white', 10000);
+                
+                }
 
-                        return 'PASSED';
-                    
-                    }else{
+                if(returnresult == 'FAILED'){
 
-                        return 'FAILED';
-                    }
+                    console.log('FAILED');
+
+                }else{
+
+                    console.log('SUBMITTING ' + formid);
+
+                    $(formid).submit();
 
                 }
 
