@@ -1746,11 +1746,11 @@ echo <<<EOT
 
                     if(result == 'VALID'){
 
-                        return true;
+                        return 'PASSED';
                     
                     }else{
 
-                        return false;
+                        return 'FAILED';
                     }
 
                 }
