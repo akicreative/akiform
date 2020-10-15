@@ -1738,7 +1738,7 @@ echo <<<EOT
             $('.phpvalidate').on('submit', function(el){
 
                 var formData = new FormData($(this)[0]);
-                var $el = el;
+                var el = el;
 
                 $.ajax({
 
@@ -1768,7 +1768,7 @@ echo <<<EOT
 
                             validationpassed = 'N';
 
-                            $el.preventDefault();
+                            el.preventDefault();
 
                         }else{
 
