@@ -51,7 +51,7 @@ $ar->open(['action' => url()->current(), 'files' => true]);
 
 <table class="table table-striped table-bordered table-sm">
 
-<tr><th></th><th class="text-center" style="width: 150px;"><button type="submit" name="savebutton" value="order" class="btn btn-sm btn-primary btn-block">Order</button></th><th>Name</th><th></th></tr>
+<tr><th></th><th class="text-center">Key</th><th>Name</th><th></th><th class="text-center" style="width: 150px;"><button type="submit" name="savebutton" value="order" class="btn btn-sm btn-primary btn-block">Order</button></th></tr>
 
 @foreach($rows as $row)
 
@@ -76,15 +76,7 @@ $ar->open(['action' => url()->current(), 'files' => true]);
 
 		</td>
 
-		<td>
-
-			<?
-
-			$ar->build('text', 'Order By:', 'orderby[' . $row->id . ']', ['fieldonly' => true, 'inline' => true, 'default' => $row->orderby]);
-
-			?>
-
-		</td>
+		<td class="text-center" style="font-size: 2rem; font-weight: bold;">{{ $row->id }}</td>
 
 		<td>
 
@@ -129,6 +121,16 @@ $ar->open(['action' => url()->current(), 'files' => true]);
 			</ul>
 
 			@endif
+
+		</td>
+
+		<td>
+
+			<?
+
+			$ar->build('text', 'Order By:', 'orderby[' . $row->id . ']', ['fieldonly' => true, 'inline' => true, 'default' => $row->orderby]);
+
+			?>
 
 		</td>
 
