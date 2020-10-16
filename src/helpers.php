@@ -1719,74 +1719,77 @@ if(!function_exists('akiphpvalidation')) {
         }
 
 echo <<<EOT
-        <script type="text/javascript">
+<script type="text/javascript">
 
-        (function(){
-            
-            $(window).keydown(function(event){
+(function(){
+    
+    $(window).keydown(function(event){
 
-                if(!$("textarea").is(":focus")){
+        if(!$("textarea").is(":focus")){
 
-                    if(event.keyCode == 13) {
-                        event.preventDefault();
-                        return false;
-                    }
+            if(event.keyCode == 13) {
+                event.preventDefault();
+                return false;
+            }
+
+        }
+    });
+
+    $('.submitbutton').on('click', function(el){
+        
+        var formid = $(this).data('form');
+
+        var form = $(formid);
+
+        var formData = new FormData(form[0]);
+
+        $.ajax({
+
+            url: '{$url}',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            success: function(validation){
+
+                $('#toastcontainer').html('');
+
+                console.log(validation);
+
+                returnresult = validation.result;
+
+                console.log(validation.result);
+
+                for (i = 0; i < validation.toasts.length; i++) { 
+                  
+                    addToast(validation.toasts[i].header, validation.toasts[i].body, 'bg-primary text-white', 10000);
+                
+                }
+
+                if(returnresult == 'FAILED'){
+
+                    validationpassed = 'N';
+
+                }else{
+
+                    validationpassed = 'Y';
+
+                    form.submit();
 
                 }
-            });
 
-            $('.phpvalidate').on('submit', function(el){
+               
 
-                console.log('Submitting...');
+            }
 
-                var formData = new FormData($(this)[0]);
-                var el = el;
+        });       
 
-                $.ajax({
+    });
 
-                    url: '{$url}',
-                    type: 'POST',
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    dataType: 'json',
-                    success: function(validation){
+})();
 
-                        $('#toastcontainer').html('');
-
-                        console.log(validation);
-
-                        returnresult = validation.result;
-
-                        console.log(validation.result);
-
-                        for (i = 0; i < validation.toasts.length; i++) { 
-                          
-                            addToast(validation.toasts[i].header, validation.toasts[i].body, 'bg-primary text-white', 10000);
-                        
-                        }
-
-                        if(returnresult == 'FAILED'){
-
-                            validationpassed = 'N';
-
-                            el.preventDefault();
-
-                        }else{
-
-                            validationpassed = 'Y';
-
-                        }
-
-                    }
-
-                });
-
-            });
-
-        })();
-
-        </script>
+</script>
 EOT;
 
     }
