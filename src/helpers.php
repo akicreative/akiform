@@ -1735,13 +1735,15 @@ echo <<<EOT
         }
     });
 
-    $('.submitbutton').on('click', function(el){
+    $('.phpvalidationbutton').on('click', function(el){
         
         var formid = $(this).data('form');
 
         var form = $(formid);
 
         var formData = new FormData(form[0]);
+
+        formData.append($(this).attr('name'), $(this).val());
 
         $.ajax({
 
