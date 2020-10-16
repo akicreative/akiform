@@ -1743,7 +1743,7 @@ echo <<<EOT
 
         var formData = new FormData(form[0]);
 
-        formData.append($(this).attr('name'), $(this).val());
+        $('#buttonaction').val($(this).val());
 
         $.ajax({
 
