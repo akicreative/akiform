@@ -1,4 +1,4 @@
-@extends('cms.layout')
+@extends('akiforms::cms.layout')
 
 @section('pagetitle')
 Dashboard

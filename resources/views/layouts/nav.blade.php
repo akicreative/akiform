@@ -9,7 +9,7 @@
 
       @yield('pagenav')
 
-    	@includeIf('cms.nav')
+      @includeFirst(['akiforms::cms.mainmenu', 'cms.nav'])
 
     	@isset($akinavs)
 
