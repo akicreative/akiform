@@ -20,6 +20,8 @@ Route::prefix('akiforms')->middleware(['web'])->namespace('AkiCreative\AkiForms'
 
 Route::prefix('cms')->middleware(['web', 'isadmin'])->namespace('AkiCreative\AkiForms')->group(function(){
 
+	Route::get('/', 'CmsController@index')->name('aki.cms');
+
 	Route::get('/textblocks', 'TextblockController@index')->name('aki.textblock.index');
 	Route::get('/textblocks/create', 'TextblockController@create')->name('aki.textblock.create');
 	Route::post('/textblocks/store', 'TextblockController@store')->name('aki.textblock.store');

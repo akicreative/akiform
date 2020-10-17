@@ -14,11 +14,11 @@ class UpdateAkiformcategoriesAddassetsTable extends Migration
     public function up()
     {
         Schema::table('akiform_categories', function (Blueprint $table) {
-            $table->integer('assetw')->default(0);
-            $table->integer('asseth')->default(0);
+            $table->integer('assetw')->default(2000);
+            $table->integer('asseth')->default(2000);
             $table->string('assettnresize', 20)->default('resize');
-            $table->integer('assettnw')->default(0);
-            $table->integer('assettnh')->default(0);
+            $table->integer('assettnw')->default(500);
+            $table->integer('assettnh')->default(500);
             
         });
     }
