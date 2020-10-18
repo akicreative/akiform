@@ -9,6 +9,8 @@ Route::middleware(['web'])->group(function(){
 	Route::post('/ajax/akiforms/toast', 'AkiCreative\AkiForms\HomeController@toast')->name('aki.toast');
 
 	Route::get('/telegram/login', 'AkiCreative\AkiForms\TelegramController@login')->name('aki.telegram.login');
+	Route::get('/telegram/register', 'AkiCreative\AkiForms\TelegramController@register')->name('aki.telegram.register');
+	Route::get('/telegram/auth', 'AkiCreative\AkiForms\TelegramController@auth')->name('aki.telegram.auth');
 
 });
 
