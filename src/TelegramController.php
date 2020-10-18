@@ -112,6 +112,8 @@ class TelegramController extends Controller
 				$user->password = md5(rand());
 				$user->aki_telegram_id = $r->input('id');
 
+				akitelegramsend($user->aki_telegram_id, 'Welcome! You are now registered!');
+
 			}
 
 		}
@@ -125,7 +127,7 @@ class TelegramController extends Controller
 
 		Auth::login($user, true);
 
-		akitelegramsend($user->aki_telegram_id, 'Welcome! You are now registered!');
+		
 
 		return redirect()->to(env('TELEGRAMREGISTERREDIRECT', '/'));
 
