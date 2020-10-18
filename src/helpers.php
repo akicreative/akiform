@@ -993,6 +993,25 @@ if (! function_exists('akitextblock')) {
 
 if (! function_exists('akiasset')) {
 
+    function akiassetitems($category, $referenceid = 0)
+    {
+
+        if($referenceid > 0){
+
+            return \AkiCreative\AkiForms\Models\Akiasset::where('category', $category)->where('referenceid', $referenceid)->orderBy('orderby', 'ASC');
+
+        }else{
+
+            return \AkiCreative\AkiForms\Models\Akiasset::where('category', $category)->orderBy('orderby', 'ASC');
+
+        }
+
+    }
+
+}
+
+if (! function_exists('akiasset')) {
+
     function akiasset($id, $size = 'full', $obj = false)
     {
 
