@@ -991,7 +991,7 @@ if (! function_exists('akitextblock')) {
 
 }
 
-if (! function_exists('akiasset')) {
+if (! function_exists('akiassetitems')) {
 
     function akiassetitems($category, $referenceid = 0)
     {
