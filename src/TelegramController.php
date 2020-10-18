@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace AkiCreative\AkiForms;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
