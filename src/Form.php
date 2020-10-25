@@ -299,15 +299,7 @@ class Form
 
 		}
 
-		if($type == 'show'){
-
-			$fieldattributes = [];
-
-		}else{
-
-			$fieldattributes = ['name="' . $name . '"'];
-
-		}	
+		$fieldattributes = [];
 
 		foreach($cfgs as $key => $value){
 
@@ -354,6 +346,16 @@ class Form
 			}
 
 		}
+
+		if($type == 'select' && $cfg['readonly']){
+
+			$fieldattributes[] = 'name="' . $name . '_readonly"';
+
+		}else{
+
+			$fieldattributes[] = 'name="' . $name . '"';
+
+		}	
 
 		if($type == 'datepicker'){
 
@@ -633,6 +635,13 @@ class Form
 					}
 
 				}else{
+
+					if($readonly == 'readonly'){
+
+						$readonly = 'disabled';
+
+						echo '<input type="hidden" name="' . $name . '" value="' . $cfg['default'] . '">';
+					}
 
 					echo '<select class="form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . ' ' . $readonly . '>';
 
