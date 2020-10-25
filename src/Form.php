@@ -262,7 +262,8 @@ class Form
 			'formgroupclass' => $this->formgroupclass,
 			'groupmb' => 'mb-2',
 			'requiredappend' => $this->requiredappend,
-			'requiredlabelclass' => $this->requiredlabelclass
+			'requiredlabelclass' => $this->requiredlabelclass,
+			'readonly' => ''
 
 		];
 
