@@ -18,7 +18,7 @@ class Akitextblock extends Model
 	public function __construct()
     {
 
-        $this->connection = env('AKITEXTBLOCK_CONNECTION', '');
+        $this->connection = 'production';
 
     }
 
