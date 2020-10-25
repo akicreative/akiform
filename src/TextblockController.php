@@ -33,7 +33,9 @@ class TextblockController extends Controller
 
 	public function index(){
 
-        $rows = Akitextblock::orderBy('category', 'ASC')->orderBy('name', 'ASC')->get();
+        $db = config('akiforms.connection.akitextblock', config('database.default'));
+
+        $rows = Akitextblock::on($db)->orderBy('category', 'ASC')->orderBy('name', 'ASC')->get();
 
         $data['rows'] = $rows;
 
@@ -55,11 +57,15 @@ class TextblockController extends Controller
 
     public function store(Request $request){
 
+        $db = config('akiforms.connection.akitextblock', config('database.default'));
+
         $validatedData = $request->validate([
             'name' => 'required'
         ]);
 
         $t = new Akitextblock;
+
+        $t->setConnection($db);
         
         $t->fill($request->all());
 
@@ -72,7 +78,9 @@ class TextblockController extends Controller
 
     public function edit($id){
 
-        $t = Akitextblock::find($id);
+        $db = config('akiforms.connection.akitextblock', config('database.default'));
+
+        $t = Akitextblock::on($db)->find($id);
 
         if(empty($t)){
 
@@ -94,7 +102,9 @@ class TextblockController extends Controller
 
     public function update($id, Request $request){
 
-        $t = Akitextblock::find($id);
+        $db = config('akiforms.connection.akitextblock', config('database.default'));
+
+        $t = Akitextblock::on($db)->find($id);
         
         $t->fill($request->all());
 
