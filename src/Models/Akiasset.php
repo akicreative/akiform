@@ -16,15 +16,6 @@ class Akiasset extends Model
 
 	protected $table = 'akiform_assets';
 
-    public function __construct(array $attributes = array())
-    {
-
-        parent::__construct($attributes);
-
-        $this->setConnection(config('akiforms.connection.akiasset'));
-
-    }
-
 	public function type(){
 
 		switch($this->mimetype){
@@ -119,7 +110,7 @@ class Akiasset extends Model
             $cfg[$key] = $value;
         }
 
-        $cat = Akicategory::where('slug', $category)->first();
+        $cat = Akicategory::where('slug', $category)->first()->setConnection(config('akiforms.connection.akiasset', config('database.default')));
 
         if(empty($cat)){
 
@@ -215,6 +206,7 @@ class Akiasset extends Model
         }
 
         $a = new Akiasset;
+        $a->setConnection(config('akiforms.connection.akiasset', config('database.default')));
         $a->code = md5(time() . rand());
         $a->category = $cat->slug;
         $a->serverfilename = $hashname;
@@ -237,14 +229,14 @@ class Akiasset extends Model
 
         // Scope can be both, full, tn
 
-        $a = Akiasset::find($id);
+        $a = Akiasset::find($id)->setConnection(config('akiforms.connection.akiasset', config('database.default')));
 
         if(empty($a)){
 
             return false;
         }
 
-        $cat = Akicategory::where('slug', $a->category)->first();
+        $cat = Akicategory::where('slug', $a->category)->first()->setConnection(config('akiforms.connection.akiasset', config('database.default')));
 
         if($cat->private){
 

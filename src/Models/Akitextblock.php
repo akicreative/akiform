@@ -13,13 +13,4 @@ class Akitextblock extends Model
 
 	protected $attributes = ['headerasset_id' => 0];
 
-	public function __construct(array $attributes = array())
-	{
-
-	    parent::__construct($attributes);
-
-	    $this->setConnection('production');
-
-	}
-
 }

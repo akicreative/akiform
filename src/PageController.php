@@ -32,7 +32,7 @@ class PageController extends Controller
 
 	public function index(){
 
-        $rows = Akipage::orderBy('pagetitle', 'ASC')->get();
+        $rows = Akipage::orderBy('pagetitle', 'ASC')->get()->setConnection(config('akiforms.connection.akipage', config('database.default')));
 
         $data['rows'] = $rows;
 
@@ -55,6 +55,8 @@ class PageController extends Controller
         ]);
 
         $t = new Akipage;
+
+        $t->setConnection(config('akiforms.connection.akipage', config('database.default')));
         
         $t->fill($request->all());
 
@@ -67,7 +69,7 @@ class PageController extends Controller
 
     public function edit($id){
 
-        $p = Akipage::find($id);
+        $p = Akipage::find($id)->setConnection(config('akiforms.connection.akipage', config('database.default')));
 
         if(empty($p)){
 
@@ -85,7 +87,7 @@ class PageController extends Controller
 
     public function update($id, Request $request){
 
-        $p = Akipage::find($id);
+        $p = Akipage::find($id)->setConnection(config('akiforms.connection.akipage', config('database.default')));
         
         $p->fill($request->all());
 
