@@ -50,13 +50,15 @@ class AssetController extends Controller
 
 	public function index($focus = 'none', Request $request){
 
+        $db = config('akiforms.connection.akitextblock', config('database.default'));
+
         if($request->input('savebutton') == 'order'){
 
             $orderby = $request->input('orderby');
 
             foreach($orderby as $key => $order){
 
-                DB::table('akiform_assets')->where('id', '=', $key)->update(['orderby' => $order]);
+                DB::table('akiform_assets')->connection($db)->where('id', '=', $key)->update(['orderby' => $order]);
 
             }
 
@@ -74,7 +76,7 @@ class AssetController extends Controller
 
         if($focus != 'none'){
 
-            $focuscategory = Akicategory::where("slug", $focus)->first();
+            $focuscategory = Akicategory::on($db)->where("slug", $focus)->first();
 
             if(empty($focuscategory)){
 
@@ -132,7 +134,7 @@ class AssetController extends Controller
             $data['akisubnavform'] = $akisubnavform;
         }
 
-        $rows = Akiasset::where('category', $category)->orderBy('orderby', 'ASC')->orderBy('created_at', 'DESC')->paginate(12);
+        $rows = Akiasset::on($db)->where('category', $category)->orderBy('orderby', 'ASC')->orderBy('created_at', 'DESC')->paginate(12);
 
         $data['rows'] = $rows;
 
@@ -142,9 +144,11 @@ class AssetController extends Controller
 
     public function create($focus = 'none'){
 
+        $db = config('akiforms.connection.akitextblock', config('database.default'));
+
         if($focus != 'none'){
 
-            $focuscategory = Akicategory::where("slug", $focus)->first();
+            $focuscategory = Akicategory::on($db)->where("slug", $focus)->first();
 
             if(empty($focuscategory)){
 
@@ -159,7 +163,7 @@ class AssetController extends Controller
 
             $data['cats'] = $cats;
 
-            $categories = Akicategory::where('cattype', 'asset')->where('hidden', 0)->get();
+            $categories = Akicategory::on($db)->where('cattype', 'asset')->where('hidden', 0)->get();
 
             $data['categories'] = $categories;
 
@@ -185,7 +189,7 @@ class AssetController extends Controller
 
             $data['akisubnavform'] = '';
 
-            $categories = Akicategory::where('cattype', 'asset')->where('slug', $focus)->get();
+            $categories = Akicategory::on($db)->where('cattype', 'asset')->where('slug', $focus)->get();
 
             $data['categories'] = $categories;
 
@@ -197,7 +201,7 @@ class AssetController extends Controller
 
     public function store($focus = 'none', Request $request){
 
-
+        $db = config('akiforms.connection.akitextblock', config('database.default'));
 
         $nice = [
 
@@ -228,7 +232,7 @@ class AssetController extends Controller
 
         }
 
-        $assetcategory = Akicategory::where('slug', $category)->first();
+        $assetcategory = Akicategory::on($db)->where('slug', $category)->first();
 
         if($assetcategory->private){
 
@@ -274,7 +278,7 @@ class AssetController extends Controller
 
             $asset->description = $request->input('description');
 
-            $last = Akiasset::where('category', $category)->orderBy('orderby', 'DESC')->first();
+            $last = Akiasset::on($db)->where('category', $category)->orderBy('orderby', 'DESC')->first();
 
             if(empty($last)){
 
@@ -291,6 +295,8 @@ class AssetController extends Controller
         }else{
 
             $a = new Akiasset;
+
+            $a->setConnection($db);
 
             $a->code = md5(time() . rand());
 
@@ -375,7 +381,7 @@ class AssetController extends Controller
 
             }
 
-            $last = Akiasset::where('category', $a->category)->orderBy('orderby', 'DESC')->first();
+            $last = Akiasset::on($db)->where('category', $a->category)->orderBy('orderby', 'DESC')->first();
 
             if(empty($last)){
 
@@ -449,13 +455,15 @@ class AssetController extends Controller
 
     public function edit($id, $focus = 'none'){
 
-        $asset = Akiasset::find($id);
+        $db = config('akiforms.connection.akitextblock', config('database.default'));
 
-        $cat = Akicategory::where('slug', '=', $asset->category)->first();
+        $asset = Akiasset::on($db)->find($id);
+
+        $cat = Akicategory::on($db)->where('slug', '=', $asset->category)->first();
 
         if($focus != 'none'){
 
-            $focuscategory = Akicategory::where("slug", $focus)->first();
+            $focuscategory = Akicategory::on($db)->where("slug", $focus)->first();
 
             if(empty($focuscategory)){
 
@@ -516,14 +524,15 @@ class AssetController extends Controller
 
     public function update($id, $focus = 'none', Request $request){
 
+        $db = config('akiforms.connection.akitextblock', config('database.default'));
 
-        $a = Akiasset::find($id);
+        $a = Akiasset::on($db)->find($id);
 
         $a->category = $request->input('category');
         
         $a->description = $request->input('description');
 
-        $assetcategory = Akicategory::where('slug', $a->category)->first();
+        $assetcategory = Akicategory::on($db)->where('slug', $a->category)->first();
 
         if($request->hasFile('file')){
 
@@ -749,14 +758,16 @@ class AssetController extends Controller
 
     public function destroy($id, $focus = 'none', Request $request){
 
-        $a = Akiasset::find($id);
+        $db = config('akiforms.connection.akitextblock', config('database.default'));
+
+        $a = Akiasset::on('db')->find($id);
 
         if(empty($a)){
 
             return redirect()->route('aki.asset.index');
         }
 
-        $assetcategory = Akicategory::where('slug', $a->category)->first();
+        $assetcategory = Akicategory::on($db)->where('slug', $a->category)->first();
 
         $target = $this->target($assetcategory->private);
 
@@ -792,13 +803,15 @@ class AssetController extends Controller
     public function getpublic($id, $filename)
     {
 
-        $a = Akiasset::where('id', $id)->where('serverfilename',  'public/' . $filename)->first();
+        $db = config('akiforms.connection.akitextblock', config('database.default'));
+
+        $a = Akiasset::on($db)->where('id', $id)->where('serverfilename',  'public/' . $filename)->first();
 
         $filepath = '';
 
         if(empty($a)){
 
-            $a = Akiasset::where('id', $id)->where('serverfilenametn', 'public/' .  $filename)->first();
+            $a = Akiasset::on($db)->where('id', $id)->where('serverfilenametn', 'public/' .  $filename)->first();
 
             $filepath = storage_path('app') . '/' . $a->serverfilenametn;
             
@@ -812,7 +825,7 @@ class AssetController extends Controller
             abort(404);
         }
 
-        $c = Akicategory::where('slug', $a->category)->first();
+        $c = Akicategory::on($db)->where('slug', $a->category)->first();
 
         if($c->private){
 
@@ -846,13 +859,15 @@ class AssetController extends Controller
     public function getprivate($id, $filename)
     {
 
-        $a = Akiasset::where('id', $id)->where('serverfilename', 'private/' . $filename)->first();
+        $db = config('akiforms.connection.akitextblock', config('database.default'));
+
+        $a = Akiasset::db($db)->where('id', $id)->where('serverfilename', 'private/' . $filename)->first();
 
         $filepath = '';
 
         if(empty($a)){
 
-            $a = Akiasset::where('id', $id)->where('serverfilenametn', 'private/' .  $filename)->first();
+            $a = Akiasset::on(db)->where('id', $id)->where('serverfilenametn', 'private/' .  $filename)->first();
 
             $filepath = storage_path('app') . '/' . $a->serverfilenametn;
             
@@ -866,7 +881,7 @@ class AssetController extends Controller
             abort(404);
         }
 
-        $c = Akicategory::where('slug', $a->category)->first();
+        $c = Akicategory::on($db)->where('slug', $a->category)->first();
 
         switch($a->type()){
 
@@ -895,9 +910,11 @@ class AssetController extends Controller
     public function aws($id, $filename)
     {
 
-        $a = Akiasset::where('id', $id)->where('serverfilename', $filename)->first();
+        $db = config('akiforms.connection.akitextblock', config('database.default'));
 
-        $c = Akicategory::where('slug', $a->category)->first();
+        $a = Akiasset::on($db)->where('id', $id)->where('serverfilename', $filename)->first();
+
+        $c = Akicategory::on($db)->where('slug', $a->category)->first();
 
         $scope = 'public';
 

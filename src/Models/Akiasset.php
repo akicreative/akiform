@@ -101,6 +101,8 @@ class Akiasset extends Model
     static public function assetadd($category, $file, $deleteid, $c = [])
     {
 
+        $db = config('akiforms.connection.akitextblock', config('database.default'));
+
         $cfg = [];
 
         foreach($c as $key => $value){
@@ -108,7 +110,7 @@ class Akiasset extends Model
             $cfg[$key] = $value;
         }
 
-        $cat = Akicategory::where('slug', $category)->first();
+        $cat = Akicategory::on($db)->where('slug', $category)->first();
 
         if(empty($cat)){
 
@@ -204,6 +206,8 @@ class Akiasset extends Model
         }
 
         $a = new Akiasset;
+
+        $a->setConnection($db);
         $a->code = md5(time() . rand());
         $a->category = $cat->slug;
         $a->serverfilename = $hashname;
@@ -226,14 +230,16 @@ class Akiasset extends Model
 
         // Scope can be both, full, tn
 
-        $a = Akiasset::find($id);
+        $db = config('akiforms.connection.akitextblock', config('database.default'));
+
+        $a = Akiasset::on($db)->find($id);
 
         if(empty($a)){
 
             return false;
         }
 
-        $cat = Akicategory::where('slug', $a->category)->first();
+        $cat = Akicategory::on($db)->where('slug', $a->category)->first();
 
         if($cat->private){
 
@@ -358,14 +364,16 @@ class Akiasset extends Model
     static public function assetdelete($id)
     {
 
-        $asset = Akiasset::find($id);
+        $db = config('akiforms.connection.akitextblock', config('database.default'));
+
+        $asset = Akiasset::on($db)->find($id);
 
         if(empty($asset)){
 
             return false;
         }
 
-        $cat = Akicategory::where('slug', $asset->category)->first();
+        $cat = Akicategory::on($db)->where('slug', $asset->category)->first();
 
         if($cat->private){
 

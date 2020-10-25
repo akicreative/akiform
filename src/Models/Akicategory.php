@@ -12,6 +12,8 @@ class Akicategory extends Model
     public static function selectoptions($cattype, $hide = true, $private = 'NA')
     {
 
+        $db = config('akiforms.connection.akitextblock', config('database.default'));
+
         // Private = Y, N, A
 
         if($hide){
@@ -23,7 +25,7 @@ class Akicategory extends Model
             $hidden = [0, 1];
         }
 
-        $cats = Akicategory::where('cattype', $cattype)->whereIn('hidden', $hidden);
+        $cats = Akicategory::on($db)->where('cattype', $cattype)->whereIn('hidden', $hidden);
 
         switch($private){
 
