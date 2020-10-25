@@ -475,6 +475,14 @@ class Form
 			$required = 'required';
 		}
 
+		$readonly = '';
+
+		if($cfg['readonly']){
+
+			$required = '';
+			$readonly = 'readonly';
+		}
+
 		$errorfeedback = '';
 
 		if($this->errors->has($name)){
@@ -522,7 +530,7 @@ class Form
 				}else{
 
 				
-					echo '<input type="' . $type . '" class="form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . ' value="' . $cfg['default'] . '">';
+					echo '<input type="' . $type . '" class="form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . ' ' . $readonly . ' value="' . $cfg['default'] . '">';
 
 					echo $errorfeedback;
     
@@ -586,7 +594,7 @@ class Form
 
 				}else{
 
-					echo '<textarea class="form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' rows="' . $cfg['textarearows'] . '" aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . '>' . $cfg['default'] . '</textarea>';
+					echo '<textarea class="form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' rows="' . $cfg['textarearows'] . '" aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . ' ' . $readonly . '>' . $cfg['default'] . '</textarea>';
 	    
 					echo $errorfeedback;
 
@@ -625,7 +633,7 @@ class Form
 
 				}else{
 
-					echo '<select class="form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . '>';
+					echo '<select class="form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . ' ' . $readonly . '>';
 
 					
 
@@ -658,7 +666,7 @@ class Form
 
 			case 'dateselect':
 
-				if($this->viewmode){
+				if($this->viewmode || $readonly == 'readonly'){
 
 					echo outdate($cfg['default']);
 
@@ -685,7 +693,7 @@ class Form
 
 				$dpcfg = array_merge($dpcfgs, $cfg['datepickercfg']);
 
-				if($this->viewmode){
+				if($this->viewmode || $readonly == 'readonly'){
 
 					echo outdate($cfg['default'], $dpcfg['datepickerformat']);
 
@@ -872,7 +880,7 @@ class Form
 
 					}else{
 
-						echo '<input class="' . $controlclass . ' ' . $cfg['class'] . '" type="checkbox" name="' . $name . '" id="' . $id . '" tabindex="' . $this->tabindex . '" value="' . $value . '" ' . $checked . ' ' . implode(' ', $fieldattributes) . '>
+						echo '<input class="' . $controlclass . ' ' . $cfg['class'] . '" type="checkbox" name="' . $name . '" id="' . $id . '" tabindex="' . $this->tabindex . '" value="' . $value . '" ' . $checked . ' ' . implode(' ', $fieldattributes) . ' ' . $readonly . '>
   					<label class="' . $labelclass . '" for="' . $id . '">' . $a[1];
 
   					}
@@ -962,7 +970,7 @@ class Form
 					}else{
 
 
-						echo '<input class="' . $controlclass . '" type="radio" name="' . $name . '" id="' . $name . $a[0] . '" tabindex="' . $this->tabindex . '" value="' . $value . '" ' . $checked . '>
+						echo '<input class="' . $controlclass . '" type="radio" name="' . $name . '" id="' . $name . $a[0] . '" tabindex="' . $this->tabindex . '" value="' . $value . '" ' . $checked . ' ' . $readonly . '>
 	  					<label class="' . $labelclass . '" for="' . $name . $a[0] . '">' . $a[1];
 
 					}
