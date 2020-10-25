@@ -263,7 +263,7 @@ class Form
 			'groupmb' => 'mb-2',
 			'requiredappend' => $this->requiredappend,
 			'requiredlabelclass' => $this->requiredlabelclass,
-			'readonly' => ''
+			'readonly' => false
 
 		];
 
