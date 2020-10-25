@@ -962,7 +962,9 @@ if (! function_exists('akitextblock')) {
     function akitextblock($id, $textonly = false)
     {
 
-        $block = AkiCreative\AkiForms\Models\Akitextblock::find($id);
+        $db = config('akiforms.connection.akitextblock', config('database.default'));
+
+        $block = AkiCreative\AkiForms\Models\Akitextblock::on($db)->find($id);
 
         if(empty($block)){
 
@@ -991,18 +993,40 @@ if (! function_exists('akitextblock')) {
 
 }
 
+if (! function_exists('akipage')) {
+
+    function akipage($id)
+    {
+
+        $db = config('akiforms.connection.akitextblock', config('database.default'));
+
+        $page = AkiCreative\AkiForms\Models\Akipage::on($db)->find($id);
+
+        if(empty($page)){
+
+            return false;
+        }
+
+        return $page;
+
+    }
+
+}
+
 if (! function_exists('akiassetitems')) {
 
     function akiassetitems($category, $referenceid = 0)
     {
 
+        $db = config('akiforms.connection.akiasset', config('database.default'));
+
         if($referenceid > 0){
 
-            return \AkiCreative\AkiForms\Models\Akiasset::where('category', $category)->where('referenceid', $referenceid)->orderBy('orderby', 'ASC');
+            return \AkiCreative\AkiForms\Models\Akiasset::on($db)->where('category', $category)->where('referenceid', $referenceid)->orderBy('orderby', 'ASC');
 
         }else{
 
-            return \AkiCreative\AkiForms\Models\Akiasset::where('category', $category)->orderBy('orderby', 'ASC');
+            return \AkiCreative\AkiForms\Models\Akiasset::on($db)->where('category', $category)->orderBy('orderby', 'ASC');
 
         }
 
@@ -1015,7 +1039,9 @@ if (! function_exists('akiasset')) {
     function akiasset($id, $size = 'full', $obj = false)
     {
 
-        $asset = \AkiCreative\AkiForms\Models\Akiasset::find($id);
+        $db = config('akiforms.connection.akiasset', config('database.default'));
+
+        $asset = \AkiCreative\AkiForms\Models\Akiasset::on($db)->find($id);
 
         if(empty($asset)){
 
@@ -1083,14 +1109,16 @@ if (! function_exists('akiasseturl')) {
     function akiasseturl($id, $mode = 'full', $auth = false)
     {
 
-        $a = \AkiCreative\AkiForms\Models\Akiasset::where('id', $id)->first();
+        $db = config('akiforms.connection.akiasset', config('database.default'));
+
+        $a = \AkiCreative\AkiForms\Models\Akiasset::on($db)->where('id', $id)->first();
 
         if(empty($a)){
 
             return '#';
         }
 
-        $c = \AkiCreative\AkiForms\Models\Akicategory::where('slug', $a->category)->first();
+        $c = \AkiCreative\AkiForms\Models\Akicategory::on($db)->where('slug', $a->category)->first();
 
         $scope = 'public';
 
@@ -1169,6 +1197,8 @@ if (! function_exists('akiassetpicture')) {
     function akiassetpicture($id, $auth = false, $cfgin = [])
     {
 
+        $db = config('akiforms.connection.akiasset', config('database.default'));
+
         $cfg = [
 
             'class' => ''
@@ -1180,14 +1210,14 @@ if (! function_exists('akiassetpicture')) {
             $cfg[$key] = $value;
         }
 
-        $a = \AkiCreative\AkiForms\Models\Akiasset::where('id', $id)->first();
+        $a = \AkiCreative\AkiForms\Models\Akiasset::on($db)->where('id', $id)->first();
 
         if(empty($a)){
 
             return '';
         }
 
-        $c = \AkiCreative\AkiForms\Models\Akicategory::where('slug', $a->category)->first();
+        $c = \AkiCreative\AkiForms\Models\Akicategory::on($db)->where('slug', $a->category)->first();
 
         $scope = 'public';
 

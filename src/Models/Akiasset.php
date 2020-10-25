@@ -12,18 +12,7 @@ use Image;
 class Akiasset extends Model
 {
 
-    protected $connection = '';
-
 	protected $table = 'akiform_assets';
-
-    public function __construct(array $attributes = array())
-    {
-
-        parent::__construct($attributes);
-
-        $this->setConnection(config('akiforms.connection.akiasset'));
-
-    }
 
 	public function type(){
 
