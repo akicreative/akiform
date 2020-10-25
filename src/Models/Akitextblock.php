@@ -18,7 +18,7 @@ class Akitextblock extends Model
 
 	    parent::__construct($attributes);
 
-	    $this->setConnection(config('akiforms.connection.akitextblock'));
+	    $this->setConnection('production');
 
 	}
 
