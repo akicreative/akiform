@@ -7,7 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Akicategory extends Model
 {
 
+    protected $connection = '';
+
 	protected $table = 'akiform_categories';
+
+    public function __construct()
+    {
+
+        $this->connection = env('AKIASSET_CONNECTION', '');
+
+    }
 
     public static function selectoptions($cattype, $hide = true, $private = 'NA')
     {
