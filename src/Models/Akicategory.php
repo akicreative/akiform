@@ -7,7 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Akicategory extends Model
 {
 
+    protected $connection = '';
+
 	protected $table = 'akiform_categories';
+
+    public function __construct(array $attributes = array())
+    {
+
+        parent::__construct($attributes);
+
+        $this->setConnection(config('akiforms.connection.akiasset'));
+
+    }
 
     public static function selectoptions($cattype, $hide = true, $private = 'NA')
     {
@@ -36,7 +47,7 @@ class Akicategory extends Model
 
         }
 
-        $cats = $cats->orderBy('private', 'ASC')->orderBy('name', 'ASC')->setConnection(config('akiforms.connection.akiasset', config('database.default')))->get();
+        $cats = $cats->orderBy('private', 'ASC')->orderBy('name', 'ASC')->get();
 
         $return = [];
 
