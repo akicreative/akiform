@@ -33,7 +33,7 @@ class TextblockController extends Controller
 
 	public function index(){
 
-        $rows = Akitextblock::orderBy('category', 'ASC')->orderBy('name', 'ASC')->get()->setConnection(config('akiforms.connection.akipage', config('database.default')));
+        $rows = Akitextblock::orderBy('category', 'ASC')->orderBy('name', 'ASC')->setConnection(config('akiforms.connection.akipage', config('database.default')))->get();
 
         $data['rows'] = $rows;
 
