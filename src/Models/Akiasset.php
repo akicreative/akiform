@@ -16,10 +16,12 @@ class Akiasset extends Model
 
 	protected $table = 'akiform_assets';
 
-    public function __construct()
+    public function __construct(array $attributes = array())
     {
 
-        $this->connection = env('AKIASSET_CONNECTION', '');
+        parent::__construct($attributes);
+
+        $this->setConnection(env('AKIASSET_CONNECTION'));
 
     }
 

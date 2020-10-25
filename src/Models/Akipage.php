@@ -15,10 +15,12 @@ class Akipage extends Model
 
 	protected $attributes = ['sitemap' => 0];
 
-	public function __construct()
-    {
+	public function __construct(array $attributes = array())
+	{
 
-        $this->connection = env('AKIPAGE_CONNECTION', '');
+	    parent::__construct($attributes);
+
+	    $this->setConnection(env('AKIPAGE_CONNECTION'));
 
     }
 
