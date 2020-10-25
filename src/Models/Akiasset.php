@@ -21,7 +21,7 @@ class Akiasset extends Model
 
         parent::__construct($attributes);
 
-        $this->setConnection(env('AKIASSET_CONNECTION'));
+        $this->setConnection(config('akiforms.connection.akiasset'));
 
     }
 

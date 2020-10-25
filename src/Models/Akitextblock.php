@@ -20,7 +20,7 @@ class Akitextblock extends Model
 
 	    parent::__construct($attributes);
 
-	    $this->setConnection(env('AKITEXTBLOCK_CONNECTION'));
+	    $this->setConnection(config('akiforms.connection.akitextblock'));
 
 	}
 

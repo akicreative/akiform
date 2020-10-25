@@ -20,7 +20,7 @@ class Akipage extends Model
 
 	    parent::__construct($attributes);
 
-	    $this->setConnection(env('AKIPAGE_CONNECTION'));
+	    $$this->setConnection(config('akiforms.connection.akipage'));
 
     }
 
