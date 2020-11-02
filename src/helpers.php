@@ -993,6 +993,21 @@ if (! function_exists('akitextblock')) {
 
 }
 
+if (! function_exists('akitextblocks')) {
+
+    function akitextblocks($category = '')
+    {
+
+        $db = config('akiforms.connection.akitextblock', config('database.default'));
+
+        $items = AkiCreative\AkiForms\Models\Akitextblock::on($db)->where('category', $category);
+
+        return $items;
+
+    }
+
+}
+
 if (! function_exists('akipage')) {
 
     function akipage($id)
