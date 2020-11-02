@@ -1,20 +1,20 @@
 <?php
 
-if (! function_exists('akiredactorcss')) {
+if (! function_exists('akiredactorxcss')) {
 
-    function akiredactorcss() {
+    function akiredactorxcss() {
         
         echo '<link rel="stylesheet" href="' . url('/vendor/akicreative/akiforms/redactorx/redactorx.min.css') . '">';
     }
 }
 
-if (! function_exists('akiredactorplugins')) {
+if (! function_exists('akiredactorxplugins')) {
 
-    function akiredactorplugins($exclude = [], $include = []) {
+    function akiredactorxplugins($exclude = [], $include = []) {
 
         $names = ['alignment', 'blockcode', 'definedlinks', 'handle', 'icons', 'imageposition', 'inlineformat', 'removeformat', 'selector', 'underline'];
 
-        foreach($i = 0; $i < count($exclude); $i++){
+        for($i = 0; $i < count($exclude); $i++){
 
             $key = $exclude[$i];
 
@@ -22,7 +22,7 @@ if (! function_exists('akiredactorplugins')) {
 
         }
 
-        foreach($i = 0; $i < count($include); $i++){
+        for($i = 0; $i < count($include); $i++){
 
             $key = $include[$i];
 
@@ -44,9 +44,9 @@ if (! function_exists('akiredactorplugins')) {
 
 }
 
-if (! function_exists('akiredactorjs')) {
+if (! function_exists('akiredactorxjs')) {
 
-    function akiredactorjs($plugins, $params = []) {
+    function akiredactorxjs($plugins, $params = []) {
 
         /*
 
@@ -63,7 +63,11 @@ if (! function_exists('akiredactorjs')) {
 
         $cfg = [
 
-            'target' => '.redactor'
+            'target' => '.redactor',
+            'source' => 'true',
+            'control' => 'true',
+            'autosave' => '',
+            'more' => []
 
         ];
 
@@ -87,11 +91,34 @@ if (! function_exists('akiredactorjs')) {
 
         */
 
+        $settings = [];
+
+        $settings[] = "plugins: ['" . implode("', '", $plugins) . "']";
+
+        $settings[] = 'source: ' . $cfg['source'];
+
+        $settings[] = 'control: ' . $cfg['control'];
+
+        if($cfg['autosave'] != ''){
+
+            $settings[] = "autosave: { url: '" . $cfg['autosave'] . "'}";
+        }
+
+        if(count($cfg['more']) > 0){
+
+            foreach($cfg['more'] as $val){
+
+                $settings[] = $val;
+
+            }
+
+        }
+
         echo '<script type="text/javascript">
 
         (function(){
-            RedactorX(' . $cfg['target'] . ')
-        ';
+            
+            RedactorX("' . $cfg['target'] . '", {' . implode(", ", $settings) . ' })';
 
         echo '
 
@@ -101,10 +128,7 @@ if (! function_exists('akiredactorjs')) {
 
         ';
 
-
-        }
         
     }
 
 }
-
