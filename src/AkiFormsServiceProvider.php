@@ -29,6 +29,7 @@
 
 
             require_once __DIR__ . '/helpers.php';
+            require_once __DIR__ . '/redactor.php';
             require_once __DIR__ . '/notifications.php';
 
         }
