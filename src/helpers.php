@@ -981,7 +981,8 @@ if (! function_exists('akitextblock')) {
 
                 'heading' => $block->heading,
                 'textblock' => $block->textblock,
-                'format' => $block->format
+                'format' => $block->format,
+                'obj' => $block
 
             ];
 
