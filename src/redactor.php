@@ -66,6 +66,7 @@ if (! function_exists('akiredactorxjs')) {
             'target' => '.redactor',
             'source' => 'true',
             'control' => 'true',
+            'upload' => '',
             'autosave' => '',
             'more' => []
 
@@ -98,6 +99,19 @@ if (! function_exists('akiredactorxjs')) {
         $settings[] = 'source: ' . $cfg['source'];
 
         $settings[] = 'control: ' . $cfg['control'];
+
+        if($cfg['upload'] != ''){
+
+            if($cfg['upload'] == 'upload'){
+
+                $url = route('aki.editor.upload');
+            }else{
+
+                $url = $cfg['upload'];
+            }
+
+            $settings[] = "image: { upload: '" . $url . "'}";
+        }
 
         if($cfg['autosave'] != ''){
 

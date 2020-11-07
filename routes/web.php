@@ -6,6 +6,8 @@ Route::middleware(['web'])->group(function(){
 
 	Route::get('/asset/download/aws/{id}/{fn}', 'AkiCreative\AkiForms\AssetController@aws')->name('aki.asset.aws');
 
+	Route::post('/ajax/akiforms/editor/upload', 'AkiCreative\AkiForms\AssetController@editorupload')->name('aki.editor.upload');
+
 	Route::post('/ajax/akiforms/toast', 'AkiCreative\AkiForms\HomeController@toast')->name('aki.toast');
 
 	Route::get('/telegram/login', 'AkiCreative\AkiForms\TelegramController@login')->name('aki.telegram.login');
