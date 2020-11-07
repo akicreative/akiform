@@ -958,9 +958,11 @@ class AssetController extends Controller
                 
                 $asset = akiassetadd('asseteditor', $file);
 
+                $url = akiasseturl($asset->id);
+
                 $files[] = [
 
-                    'url' => $asset->serverfilename,
+                    'url' => $url,
                     'id' => $asset->id
 
                 ];
