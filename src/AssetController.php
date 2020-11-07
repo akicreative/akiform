@@ -760,7 +760,7 @@ class AssetController extends Controller
 
         $db = config('akiforms.connection.akitextblock', config('database.default'));
 
-        $a = Akiasset::on('db')->find($id);
+        $a = Akiasset::on($db)->find($id);
 
         if(empty($a)){
 
