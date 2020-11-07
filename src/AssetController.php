@@ -944,4 +944,60 @@ class AssetController extends Controller
 
     }
 
+    public function editorupload(Request $request)
+    {  
+
+        $files = [];
+
+        $return = [];
+
+        if($request->hasfile('file'))
+        {
+            foreach($request->file('file') as $file)
+            {
+                
+                $asset = akiassetadd('asseteditor', $file);
+
+                $files[] = [
+
+                    'url' => $asset->serverfilename,
+                    'id' => $asset->id
+
+                ];
+
+
+            }
+
+            if(count($files) == 0){
+
+                return response()->json(['error' => true, 'message' => 'File Not Uploaded']);
+            }
+
+
+            if(count($files) > 1){
+
+                $counter = 1;
+
+                foreach($files as $f){
+
+                    $key = 'file-' . $counter;
+
+                    $return[$key] = $f;
+
+                }
+
+            }else{
+
+                $return['file'] = $files[0];
+            }
+
+            return response()->json($return);
+
+        }else{
+
+            return response()->json(['error' => true, 'message' => 'File Not Uploaded']);
+        }
+
+    }
+
 }
