@@ -867,7 +867,7 @@ class AssetController extends Controller
 
         if(empty($a)){
 
-            $a = Akiasset::on(db)->where('id', $id)->where('serverfilenametn', 'private/' .  $filename)->first();
+            $a = Akiasset::on($db)->where('id', $id)->where('serverfilenametn', 'private/' .  $filename)->first();
 
             $filepath = storage_path('app') . '/' . $a->serverfilenametn;
             
