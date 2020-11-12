@@ -7,7 +7,7 @@
 @section('head')
 <?
 
-akiredactor('css');
+akiredactorxcss();
 
 ?>
 @endsection
@@ -52,9 +52,8 @@ $ar->close();
 
 <?
 
-akiredactor('js');
+akiredactorxjs(akiredactorxplugins(), ['upload' => 'upload']);
 
-akiredactor('.redactor');
 
 ?>
 
