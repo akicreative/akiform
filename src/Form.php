@@ -264,8 +264,8 @@ class Form
 			'requiredappend' => $this->requiredappend,
 			'requiredlabelclass' => $this->requiredlabelclass,
 			'readonly' => false,
-			'fileimageshow' => true,
-			'fileimageremove' => true,
+			'fileshow' => true,
+			'fileremove' => true,
 			'fileassetid' => 0
 
 		];
@@ -571,7 +571,7 @@ class Form
 
 					}
 
-					if($cfg['fileassetid'] > 0){
+					if($cfg['fileremove'] && $cfg['fileassetid'] > 0){
 
 						echo '<input type="checkbox" name="removeasset' . $attrs['id'] . '" value="1"> Remove on save';
 					}
