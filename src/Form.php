@@ -573,7 +573,7 @@ class Form
 
 					if($cfg['fileremove'] && $cfg['fileassetid'] > 0){
 
-						echo '<input type="checkbox" name="removeasset' . $attrs['id'] . '" value="1"> Remove on save';
+						echo '<div class="mt-2"><input type="checkbox" name="removeasset' . $attrs['id'] . '" value="1"> Remove on save</div>';
 					}
     
 				}
