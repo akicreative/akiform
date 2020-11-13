@@ -263,7 +263,10 @@ class Form
 			'groupmb' => 'mb-2',
 			'requiredappend' => $this->requiredappend,
 			'requiredlabelclass' => $this->requiredlabelclass,
-			'readonly' => false
+			'readonly' => false,
+			'fileimageshow' => true,
+			'fileimageremove' => true,
+			'fileassetid' => 0
 
 		];
 
@@ -553,6 +556,25 @@ class Form
 					echo '<input type="' . $type . '" class="form-control-file ' . $this->size . ' ' . $cfg['class'] . ' pl-0" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . '>';
 
 					echo $errorfeedback;
+
+					if($cfg['fileshow'] == 'image' && $cfg['fileassetid'] > 0){
+
+						$imageurl = akiasseturl($cfg['fileassetid']);
+
+						echo '<a href="' . $imageurl . '" target="_blank"><img src="' . akiasseturl($cfg['fileassetid'], 'tn') . '" class="img-fluid my-2"></a>';
+
+					}elseif($cfg['fileshow'] == 'file' && $cfg['fileassetid'] > 0){
+
+						$fileurl = akiasseturl($cfg['fileassetid']);
+
+						echo '<a href="' . $fileurl . '" target="_blank" class="btn btn-sm btn-outline-primary my-2">Download File</a>';
+
+					}
+
+					if($cfg['fileassetid'] > 0){
+
+						echo '<input type="checkbox" name="removeasset' . $attrs['id'] . '" value="1"> Remove on save';
+					}
     
 				}
 
