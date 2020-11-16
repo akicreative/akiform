@@ -37,6 +37,14 @@ class AssetController extends Controller
 
         $akisubnav = [];
 
+        $akisubnav[] = '
+
+          <li class="nav-item">
+        <a class="nav-link" href="' . route('aki.categories.index') . '">Category Management</a>
+      </li>
+
+        ';
+
         $akisubnavform = '
         <form class="form-inline my-2 my-lg-0">
           <a href="' . route('aki.asset.create') . '" class="btn btn-success my-2 my-sm-0">ADD</a>
