@@ -9,6 +9,12 @@ class Akicategory extends Model
 
 	protected $table = 'akiform_categories';
 
+    protected $fillable = [
+
+        'slug', 'cattype', 'name', 'description', 'hidden', 'private', 'assetw', 'asseth', 'assettnresize', 'assettnw', 'assettnh'
+
+    ];
+
     public static function selectoptions($cattype, $hide = true, $private = 'NA')
     {
 

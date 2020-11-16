@@ -32,7 +32,7 @@ class CategoryController extends Controller
 
 	public function index(){
 
-        $db = config('akiforms.connection.akitextblock', config('database.default'));
+        $db = config('akiforms.connection.akicategories', config('database.default'));
 
         $rows = Akicategory::on($db)->orderBy('cattype', 'ASC')->orderBy('name', 'ASC')->get();
 
@@ -46,23 +46,27 @@ class CategoryController extends Controller
 
         $data['centercolumn'] = 8;
 
-        $cats = Akicategory::selectoptions('textblock');
-
-        $data['cats'] = $cats;
-
-        return view('akiforms::textblock.create', $data);
+        return view('akiforms::categories.create', $data);
                 
     }
 
     public function store(Request $request){
 
-        $db = config('akiforms.connection.akitextblock', config('database.default'));
+        $db = config('akiforms.connection.akicategories', config('database.default'));
 
         $validatedData = $request->validate([
-            'name' => 'required'
+            'name' => 'required',
+            'slug' => 'required'
         ]);
 
-        $t = new Akitextblock;
+        $check = Akicategory::on($db)->where('slug', $request->input('slug'))->first();
+
+        if(!empty($check)){
+
+            return redirect()->back()->withInput()->with('message', 'The slug is already in use!');
+        }
+
+        $t = new Akicategory;
 
         $t->setConnection($db);
         
@@ -70,46 +74,54 @@ class CategoryController extends Controller
 
         $t->save();
 
-        return redirect()->route('aki.textblock.edit', [$t->id]);
+        return redirect()->route('aki.categories.edit', [$t->id]);
 
 
     }
 
     public function edit($id){
 
-        $db = config('akiforms.connection.akitextblock', config('database.default'));
+        $db = config('akiforms.connection.akicategories', config('database.default'));
 
-        $t = Akitextblock::on($db)->find($id);
+        $t = Akicategory::on($db)->find($id);
 
         if(empty($t)){
 
-            return redirect()->route('aki.textblock.index');
+            return redirect()->route('aki.categories.index');
 
         }
 
         $data['centercolumn'] = 10;
 
-        $cats = Akicategory::selectoptions('textblock');
+        $data['item'] = $t;
 
-        $data['cats'] = $cats;
-
-        $data['text'] = $t;
-
-        return view('akiforms::textblock.update', $data);
+        return view('akiforms::categories.update', $data);
                 
     }
 
     public function update($id, Request $request){
 
-        $db = config('akiforms.connection.akitextblock', config('database.default'));
+        $db = config('akiforms.connection.akicategories', config('database.default'));
 
-        $t = Akitextblock::on($db)->find($id);
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'slug' => 'required'
+        ]);
+
+        $check = Akicategory::on($db)->where('slug', $request->input('slug'))->where('id', '!=', $id)->first();
+
+        if(!empty($check)){
+
+            return redirect()->back()->withInput()->with('message', 'The slug is already in use!');
+        }
+
+        $t = Akicategory::on($db)->find($id);
         
         $t->fill($request->all());
 
         $t->save();
 
-        return redirect()->route('aki.textblock.index')->with('pagemessage', 'The text block was saved.');
+        return redirect()->route('aki.categories.index')->with('pagemessage', 'The text block was saved.');
                 
     }
 
