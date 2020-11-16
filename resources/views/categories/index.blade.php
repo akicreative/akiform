@@ -26,7 +26,7 @@ Categories
 
 		</td>
 
-		<td class="text-center">
+		<td>
 
 			{{ $row->name }}
 
