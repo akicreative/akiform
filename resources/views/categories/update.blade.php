@@ -12,7 +12,7 @@ Update Category
 
 $ar = new AkiForm($errors, ['horizontal' => true, 'constrainform' => 'col-md-8']);
 
-$ar->open(['action' => route('aki.categories.save', $item->id)]);
+$ar->open(['action' => route('aki.categories.update', $item->id)]);
 
 $ar->fill($item);
 
