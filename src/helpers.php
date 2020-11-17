@@ -1066,7 +1066,7 @@ if (! function_exists('akiasset')) {
 
         if($obj){
 
-            return $obj;
+            return $asset;
 
         }else{
 
