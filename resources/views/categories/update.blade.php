@@ -26,15 +26,15 @@ $ar->build('select', 'Hidden:', 'hidden', ['selectshortcut' => 'noyes']);
 
 $ar->build('select', 'Private:', 'private', ['selectshortcut' => 'noyes']);
 
-$ar->build('digit', 'Full Size Width:', 'assetw');
+$ar->build('number', 'Full Size Width:', 'assetw');
 
-$ar->build('digit', 'Full Size Height:', 'asseth');
+$ar->build('number', 'Full Size Height:', 'asseth');
 
 $ar->build('select', 'Thumbnail Type:', 'assettnresize', ['selectoptions' => ['resize' => 'Resize', 'fit' => 'Fit']]);
 
-$ar->build('digit', 'Thumbnail Width:', 'assettnw');
+$ar->build('number', 'Thumbnail Width:', 'assettnw');
 
-$ar->build('digit', 'Thumbnail Height:', 'assettnh');
+$ar->build('number', 'Thumbnail Height:', 'assettnh');
 
 
 $ar->build('submit', 'Save');
