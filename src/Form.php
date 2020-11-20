@@ -411,7 +411,7 @@ class Form
 
 				if($this->viewmode){
 
-					$horizontalleft = $cfg['horizontalleft'];
+					$horizontalleft = $cfg['horizontalleft'] . ' view-form-label';
 
 				}else{
 
