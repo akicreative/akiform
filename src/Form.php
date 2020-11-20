@@ -522,7 +522,7 @@ class Form
 
 		}elseif($this->viewmode){
 
-			echo '<div class="pt-2">';
+			echo '<div class="">';
 
 		}
 
