@@ -416,6 +416,8 @@ class Form
 
 				$horizontal .= ' mb-0';
 
+				echo '<div class="row ' . $cfg['formgroupclass'] . '">';
+
 			}elseif($this->compact){
 
 				switch($type){
@@ -443,10 +445,12 @@ class Form
 						break;
 				}
 
+				echo '<div class="form-group ' . $horizontal . ' ' . $cfg['formgroupclass'] . '">';
+
 				
 			}
 
-			echo '<div class="form-group ' . $horizontal . ' ' . $cfg['formgroupclass'] . '">';
+			
 
 			$labeltext = $label;
 
@@ -465,7 +469,15 @@ class Form
 				$cfg['labelclass'] .= ' ' . $cfg['requiredlabelclass'];
 			}
 
-			echo '<label for="' .  $attrs['id'] . '" class="' . $horizontalleft . ' ' . $cfg['labelclass'] . '">' . $labeltext . '</label>';
+			if($this->viewmode){
+
+				echo '<div class="' . $horizontalleft . ' ' . $cfg['labelclass'] . '">' . $labeltext . '</div>';
+
+			}else{
+
+				echo '<label for="' .  $attrs['id'] . '" class="' . $horizontalleft . ' ' . $cfg['labelclass'] . '">' . $labeltext . '</label>';
+
+			}
 
 			if($cfg['horizontal']){
 
