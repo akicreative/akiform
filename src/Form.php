@@ -408,7 +408,17 @@ class Form
 			if($cfg['horizontal']){
 
 				$horizontal = 'row';
-				$horizontalleft = $cfg['horizontalleft'] . ' col-form-label';
+
+				if($this->viewmode){
+
+					$horizontalleft = $cfg['horizontalleft'];
+
+				}else{
+
+					$horizontalleft = $cfg['horizontalleft'] . ' col-form-label';
+				
+				}
+
 				$horizontalright = $cfg['horizontalright'];
 			}
 
