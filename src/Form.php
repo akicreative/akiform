@@ -851,7 +851,7 @@ class Form
 
 					if($this->viewmode){
 
-						echo '<div>';
+						echo '<div class="view-form-label">';
 
 					}elseif($type == 'checkbox-inline'){
 
