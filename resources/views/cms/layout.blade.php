@@ -14,7 +14,7 @@
 
 	@if(session()->has('staticmessage'))
 
-<div class="alert alert-danger alert-dismissible fade show d-print-none" role="alert">
+<div class="alert alert-danger alert-dismissible fade show d-print-none">
  {!! session('staticmessage') !!}
 </div>
 
