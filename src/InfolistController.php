@@ -155,7 +155,7 @@ class InfolistController extends Controller
 
         $data['position'] = $this->position($filters['category']);
     
-        return view('akiforms::infolists.home', $data);
+        return view('akiforms::infolist.home', $data);
 
     }
 
@@ -245,7 +245,7 @@ class InfolistController extends Controller
 
         $data['position'] = $this->position($filters['category']);
 
-        return view('akiforms::infolists.update', $data);
+        return view('akiforms::infolist.update', $data);
 
     }
 
