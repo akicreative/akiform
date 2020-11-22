@@ -67,7 +67,7 @@ Route::prefix('cms')->middleware(['web', 'isadmin'])->namespace('AkiCreative\Aki
 	Route::post('/lists/store', 'InfolistController@store')->name('aki.lists.store');
 	Route::get('/lists/{id}', 'InfolistController@edit')->name('aki.lists.edit');
 	Route::post('/lists/{id}/update', 'InfolistController@update')->name('aki.lists.save');
-	Route::post('/lists/orderby', 'InfolistController@orderby')->name('aki.lists.orerby');
+	Route::post('/lists/orderby', 'InfolistController@orderby')->name('aki.lists.orderby');
 	Route::post('/lists/{id}/destroy', 'InfolistController@destroy')->name('aki.lists.destroy');
 
 
