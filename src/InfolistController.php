@@ -233,7 +233,7 @@ class InfolistController extends Controller
 
         if(empty($item)){
 
-            return redirect()->route('aki.lists.home');
+            return redirect()->route('aki.lists.index');
 
         }
 
@@ -257,7 +257,7 @@ class InfolistController extends Controller
 
         if(empty($item)){
 
-            return redirect()->route('aki.lists.home');
+            return redirect()->route('aki.lists.index');
 
         }
 
@@ -327,7 +327,7 @@ class InfolistController extends Controller
 
         $item->save();
 
-        return redirect()->route('aki.lists.home');
+        return redirect()->route('aki.lists.index');
 
 
     }
@@ -401,7 +401,7 @@ class InfolistController extends Controller
         }
 
 
-        return redirect()->route('aki.lists.home');
+        return redirect()->route('aki.lists.index');
 
 
     }
@@ -419,7 +419,7 @@ class InfolistController extends Controller
 
             $item->delete();
 
-            return redirect()->route('aki.lists.home');
+            return redirect()->route('aki.lists.index');
 
         }
 
