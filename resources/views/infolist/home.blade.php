@@ -149,7 +149,7 @@ Info Lists
 				$ar = new AkiForm($errors, ['inlinelist' => true]);
 
 
-				$ar->open(['action' => route('aki.lists.orderby')];
+				$ar->open(['action' => route('aki.lists.orderby')]);
 
 				$newposition = $position;
 
