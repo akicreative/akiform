@@ -63,6 +63,13 @@ Route::prefix('cms')->middleware(['web', 'isadmin'])->namespace('AkiCreative\Aki
 	Route::get('/categories/{id}/edit', 'CategoryController@edit')->name('aki.categories.edit');
 	Route::post('/categories/{id}/update', 'CategoryController@update')->name('aki.categories.update');
 
+	Route::get('/lists', 'InfolistController@index')->name('aki.lists.index');
+	Route::post('/lists/store', 'InfolistController@store')->name('aki.lists.store');
+	Route::get('/lists/{id}', 'InfolistController@edit')->name('aki.lists.edit');
+	Route::post('/lists/{id}/update', 'InfolistController@update')->name('aki.lists.save');
+	Route::post('/lists/orderby', 'InfolistController@orderby')->name('aki.lists.orerby');
+	Route::post('/lists/{id}/destroy', 'InfolistController@destroy')->name('aki.lists.destroy');
+
 
 });
 
