@@ -9,3 +9,7 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ route('aki.page.index') }}">Page Manager</a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('aki.lists.index') }}">List Manager</a>
+      </li>
