@@ -1,4 +1,4 @@
-@extends('akiforms::cms.layout')
+@extends('akiforms::cms.app')
 
 @section('master')
 
