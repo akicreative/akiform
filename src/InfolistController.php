@@ -142,7 +142,7 @@ class InfolistController extends Controller
 
     }
 
-    public function home(Request $request)
+    public function index(Request $request)
     {
 
         $filters = $this->filters();
