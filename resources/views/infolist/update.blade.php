@@ -13,6 +13,18 @@ akiredactorxcss();
 @endsection
 
 @section('content')
+
+
+<div class="row">
+
+	<div class="col-md-3 mb-3">
+
+		@include('akiforms::infolist.sidebar')
+
+	</div>
+
+	<div class="col-md-9">
+
 <h1 class="pageh1">{{ $categories["$item->category"] }} - Edit Item</h1>
 
 <h2>{{ $types["$item->infotype"] }}</h2>
@@ -134,6 +146,10 @@ $ar->close();
 	</div>
 
 	</div>
+
+</div>
+
+</div>
 
 </div>
 

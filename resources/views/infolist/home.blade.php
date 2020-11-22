@@ -6,6 +6,16 @@ Info Lists
 
 @section('content')
 
+<div class="row">
+
+	<div class="col-md-3 mb-3">
+
+		@include('akiforms::infolist.sidebar')
+
+	</div>
+
+	<div class="col-md-9">
+
 @if($filters['category'] == '')
 <h1 class="pageh1">Info Lists</h1>
 
@@ -190,5 +200,9 @@ Info Lists
 @endif
 
 @endif
+
+</div>
+
+</div>
 
 @endsection
