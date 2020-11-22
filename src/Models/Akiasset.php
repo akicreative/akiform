@@ -101,7 +101,7 @@ class Akiasset extends Model
     static public function assetadd($category, $file, $deleteid, $c = [])
     {
 
-        $db = config('akiforms.connection.akitextblock', config('database.default'));
+        $db = config('akiforms.connection.akiasset', config('database.default'));
 
         $cfg = [];
 
@@ -183,7 +183,6 @@ class Akiasset extends Model
 
                     $tnpath = Image::make($file)->fit($cat->assettnw, $cat->assettnh, function($constraint){
 
-                        $constraint->aspectRatio();
                         $constraint->upsize();
 
                     })->orientate()->save(storage_path('app/') . $tn);
@@ -230,7 +229,7 @@ class Akiasset extends Model
 
         // Scope can be both, full, tn
 
-        $db = config('akiforms.connection.akitextblock', config('database.default'));
+        $db = config('akiforms.connection.akiasset', config('database.default'));
 
         $a = Akiasset::on($db)->find($id);
 
@@ -315,7 +314,6 @@ class Akiasset extends Model
 
                         $tnpath = Image::make($file)->fit($cat->assettnw, $cat->assettnh, function($constraint){
 
-                            $constraint->aspectRatio();
                             $constraint->upsize();
 
                         })->orientate()->save(storage_path('app/') . $tn);
@@ -364,7 +362,7 @@ class Akiasset extends Model
     static public function assetdelete($id)
     {
 
-        $db = config('akiforms.connection.akitextblock', config('database.default'));
+        $db = config('akiforms.connection.akiasset', config('database.default'));
 
         $asset = Akiasset::on($db)->find($id);
 
