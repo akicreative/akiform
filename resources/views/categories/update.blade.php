@@ -20,21 +20,23 @@ $ar->build('text', 'Name:', 'name', ['blockhelp' => 'Internal Name']);
 
 $ar->build('text', 'Slug:', 'slug', ['blockhelp' => 'This must be unique.']);
 
-$ar->build('select', 'Category:', 'category', ['selectoptions' => ['asset' => 'Assets', 'textblock' => 'Text Blocks', 'list' => 'List Group', 'other' => 'Other']]);
+if($item->cattype != 'list'){
 
-$ar->build('select', 'Hidden:', 'hidden', ['selectshortcut' => 'noyes']);
+	$ar->build('select', 'Hidden:', 'hidden', ['selectshortcut' => 'noyes']);
 
-$ar->build('select', 'Private:', 'private', ['selectshortcut' => 'noyes']);
+	$ar->build('select', 'Private:', 'private', ['selectshortcut' => 'noyes']);
 
-$ar->build('number', 'Full Size Width:', 'assetw');
+	$ar->build('number', 'Full Size Width:', 'assetw');
 
-$ar->build('number', 'Full Size Height:', 'asseth');
+	$ar->build('number', 'Full Size Height:', 'asseth');
 
-$ar->build('select', 'Thumbnail Type:', 'assettnresize', ['selectoptions' => ['resize' => 'Resize', 'fit' => 'Fit']]);
+	$ar->build('select', 'Thumbnail Type:', 'assettnresize', ['selectoptions' => ['resize' => 'Resize', 'fit' => 'Fit']]);
 
-$ar->build('number', 'Thumbnail Width:', 'assettnw');
+	$ar->build('number', 'Thumbnail Width:', 'assettnw');
 
-$ar->build('number', 'Thumbnail Height:', 'assettnh');
+	$ar->build('number', 'Thumbnail Height:', 'assettnh');
+
+}
 
 
 $ar->build('submit', 'Save');
