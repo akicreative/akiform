@@ -41,7 +41,7 @@
 
 @foreach($categories as $key => $value)
 
-	<div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"><a href="{{ route('aki.lists.home', ['go' => 'filter', 'category' => $key]) }}">{{ $value }}</a></div>
+	<div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"><a href="{{ route('aki.lists.index', ['go' => 'filter', 'category' => $key]) }}">{{ $value }}</a></div>
 
 @endforeach
 
