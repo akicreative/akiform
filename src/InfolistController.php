@@ -249,7 +249,7 @@ class InfolistController extends Controller
 
     }
 
-    public function save($id, Request $r)
+    public function update($id, Request $r)
     {
 
 
