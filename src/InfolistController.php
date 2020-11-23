@@ -162,7 +162,7 @@ class InfolistController extends Controller
     public function store(Request $r)
     {
 
-        $item = new Infolist;
+        $item = new Akiinfolist;
         $item->category = $r->input('category');
         $item->infotype = $r->input('type');
         $item->save();
