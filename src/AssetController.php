@@ -284,6 +284,7 @@ class AssetController extends Controller
 
             $asset = akiassetadd($category, $file);
 
+            $asset->name = $request->input('name');
             $asset->description = $request->input('description');
 
             $last = Akiasset::on($db)->where('category', $category)->orderBy('orderby', 'DESC')->first();
@@ -537,7 +538,7 @@ class AssetController extends Controller
         $a = Akiasset::on($db)->find($id);
 
         $a->category = $request->input('category');
-        
+        $a->name = $request->input('name');
         $a->description = $request->input('description');
 
         $assetcategory = Akicategory::on($db)->where('slug', $a->category)->first();
