@@ -11,6 +11,7 @@ class CreateAkiinfolistTable extends Migration
         Schema::create('akiform_infolists', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->boolean('active')->default(0);
             $table->string('category', 50)->nullable();
             $table->string('infotype', 50)->nullable();
             $table->string('title', 255)->nullable();

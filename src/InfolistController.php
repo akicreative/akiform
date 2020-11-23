@@ -45,7 +45,7 @@ class InfolistController extends Controller
 
         foreach($cats as $cat){
 
-            $key = $cat->id;
+            $key = $cat->slug;
 
             $return[$key] = $cat->name;
         }

@@ -11,4 +11,10 @@ class Akiinfolist extends Model
 	protected $table = 'akiform_infolists';
 
     use HasFactory;
+
+    protected $attributes = [
+
+    	'active' => 0
+
+    ];
 }
