@@ -1074,6 +1074,10 @@ if (! function_exists('akiasset')) {
 
                 return asset('storage/' . $asset->serverfilename);
 
+            }elseif($size == 'sq'){
+
+                return asset('storage/' . $asset->serverfilenamesq);
+
             }else{
 
 
@@ -1165,6 +1169,17 @@ if (! function_exists('akiasseturl')) {
                     }else{
 
                         return Storage::disk($target)->temporaryUrl($a->serverfilename, now()->addMinutes(5));
+                    }
+
+                }elseif($mode == 'sq'){
+
+                    if($scope == 'public'){
+
+                        return Storage::disk($target)->url($a->serverfilenamesq);
+
+                    }else{
+
+                        return Storage::disk($target)->temporaryUrl($a->serverfilenamesq, now()->addMinutes(5));
                     }
 
                 }else{

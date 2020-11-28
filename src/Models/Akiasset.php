@@ -281,6 +281,7 @@ class Akiasset extends Model
         $mime = $file->getClientMimeType();
         $filename = $file->getClientOriginalName();
         $tn = '';
+        $sq = '';
 
         switch($mime){
 
@@ -289,6 +290,7 @@ class Akiasset extends Model
             case "image/jpg":
 
                 $tn = 'tn_' . $hashname;
+                $sq = 'sq_' . $hashname;
 
                 if($scope == 'both' || $scope == 'full'){
 
@@ -308,27 +310,30 @@ class Akiasset extends Model
 
                 if($scope == 'both' || $scope == 'tn'){
 
-                    if($cat->assettnresize == 'resize'){
+                    //if($cat->assettnresize == 'resize'){
 
-                        $tnpath = Image::make($file)->resize($cat->assettnw, $cat->assettnh, function($constraint){
+                        $tnpath = Image::make($file)->resize($cat->assettnw, null, function($constraint){
 
                             $constraint->aspectRatio();
                             $constraint->upsize();
 
                         })->orientate()->save(storage_path('app/') . $tn);
 
-                    }else{
+                    //}else{
 
-                        $tnpath = Image::make($file)->fit($cat->assettnw, $cat->assettnh, function($constraint){
+                        $sqpath = Image::make($file)->fit($cat->assetsqw, $cat->assetsqh, function($constraint){
 
                             $constraint->upsize();
 
-                        })->orientate()->save(storage_path('app/') . $tn);
+                        })->orientate()->save(storage_path('app/') . $sq);
 
-                    }
+                    //}
 
                     $content = File::get(storage_path('app/') . $tn);
                     $result = Storage::disk($disk)->put($tn, $content);
+
+                    $content = File::get(storage_path('app/') . $sq);
+                    $result = Storage::disk($disk)->put($sq, $content);
 
                     File::delete(storage_path('app/') . $tn);
 
@@ -356,6 +361,9 @@ class Akiasset extends Model
 
             Storage::disk($disk)->delete($a->serverfilenametn);
             $a->serverfilenametn = $tn;
+
+            Storage::disk($disk)->delete($a->serverfilenamesq);
+            $a->serverfilenamesq = $sq;
         }
         
         $a->filename = $filename;
@@ -410,6 +418,12 @@ class Akiasset extends Model
         if($asset->serverfilenametn != ''){
 
             Storage::disk($disk)->delete($asset->serverfilenametn);
+
+        }
+
+        if($asset->serverfilenamesq != ''){
+
+            Storage::disk($disk)->delete($asset->serverfilenamesq);
 
         }
 
