@@ -21,8 +21,6 @@ class UpdateAkiformakiassetssquareTable extends Migration
         Schema::table('akiform_categories', function (Blueprint $table) {
             $table->integer('assetsqw')->default(400);
             $table->integer('assetsqh')->default(400);
-            $table->integer('assettnw')->default(400)->change();
-            $table->integer('assettnh')->default(400)->change();
             
         });
     }
