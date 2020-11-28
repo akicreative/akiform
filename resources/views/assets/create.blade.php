@@ -20,6 +20,12 @@ Create Asset
 
 @endif
 
+@if(isset($akisubnavurl))
+
+@include('akiforms::layouts.subnav')
+
+@endif
+
 <div class="row">
 
 	<div class="col-12 col-md-8">

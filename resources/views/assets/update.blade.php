@@ -10,6 +10,12 @@ Edit
 
 <h1>{{ $category->name }}</h1>
 
+@if(isset($akisubnavurl))
+
+@include('akiforms::layouts.subnav')
+
+@endif
+
 <? 
 
 $action = route('aki.asset.category.update', [$asset->id, $focus]);
@@ -94,6 +100,10 @@ $ar->close();
 			<h5>Thumbnail</h5>
 
 			<img src="{{ akiasseturl($asset->id, 'tn', true) }}" class="img-fluid mb-3">
+
+			<h5>Square</h5>
+
+			<img src="{{ akiasseturl($asset->id, 'sq', true) }}" class="img-fluid mb-3">
 
 		@else
 

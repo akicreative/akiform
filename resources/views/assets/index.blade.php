@@ -14,6 +14,12 @@ Assets
 
 @section('content')
 
+@if(isset($akisubnavurl))
+
+@include('akiforms::layouts.subnav')
+
+@endif
+
 <div class="mb-2">
 
 @if($focus == 'none')
