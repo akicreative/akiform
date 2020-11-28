@@ -151,6 +151,7 @@ class Akiasset extends Model
         $mime = $file->getClientMimeType();
         $filename = $file->getClientOriginalName();
         $tn = '';
+        $sq = '';
 
         switch($mime){
 
@@ -159,6 +160,7 @@ class Akiasset extends Model
             case "image/jpg":
 
                 $tn = 'tn_' . $hashname;
+                $sq = 'sq_' . $hashname;
 
                 $fullpath = Image::make($file)->resize($cat->assetw, $cat->asseth, function($constraint){
 
@@ -170,30 +172,34 @@ class Akiasset extends Model
                 $content = File::get(storage_path('app/') . $hashname);
                 $result = Storage::disk($disk)->put($hashname, $content);
 
-                if($cat->assettnresize == 'resize'){
+                //if($cat->assettnresize == 'resize'){
 
-                    $tnpath = Image::make($file)->resize($cat->assettnw, $cat->assettnh, function($constraint){
+                    $tnpath = Image::make($file)->resize($cat->assettnw, null, function($constraint){
 
                         $constraint->aspectRatio();
                         $constraint->upsize();
 
                     })->orientate()->save(storage_path('app/') . $tn);
 
-                }else{
+                //}else{
 
-                    $tnpath = Image::make($file)->fit($cat->assettnw, $cat->assettnh, function($constraint){
+                    $sqpath = Image::make($file)->fit($cat->assetsqw, $cat->assetsqh, function($constraint){
 
                         $constraint->upsize();
 
-                    })->orientate()->save(storage_path('app/') . $tn);
+                    })->orientate()->save(storage_path('app/') . $sq);
 
-                }
+                //}
 
                 $content = File::get(storage_path('app/') . $tn);
                 $result = Storage::disk($disk)->put($tn, $content);
 
+                $content = File::get(storage_path('app/') . $sq);
+                $result = Storage::disk($disk)->put($sq, $content);
+
                 File::delete(storage_path('app/') . $hashname);
                 File::delete(storage_path('app/') . $tn);
+                File::delete(storage_path('app/') . $sq);
 
                 break;
             default:
@@ -211,6 +217,7 @@ class Akiasset extends Model
         $a->category = $cat->slug;
         $a->serverfilename = $hashname;
         $a->serverfilenametn = $tn;
+        $a->serverfilenamesq = $sq;
         $a->filename = $filename;
         $a->mimetype = $mime;
         $a->save();
