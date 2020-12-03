@@ -307,7 +307,7 @@ class Form
 
 						$tempkey = $namearray[1];
 
-						$a = $this->default[$temp];
+						$a = $this->defaults[$temp];
 
 						$cfg['default'] = $a[$tempkey];
 
