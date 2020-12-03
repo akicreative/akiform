@@ -901,6 +901,15 @@ class Form
 					$name = $a[0];
 					$id = $name;
 
+					if($this->errors->has($name)){
+
+						$cfg['class'] .= ' is-invalid';
+
+						$errorfeedback = '<div class="invalid-feedback">
+				          ' . $this->errors->first($name) . '
+				        </div>';
+					}
+
 					if(is_array($cfg['checkboxmulti'])){
 
 						$name = $name . '[]';
@@ -952,6 +961,8 @@ class Form
   					$this->tabindex++;
 
   				}
+
+  				echo $errorfeedback;
 
 
 				break;
