@@ -295,11 +295,11 @@ class Form
 
 		}else{
 
-			if(array_key_exists($name, $this->defaults)){
+			$namearray = explode("-", $name);
 
-				$namearray = explode("-", $name);
+			$temp = $namearray[0];
 
-				$temp = $namearray[0];
+			if(array_key_exists($temp, $this->defaults)){
 
 				if(is_array($this->defaults[$temp])){
 
@@ -324,7 +324,7 @@ class Form
 
 				}else{
 
-					$cfg['default'] = $this->defaults[$name];
+					$cfg['default'] = $this->defaults[$temp];
 			
 
 				}
