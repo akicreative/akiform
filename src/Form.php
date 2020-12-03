@@ -297,7 +297,31 @@ class Form
 
 			if(array_key_exists($name, $this->defaults)){
 
-				$cfg['default'] = $this->defaults[$name];
+				$namearray = explode("-", $name);
+
+				$temp = $namearray[0];
+
+				if(is_array($this->defaults[$temp])){
+
+					if(array_key_exists($namearray[1], $this->defaults[$temp])){
+
+						$tempkey = $namearray[1];
+
+						$a = $this->default[$temp];
+
+						$cfg['default'] = $a[$tempkey];
+
+					}else{
+
+						$cfg['default'] = '';
+					}
+
+				}else{
+
+					$cfg['default'] = $this->defaults[$name];
+			
+
+				}
 			}
 
 		}
