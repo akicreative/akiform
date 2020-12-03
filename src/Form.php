@@ -309,13 +309,9 @@ class Form
 
 						$tempkey = $namearray[1];
 
-						echo "Tempkey: " . $tempkey . "<br>";
-
 						$a = $this->defaults[$temp][$tempkey];
 
 						$cfg['default'] = $a;
-
-						echo "A:" . $a;
 
 					}else{
 
