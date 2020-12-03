@@ -303,13 +303,19 @@ class Form
 
 				if(is_array($this->defaults[$temp])){
 
+					dump($this->defaults[$temp]);
+
 					if(array_key_exists($namearray[1], $this->defaults[$temp])){
 
 						$tempkey = $namearray[1];
 
-						$a = $this->defaults[$temp];
+						echo "Tempkey: " . $tempkey . "<br>";
 
-						$cfg['default'] = $a[$tempkey];
+						$a = $this->defaults[$temp][$tempkey];
+
+						$cfg['default'] = $a;
+
+						echo "A:" . $a;
 
 					}else{
 
