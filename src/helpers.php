@@ -1359,6 +1359,34 @@ if (! function_exists('akitelegramsend')) {
 
 }
 
+if (! function_exists('akisetjsonfield')) {
+
+    function akisetjsonfield($field)
+    {
+   
+        $prefix = $field . '-';
+
+        $a = [];
+
+        foreach(request()->all() as $key => $value){
+
+            if(preg_match("!^" . $prefix . "!", $key)){
+
+                $array = explode("-", $key);
+
+                $newkey = $array[1];
+
+                $a[$newkey] = $value;
+
+            }
+        }
+
+        return $a;
+
+    }
+
+}
+
 if (! function_exists('akimoney')) {
 
     function akimoney($amount, $integer = false)
