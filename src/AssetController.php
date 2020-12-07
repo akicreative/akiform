@@ -936,6 +936,12 @@ class AssetController extends Controller
             $target = env('AKIASSETPRIVATE', 'local');
         }
 
+        if($target != 'local'){
+
+            return Storage::disk($target)->download($a->serverfilename, $a->filename);
+
+        }
+
         if($scope == 'public'){
 
             $url = Storage::disk($target)->url($a->serverfilename);
