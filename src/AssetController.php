@@ -947,7 +947,7 @@ class AssetController extends Controller
 
         return response()->streamDownload(function(){
 
-            echo file_get_contets($url); 
+            echo file_get_contents($url); 
 
         }, $a->filename);
 
