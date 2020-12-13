@@ -439,7 +439,7 @@ class Form
 
 				}else{
 
-					$horizontalleft = $cfg['horizontalleft'] . ' col-form-label';
+					$horizontalleft = $cfg['horizontalleft'] . ' col-form-label text-nowrap';
 				
 				}
 
