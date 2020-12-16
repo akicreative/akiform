@@ -34,6 +34,7 @@ class Form
 	var $formgroupclass = '';
 	var $labelclass = '';
 	var $requiredappend = '';
+	var $requiredprepend = '';
 	var $requiredlabelclass = '';
 
 	private function parse($args, $arguments)
@@ -262,6 +263,7 @@ class Form
 			'formgroupclass' => $this->formgroupclass,
 			'groupmb' => 'mb-2',
 			'requiredappend' => $this->requiredappend,
+			'requiredprepend' => $this->requiredprepend,
 			'requiredlabelclass' => $this->requiredlabelclass,
 			'readonly' => false,
 			'fileshow' => true,
@@ -495,7 +497,12 @@ class Form
 
 			if($cfg['required'] && $cfg['requiredappend'] != ''){
 
-				$labeltext .= ' ' . $cfg['requiredappend'];
+				$labeltext .= $cfg['requiredappend'];
+			}
+
+			if($cfg['required'] && $cfg['requiredprepend'] != ''){
+
+				$labeltext = $cfg['requiredprepend'] . $labeltext;
 			}
 
 			if($cfg['required'] && $cfg['requiredlabelclass'] != ''){
