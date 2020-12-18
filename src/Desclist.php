@@ -31,7 +31,7 @@ class Desclist
 
 	public function close(){
 
-		if($this->type == 'desclist'){
+		if($this->type == 'listgroup'){
 
 			echo '</div>';
 
