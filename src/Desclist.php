@@ -10,26 +10,52 @@ namespace AkiCreative\AkiForms;
 class Desclist
 {
 
+	var $type = 'desclist';
 	var $dtclass = '';
 	var $ddclass = '';
 
 	public function open($class = ''){
 
-		echo '<dl class="row ' . $class . '">';
+		if($this->type == 'listgroup'){
+
+			echo '<div class="list-group ' . $class . '">';
+
+		}else{
+
+
+			echo '<dl class="row ' . $class . '">';
+
+		}
 
 	}
 
 	public function close(){
 
-		echo '</dl>';
+		if($this->type == 'desclist'){
+
+			echo '</div>';
+
+		}else{
+
+			echo '</dl>';
+
+		}
 
 	}
 
-	public function line($dt, $dd, $dtclass = '', $ddclass = ''){
+	public function line($dt, $dd = '', $dtclass = '', $ddclass = ''){
 
-		echo '<dt class="' . $this->dtclass . ' ' . $dtclass . '">' . $dt . '</dt>';
+		if($this->type == 'listgroup'){
 
-        echo '<dd class="' . $this->ddclass . ' '. $ddclass . '">' . $dd . '</dd>'; 
+			echo '<div class="list-group-item ' . $dtclass . '">' . $dt . '</div>';
+
+		}else{
+
+			echo '<dt class="' . $this->dtclass . ' ' . $dtclass . '">' . $dt . '</dt>';
+
+        	echo '<dd class="' . $this->ddclass . ' '. $ddclass . '">' . $dd . '</dd>'; 
+
+    	}
 
 	}
 
