@@ -31,7 +31,7 @@ class Desclist
 
 		}
 
-		$this->openclass = $openclass;
+		$this->openclass = $class;
 
 	}
 
