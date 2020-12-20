@@ -27,7 +27,7 @@ class Desclist
 		}else{
 
 
-			echo '<dl class="row ' . $class . '">';
+			echo '<dl class="row ' . $class . ' mb-0">';
 
 		}
 
