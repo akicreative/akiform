@@ -16,7 +16,7 @@ class Desclist
 	var $ddclass = 'col-12 col-md-9';
 	var $trueicon = '<i class="fa fa-check text-success fa-lg fa-fw"></i>';
 	var $falseicon = '<i class="fa fa-close fa-lg fa-fw invisible"></i>';
-	var $hr = '<hr class="my-1">';
+	var $hr = '<hr class="my-2">';
 
 	public function open($class = ''){
 
