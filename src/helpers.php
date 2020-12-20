@@ -1,5 +1,20 @@
 <?php
 
+if (! function_exists('akiavalue')) {
+
+    function akiavalue($array, $key, $default = '') {
+        
+        if(array_key_exists($key, $array)){
+
+            return $array[$key];
+
+        }else{
+
+            return $default;
+        }
+    }
+}
+
 if (! function_exists('akiformsprovinces')) {
 
     function akiformsprovinces() {
