@@ -10,11 +10,13 @@ namespace AkiCreative\AkiForms;
 class Desclist
 {
 
+	var $openclass = '';
 	var $type = 'desclist';
 	var $dtclass = 'col-12 col-md-4';
 	var $ddclass = 'col-12 col-md-8';
 	var $trueicon = '<i class="fa fa-check text-success fa-lg fa-fw"></i>';
 	var $falseicon = '<i class="fa fa-close fa-lg fa-fw invisible"></i>';
+	var $hr = '<hr class="my-1">';
 
 	public function open($class = ''){
 
@@ -28,6 +30,8 @@ class Desclist
 			echo '<dl class="row ' . $class . '">';
 
 		}
+
+		$this->openclass = $openclass;
 
 	}
 
@@ -58,6 +62,22 @@ class Desclist
         	echo '<dd class="' . $this->ddclass . ' '. $ddclass . '">' . $dd . '</dd>'; 
 
     	}
+
+	}
+
+	public function divider($hr = ''){
+
+		$this->close();
+
+		if($hr != ''){
+
+			echo $hr;
+		}else{
+
+			echo $this->hr;
+		}
+
+		$this->open($this->openclass);
 
 	}
 
