@@ -13,7 +13,7 @@ class Desclist
 	var $type = 'desclist';
 	var $dtclass = 'col-12 col-md-4';
 	var $ddclass = 'col-12 col-md-8';
-	var $trueicon = '<i class="fa fa-check text-success fa-lg"></a>';
+	var $trueicon = '<i class="fa fa-check text-success fa-lg fa-fw"></i>';
 	var $falseicon = '';
 
 	public function open($class = ''){
@@ -61,7 +61,7 @@ class Desclist
 
 	}
 
-	public function bool($value, $dd = '', $dtclass = 'col-1', $ddclass = 'col-11'){
+	public function bool($value, $dd = '', $dtclass = 'col-12', $ddclass = ''){
 
 		if($value){
 
@@ -77,9 +77,15 @@ class Desclist
 
 		}else{
 
-			echo '<dt class="' . $dtclass . '">' . $icon . '</dt>';
+			if($ddclass == ''){
 
-        	echo '<dd class="' . $ddclass . '">' . $dd . '</dd>'; 
+				echo '<dt class="' . $dtclass . '">' . $icon . ' ' . $dd . '</dt>'; 
+
+			}else{
+
+				echo '<dt class="' . $dtclass . '">' . $icon . '</dt>'; 
+				echo '<dd class="' . $ddclass . '">' . $dd . '</dd>'; 
+			}
 
     	}
 
