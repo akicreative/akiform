@@ -14,7 +14,7 @@ class Desclist
 	var $dtclass = 'col-12 col-md-4';
 	var $ddclass = 'col-12 col-md-8';
 	var $trueicon = '<i class="fa fa-check text-success fa-lg fa-fw"></i>';
-	var $falseicon = '';
+	var $falseicon = '<i class="fa fa-close fa-lg fa-fw invisible"></i>';
 
 	public function open($class = ''){
 
