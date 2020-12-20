@@ -11,8 +11,8 @@ class Desclist
 {
 
 	var $type = 'desclist';
-	var $dtclass = '';
-	var $ddclass = '';
+	var $dtclass = 'col-12 col-md-4';
+	var $ddclass = 'col-12 col-md-8';
 
 	public function open($class = ''){
 
