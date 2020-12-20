@@ -305,19 +305,28 @@ class Form
 
 				if(is_array($this->defaults[$temp])){
 
-					if(array_key_exists($namearray[1], $this->defaults[$temp])){
+					if(array_key_exists(1, $namearray)){ // Json Group
 
-						$tempkey = $namearray[1];
+						if(array_key_exists($namearray[1], $this->defaults[$temp])){
 
-						$a = $this->defaults[$temp][$tempkey];
+							$tempkey = $namearray[1];
 
-						$cfg['default'] = $a;
+							$a = $this->defaults[$temp][$tempkey];
+
+							$cfg['default'] = $a;
+
+						}else{
+
+							$cfg['default'] = '';
+						}
 
 					}else{
 
-						$cfg['default'] = '';
+						$cfg['default'] = $this->defaults[$temp];
+
 					}
 
+					
 				}else{
 
 					$cfg['default'] = $this->defaults[$temp];
