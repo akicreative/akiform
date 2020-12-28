@@ -471,13 +471,13 @@ class Form
 						$horizontal .= ' mb-2';
 						break;
 					case "show":
-						$horizontal .= ' mb-1';
+						$horizontal .= ' mb-2';
 						$horizontalright .= ' pt-1';
 						break;
 					case "switch":
 					case "checkbox":
 					case "checkbox-inline":
-						$horizontal .= ' mb-1';
+						$horizontal .= ' mb-2';
 						$horizontalright .= ' pt-1';
 					case "button":
 					case "submit":
@@ -486,7 +486,7 @@ class Form
 
 						break;
 					default: 
-						$horizontal .= ' mb-1';
+						$horizontal .= ' mb-2';
 						break;
 				}
 
