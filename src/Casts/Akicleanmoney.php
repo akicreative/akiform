@@ -18,6 +18,11 @@ class Akicleanmoney implements CastsAttributes
     public function get($model, $key, $value, $attributes)
     {
         
+        if($value == null){
+
+            return 0;
+        }
+
 		return $value / 100;
     }
 
