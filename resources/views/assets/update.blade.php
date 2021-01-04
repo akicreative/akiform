@@ -101,9 +101,13 @@ $ar->close();
 
 			<img src="{{ akiasseturl($asset->id, 'tn', true) }}" class="img-fluid mb-3">
 
+			@if($asset->serverfilenamesq != '')
+
 			<h5>Square</h5>
 
 			<img src="{{ akiasseturl($asset->id, 'sq', true) }}" class="img-fluid mb-3">
+
+			@endif
 
 		@else
 
