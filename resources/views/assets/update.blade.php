@@ -6,6 +6,8 @@ Edit
 
 @section('content')
 
+HERE: {{ $akisubnavurl }}
+
 @if(isset($akisubnavurl))
 
 @include('akiforms::layouts.subnav')
