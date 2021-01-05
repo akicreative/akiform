@@ -6,15 +6,17 @@ Edit
 
 @section('content')
 
-HERE: {{ $akisubnavurl }}
+YES
 
 @if(isset($akisubnavurl))
+
+NO
 
 @include('akiforms::layouts.subnav')
 
 @endif
 
-<div class="container">
+<div class="container-fluid">
 
 @if($focus != 'none')
 
