@@ -6,6 +6,8 @@ Create Asset
 
 @section('content')
 
+<div class="container">
+
 @if($focus != 'none')
 
 <h1>{{ $category->name }}</h1>
@@ -86,6 +88,8 @@ $ar->close();
 
 
 	</div>
+
+</div>
 
 </div>
 

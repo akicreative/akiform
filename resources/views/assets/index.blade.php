@@ -20,6 +20,8 @@ Assets
 
 @endif
 
+<div class="container">
+
 <div class="mb-2">
 
 @if($focus == 'none')
@@ -164,5 +166,7 @@ $ar->close();
 ?>
 
 @endif
+
+</div>
 
 @endsection
