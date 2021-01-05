@@ -14,6 +14,14 @@ akiredactorxcss();
 
 @section('content')
 
+@if(isset($akisubnavurl))
+
+@include('akiforms::layouts.subnav')
+
+@endif
+
+<div class="container">
+
 <h1>{{ $text->name }}</h1>
 
 <?
@@ -46,6 +54,8 @@ $ar->close();
 
 ?>
 
+</div>
+
 @endsection
 
 @section('scripts')
@@ -56,5 +66,7 @@ akiredactorxjs(akiredactorxplugins(), ['upload' => 'upload']);
 
 
 ?>
+
+
 
 @endsection

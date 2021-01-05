@@ -6,6 +6,14 @@ Categories
 
 @section('content')
 
+@if(isset($akisubnavurl))
+
+@include('akiforms::layouts.subnav')
+
+@endif
+
+<div class="container-fluid">
+
 <table class="table table-striped table-bordered table-sm">
 
 <tr><th></th><th>Slug</th><th>Name</th><th>Type</th></tr>
@@ -44,5 +52,7 @@ Categories
 @endforeach
 
 </table>
+
+</div>
 
 @endsection

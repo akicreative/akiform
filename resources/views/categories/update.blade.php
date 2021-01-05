@@ -6,6 +6,14 @@ Update Category
 
 @section('content')
 
+@if(isset($akisubnavurl))
+
+@include('akiforms::layouts.subnav')
+
+@endif
+
+<div class="container">
+
 <h1>{{ $item->name }}</h1>
 
 <?
@@ -44,5 +52,7 @@ $ar->build('submit', 'Save');
 $ar->close();
 
 ?>
+
+</div>
 
 @endsection

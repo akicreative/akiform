@@ -6,6 +6,14 @@ Info Lists
 
 @section('content')
 
+@if(isset($akisubnavurl))
+
+@include('akiforms::layouts.subnav')
+
+@endif
+
+<div class="container-fluid">
+
 <div class="row">
 
 	<div class="col-md-3 mb-3">
@@ -200,6 +208,8 @@ Info Lists
 @endif
 
 @endif
+
+</div>
 
 </div>
 

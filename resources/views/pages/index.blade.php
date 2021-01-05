@@ -6,6 +6,14 @@ Pages
 
 @section('content')
 
+@if(isset($akisubnavurl))
+
+@include('akiforms::layouts.subnav')
+
+@endif
+
+<div class="container-fluid">
+
 <table class="table table-striped table-bordered table-sm">
 
 <tr><th></th><th>Page Title</th><th></th></tr>
@@ -38,5 +46,7 @@ Pages
 @endforeach
 
 </table>
+
+</div>
 
 @endsection

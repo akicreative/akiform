@@ -14,6 +14,14 @@ akiredactorxcss();
 
 @section('content')
 
+@if(isset($akisubnavurl))
+
+@include('akiforms::layouts.subnav')
+
+@endif
+
+<div class="container">
+
 <h1>{{ $page->pagetitle }}</h1>
 
 <?
@@ -38,6 +46,8 @@ $ar->build('submit', 'Save');
 $ar->close();
 
 ?>
+
+</div>
 
 @endsection
 

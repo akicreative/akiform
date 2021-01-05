@@ -14,6 +14,13 @@ akiredactorxcss();
 
 @section('content')
 
+@if(isset($akisubnavurl))
+
+@include('akiforms::layouts.subnav')
+
+@endif
+
+<div class="container">
 
 <div class="row">
 
@@ -146,6 +153,8 @@ $ar->close();
 	</div>
 
 	</div>
+
+</div>
 
 </div>
 
