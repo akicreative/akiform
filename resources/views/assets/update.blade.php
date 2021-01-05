@@ -6,11 +6,7 @@ Edit
 
 @section('content')
 
-YES
-
 @if(isset($akisubnavurl))
-
-NO
 
 @include('akiforms::layouts.subnav')
 
