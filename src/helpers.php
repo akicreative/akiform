@@ -1830,6 +1830,66 @@ EOT;
 
 }
 
+if (! function_exists('akitoastie')) {
+
+    function akitoastie($placement = 'bottom')
+    {
+
+        $route = route('aki.toast');
+
+        if($placement == 'top'){
+echo <<<EOT
+<div id="toastcontainer" style="position: fixed; top: 10px; right: 10px; z-index: 5000;">
+</div>
+EOT;
+        }elseif($placement == 'middle'){
+
+echo <<<EOT
+<div id="toastcontainer" aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center" style="height: 200px; z-index: 5000;">
+EOT;
+
+
+        }else{
+
+echo <<<EOT
+<div id="toastcontainer" style="position: fixed; bottom: 10px; right: 10px; z-index: 5000;">
+</div>
+EOT;
+
+        }
+
+
+
+echo <<<EOT
+<script type="text/javascript">
+
+function addToast(header, body, headerclass, delay){
+
+    if(typeof headerclass === 'undefined'){
+
+        headerclass = '';
+    }
+
+    if(typeof delay === 'undefined'){
+
+        delay = 5000;
+    }
+
+    $.post('{$route}', { header: header, body: body, headerclass: headerclass, delay: delay }, function(result) {
+
+        $('#toastcontainer').append(result);
+
+    });
+
+}
+
+</script>
+EOT;
+
+    }
+
+}
+
 if(!function_exists('akiphpvalidation')) {
 
     function akiphpvalidation($url = '')
