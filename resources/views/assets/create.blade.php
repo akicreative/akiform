@@ -6,6 +6,13 @@ Create Asset
 
 @section('content')
 
+
+@if(isset($akisubnavurl))
+
+@include('akiforms::layouts.subnav')
+
+@endif
+
 <div class="container">
 
 @if($focus != 'none')
@@ -22,11 +29,6 @@ Create Asset
 
 @endif
 
-@if(isset($akisubnavurl))
-
-@include('akiforms::layouts.subnav')
-
-@endif
 
 <div class="row">
 

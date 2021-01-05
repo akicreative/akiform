@@ -6,17 +6,19 @@ Edit
 
 @section('content')
 
+@if(isset($akisubnavurl))
+
+@include('akiforms::layouts.subnav')
+
+@endif
+
 <div class="container">
 
 @if($focus != 'none')
 
 <h1>{{ $category->name }}</h1>
 
-@if(isset($akisubnavurl))
 
-@include('akiforms::layouts.subnav')
-
-@endif
 
 <? 
 
