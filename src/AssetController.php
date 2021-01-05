@@ -32,8 +32,8 @@ class AssetController extends Controller
 	public function __construct()
 	{
 
-        view()->share('akisubnavurl', session('akisubnavurl', route('aki.asset.index')));
-        view()->share('akisubnavtitle', session('akisubnavtitle', 'Assets'));
+        view()->share('akisubnavurl', route('aki.asset.index'));
+        view()->share('akisubnavtitle', 'Assets');
 
         $akisubnav = [];
 
@@ -482,6 +482,10 @@ class AssetController extends Controller
         }
 
         if($focus == 'none'){
+
+            session()->forget('akisubnavtitle');
+
+            session()->forget('akisubnavurl');
 
             $cats = Akicategory::selectoptions('asset', true, $cat->private);
 
