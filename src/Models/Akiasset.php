@@ -60,15 +60,30 @@ class Akiasset extends Model
             $cfg[$key] = $value;
         }
 
-        $path = asset('storage/' . $asset->serverfilename);
-        $mdpath = asset('storage/' . $asset->serverfilename);
-        $smpath = asset('storage/' . $asset->serverfilenametn);
+        $db = config('akiforms.connection.akiasset', config('database.default'));
 
-        if($cfg['custompath'] != ''){
+        $target = env('AKIASSETPUBLIC', 'local');
 
-            $path = $cfg['custompath'] . $asset->serverfilename;
-            $mdpath = $cfg['custompath'] . $asset->serverfilename;
-            $smpath = $cfg['custompath'] . $asset->serverfilenametn;
+        if($target != 'local'){
+
+            $path = $asset->url('full');
+            $mdpath = $asset->url('full');
+            $smpath = $asset->url('tn');
+
+
+        }else{
+
+            $path = asset('storage/' . $asset->serverfilename);
+            $mdpath = asset('storage/' . $asset->serverfilename);
+            $smpath = asset('storage/' . $asset->serverfilenametn);
+
+            if($cfg['custompath'] != ''){
+
+                $path = $cfg['custompath'] . $asset->serverfilename;
+                $mdpath = $cfg['custompath'] . $asset->serverfilename;
+                $smpath = $cfg['custompath'] . $asset->serverfilenametn;
+
+            }
 
         }
 
