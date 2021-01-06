@@ -625,6 +625,12 @@ class Form
 
 						echo '<a href="' . $imageurl . '" target="_blank"><img src="' . akiasseturl($cfg['fileassetid'], 'sq') . '" class="img-fluid my-2"></a>';
 
+					}elseif($cfg['fileshow'] == 'full' && $cfg['fileassetid'] > 0){
+
+						$imageurl = akiasseturl($cfg['fileassetid']);
+
+						echo '<a href="' . $imageurl . '" target="_blank"><img src="' . akiasseturl($cfg['fileassetid'], 'full') . '" class="img-fluid my-2"></a>';
+
 					}elseif($cfg['fileshow'] == 'image' && $cfg['fileassetid'] > 0){
 
 						$imageurl = akiasseturl($cfg['fileassetid']);
