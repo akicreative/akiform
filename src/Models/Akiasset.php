@@ -98,6 +98,96 @@ class Akiasset extends Model
 
     }
 
+    public function url($mode = 'full', $auth = false)
+    {
+
+        $a = $this;
+
+        $db = config('akiforms.connection.akiasset', config('database.default'));
+
+        $c = \AkiCreative\AkiForms\Models\Akicategory::on($db)->where('slug', $a->category)->first();
+
+        $scope = 'public';
+
+        $target = env('AKIASSETPUBLIC', 'local');
+
+        if($c->private){
+
+            $scope = 'private';
+
+            $target = env('AKIASSETPRIVATE', 'local');
+        }
+
+        if($scope == 'private' && !$auth){
+
+            return '#';
+        }
+
+        if($target != 'local'){
+
+            if($a->type() == "image"){
+
+                if($mode == 'full'){
+
+                    if($scope == 'public'){
+
+                        return Storage::disk($target)->url($a->serverfilename);
+
+                    }else{
+
+                        return Storage::disk($target)->temporaryUrl($a->serverfilename, now()->addMinutes(5));
+                    }
+
+                }elseif($mode == 'sq' && $a->serverfilenamesq != ''){
+
+                    if($scope == 'public'){
+
+                        return Storage::disk($target)->url($a->serverfilenamesq);
+
+                    }else{
+
+                        return Storage::disk($target)->temporaryUrl($a->serverfilenamesq, now()->addMinutes(5));
+                    }
+
+                }else{
+
+                    if($scope == 'public'){
+
+                        return Storage::disk($target)->url($a->serverfilenametn);
+
+                    }else{
+
+                        return Storage::disk($target)->temporaryUrl($a->serverfilenametn, now()->addMinutes(5));
+                    }
+                }
+
+            }else{
+
+                return route('aki.asset.aws', [$a->id, $a->serverfilename]);
+
+            }
+
+
+        }else{
+
+            if($mode == 'full' || $a->type() != 'image'){
+
+                $fn = preg_replace("!^(.*?\/)?!", "", $a->serverfilename);
+
+                return route('aki.asset.' . $scope, [$id, $fn]);
+            
+            }else{
+
+                $fn = preg_replace("!^(.*?\/)?!", "", $a->serverfilenametn);
+
+                return route('aki.asset.' . $scope, [$id, $fn]);
+
+            }
+
+        }
+
+    }
+
     static public function assetadd($category, $file, $deleteid, $c = [])
     {
 

@@ -18,14 +18,6 @@ class InfolistController extends Controller
      * @return void
      */
 
-    public function __construct()
-    {
-
-        view()->share('akisubnavurl', route('aki.lists.index'));
-        view()->share('akisubnavtitle', 'Lists');
-
-    
-    }
 
     private function types()
     {
@@ -98,6 +90,9 @@ class InfolistController extends Controller
 
         view()->share('types', $this->types());
         view()->share('categories', $this->categories());
+
+        view()->share('akisubnavurl', route('aki.lists.index'));
+        view()->share('akisubnavtitle', 'Lists');
 
     }
 
