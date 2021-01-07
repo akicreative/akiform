@@ -49,7 +49,7 @@ class Desclist
 
 	}
 
-	public function line($dt, $dd = '', $dtclass = '', $ddclass = ''){
+	public function line($dt, $dd = '', $dtclass = '', $ddclass = '', $divider = false){
 
 		if($this->type == 'listgroup'){
 
@@ -60,6 +60,12 @@ class Desclist
 			echo '<dt class="' . $this->dtclass . ' ' . $dtclass . '">' . $dt . '</dt>';
 
         	echo '<dd class="' . $this->ddclass . ' '. $ddclass . '">' . $dd . '</dd>'; 
+
+    	}
+
+    	if($divider){
+
+    		$this->divider();
 
     	}
 
