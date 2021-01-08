@@ -60,7 +60,7 @@ $ar->close();
 
 		<td>
 
-			{{ $cats[$cat])}}
+			{{ $cats[$cat] }}
 
 		</td>
 
