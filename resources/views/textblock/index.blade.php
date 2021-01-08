@@ -14,6 +14,30 @@ Text Blocks
 
 <div class="container-fluid">
 
+<div class="card mb-3">
+
+	<div class="card-body">
+
+	<?
+
+$ar = new AkiForm($errors, ['inlinelist' => true, 'size' => '']);
+
+$ar->open(['method' => 'GET']);
+
+$ar->build('select', 'category', 'category', ['selectoptions' => ['all' => 'All Categories'] + $cats, 'default' => session('textblockcategory', 'textblockgeneral')]);
+
+$ar->build('submit', 'GO');
+
+$ar->hidden('go', 'filter');
+
+$ar->close();
+
+?>		
+
+	</div>
+
+	</div>
+
 <table class="table table-striped table-bordered table-sm">
 
 <tr><th></th><th>Name</th><th></th></tr>

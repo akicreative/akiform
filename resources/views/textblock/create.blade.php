@@ -20,6 +20,14 @@ $ar = new AkiForm($errors, ['horizontal' => true]);
 
 $ar->open(['action' => route('aki.textblock.store')]);
 
+$fill = [
+
+	'category' => request()->old('category', session('textblockcategory'));
+
+];
+
+$ar->fill($fill);
+
 $ar->build('text', 'Name:', 'name', ['blockhelp' => 'Internal Name']);
 
 $ar->build('select', 'Category:', 'category', ['selectoptions' => $cats]);

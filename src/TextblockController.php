@@ -14,6 +14,8 @@ class TextblockController extends Controller
 	public function __construct()
 	{
 
+        view()->share('cats', Akicategory::selectoptions('textblock'));
+
         view()->share('akisubnavurl', route('aki.textblock.index'));
         view()->share('akisubnavtitle', 'Text Blocks');
 
@@ -21,7 +23,7 @@ class TextblockController extends Controller
 
         $akisubnavform = '
         <form class="form-inline my-2 my-lg-0">
-          <a href="' . action('\AkiCreative\AkiForms\TextblockController@create') . '" class="btn btn-secondary my-2 my-sm-0">ADD</a>
+          <a href="' . action('\AkiCreative\AkiForms\TextblockController@create') . '" class="btn btn-success btn-sm my-2 my-sm-0">ADD</a>
         </form>
         ';
 
@@ -46,10 +48,6 @@ class TextblockController extends Controller
     public function create(){
 
         $data['centercolumn'] = 8;
-
-        $cats = Akicategory::selectoptions('textblock');
-
-        $data['cats'] = $cats;
 
         return view('akiforms::textblock.create', $data);
                 
