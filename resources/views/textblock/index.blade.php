@@ -40,15 +40,27 @@ $ar->close();
 
 <table class="table table-striped table-bordered table-sm">
 
-<tr><th></th><th>Name</th><th></th></tr>
+<tr><th></th><th>Category</th><th>Name</th><th></th></tr>
 
 @foreach($rows as $row)
+
+	<?
+
+	$cat = $row->category;
+
+	?>
 
 	<tr>
 
 		<td>
 
 			<a href="{{ route('aki.textblock.edit', [$row->id]) }}" class="btn btn-sm btn-primary">EDIT</a>
+
+		</td>
+
+		<td>
+
+			{{ $cats[$cat])}}
 
 		</td>
 

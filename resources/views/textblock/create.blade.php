@@ -22,7 +22,7 @@ $ar->open(['action' => route('aki.textblock.store')]);
 
 $fill = [
 
-	'category' => request()->old('category', session('textblockcategory'));
+	'category' => request()->old('category', session('textblockcategory'))
 
 ];
 
