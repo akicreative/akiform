@@ -35,9 +35,24 @@ class TextblockController extends Controller
 
 	public function index(){
 
+        if(request()->input('go') == 'filter'){
+
+            session(['textblockcategory' => request()->input('category', 'all')]);
+
+        }
+
+        $category = session('textblockcategory', 'all');
+
         $db = config('akiforms.connection.akitextblock', config('database.default'));
 
-        $rows = Akitextblock::on($db)->orderBy('category', 'ASC')->orderBy('name', 'ASC')->get();
+        $rows = Akitextblock::on($db);
+
+        if($category != 'all'){
+
+            $rows->where('category', $category);
+        }
+
+        $rows = $rows->orderBy('category', 'ASC')->orderBy('name', 'ASC')->get();
 
         $data['rows'] = $rows;
 
