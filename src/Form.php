@@ -36,6 +36,7 @@ class Form
 	var $requiredappend = '';
 	var $requiredprepend = '';
 	var $requiredlabelclass = '';
+	var $alertmessage = '';
 
 	private function parse($args, $arguments)
 	{
@@ -162,6 +163,22 @@ class Form
 		}
 
 		$this->openform = true;
+
+		if($this->alertmessage != ''){
+
+			$alertmessage = $this->alertmessage;
+
+			if(session()->has($alertmessage)){
+
+				echo '<div class="alert alert-danger">';
+
+			    echo session($alertmessage);
+
+				echo '</div>';
+
+			}
+
+		}
 
 	}
 
