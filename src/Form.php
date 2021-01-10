@@ -36,7 +36,7 @@ class Form
 	var $requiredappend = '';
 	var $requiredprepend = '';
 	var $requiredlabelclass = '';
-	var $alertmessage = '';
+	var $alertmessage = 'formmessage';
 
 	private function parse($args, $arguments)
 	{
