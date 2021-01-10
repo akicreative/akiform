@@ -170,7 +170,7 @@ class Form
 
 			if(session()->has($alertmessage)){
 
-				echo '<div class="alert alert-danger">';
+				echo '<div class="alert alert-danger mb-3">';
 
 			    echo session($alertmessage);
 
