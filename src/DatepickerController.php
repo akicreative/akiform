@@ -39,6 +39,10 @@ class DatepickerController extends Controller
             $yearstart = $defaultyear;
         }
 
+        echo $default . '- Default<br>';
+        echo $yearstart . '- Year Start<br>';
+
+
 
         $yearend = request()->input('yearend', date("Y") + 5);
 
