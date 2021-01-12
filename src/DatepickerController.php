@@ -39,11 +39,6 @@ class DatepickerController extends Controller
             $yearstart = $defaultyear;
         }
 
-        echo $default . '- Default<br>';
-        echo $yearstart . '- Year Start<br>';
-
-
-
         $yearend = request()->input('yearend', date("Y") + 5);
 
         if($defaultyear > $yearend){
@@ -63,6 +58,16 @@ class DatepickerController extends Controller
         $currentday = date("d", $current);
         $currentmonth = date("m", $current);
         $currentyear = date("Y", $current);
+
+        if($currentyear < $yearstart){
+
+            $yearstart = $currentyear;
+        }
+
+        if($currentyear > $yearend){
+
+            $yearend = $currentyear;
+        }
 
         $prev = date("Y-m-01", mktime(0, 0, 0, $currentmonth - 1, 1, $currentyear));
         $next = date("Y-m-01", mktime(0, 0, 0, $currentmonth + 1, 1, $currentyear));
