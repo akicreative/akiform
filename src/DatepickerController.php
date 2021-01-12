@@ -30,7 +30,7 @@ class DatepickerController extends Controller
 
         $default = request()->input('default', date("Y-m-d"));
 
-        $defaultyear = date("Y");
+        $defaultyear = date("Y", strtotime($default));
 
         $yearstart = request()->input('yearstart', date("Y"));
 
