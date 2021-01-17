@@ -37,6 +37,7 @@ class Form
 	var $requiredprepend = '';
 	var $requiredlabelclass = '';
 	var $alertmessage = 'formmessage';
+	var $alertmessageauto = false;
 
 	private function parse($args, $arguments)
 	{
@@ -164,7 +165,23 @@ class Form
 
 		$this->openform = true;
 
-		if($this->alertmessage != ''){
+		if($this->alertmessageauto && count($this->errors->all()) > 0){
+
+			echo '<div class="alert alert-danger mb-3">';
+
+				echo '<ul class="list-unstyled mb-0">';
+
+			    foreach($this->errors->all() as $message){
+
+			    	echo '<li>' . $message . '</li>';
+
+			    }
+
+			    echo '</ul>';
+
+			echo '</div>';
+
+		}elseif($this->alertmessage != ''){
 
 			$alertmessage = $this->alertmessage;
 
