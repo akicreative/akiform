@@ -169,7 +169,7 @@ class Form
 
 			echo '<div class="alert alert-danger mb-3">';
 
-				echo '<ul class="list-unstyled mb-0">';
+				echo '<ul class="mb-0">';
 
 			    foreach($this->errors->all() as $message){
 
