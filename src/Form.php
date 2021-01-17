@@ -758,7 +758,7 @@ class Form
 						echo '<input type="hidden" name="' . $name . '" value="' . $cfg['default'] . '">';
 					}
 
-					echo '<select class="form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . ' ' . $readonly . '>';
+					echo '<select class="form-control form-select ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . ' ' . $readonly . '>';
 
 					
 
