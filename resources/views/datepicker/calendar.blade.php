@@ -120,11 +120,12 @@ for($r = 1; $r <= $totalrows; $r++){
 
 	        if(date("Y-m-d") == date("Y-m-d", $showingtime)){
 
-	            $btnclass .= ' text-primary';
-
 	            if($default == $showingday){
 
 	            	$btnclass .= ' btn-success text-white';
+	            }else{
+
+	            	$btnclass .= 'text-primary';
 	            }
 	        
 	        }else{
