@@ -124,7 +124,7 @@ for($r = 1; $r <= $totalrows; $r++){
 
 	            if($default == $showingday){
 
-	            	$btnclass .= ' btn-success';
+	            	$btnclass .= ' btn-success text-white';
 	            }
 	        
 	        }else{
