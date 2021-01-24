@@ -38,6 +38,7 @@ class Form
 	var $requiredlabelclass = '';
 	var $alertmessage = 'formmessage';
 	var $alertmessageauto = false;
+	var $bootstrapversion = 4;
 
 	private function parse($args, $arguments)
 	{
@@ -146,7 +147,7 @@ class Form
 			echo csrf_field();
 
 		}
-
+ 
 		if($fill){
 
 			$this->fill($fill);
@@ -648,8 +649,16 @@ class Form
 
 				}else{
 
+					if($this->bootstrapversion == 5){
+
+						$formclass = 'form-control';
+					}else{
+
+						$formclass = 'form-control-file';
+					}
+
 				
-					echo '<input type="' . $type . '" class="form-control-file ' . $this->size . ' ' . $cfg['class'] . ' pl-0" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . '>';
+					echo '<input type="' . $type . '" class="' . $formclass . ' ' . $this->size . ' ' . $cfg['class'] . ' pl-0" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . '>';
 
 					echo $errorfeedback;
 
