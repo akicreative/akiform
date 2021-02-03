@@ -1267,7 +1267,7 @@ echo <<<EOT
 			    <div class="modal-content">
 			      <div class="modal-header">
 			        <h5 class="modal-title" id="akidatepickerTitle"></h5>
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			        <button type="button" class="close btn-close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close">
 			          <span aria-hidden="true">&times;</span>
 			        </button>
 			      </div>

@@ -242,7 +242,7 @@ if (! function_exists('timeselect')) {
 
         ob_start();
 
-        echo '<select class="form-control" id="' . $name . '" name="' . $name . '" type="select" style="' . $style . '">';
+        echo '<select class="form-control form-select" id="' . $name . '" name="' . $name . '" type="select" style="' . $style . '">';
 
         echo $above;
 
@@ -270,6 +270,130 @@ if (! function_exists('timeselect')) {
         return $output;
     }
 }
+
+if (! function_exists('hourselect')) {
+
+    function hourselect($name = 'hour', $default = '', $params = []) {
+
+        $above = '';
+        $class = '';
+        $style = 'width: auto;';
+        $start = 0;
+        $end = 23;
+
+        extract($params);
+
+        
+        for($i = $start; $i <= $end; $i++){
+
+            $values[] = $i;
+        }
+      
+        ob_start();
+
+        echo '<select class="form-control form-select" id="' . $name . '" name="' . $name . '" style="' . $style . '">';
+
+        echo $above;
+
+        foreach($values as $key => $value){
+
+            $selected = '';
+
+            if($key == $default){
+
+                $selected = 'selected';
+            }
+
+            $output = date("H", strtotime("2000-01-01 " . $value . ':00:00'));
+            $display = date("ga", strtotime("2000-01-01 " . $value . ':00:00'));
+
+            echo '<option value="' . $output . '" ' . $selected . '>' . $display . '</option>' . "\n";
+
+        }
+
+        echo '</select>';
+
+        $output = ob_get_contents();
+
+        ob_end_clean();
+
+        return $output;
+    }
+}
+
+if (! function_exists('minuteselect')) {
+
+    function minuteselect($name = 'minute', $default = '', $params = []) {
+
+        $above = '';
+        $class = '';
+        $style = 'width: auto;';
+        $timeminutes = 15;
+
+        extract($params);
+
+        $values[] = 0;
+
+        $minutes = 0;
+
+        switch($timeminutes){
+            case 5:
+                $values = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
+                break; 
+            case 10:
+                $values = [0, 10, 20, 30, 40, 50];
+                break;
+            case 15:
+                $values = [0, 15, 30, 45];
+                break;
+            case 20:
+                $values = [0, 20, 40];
+                break;
+            case 30:
+                $values = [0, 30];
+                break;
+            default:    
+
+                for($i = 1; $i <= 59; $i++){
+
+                    $values[] = $i;
+                }
+
+                break;
+        }
+      
+
+        ob_start();
+
+        echo '<select class="form-control form-select" id="' . $name . '" name="' . $name . '" style="' . $style . '">';
+
+        echo $above;
+
+        foreach($values as $key => $value){
+
+            $selected = '';
+
+            if($key == $default){
+
+                $selected = 'selected';
+            }
+
+            $output = date("i", strtotime("2000-01-01 00:" . $value . ':00'));
+
+            echo '<option value="' . $output . '" ' . $selected . '>' . $output . '</option>' . "\n";
+
+        }
+
+        echo '</select>';
+
+        $output = ob_get_contents();
+
+        ob_end_clean();
+
+        return $output;
+    }
+}
+
 
 if (! function_exists('montharray')) {
 
