@@ -773,50 +773,76 @@ if (! function_exists('datesql')) {
 
         extract($params);
 
-        $month = request()->input($prefix . 'month', '');
-        $day = request()->input($prefix . 'day', '');
-        $year = request()->input($prefix . 'year', '');
+        if(in_array('datepicker', $show)){
 
-        if(in_array('month', $show)){
-
-            if($month == '' || in_array($month, ['MM', 'Month', '00'])){
+            if(request()->input($prefix) == ''){
 
                 return NULL;
-
             }
 
-        }
-
-        if(in_array('day', $show)){
-
-            if($day == '' || in_array($day, ['DD', 'Day', '00'])){
-
-                return NULL;
-
-            }
-
-        }
-
-        if(in_array('year', $show)){
-
-            if($year == '' || in_array($year, ['YYYY', 'Year', '0000'])){
-
-                return NULL;
-
-            }
-
-        }
-
-        if(in_array('time', $show)){
-
-            $time = request()->input($prefix . 'time', '00:00:00');
-
-            $return = date("Y-m-d H:i:00", strtotime($year . '-' . $month . '-' . $day . ' ' . $time));
+            $date = date("Y-m-d", strtotime(request()->input($prefix)));
 
         }else{
 
-            $return = date("Y-m-d", strtotime($year . '-' . $month . '-' . $day));
+
+            $month = request()->input($prefix . 'month', '');
+            $day = request()->input($prefix . 'day', '');
+            $year = request()->input($prefix . 'year', '');
+
+            if(in_array('month', $show)){
+
+                if($month == '' || in_array($month, ['MM', 'Month', '00'])){
+
+                    return NULL;
+
+                }
+
+            }
+
+            if(in_array('day', $show)){
+
+                if($day == '' || in_array($day, ['DD', 'Day', '00'])){
+
+                    return NULL;
+
+                }
+
+            }
+
+            if(in_array('year', $show)){
+
+                if($year == '' || in_array($year, ['YYYY', 'Year', '0000'])){
+
+                    return NULL;
+
+                }
+
+            }
+
+            $date = $year . '-' . $month . '-' . $day;
+
         }
+
+        if(in_array('hourminute', $show)){
+
+            $hour = request()->input($prefix . 'hour', '00');
+
+            $minute = request()->input($prefix . 'minute', '00');
+
+            $return = date("Y-m-d H:i:00", strtotime($date . ' ' . $hour . ':' . $minute));
+
+        }elseif(in_array('time', $show)){
+
+            $time = request()->input($prefix . 'time', '00:00:00');
+
+            $return = date("Y-m-d H:i:00", strtotime($date . ' ' . $time));
+
+        }else{
+
+            $return = date("Y-m-d", strtotime($date));
+        }
+
+
 
         return $return;
     }
