@@ -39,6 +39,8 @@ class Form
 	var $alertmessage = 'formmessage';
 	var $alertmessageauto = false;
 	var $bootstrapversion = 4;
+	var $btnsize = 'btn-sm';
+
 
 	private function parse($args, $arguments)
 	{
@@ -269,7 +271,9 @@ class Form
 			'fieldonly' => $this->fieldonly,
 			'blockhelp' => '',
 			'echo' => $this->echo,
+			'btnsize' => $this->btnsize,
 			'size' => $this->size,
+			'btnsize' => $this->btnsize,
 			'class' => '',
 			'horizontal' => $this->horizontal,
 			'horizontalleft' => $this->horizontalleft,
@@ -877,7 +881,7 @@ class Form
 
 					echo '<div class="input-group-append">';
 
-					echo '<button type="button" class="btn btn-secondary btn-sm akidppicker" data-target="' . $datepickername .'"><i class="fa fa-calendar"></i></button>';
+					echo '<button type="button" class="btn btn-secondary ' . $cfg['btnsize'] . ' akidppicker" data-target="' . $datepickername .'"><i class="fa fa-calendar"></i></button>';
 
 					echo '</div>';
 
@@ -885,7 +889,7 @@ class Form
 
 						echo '<div class="input-group-append">';
 
-						echo '<button type="button" class="btn btn-outline-secondary btn-sm akidpclear" data-target="' . $datepickername . '"><i class="fa fa-times"></i></button>';
+						echo '<button type="button" class="btn btn-outline-secondary ' . $cfg['btnsize'] . ' akidpclear" data-target="' . $datepickername . '"><i class="fa fa-times"></i></button>';
 
 						echo '</div>';
 
@@ -895,7 +899,7 @@ class Form
 
 						echo '<div class="input-group-append">';
 
-						echo '<button type="button" class="btn btn-outline-secondary btn-sm akidptoday" data-target="' . $datepickername . '" data-display="' . date($dpcfg['datepickerformat']) . '" data-sql="' . date("Y-m-d") . '">TODAY</button>';
+						echo '<button type="button" class="btn btn-outline-secondary ' . $cfg['btnsize'] . ' akidptoday" data-target="' . $datepickername . '" data-display="' . date($dpcfg['datepickerformat']) . '" data-sql="' . date("Y-m-d") . '">TODAY</button>';
 
 						echo '</div>';
 
