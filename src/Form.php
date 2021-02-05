@@ -852,7 +852,7 @@ class Form
 
 					$mbclass = 'mb-3';
 
-					if(!$cfg['fieldonly']){
+					if(!$cfg['fieldonly'] || $this->inlinelist){
 
 						$mbclass = '';
 					}
