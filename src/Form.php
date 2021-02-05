@@ -101,6 +101,14 @@ class Form
 			echo '<div class="row"><div class="' . $this->constrainform . '">';
 		}
 
+		if(array_key_exists('size', $arguments)){
+
+			if($arguments['size'] == ''){
+
+				$this->btnsize = '';
+			}
+		}
+
 	}
 
 	public function fill($values)
