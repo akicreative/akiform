@@ -889,7 +889,7 @@ class Form
 
 					echo '<div class="input-group-append">';
 
-					echo '<button type="button" class="btn btn-secondary ' . $cfg['btnsize'] . ' akidppicker" data-target="' . $datepickername .'"><i class="fa fa-calendar"></i></button>';
+					echo '<button type="button" class="btn btn-secondary ' . $this->btnsize . ' akidppicker" data-target="' . $datepickername .'"><i class="fa fa-calendar"></i></button>';
 
 					echo '</div>';
 
@@ -897,7 +897,7 @@ class Form
 
 						echo '<div class="input-group-append">';
 
-						echo '<button type="button" class="btn btn-outline-secondary ' . $cfg['btnsize'] . ' akidpclear" data-target="' . $datepickername . '"><i class="fa fa-times"></i></button>';
+						echo '<button type="button" class="btn btn-outline-secondary ' . $this->btnsize . ' akidpclear" data-target="' . $datepickername . '"><i class="fa fa-times"></i></button>';
 
 						echo '</div>';
 
@@ -907,7 +907,7 @@ class Form
 
 						echo '<div class="input-group-append">';
 
-						echo '<button type="button" class="btn btn-outline-secondary ' . $cfg['btnsize'] . ' akidptoday" data-target="' . $datepickername . '" data-display="' . date($dpcfg['datepickerformat']) . '" data-sql="' . date("Y-m-d") . '">TODAY</button>';
+						echo '<button type="button" class="btn btn-outline-secondary ' . $this->btnsize . ' akidptoday" data-target="' . $datepickername . '" data-display="' . date($dpcfg['datepickerformat']) . '" data-sql="' . date("Y-m-d") . '">TODAY</button>';
 
 						echo '</div>';
 
