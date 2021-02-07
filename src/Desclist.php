@@ -69,6 +69,8 @@ class Desclist
 
 				echo '</div>';
 
+				echo '</div>';
+
 			}
 
 		}else{
