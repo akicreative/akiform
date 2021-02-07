@@ -198,11 +198,11 @@ class Form
 
 			if(session()->has($alertmessage)){
 
-				echo '<div class="alert alert-danger mb-3">';
+				echo '<div class="alert alert-danger mb-3"><div class="alert-message">';
 
 			    echo session($alertmessage);
 
-				echo '</div>';
+				echo '</div></div>';
 
 			}
 

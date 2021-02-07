@@ -53,7 +53,23 @@ class Desclist
 
 		if($this->type == 'listgroup'){
 
-			echo '<div class="list-group-item ' . $dtclass . '">' . $dt . '</div>';
+			if($dd == ''){
+
+				echo '<div class="list-group-item ' . $dtclass . '">' . $dt . '</div>';
+
+			}else{
+
+				echo '<div class="list-group-item">';
+
+				echo '<div class="row">';
+
+				echo '<div class="' . $this->dtclass . ' ' . $dtclass . '">' . $dt . '</div>';
+
+				echo '<div class="' . $this->ddclass . ' ' . $ddclass . '">' . $dd . '</div>';
+
+				echo '</div>';
+
+			}
 
 		}else{
 
@@ -61,13 +77,15 @@ class Desclist
 
         	echo '<dd class="' . $this->ddclass . ' '. $ddclass . '">' . $dd . '</dd>'; 
 
+        	if($divider){
+
+	    		$this->divider();
+
+	    	}
+
     	}
 
-    	if($divider){
-
-    		$this->divider();
-
-    	}
+    	
 
 	}
 
