@@ -630,6 +630,7 @@ class Form
 			case 'password':
 			case 'number':
 			case 'phone':
+			case "tel":
 
 				if($type == 'phone'){
 
