@@ -634,6 +634,7 @@ class Form
 
 				if($type == 'phone'){
 
+					$type = 'tel';
 					$cfg['default'] = formatphone($cfg['default']);
 
 				}
@@ -877,9 +878,9 @@ class Form
 
 					echo '<div class="input-group">';
 
-					echo '<input type="' . $type . '" class="akidpdisplay form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . ' value="' . outdate($cfg['default'], $dpcfg['datepickerformat']) . '" style="background-color: #FFF;" data-target="' . $datepickername .'" readonly>';
+					echo '<input type="' . $type . '" class="akidpdisplay form-control ' . $this->size . ' ' . $cfg['class'] . 'display" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . ' value="' . outdate($cfg['default'], $dpcfg['datepickerformat']) . '" style="background-color: #FFF;" data-target="' . $datepickername .'" readonly>';
 
-					echo '<input type="hidden" name="' . $datepickername . '" id="' . $datepickername . '" value="' . $cfg['default'] . '"';
+					echo '<input type="hidden" name="' . $datepickername . '" id="' . $datepickername . '" class="' . $cfg['class'] . '" value="' . $cfg['default'] . '"';
 
 					foreach($dpcfg as $dpkey => $dpvalue){
 
