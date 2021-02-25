@@ -248,11 +248,6 @@ class Akiasset extends Model
             }
         }
 
-        if(!$file){
-
-            return false;
-        }
-
         if(is_string($file)){
 
             if(File::exists($file)){
@@ -274,7 +269,7 @@ class Akiasset extends Model
 
                 $hashname = $folder . Str::orderedUuid() . '.' . $ext;
 
-                $filename = pathinfo($file, PATHINFO_FILENAME);
+                $filename = pathinfo($file, PATHINFO_FILENAME) . $ext;
 
                 $result = Storage::disk($disk)->put($hashname, $content);
 
@@ -301,6 +296,11 @@ class Akiasset extends Model
             }
 
         }else{
+
+            if(!$file){
+
+                return false;
+            }
 
             $hashname = $file->hashName();
             $mime = $file->getClientMimeType();
