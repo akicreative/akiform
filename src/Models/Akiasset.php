@@ -7,6 +7,7 @@ use AkiCreative\AkiForms\Models\Akiasset;
 use AkiCreative\AkiForms\Models\Akicategory;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Image;
 
 class Akiasset extends Model
@@ -252,9 +253,61 @@ class Akiasset extends Model
             return false;
         }
 
-        $hashname = $file->hashName();
-        $mime = $file->getClientMimeType();
-        $filename = $file->getClientOriginalName();
+        if(is_string($file)){
+
+            if(File::exists($file)){
+
+                $folder = '';
+
+                if(array_key_exists('path', $cfg)){
+
+                    $folder = $cfg['path'] . '/';
+                }
+
+                $content = File::get($file);
+
+                $mimeclass = new \Symfony\Component\Mime\MimeTypes;
+
+                $mime = $mimeclass->guessMimeType($file);
+
+                $ext = pathinfo($file, PATHINFO_EXTENSION);
+
+                $hashname = $folder . Str::orderedUuid() . '.' . $ext;
+
+                $filename = pathinfo($file, PATHINFO_FILENAME);
+
+                $result = Storage::disk($disk)->put($hashname, $content);
+
+                $a = new Akiasset;
+
+                $a->setConnection($db);
+                $a->code = md5(time() . rand());
+                $a->category = $cat->slug;
+                $a->serverfilename = $hashname;
+                $a->filename = $filename;
+                $a->mimetype = $mime;
+                $a->save();
+
+                if($deleteid > 0){
+
+                    Akiasset::assetdelete($deleteid);
+                }
+
+                return $a;
+
+            }else{
+
+                return false;
+            }
+
+        }else{
+
+            $hashname = $file->hashName();
+            $mime = $file->getClientMimeType();
+            $filename = $file->getClientOriginalName();
+
+        }
+
         $tn = '';
         $sq = '';
 
