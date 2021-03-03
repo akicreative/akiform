@@ -49,7 +49,7 @@ class Desclist
 
 	}
 
-	public function line($dt, $dd = '', $dtclass = '', $ddclass = '', $divider = false){
+	public function line($dt, $dd = '', $dtclass = 'fw-bolder', $ddclass = '', $divider = false){
 
 		if($this->type == 'listgroup'){
 
