@@ -178,7 +178,7 @@ class Form
 
 		if($this->alertmessageauto && count($this->errors->all()) > 0){
 
-			echo '<div class="alert alert-danger mb-3">';
+			echo '<div class="alert alert-danger mb-3"><div class="alert-message">';
 
 				echo '<ul class="mb-0">';
 
@@ -190,7 +190,7 @@ class Form
 
 			    echo '</ul>';
 
-			echo '</div>';
+			echo '</div></div>';
 
 		}elseif($this->alertmessage != ''){
 
@@ -315,7 +315,8 @@ class Form
 			'readonly' => false,
 			'fileshow' => true,
 			'fileremove' => true,
-			'fileassetid' => 0
+			'fileassetid' => 0,
+			'pattern' => ''
 
 		];
 
@@ -325,11 +326,19 @@ class Form
 			$name = $name . 'display';
 		}
 
+		$placeholder = '';
+
+		if($type == 'money'){
+
+			$cfg['pattern'] = "[0-9]+\.?[0-9]{0,2}";
+			$placeholder = '0.00';	
+		}
+
 		$attrs = [
 
 			'id' => strtolower($name),
 			'tabindex' => $this->tabindex,
-			'placeholder' => ''
+			'placeholder' => $placeholder
 
 		];	
 
@@ -631,6 +640,7 @@ class Form
 			case 'number':
 			case 'phone':
 			case "tel":
+			case "money":
 
 				if($type == 'phone'){
 
@@ -639,6 +649,8 @@ class Form
 
 				}
 
+
+
 				if($this->viewmode){
 
 					echo $cfg['default'];
@@ -646,7 +658,13 @@ class Form
 
 				}else{
 
-				
+					if($type == 'money'){
+
+						$type = 'text';
+
+						if($cfg['default'] == '') $cfg['default'] = '0.00';
+					}
+
 					echo '<input type="' . $type . '" class="form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . ' ' . $readonly . ' value="' . $cfg['default'] . '">';
 
 					echo $errorfeedback;
