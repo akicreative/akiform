@@ -327,10 +327,11 @@ class Form
 		}
 
 		$placeholder = '';
+		$pattern = '';
 
 		if($type == 'money'){
 
-			$cfg['pattern'] = "[0-9]+\.?[0-9]{0,2}";
+			$pattern = "[0-9]+\.?[0-9]{0,2}";
 			$placeholder = '0.00';	
 		}
 
@@ -338,7 +339,8 @@ class Form
 
 			'id' => strtolower($name),
 			'tabindex' => $this->tabindex,
-			'placeholder' => $placeholder
+			'placeholder' => $placeholder,
+			'pattern' => $pattern
 
 		];	
 
