@@ -873,6 +873,16 @@ class Form
 
 				];
 
+				if($this->bootstrapversion == 5){
+
+					$btndiv = '';
+					$btnenddiv = '';
+				}else{
+
+					$btndiv = '<div class="input-group-append">';
+					$btnenddiv = '</div>';
+				}
+
 				$dpcfg = array_merge($dpcfgs, $cfg['datepickercfg']);
 
 				if($this->viewmode || $readonly == 'readonly'){
@@ -906,29 +916,29 @@ class Form
 
 					echo ' data-title="' . $label . '">';
 
-					echo '<div class="input-group-append">';
+					echo $btndiv;
 
 					echo '<button type="button" class="btn btn-secondary ' . $this->btnsize . ' akidppicker" data-target="' . $datepickername .'"><i class="fa fa-calendar"></i></button>';
 
-					echo '</div>';
+					echo $btnenddiv;
 
 					if($cfg['datepickerclear']){
 
-						echo '<div class="input-group-append">';
+						echo $btndiv;
 
 						echo '<button type="button" class="btn btn-outline-secondary ' . $this->btnsize . ' akidpclear" data-target="' . $datepickername . '"><i class="fa fa-times"></i></button>';
 
-						echo '</div>';
+						echo $btnenddiv;
 
 					}
 
 					if($cfg['datepickertoday']){
 
-						echo '<div class="input-group-append">';
+						echo $btndiv;
 
 						echo '<button type="button" class="btn btn-outline-secondary ' . $this->btnsize . ' akidptoday" data-target="' . $datepickername . '" data-display="' . date($dpcfg['datepickerformat']) . '" data-sql="' . date("Y-m-d") . '">TODAY</button>';
 
-						echo '</div>';
+						echo $btnenddiv;
 
 					}
 
