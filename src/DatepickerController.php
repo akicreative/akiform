@@ -25,6 +25,8 @@ class DatepickerController extends Controller
 	public function calendar(Request $request)
 	{
 
+        $bootstrapversion = request()->input('bootstrapversion', 4);
+
 		$target = request()->input('target');
         $value = request()->input('value');
 
@@ -95,6 +97,7 @@ class DatepickerController extends Controller
 
         $data = [
 
+            'bootstrapversion' => $bootstrapversion,
         	'target' => $target,
         	'value' => $value,
             'default' => $default,

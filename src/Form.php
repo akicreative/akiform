@@ -1363,7 +1363,7 @@ EOT;
 				formData.append('endrange', $target.data('endrange'));
 				formData.append('exclude', $target.data('exclude'));
 				formData.append('datepickerformat', $target.data('datepickerformat'));
-				fromData.append('bootstrapversion', '<? echo $bootstrapversion; ?>');
+				formData.append('bootstrapversion', '<? echo $bootstrapversion; ?>');
 
                 $.ajax({
 
