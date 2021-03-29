@@ -320,11 +320,7 @@ class Form
 
 		];
 
-		if($type == 'datepicker'){
-
-			$datepickername = $name;
-			$name = '';
-		}
+		
 
 		$placeholder = '';
 
@@ -341,6 +337,12 @@ class Form
 			'placeholder' => $placeholder
 
 		];	
+
+		if($type == 'datepicker'){
+
+			$datepickername = $name;
+			$name = '';
+		}
 
 		$this->tabindex++;
 
