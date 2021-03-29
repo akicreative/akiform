@@ -152,7 +152,7 @@ class Form
 
 		echo '<form ' . $this->parse($args, $arguments) . '>';
 
-		if($this->csrf){
+		if($this->csrf && $args['method'] == 'POST'){
 
 			echo csrf_field();
 
@@ -269,7 +269,7 @@ class Form
 
 		// Text Area Minimum
 
-		if($name == '' && $type != 'show'){
+		if($name == '' && !in_array($type, ['show', 'button', 'submit'])){
 
 			$name = md5(rand() . time());
 		}
@@ -323,7 +323,7 @@ class Form
 		if($type == 'datepicker'){
 
 			$datepickername = $name;
-			$name = $name . 'display';
+			$name = '';
 		}
 
 		$placeholder = '';
