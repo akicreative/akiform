@@ -1,7 +1,5 @@
 <?
 
-echo $bootstrapversion;
-
 $akidp = new AkiForm($errors);
 
 $akidp->fill(collect(['akidpmonth' => $currentmonth, 'akidpyear' => $currentyear]));
@@ -187,7 +185,16 @@ for($r = 1; $r <= $totalrows; $r++){
 	        	$disabledbg = 'background-color: #E9E9E9;';
 	        }
 
-	        $datetext = '<button type="button" class="btn btn-link btn-block btn-sm akidpset m-0' . $btnclass . '" style="border-radius: 0;" data-target="' . $target . '" data-display="' . $display . '" data-sql="' . $sql . '" ' . $disabled . '><strong>' . $val[$key] . '</strong></button>';
+	        if($bootstrapversion == 5){
+
+	        	$datetext = '<div class="d-grid"><button type="button" class="btn btn-link btn-sm akidpset m-0' . $btnclass . '" style="border-radius: 0;" data-target="' . $target . '" data-display="' . $display . '" data-sql="' . $sql . '" ' . $disabled . '><strong>' . $val[$key] . '</strong></button></div>';
+
+
+	        }else{
+
+	        	$datetext = '<button type="button" class="btn btn-link btn-block btn-sm akidpset m-0' . $btnclass . '" style="border-radius: 0;" data-target="' . $target . '" data-display="' . $display . '" data-sql="' . $sql . '" ' . $disabled . '><strong>' . $val[$key] . '</strong></button>';
+
+	    	}
 
     	}
 
