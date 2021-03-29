@@ -1,5 +1,7 @@
 <?
 
+echo $bootstrapversion;
+
 $akidp = new AkiForm($errors);
 
 $akidp->fill(collect(['akidpmonth' => $currentmonth, 'akidpyear' => $currentyear]));

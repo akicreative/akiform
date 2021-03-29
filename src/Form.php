@@ -1287,8 +1287,35 @@ class Form
 
 	}
 
-	public static function datepickerjs()
+	public static function datepickerjs($bootstrapversion = 4)
 	{
+
+		if($bootstrapversion == 5){
+
+echo <<<EOT
+
+			<!-- Modal -->
+			<div class="modal" id="akidatepickermodal" tabindex="-1" role="dialog" aria-labelledby="akidatepickerTitle" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="akidatepickerTitle"></h5>
+			        <button type="button" class="close btn-close"data-bs-dismiss="modal" aria-label="Close">
+			        </button>
+			      </div>
+			      <div id="akidatepickerbody" class="modal-body">
+EOT;				
+
+echo <<<EOT
+			      </div>
+		
+			    </div>
+			  </div>
+			</div>
+
+EOT;
+
+		}else{
 
 echo <<<EOT
 
@@ -1303,9 +1330,7 @@ echo <<<EOT
 			        </button>
 			      </div>
 			      <div id="akidatepickerbody" class="modal-body">
-EOT;
-	
-				
+EOT;				
 
 echo <<<EOT
 			      </div>
@@ -1315,6 +1340,8 @@ echo <<<EOT
 			</div>
 
 EOT;
+
+		}
 
 			?>
 
@@ -1336,6 +1363,7 @@ EOT;
 				formData.append('endrange', $target.data('endrange'));
 				formData.append('exclude', $target.data('exclude'));
 				formData.append('datepickerformat', $target.data('datepickerformat'));
+				fromData.append('bootstrapversion', '<? echo $bootstrapversion; ?>');
 
                 $.ajax({
 
