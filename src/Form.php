@@ -323,7 +323,7 @@ class Form
 		if($type == 'datepicker'){
 
 			$datepickername = $name;
-			$name = '';
+			$name = $name . 'display';
 		}
 
 		$placeholder = '';
