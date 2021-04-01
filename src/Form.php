@@ -107,6 +107,11 @@ class Form
 
 				$this->btnsize = '';
 			}
+			
+		}elseif($this->bootstrapversion == 5){
+
+			$this->btnsize = '';
+
 		}
 
 	}
@@ -997,10 +1002,21 @@ class Form
 
 					}elseif($type == 'switch'){
 
-						echo '<div class="custom-control custom-switch ' . $cfg['groupmb'] . '">';
+						if($this->bootstrapversion == 5){
 
-						$controlclass = 'custom-control-input';
-						$labelclass = 'custom-control-label';
+							echo '<div class="form-check form-switch ' . $cfg['groupmb'] . '">';
+
+							$controlclass = 'form-check-input';
+							$labelclass = 'form-check-label';
+
+						}else{
+
+							echo '<div class="custom-control custom-switch ' . $cfg['groupmb'] . '">';
+
+							$controlclass = 'custom-control-input';
+							$labelclass = 'custom-control-label';
+
+						}
 
 					}else{
 
