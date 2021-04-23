@@ -45,6 +45,8 @@ class Akicleanmoney implements CastsAttributes
             $value = 0;
         }
 
+        echo $value . PHP_EOL;
+
     	return (int)($value * 100);
     }
 }
