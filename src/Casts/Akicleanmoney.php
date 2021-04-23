@@ -40,6 +40,11 @@ class Akicleanmoney implements CastsAttributes
 
         $value = preg_replace("![^0-9\.\-]+!", "", $value);
 
+        if($value == ''){
+
+            $value = 0;
+        }
+
     	return (int)($value * 100);
     }
 }
