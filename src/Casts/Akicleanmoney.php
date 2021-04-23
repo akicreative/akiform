@@ -38,14 +38,7 @@ class Akicleanmoney implements CastsAttributes
     public function set($model, $key, $value, $attributes)
     {
 
-        $value = preg_replace("![^0-9\.\-]+!", "", $value);
-
-        if($value == ''){
-
-            $value = 0;
-        }
-
-        echo $value . PHP_EOL;
+        $value = preg_replace("![^0-9\.\-]+!", "", round($value, 2);
 
     	return (int)($value * 100);
     }
