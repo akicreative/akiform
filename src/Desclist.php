@@ -12,8 +12,11 @@ class Desclist
 
 	var $openclass = '';
 	var $type = 'desclist';
+	var $style = '';
 	var $dtclass = 'col-12 col-md-4';
 	var $ddclass = 'col-12 col-md-8';
+	var $verticaldtclass = 'text-muted font-size: ';
+	var $verticalddclass = 'col-12 col-md-8';
 	var $trueicon = '<i class="fa fa-check text-success fa-lg fa-fw"></i>';
 	var $falseicon = '<i class="fa fa-close fa-lg fa-fw invisible"></i>';
 	var $hr = '<hr class="my-2">';
@@ -49,6 +52,21 @@ class Desclist
 
 	}
 
+	public function style($value = ''){
+
+		$this->style = $value;
+
+		switch($value){
+
+			case "vertical":
+			case "verticalbottom":
+				$this->dtclass = 'text-muted';
+				break;
+
+		}
+
+	}
+
 	public function line($dt, $dd = '', $dtclass = 'fw-bolder', $ddclass = '', $divider = false){
 
 		if($this->type == 'listgroup'){
@@ -56,6 +74,24 @@ class Desclist
 			if($dd == ''){
 
 				echo '<div class="list-group-item ' . $dtclass . '">' . $dt . '</div>';
+
+			}elseif($this->style == 'vertical' || $this->style == 'verticalbottom'){
+
+				echo '<div class="list-group-item">';
+
+				$label = '<div class="' . $this->dtclass . ' ' . $dtclass . '"><small>' . $dt . '</small></div>';
+
+				$value = '<div class="' . $this->ddclass . ' ' . $ddclass . '">' . $dd . '</div>';
+
+				if($this->style == 'vertical'){
+
+					echo $label . $value;
+				}else{
+
+					echo $value . $label;
+				}
+
+				echo '</div>';
 
 			}else{
 
