@@ -16,7 +16,7 @@ class Desclist
 	var $hideempty = false;
 	var $dtclass = 'col-12 col-md-4';
 	var $ddclass = 'col-12 col-md-8';
-	var $verticaldtclass = 'text-muted font-size: ';
+	var $verticaldtclass = 'text-black-50';
 	var $verticalddclass = 'col-12 col-md-8';
 	var $trueicon = '<i class="fa fa-check text-success fa-lg fa-fw"></i>';
 	var $falseicon = '<i class="fa fa-close fa-lg fa-fw invisible"></i>';
@@ -107,11 +107,7 @@ class Desclist
 
 						for($i = 0; $i < count($dd); $i++){
 
-							if($this->hideempty && $dd[$i][1] == ''){
-
-								return;
-
-							}else{
+							if($this->hideempty && $dd[$i][1] != ''){
 
 								$label = '<div class="' . $this->dtclass . ' ' . $dtclass . '"><small>' . $dd[$i][0] . '</small></div>';
 
