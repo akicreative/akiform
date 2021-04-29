@@ -13,6 +13,7 @@ class Desclist
 	var $openclass = '';
 	var $type = 'desclist';
 	var $style = '';
+	var $hideempty = false;
 	var $dtclass = 'col-12 col-md-4';
 	var $ddclass = 'col-12 col-md-8';
 	var $verticaldtclass = 'text-muted font-size: ';
@@ -52,15 +53,29 @@ class Desclist
 
 	}
 
-	public function style($value = ''){
+	public function set($var = '', $value = ''){
 
-		$this->style = $value;
+		switch($var){
 
-		switch($value){
+			case "style":
 
-			case "vertical":
-			case "verticalbottom":
-				$this->dtclass = 'text-muted';
+				$this->style = $value;
+
+				switch($value){
+
+					case "vertical":
+					case "verticalbottom":
+						$this->dtclass = 'text-muted';
+						break;
+
+				}
+
+				break;
+
+			case "hideempty":
+
+				$this->hideempty = $value;
+
 				break;
 
 		}
@@ -71,11 +86,16 @@ class Desclist
 
 		if($this->type == 'listgroup'){
 
-			if($dd == ''){
+			if($dd == '' && !$this->hidempty || $dd == 'desclistheader' && $this->hideempty){
 
 				echo '<div class="list-group-item ' . $dtclass . '">' . $dt . '</div>';
 
 			}elseif($this->style == 'vertical' || $this->style == 'verticalbottom'){
+
+				if($this->hideempty && $dd == ''){
+
+					return;
+				}
 
 				echo '<div class="list-group-item">';
 
@@ -95,6 +115,11 @@ class Desclist
 
 			}else{
 
+				if($this->hideempty && $dd == ''){
+
+					return;
+				}
+
 				echo '<div class="list-group-item">';
 
 				echo '<div class="row">';
@@ -110,6 +135,11 @@ class Desclist
 			}
 
 		}else{
+
+			if($this->hideempty && $dd == ''){
+
+				return;
+			}
 
 			echo '<dt class="' . $this->dtclass . ' ' . $dtclass . '">' . $dt . '</dt>';
 
