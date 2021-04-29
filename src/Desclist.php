@@ -82,7 +82,7 @@ class Desclist
 
 	}
 
-	public function line($dt, $dd = '', $dtclass = 'fw-bolder', $ddclass = '', $divider = false){
+	public function line($dt = '', $dd = '', $dtclass = 'fw-bolder', $ddclass = '', $divider = false){
 
 		if($this->type == 'listgroup'){
 
@@ -92,23 +92,58 @@ class Desclist
 
 			}elseif($this->style == 'vertical' || $this->style == 'verticalbottom'){
 
-				if($this->hideempty && $dd == ''){
+				if($this->hideempty && $dd == '' && !is_array($dd)){
 
 					return;
 				}
 
 				echo '<div class="list-group-item">';
 
-				$label = '<div class="' . $this->dtclass . ' ' . $dtclass . '"><small>' . $dt . '</small></div>';
+				if(is_array($dd)){
 
-				$value = '<div class="' . $this->ddclass . ' ' . $ddclass . '">' . $dd . '</div>';
+					if($dt != ''){
 
-				if($this->style == 'vertical'){
+						echo '<div class="' . $this->ddclass . ' ' . $ddclass . ' fw-bolder">' . $dt . '</div>';
 
-					echo $label . $value;
+						for($i = 0; $i < count($dd); $i++){
+
+							if($this->hideempty && $dd[$i][1] == ''){
+
+								return;
+
+							}else{
+
+								$label = '<div class="' . $this->dtclass . ' ' . $dtclass . '"><small>' . $dd[$i][0] . '</small></div>';
+
+								$value = '<div class="' . $this->ddclass . ' ' . $ddclass . '">' . $dd[$i][1] . '</div>';
+
+								if($this->style == 'vertical'){
+
+									echo $label . $value;
+								}else{
+
+									echo $value . $label;
+								}
+
+							}
+
+						}
+					}
+
 				}else{
 
-					echo $value . $label;
+					$label = '<div class="' . $this->dtclass . ' ' . $dtclass . '"><small>' . $dt . '</small></div>';
+
+					$value = '<div class="' . $this->ddclass . ' ' . $ddclass . '">' . $dd . '</div>';
+
+					if($this->style == 'vertical'){
+
+						echo $label . $value;
+					}else{
+
+						echo $value . $label;
+					}
+
 				}
 
 				echo '</div>';
