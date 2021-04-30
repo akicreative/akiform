@@ -86,7 +86,7 @@ class Desclist
 
 		if($this->type == 'listgroup'){
 
-			if($dd == '' && !$this->hidempty || $dd == 'desclistheader' && $this->hideempty){
+			if($dd == '' && !$this->hideempty || $dd == 'desclistheader' && $this->hideempty){
 
 				echo '<div class="list-group-item ' . $dtclass . '">' . $dt . '</div>';
 
