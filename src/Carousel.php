@@ -13,6 +13,8 @@ class Carousel
     var $transition = 'slide';
     var $items;
     var $carouselclass = 'mb-3 carousel-fade';
+    var $previcon = '<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
+    var $nexticon = '<span class="carousel-control-next-icon" aria-hidden="true"></span>';
 
     public function __construct($items = [], $params = [])
     {
@@ -85,11 +87,11 @@ class Carousel
 
             echo '
             <a class="carousel-control-prev" href="#carousel' . $this->id . '" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                ' . $this->previcon . '
                 <span class="sr-only">Previous</span>
             </a>
             <a class="carousel-control-next" href="#carousel' . $this->id . '" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                ' . $this->nexticon . '
                 <span class="sr-only">Next</span>
             </a>
         ';
