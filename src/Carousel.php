@@ -15,6 +15,7 @@ class Carousel
     var $carouselclass = 'mb-3 carousel-fade';
     var $previcon = '<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
     var $nexticon = '<span class="carousel-control-next-icon" aria-hidden="true"></span>';
+    var $interval = 5000;
 
     public function __construct($items = [], $params = [])
     {
@@ -46,7 +47,7 @@ class Carousel
         ob_start();
 
         echo '
-            <div id="carousel' . $this->id . '" class="carousel ' . $this->transition . '" ' . $this->carouselclass . '" data-ride="carousel">
+            <div id="carousel' . $this->id . '" class="carousel ' . $this->transition . '" ' . $this->carouselclass . '" data-ride="carousel" data-interval="' . $this->interval . '">
         ';
 
         if($this->showIndicators) {
