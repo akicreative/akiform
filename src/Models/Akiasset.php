@@ -384,7 +384,7 @@ class Akiasset extends Model
         $a->setConnection($db);
         $a->code = md5(time() . rand());
         $a->category = $cat->slug;
-        $a->serverfilename = $serverfilename;
+        $a->serverfilename = $folder . $hashname;
         $a->serverfilenametn = $folder . $tn;
         $a->serverfilenamesq = $folder . $sq;
         $a->filename = $filename;
