@@ -339,7 +339,7 @@ class Akiasset extends Model
                     })->orientate()->save(storage_path('app/') . $hashname);
 
                 $content = File::get(storage_path('app/') . $hashname);
-                $result = Storage::disk($disk)->put($hashname, $content);
+                $result = Storage::disk($disk)->put($folder . $hashname, $content);
 
                 //if($cat->assettnresize == 'resize'){
 
