@@ -532,16 +532,16 @@ class Akiasset extends Model
         if($scope == 'both' || $scope == 'full'){
 
             Storage::disk($disk)->delete($a->serverfilename);
-            $a->serverfilename = $hashname;
+            $a->serverfilename = $folder . $hashname;
         }
 
         if($scope == 'both' || $scope == 'tn'){
 
             Storage::disk($disk)->delete($a->serverfilenametn);
-            $a->serverfilenametn = $tn;
+            $a->serverfilenametn = $folder . $tn;
 
             Storage::disk($disk)->delete($a->serverfilenamesq);
-            $a->serverfilenamesq = $sq;
+            $a->serverfilenamesq = $folder . $sq;
         }
         
         $a->filename = $filename;
