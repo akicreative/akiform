@@ -250,11 +250,11 @@ class Akiasset extends Model
             }
         }
 
-         $folder = '';
+        $folder = '';
 
-        if($disk == 'spaces'){
+        if(in_array($disk, ['spaces', 'spacesprivate'])){
 
-            $folder = config('filesystems.disks.spaces.folder', '');
+            $folder = config('filesystems.disks.' . $disk . '.folder', '');
 
             if($folder != '') $folder = $folder . '/';
         }
@@ -441,6 +441,15 @@ class Akiasset extends Model
             }
         }
 
+        $folder = '';
+
+        if(in_array($disk, ['spaces', 'spacesprivate'])){
+
+            $folder = config('filesystems.disks.' . $disk . '.folder', '');
+
+            if($folder != '') $folder = $folder . '/';
+        }
+
         if(!$file){
 
             return false;
@@ -471,7 +480,7 @@ class Akiasset extends Model
                         })->orientate()->save(storage_path('app/') . $hashname);
 
                     $content = File::get(storage_path('app/') . $hashname);
-                    $result = Storage::disk($disk)->put($hashname, $content);
+                    $result = Storage::disk($disk)->put($folder . $hashname, $content);
 
                     File::delete(storage_path('app/') . $hashname);
 
@@ -499,10 +508,10 @@ class Akiasset extends Model
                     //}
 
                     $content = File::get(storage_path('app/') . $tn);
-                    $result = Storage::disk($disk)->put($tn, $content);
+                    $result = Storage::disk($disk)->put($folder . $tn, $content);
 
                     $content = File::get(storage_path('app/') . $sq);
-                    $result = Storage::disk($disk)->put($sq, $content);
+                    $result = Storage::disk($disk)->put($folder . $sq, $content);
 
                     File::delete(storage_path('app/') . $tn);
 
