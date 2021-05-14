@@ -223,14 +223,7 @@ class Akiasset extends Model
             return false;
         }
 
-        $folder = '';
-
-        if($disk == 'spaces'){
-
-            $folder = config('filesystems.disks.spaces.folder', '');
-
-            if($folder != '') $folder = $folder . '/';
-        }
+       
 
         if($cat->private){
 
@@ -255,6 +248,15 @@ class Akiasset extends Model
                 $disk = env('AKIASSETPUBLIC');
 
             }
+        }
+
+         $folder = '';
+
+        if($disk == 'spaces'){
+
+            $folder = config('filesystems.disks.spaces.folder', '');
+
+            if($folder != '') $folder = $folder . '/';
         }
 
         if(is_string($file)){
