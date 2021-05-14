@@ -223,6 +223,15 @@ class Akiasset extends Model
             return false;
         }
 
+        $folder = '';
+
+        if($disk == 'spaces'){
+
+            $folder = config('filesystems.disks.spaces.folder', '');
+
+            if($folder != '') $folder = $folder . '/';
+        }
+
         if($cat->private){
 
             if(env('AKIASSETPRIVATE', '') == ''){
@@ -252,8 +261,6 @@ class Akiasset extends Model
 
             if(File::exists($file)){
 
-                $folder = '';
-
                 if(array_key_exists('path', $cfg)){
 
                     $folder = $cfg['path'] . '/';
@@ -267,18 +274,20 @@ class Akiasset extends Model
 
                 $ext = pathinfo($file, PATHINFO_EXTENSION);
 
-                $hashname = $folder . Str::orderedUuid() . '.' . $ext;
+                $hashname = Str::orderedUuid() . '.' . $ext;
+
+                $serverfilename = $folder . $hasname;
 
                 $filename = pathinfo($file, PATHINFO_FILENAME) . $ext;
 
-                $result = Storage::disk($disk)->put($hashname, $content);
+                $result = Storage::disk($disk)->put($serverfilename, $content);
 
                 $a = new Akiasset;
 
                 $a->setConnection($db);
                 $a->code = md5(time() . rand());
                 $a->category = $cat->slug;
-                $a->serverfilename = $hashname;
+                $a->serverfilename = $serverfilename;
                 $a->filename = $filename;
                 $a->mimetype = $mime;
                 $a->save();
@@ -350,10 +359,10 @@ class Akiasset extends Model
                 //}
 
                 $content = File::get(storage_path('app/') . $tn);
-                $result = Storage::disk($disk)->put($tn, $content);
+                $result = Storage::disk($disk)->put($folder . $tn, $content);
 
                 $content = File::get(storage_path('app/') . $sq);
-                $result = Storage::disk($disk)->put($sq, $content);
+                $result = Storage::disk($disk)->put($folder . $sq, $content);
 
                 File::delete(storage_path('app/') . $hashname);
                 File::delete(storage_path('app/') . $tn);
@@ -373,9 +382,9 @@ class Akiasset extends Model
         $a->setConnection($db);
         $a->code = md5(time() . rand());
         $a->category = $cat->slug;
-        $a->serverfilename = $hashname;
-        $a->serverfilenametn = $tn;
-        $a->serverfilenamesq = $sq;
+        $a->serverfilename = $serverfilename;
+        $a->serverfilenametn = $folder . $tn;
+        $a->serverfilenamesq = $folder . $sq;
         $a->filename = $filename;
         $a->mimetype = $mime;
         $a->save();
