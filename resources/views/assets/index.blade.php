@@ -4,14 +4,6 @@
 Assets
 @endsection
 
-@section('navbaritems')
-
-  <li class="nav-item">
-        <a class="nav-link" href="{{ route('aki.categories.index') }}">Category Management</a>
-      </li>
-
-@endsection
-
 @section('content')
 
 @if(isset($akisubnavurl))

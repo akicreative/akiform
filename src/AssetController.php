@@ -54,6 +54,8 @@ class AssetController extends Controller
         view()->share('akisubnav', $akisubnav);
         view()->share('akisubnavform', $akisubnavform);
 
+        
+
 	}
 
 	public function index($focus = 'none', Request $request){
