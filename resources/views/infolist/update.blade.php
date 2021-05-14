@@ -14,11 +14,6 @@ akiredactorxcss();
 
 @section('content')
 
-@if(isset($akisubnavurl))
-
-@include('akiforms::layouts.subnav')
-
-@endif
 
 <div class="container">
 

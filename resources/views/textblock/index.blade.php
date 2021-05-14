@@ -6,12 +6,6 @@ Text Blocks
 
 @section('content')
 
-@if(isset($akisubnavurl))
-
-@include('akiforms::layouts.subnav')
-
-@endif
-
 <div class="container-fluid">
 
 <div class="card mb-3">

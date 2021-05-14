@@ -91,8 +91,8 @@ class InfolistController extends Controller
         view()->share('types', $this->types());
         view()->share('categories', $this->categories());
 
-        //view()->share('akisubnavurl', route('aki.lists.index'));
-        //view()->share('akisubnavtitle', 'Lists');
+        view()->share('akisubnavurl', route('aki.lists.index'));
+        view()->share('akisubnavtitle', 'Lists');
 
     }
 

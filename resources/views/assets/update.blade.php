@@ -6,12 +6,6 @@ Edit
 
 @section('content')
 
-@if(isset($akisubnavurl))
-
-@include('akiforms::layouts.subnav')
-
-@endif
-
 <div class="container-fluid">
 
 @if($focus != 'none')
