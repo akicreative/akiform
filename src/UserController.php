@@ -109,7 +109,7 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'password' => 'present|min:6'
+            'password' => 'nullable|min:6'
         ]);
 
         $db = config('akiforms.connection.akitextblock', config('database.default'));
