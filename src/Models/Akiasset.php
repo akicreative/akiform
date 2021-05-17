@@ -326,6 +326,8 @@ class Akiasset extends Model
         $tn = '';
         $sq = '';
 
+        $type = '';
+
         switch($mime){
 
             case "image/jpeg":
@@ -374,15 +376,17 @@ class Akiasset extends Model
                 File::delete(storage_path('app/') . $tn);
                 File::delete(storage_path('app/') . $sq);
 
+                $type == 'image';
+
                 break;
 
             case "image/gif":
-                echo $file->store($folder, $disk);
+                echo $file->store($folder . $hashname, $disk);
                 break;
 
             default:
 
-                echo $file->store($folder, $disk);
+                echo $file->store($folder . $hashname, $disk);
 
                 break;
 
@@ -394,8 +398,14 @@ class Akiasset extends Model
         $a->code = md5(time() . rand());
         $a->category = $cat->slug;
         $a->serverfilename = $folder . $hashname;
-        $a->serverfilenametn = $folder . $tn;
-        $a->serverfilenamesq = $folder . $sq;
+
+        if($type == 'image'){
+
+            $a->serverfilenametn = $folder . $tn;
+            $a->serverfilenamesq = $folder . $sq;
+
+        }
+
         $a->filename = $filename;
         $a->mimetype = $mime;
         $a->save();
