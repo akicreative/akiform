@@ -376,17 +376,17 @@ class Akiasset extends Model
                 File::delete(storage_path('app/') . $tn);
                 File::delete(storage_path('app/') . $sq);
 
-                $type == 'image';
+                $type = 'image';
 
                 break;
 
             case "image/gif":
-                echo $file->store($folder . $hashname, $disk);
+                $file->store($folder . $hashname, $disk);
                 break;
 
             default:
 
-                echo $file->store($folder . $hashname, $disk);
+                $file->store($folder . $hashname, $disk);
 
                 break;
 
@@ -538,9 +538,14 @@ class Akiasset extends Model
 
 
                 break;
+
+            case "image/gif":
+                $file->store($folder . $hashname, $disk);
+                break;
+
             default:
 
-                echo $file->store($folder, $disk);
+                $file->store($folder . $hashname, $disk);
 
                 $scope = 'full';
 
