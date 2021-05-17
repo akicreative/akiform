@@ -1323,9 +1323,9 @@ if (! function_exists('akiasseturl')) {
 
         if($target != 'local'){
 
-            if($a->type() == "image"){
+            if($a->type() == "image" || $a->type() == "gif"){
 
-                if($mode == 'full'){
+                if($mode == 'full' || $a->type() == "gif"){
 
                     if($scope == 'public'){
 
