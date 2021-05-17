@@ -922,8 +922,16 @@ class AssetController extends Controller
         
     }
 
-    public function aws($id, $filename)
+    public function aws($id, $filename, $fn = '')
     {
+
+        $folder = '';
+
+        if($fn != ''){
+
+            $folder = $filename;
+            $filname = $folder . '/' . $fn;
+        }
 
         $db = config('akiforms.connection.akitextblock', config('database.default'));
 
