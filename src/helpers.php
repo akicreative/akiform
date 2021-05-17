@@ -1361,7 +1361,9 @@ if (! function_exists('akiasseturl')) {
 
             }else{
 
-                return route('aki.asset.aws', [$a->id, $a->serverfilename]);
+                $fn = preg_replace("!\/!", ":", $a->serverfilename);
+
+                return route('aki.asset.aws', [$a->id, $fn]);
 
             }
 
