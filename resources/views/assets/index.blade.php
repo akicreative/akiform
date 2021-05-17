@@ -105,7 +105,7 @@ $ar->open(['action' => url()->current(), 'files' => true]);
 
 		<td class="text-center" style="width: 30%;">
 
-			@if($row->type() == 'image')
+			@if($row->type() == 'image' || $row->type() == 'gif')
 
 				<img src="{{ akiasseturl($row->id, 'tn', true) }}" class="img-fluid" style="max-height: 200px;">
 

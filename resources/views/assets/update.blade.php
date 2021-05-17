@@ -107,7 +107,7 @@ $ar->close();
 
 			@endif
 
-		@else
+		@elseif($asset->type() != 'gif')
 
 			<h5>File</h5>
 
@@ -123,7 +123,7 @@ $ar->close();
 
 </div>
 
-@if($asset->type() == 'image')
+@if($asset->type() == 'image' || $asset->type() == 'gif')
 	
 	<h5 class="mt-3">Full Size Image</h5>
 

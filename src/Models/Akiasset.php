@@ -27,6 +27,10 @@ class Akiasset extends Model
 
             	break;
 
+            case "image/gif":
+                return 'gif';
+                break;
+
             case "applicaton/pdf":
 
             	return "pdf";
@@ -141,9 +145,9 @@ class Akiasset extends Model
 
         if($target != 'local'){
 
-            if($a->type() == "image"){
+            if($a->type() == "image" || $a->type() == 'gif'){
 
-                if($mode == 'full'){
+                if($mode == 'full' || $a->type() == 'gif'){
 
                     if($scope == 'public'){
 
@@ -371,9 +375,14 @@ class Akiasset extends Model
                 File::delete(storage_path('app/') . $sq);
 
                 break;
+
+            case "image/gif":
+                echo $file->store($folder, $disk);
+                break;
+
             default:
 
-                echo $file->store('', $disk);
+                echo $file->store($folder, $disk);
 
                 break;
 
@@ -521,7 +530,7 @@ class Akiasset extends Model
                 break;
             default:
 
-                echo $file->store('', $disk);
+                echo $file->store($folder, $disk);
 
                 $scope = 'full';
 
