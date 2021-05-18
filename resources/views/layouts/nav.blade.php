@@ -41,7 +41,7 @@
       </li>
      */ ?>
     </ul>
-    <form class="form-inline my-2 my-lg-0" action="{{ route('logout') }}">
+    <form class="form-inline my-2 my-lg-0" method="POST" action="{{ route('logout') }}">
       <button class="btn btn-secondary my-2 my-sm-0" type="submit">LOGOUT</button>
     </form>
   </div>
