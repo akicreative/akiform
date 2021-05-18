@@ -1215,6 +1215,27 @@ if (! function_exists('akiassetitems')) {
 
 }
 
+if (! function_exists('akiassetrandom')) {
+
+    function akiassetrandom($category, $count = 1)
+    {
+
+        $db = config('akiforms.connection.akiasset', config('database.default'));
+
+        if($count > 1){
+
+            return \AkiCreative\AkiForms\Models\Akiasset::on($db)->where('category', $category)->inRandomOrder();
+
+        }else{
+
+            return \AkiCreative\AkiForms\Models\Akiasset::on($db)->where('category', $category)->inRandomOrder()->first();
+
+        }
+
+    }
+
+}
+
 if (! function_exists('akiasset')) {
 
     function akiasset($id, $size = 'full', $obj = false)
