@@ -403,17 +403,21 @@ class Form
 
 		$fieldattributes = [];
 
-		if($cfgs['floatinglabel']){
-
-			$cfgs['placeholder'] = $label;
-
-		}
-
 		foreach($cfgs as $key => $value){
 
 			if(array_key_exists($key, $attrs)){
 
 				$attrs[$key] = $value;
+
+			}
+
+			if($key == 'floatinglabel'){
+
+				if($value){
+
+					$attrs['placeholder'] = $label;
+
+				}
 
 			}
 
