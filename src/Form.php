@@ -591,7 +591,14 @@ class Form
 
 			}else{
 
-				echo '<label for="' .  $attrs['id'] . '" class="' . $horizontalleft . ' ' . $cfg['labelclass'] . '">' . $labeltext . '</label>';
+
+				$labeloutput = '<label for="' .  $attrs['id'] . '" class="' . $horizontalleft . ' ' . $cfg['labelclass'] . '">' . $labeltext . '</label>';
+
+				if(!$cfg['floatinglabel']){
+
+					echo $labeloutput;
+				}
+
 
 			}
 
@@ -1257,6 +1264,11 @@ class Form
 
 				echo '<small id="' . $attrs['id'] . 'Help" class="form-text text-muted">' . $cfg['blockhelp'] . '</small>';
 
+			}
+
+			if($cfg['floatinglabel']){
+
+					echo $labeloutput;
 			}
 
 			if($cfg['horizontal'] && !$cfg['floatinglabel']){
