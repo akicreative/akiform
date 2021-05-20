@@ -403,7 +403,7 @@ class Form
 
 		if($cfg['floatinglabel']){
 
-			$attr['placeholder'] = $label;
+			$attrs['placeholder'] = $label;
 		}
 
 		$fieldattributes = [];
