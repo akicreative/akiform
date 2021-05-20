@@ -692,6 +692,11 @@ class Form
 
 						$type = 'text';
 
+						if($cfg['default'] == ''){
+
+							$cfg['default'] = 0;
+						}
+
 						$cfg['default'] = number_format($cfg['default'], 2, '.', '');
 
 					}
