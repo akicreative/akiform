@@ -692,6 +692,8 @@ class Form
 
 						$type = 'text';
 
+						$cfg['default'] = number_format($cfg['default'], 2, '.', '');
+
 					}
 
 					echo '<input type="' . $type . '" class="form-control ' . $this->size . ' ' . $cfg['class'] . '" ' . implode(' ', $fieldattributes) . ' aria-describedby="' .  $attrs['id'] . 'Help" ' . $required . ' ' . $readonly . ' value="' . $cfg['default'] . '">';
