@@ -321,7 +321,8 @@ class Form
 			'fileshow' => true,
 			'fileremove' => true,
 			'fileassetid' => 0,
-			'pattern' => ''
+			'pattern' => '',
+			'floatinglabel' => false
 
 		];
 
@@ -524,6 +525,10 @@ class Form
 
 				echo '<div class="row ' . $cfg['formgroupclass'] . '">';
 
+			}elseif($this->floatinglabel){
+
+				echo '<div class="form-floating mb-3 ' . $cfg['formgroupclass'] . '">';
+
 			}elseif($this->compact){
 
 				switch($type){
@@ -590,7 +595,7 @@ class Form
 
 			}
 
-			if($cfg['horizontal']){
+			if($cfg['horizontal'] && !$this->floatinglabel){
 
 				echo '<div class="' . $horizontalright . '">';
 			}
@@ -1254,7 +1259,7 @@ class Form
 
 			}
 
-			if($cfg['horizontal']){
+			if($cfg['horizontal'] && !$this->floatinglabel){
 
 				echo '</div>';
 			}
