@@ -336,7 +336,7 @@ class Form
 
 		if($cfg['floatinglabel']){
 
-			$placeholder = $name;
+			$placeholder = $label;
 		}
 
 		if($type == 'money'){
