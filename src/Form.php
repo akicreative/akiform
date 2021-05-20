@@ -525,7 +525,7 @@ class Form
 
 				echo '<div class="row ' . $cfg['formgroupclass'] . '">';
 
-			}elseif($this->floatinglabel){
+			}elseif($cfg['floatinglabel']){
 
 				echo '<div class="form-floating mb-3 ' . $cfg['formgroupclass'] . '">';
 
@@ -595,7 +595,7 @@ class Form
 
 			}
 
-			if($cfg['horizontal'] && !$this->floatinglabel){
+			if($cfg['horizontal'] && !$cfg['floatinglabel']){
 
 				echo '<div class="' . $horizontalright . '">';
 			}
@@ -1259,7 +1259,7 @@ class Form
 
 			}
 
-			if($cfg['horizontal'] && !$this->floatinglabel){
+			if($cfg['horizontal'] && !$cfg['floatinglabel']){
 
 				echo '</div>';
 			}
