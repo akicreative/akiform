@@ -334,6 +334,11 @@ class Form
 
 		$placeholder = '';
 
+		if($cfg['floatinglabel']){
+
+			$placeholder = $name;
+		}
+
 		if($type == 'money'){
 
 			$attrs['pattern'] = "[0-9]+\.?[0-9]{0,2}";
