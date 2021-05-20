@@ -401,18 +401,21 @@ class Form
 
 		}
 
-		if($cfg['floatinglabel']){
-
-			$attrs['placeholder'] = $label;
-		}
-
 		$fieldattributes = [];
 
 		foreach($cfgs as $key => $value){
 
 			if(array_key_exists($key, $attrs)){
 
-				$attrs[$key] = $value;
+				if($key == 'placeholder' && $cfgs['floatinglabel']){
+
+					$attrs['placeholder'] = $label;
+
+				}else{
+
+					$attrs[$key] = $value;
+
+				}
 			}
 
 			if(array_key_exists($key, $cfg)){
