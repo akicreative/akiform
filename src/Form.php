@@ -334,10 +334,7 @@ class Form
 
 		$placeholder = '';
 
-		if($cfg['floatinglabel']){
 
-			$placeholder = $label;
-		}
 
 		if($type == 'money'){
 
@@ -402,6 +399,11 @@ class Form
 				}
 			}
 
+		}
+
+		if($cfg['floatinglabel']){
+
+			$placeholder = $label;
 		}
 
 		$fieldattributes = [];
