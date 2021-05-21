@@ -381,12 +381,12 @@ class Akiasset extends Model
                 break;
 
             case "image/gif":
-                $file->store($folder . $hashname, $disk);
+                $file->store($hashname, $disk);
                 break;
 
             default:
 
-                $file->store($folder . $hashname, $disk);
+                $file->store($hashname, $disk);
 
                 break;
 
@@ -540,12 +540,12 @@ class Akiasset extends Model
                 break;
 
             case "image/gif":
-                $file->store($folder . $hashname, $disk);
+                $file->store($hashname, $disk);
                 break;
 
             default:
 
-                $file->store($folder . $hashname, $disk);
+                $file->store($hashname, $disk);
 
                 $scope = 'full';
 
