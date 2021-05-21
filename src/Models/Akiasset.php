@@ -381,12 +381,40 @@ class Akiasset extends Model
                 break;
 
             case "image/gif":
-                $file->store($hashname, $disk);
+
+                $folderonly = '';
+
+                if(in_array($disk, ['spaces', 'spacesprivate'])){
+
+                    $folderonly = config('filesystems.disks.' . $disk . '.folder', '');
+
+                    $file->storeAs($folderonly, $hashname, $disk);
+
+                }else{
+
+                    $file->storeAs($hashname, $disk);
+                
+                }
+
                 break;
 
             default:
 
-                $file->store($hashname, $disk);
+                $folderonly = '';
+
+                if(in_array($disk, ['spaces', 'spacesprivate'])){
+
+                    $folderonly = config('filesystems.disks.' . $disk . '.folder', '');
+
+                    $file->storeAs($folderonly, $hashname, $disk);
+
+                }else{
+
+                    $file->storeAs($hashname, $disk);
+                
+                }
+
+                $scope = 'full';
 
                 break;
 
@@ -540,12 +568,38 @@ class Akiasset extends Model
                 break;
 
             case "image/gif":
-                $file->store($hashname, $disk);
+
+                $folderonly = '';
+
+                if(in_array($disk, ['spaces', 'spacesprivate'])){
+
+                    $folderonly = config('filesystems.disks.' . $disk . '.folder', '');
+
+                    $file->storeAs($folderonly, $hashname, $disk);
+
+                }else{
+
+                    $file->storeAs($hashname, $disk);
+                
+                }
+
                 break;
 
             default:
 
-                $file->store($hashname, $disk);
+                $folderonly = '';
+
+                if(in_array($disk, ['spaces', 'spacesprivate'])){
+
+                    $folderonly = config('filesystems.disks.' . $disk . '.folder', '');
+
+                    $file->storeAs($folderonly, $hashname, $disk);
+
+                }else{
+
+                    $file->storeAs($hashname, $disk);
+                
+                }
 
                 $scope = 'full';
 
