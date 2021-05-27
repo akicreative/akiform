@@ -43,7 +43,9 @@ class Akicleanmoney implements CastsAttributes
             $value = 0;
         }
 
-        $value = preg_replace("![^0-9\.\-]+!", "", round($value, 2));
+        $value = preg_replace("![^0-9\.\-]+!", "", $value);
+
+        $value = number_format($value, 2, ".", "");
 
     	return (int)($value * 100);
     }
