@@ -154,7 +154,7 @@ class TelegramController extends Controller
 
 		$data_check_string = implode("\n", $data_check);
 
-		$secret_key = hash('sha256', env('TELEGRAMBOT'), true);
+		$secret_key = hash('sha256', env('TELEGRAMBOT'), env('TELEGRAM_BOT_TOKEN', true));
 
 		$hash = hash_hmac('sha256', $data_check_string, $secret_key);
 
