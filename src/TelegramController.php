@@ -166,7 +166,7 @@ class TelegramController extends Controller
 
 		}
 
-		$secret_key = hash('sha256', $token);
+		$secret_key = hash('sha256', $token, true);
 
 		$hash = hash_hmac('sha256', $data_check_string, $secret_key);
 
