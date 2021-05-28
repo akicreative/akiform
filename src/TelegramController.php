@@ -158,7 +158,7 @@ class TelegramController extends Controller
 
 		if(env('TELEGRAMBOT') != ''){
 
-			$token = env('TELGRAMBOT');
+			$token = env('TELEGRAMBOT');
 
 		}elseif(env('TELEGRAM_BOT_TOKEN') != ''){
 
