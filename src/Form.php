@@ -697,7 +697,14 @@ class Form
 							$cfg['default'] = 0;
 						}
 
-						$cfg['default'] = number_format($cfg['default'], 2, '.', '');
+						if($cfg['default'] > 0){
+
+							$cfg['default'] = number_format($cfg['default'], 2, '.', '');
+
+						}else{
+
+							$cfg['default'] = '';
+						}
 
 					}
 
