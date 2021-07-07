@@ -38,7 +38,7 @@ class Akicleanmoney implements CastsAttributes
     public function set($model, $key, $value, $attributes)
     {
 
-        if($value == ''){
+        if($value == '' || $value == NULL){
 
             $value = 0;
         }
