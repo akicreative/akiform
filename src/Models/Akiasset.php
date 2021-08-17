@@ -597,8 +597,14 @@ class Akiasset extends Model
 
                 }else{
 
+
+
                     $file->storeAs($hashname, $disk);
                 
+                    echo $disk;
+
+                    die();
+
                 }
 
                 $scope = 'full';

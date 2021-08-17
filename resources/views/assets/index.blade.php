@@ -27,6 +27,13 @@ $ar->hidden('go', 'filter');
 
 echo '<li class="list-inline-item">';
 
+echo '<a href="' . route('aki.asset.create') . '" class="btn btn-success">ADD</a>';
+
+echo '</li>';
+
+
+echo '<li class="list-inline-item">';
+
 echo '<a class="nav-link" href="' . route('aki.categories.index') . '">Category Management</a>';
 
 echo '</li>';
@@ -47,7 +54,7 @@ $ar->close();
 
 <h5>There are currently no assets uploaded.</h5>
 
-<a href="{{ route('aki.asset.create') }}" class="btn btn-success">ADD</a>
+
 
 @else
 

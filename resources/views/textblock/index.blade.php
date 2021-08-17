@@ -9,7 +9,7 @@ Text Blocks
 <div class="container-fluid">
 
 
-<h1>Assets</h1>
+<h1>Text Blocks</h1>
 
 <div class="card mb-3">
 
@@ -29,7 +29,7 @@ $ar->hidden('go', 'filter');
 
 echo '<li class="list-inline-item">';
 
-echo ' <a href="' . action('\AkiCreative\AkiForms\TextblockController@create') . '" class="btn btn-success btn-sm my-2 my-sm-0">ADD</a>';
+echo ' <a href="' . action('\AkiCreative\AkiForms\TextblockController@create') . '" class="btn btn-success ">ADD</a>';
 
 echo '</li>';
 

@@ -18,7 +18,7 @@ Create Text Block
 
 <?
 
-$ar = new AkiForm($errors, ['horizontal' => true]);
+$ar = new AkiForm($errors, ['horizontal' => true, 'size' => '']);
 
 $ar->open(['action' => route('aki.textblock.store')]);
 
