@@ -412,9 +412,7 @@ class Akiasset extends Model
 
                     $file->storeAs('', $hashname, $disk);
 
-                    dump($file);
 
-                    die();
                 
                 }
 
@@ -583,7 +581,7 @@ class Akiasset extends Model
 
                 }else{
 
-                    $file->storeAs($hashname, $disk);
+                    $file->storeAs('', $hashname, $disk);
                 
                 }
 
@@ -603,7 +601,7 @@ class Akiasset extends Model
 
 
 
-                    $file->storeAs($hashname, $disk);
+                    $file->storeAs('', $hashname, $disk);
 
                 }
 
