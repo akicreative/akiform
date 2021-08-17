@@ -11,6 +11,8 @@ Assets
 
 @if($focus == 'none')
 
+<h1>Assets</h1>
+
 <?
 
 $ar = new AkiForm($errors, ['inlinelist' => true, 'size' => '']);
@@ -22,6 +24,12 @@ $ar->build('select', 'category', 'category', ['selectoptions' => $cats, 'default
 $ar->build('submit', 'GO');
 
 $ar->hidden('go', 'filter');
+
+echo '<li class="list-inline-item">';
+
+echo '<a class="nav-link" href="' . route('aki.categories.index') . '">Category Management</a>';
+
+echo '</li>';
 
 $ar->close();
 
@@ -52,7 +60,7 @@ $ar->open(['action' => url()->current(), 'files' => true]);
 
 <table class="table table-striped table-bordered table-sm">
 
-<tr><th></th><th class="text-center">Key</th><th>Name</th><th></th><th class="text-center" style="width: 150px;"><button type="submit" name="savebutton" value="order" class="btn btn-sm btn-primary btn-block">Order</button></th></tr>
+<tr><th><a href="{{ route('aki.asset.create') }}" class="btn btn-success">ADD</a></th><th class="text-center">Key</th><th>Name</th><th></th><th class="text-center" style="width: 150px;"><button type="submit" name="savebutton" value="order" class="btn btn-sm btn-primary btn-block">Order</button></th></tr>
 
 @foreach($rows as $row)
 
