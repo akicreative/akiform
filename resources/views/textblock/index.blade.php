@@ -8,6 +8,9 @@ Text Blocks
 
 <div class="container-fluid">
 
+
+<h1>Assets</h1>
+
 <div class="card mb-3">
 
 	<div class="card-body">
@@ -23,6 +26,19 @@ $ar->build('select', 'category', 'category', ['selectoptions' => ['all' => 'All 
 $ar->build('submit', 'GO');
 
 $ar->hidden('go', 'filter');
+
+echo '<li class="list-inline-item">';
+
+echo ' <a href="' . action('\AkiCreative\AkiForms\TextblockController@create') . '" class="btn btn-success btn-sm my-2 my-sm-0">ADD</a>';
+
+echo '</li>';
+
+echo '<li class="list-inline-item">';
+
+echo '<a class="nav-link" href="' . route('aki.categories.index') . '">Category Management</a>';
+
+echo '</li>';
+
 
 $ar->close();
 

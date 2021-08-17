@@ -19,6 +19,11 @@ akiredactorxcss();
 
 <h1>{{ $text->name }}</h1>
 
+	<ul class="list-inline">
+<li class="list-inline-item"><a href="{{ route('aki.textblock.index') }}">Back to Text Blocks</a></li>
+</ul>
+
+
 <?
 
 $ar = new AkiForm($errors, ['horizontal' => true]);
