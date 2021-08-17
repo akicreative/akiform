@@ -600,10 +600,6 @@ class Akiasset extends Model
 
 
                     $file->storeAs($hashname, $disk);
-                
-                    echo $disk;
-
-                    die();
 
                 }
 
