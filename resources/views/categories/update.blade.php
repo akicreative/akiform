@@ -6,6 +6,13 @@ Update Category
 
 @section('content')
 
+<h1>Update Category</h1>
+
+<ul class="list-inline">
+<li class="list-inline-item"><a href="{{ route('aki.asset.index') }}">Assets</a></li>
+</ul>
+
+
 @if(isset($akisubnavurl))
 
 @include('akiforms::layouts.subnav')

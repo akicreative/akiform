@@ -47,6 +47,8 @@ $ar->close();
 
 <h5>There are currently no assets uploaded.</h5>
 
+<a href="{{ route('aki.asset.create') }}" class="btn btn-success">ADD</a>
+
 @else
 
 <?
