@@ -12,11 +12,17 @@ Create Asset
 
 <h1>{{ $category->name }}</h1>
 
+
+
 <? $action = route('aki.asset.category.store', [$focus]); ?>
 
 @else
 
 <h1>Add Asset</h1>
+
+<ul class="list-inline">
+<li class="list-inline-item"><a href="{{ route('aki.asset.index') }}">Back to Assets</a></li>
+</ul>
 
 <? $action = route('aki.asset.store'); ?>
 

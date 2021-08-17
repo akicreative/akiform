@@ -24,6 +24,12 @@ $destroyaction = route('aki.asset.category.destroy', [$asset->id, $focus]);
 
 @else
 
+<h1>Assets</h1>
+
+<ul class="list-inline">
+<li class="list-inline-item"><a href="{{ route('aki.asset.index') }}">Back to Assets</a></li>
+</ul>
+
 <? 
 
 $action = route('aki.asset.update', [$asset->id]);
