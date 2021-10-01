@@ -16,7 +16,7 @@ class CreateAkiinfolistTable extends Migration
             $table->string('infotype', 50)->nullable();
             $table->string('title', 255)->nullable();
             $table->boolean('html')->default(0);
-            $table->string('description', 255)->nullable();
+            $table->text('description', 255)->nullable();
             $table->string('url', 255)->nullable();
             $table->boolean('newwindow')->default(0);
             $table->boolean('spaceafter')->default(0);

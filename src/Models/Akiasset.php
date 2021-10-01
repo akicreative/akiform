@@ -2,6 +2,7 @@
 
 namespace AkiCreative\AkiForms\Models;
 
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 use AkiCreative\AkiForms\Models\Akiasset;
 use AkiCreative\AkiForms\Models\Akicategory;
@@ -12,6 +13,8 @@ use Image;
 
 class Akiasset extends Model
 {
+
+    use Notifiable;
 
 	protected $table = 'akiform_assets';
 
@@ -227,7 +230,6 @@ class Akiasset extends Model
             return false;
         }
 
-       
 
         if($cat->private){
 

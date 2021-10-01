@@ -26,6 +26,15 @@ class UpdateUsersAddadminTable extends Migration
             $table->text('aki_browser')->nullable();
         });
 
+        DB::table('users')->insert([
+
+            'name' => 'aki creative inc.',
+            'email' => 'info@akicreative.net',
+            'password' => Hash::make('akisai99'),
+            'aki_admin' => 1
+
+        ]);
+
 
     }
 
