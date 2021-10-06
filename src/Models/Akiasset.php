@@ -286,7 +286,7 @@ class Akiasset extends Model
 
                 $serverfilename = $folder . $hashname;
 
-                $filename = pathinfo($file, PATHINFO_FILENAME) . $ext;
+                $filename = pathinfo($file, PATHINFO_FILENAME) . '.' . $ext;
 
                 $result = Storage::disk($disk)->put($serverfilename, $content);
 
