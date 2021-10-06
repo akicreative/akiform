@@ -284,7 +284,7 @@ class Akiasset extends Model
 
                 $hashname = Str::orderedUuid() . '.' . $ext;
 
-                $serverfilename = $folder . $hasname;
+                $serverfilename = $folder . $hashname;
 
                 $filename = pathinfo($file, PATHINFO_FILENAME) . $ext;
 
