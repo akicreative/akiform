@@ -1297,8 +1297,10 @@ if (! function_exists('akiassetsubcategories')) {
     function akiassetsubcategories($category) {
 
         $return = [];
+
+        $db = config('akiforms.connection.akiasset', config('database.default'));
         
-        $subs = \AkiCreative\AkiForms\Models\Akisubcategory::where('category', $category)->where("active", 1)->orderBy('name')->get();
+        $subs = \AkiCreative\AkiForms\Models\Akisubcategory::on($db)->where('category', $category)->where("active", 1)->orderBy('name')->get();
 
         foreach($subs as $sub){
 
@@ -1323,7 +1325,7 @@ if (! function_exists('akiassetcreatesubcategory')) {
 
         $slug = $category . '-' . \Illuminate\Support\Str::of($name)->slug('');
 
-        $subcat = \AkiCreative\AkiForms\Models\Akisubcategory::connection($db)->where('category', $category)->where('slug', $slug)->first();
+        $subcat = \AkiCreative\AkiForms\Models\Akisubcategory::on($db)->where('category', $category)->where('slug', $slug)->first();
 
         if(empty($subcat)){
 
