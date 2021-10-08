@@ -1323,11 +1323,11 @@ if (! function_exists('akiassetcreatesubcategory')) {
 
         $slug = $category . '-' . \Illuminate\Support\Str::of($name)->slug('');
 
-        $subcat = Akisubcategory::connection($db)->where('category', $category)->where('slug', $slug)->first();
+        $subcat = \AkiCreative\AkiForms\Models\Akisubcategory::connection($db)->where('category', $category)->where('slug', $slug)->first();
 
         if(empty($subcat)){
 
-            $subcat = new Akisubcategory;
+            $subcat = new \AkiCreative\AkiForms\Models\Akisubcategory;
             $subcat->setConnection($db);
             $subcat->slug = $slug;
             $subcat->category = $category;
