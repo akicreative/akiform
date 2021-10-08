@@ -1313,6 +1313,35 @@ if (! function_exists('akiassetsubcategories')) {
 
 }
 
+if (! function_exists('akiassetcreatesubcategory')) {
+
+    function akiassetcreatesubcategory($category, $name = '') {
+
+        if($name == '') return;
+
+        $db = config('akiforms.connection.akiasset', config('database.default'));
+
+        $slug = $category . '-' . Str::of($name)->slug('');
+
+        $subcat = Akisubcategory::connection($db)->where('category', $category)->where('slug', $slug)->first();
+
+        if(empty($subcat)){
+
+            $subcat = new Akisubcategory;
+            $subcat->setConnection($db);
+            $subcat->slug = $slug;
+            $subcat->category = $category;
+            $subcat->name = $name;
+            $subcat->save();
+
+        }
+
+        return $subcat->slug;
+
+    }
+
+}
+
 if (! function_exists('akiassetadd')) {
 
     function akiassetadd($category, $file, $deleteid = 0, $cfg = []) {
