@@ -1196,20 +1196,28 @@ if (! function_exists('akipage')) {
 
 if (! function_exists('akiassetitems')) {
 
-    function akiassetitems($category, $referenceid = 0)
+    function akiassetitems($category, $referenceid = 0, $subcategory = NULL)
     {
 
         $db = config('akiforms.connection.akiasset', config('database.default'));
 
+        $return = \AkiCreative\AkiForms\Models\Akiasset::on($db)->where('category', $category);
+
         if($referenceid > 0){
 
-            return \AkiCreative\AkiForms\Models\Akiasset::on($db)->where('category', $category)->where('referenceid', $referenceid)->orderBy('orderby', 'ASC');
-
-        }else{
-
-            return \AkiCreative\AkiForms\Models\Akiasset::on($db)->where('category', $category)->orderBy('orderby', 'ASC');
+            $return = $return->where('referenceid', $referenceid);
 
         }
+
+        if($subcategory != NULL){
+
+            $return = $return->where('subcategory', $subcategory);
+
+        }
+
+        $return = $return->orderBy('orderby', 'ASC');
+
+        return $return;
 
     }
 
@@ -1217,18 +1225,26 @@ if (! function_exists('akiassetitems')) {
 
 if (! function_exists('akiassetrandom')) {
 
-    function akiassetrandom($category, $count = 1)
+    function akiassetrandom($category, $count = 1, $subcategory = NULL)
     {
 
         $db = config('akiforms.connection.akiasset', config('database.default'));
 
+        $return = \AkiCreative\AkiForms\Models\Akiasset::on($db)->where('category', $category);
+
+        if($subcategory != NULL){
+
+            $return = $return->where('subcategory', $subcategory);
+
+        }
+
         if($count > 1){
 
-            return \AkiCreative\AkiForms\Models\Akiasset::on($db)->where('category', $category)->inRandomOrder();
+            $return = $return->inRandomOrder();
 
         }else{
 
-            return \AkiCreative\AkiForms\Models\Akiasset::on($db)->where('category', $category)->inRandomOrder()->first();
+            $return = $return->inRandomOrder()->first();
 
         }
 
@@ -1276,6 +1292,26 @@ if (! function_exists('akiasset')) {
 
 }
 
+if (! function_exists('akiassetsubcategories')) {
+
+    function akiassetsubcategories($category) {
+
+        $return = [];
+        
+        $subs = \AkiCreative\AkiForms\Models\Akisubcategory::where('category', $category)->where("active", 1)->orderBy('name')->get();
+
+        foreach($subs as $sub){
+
+            $key = $sub->slug;
+
+            $return[$key] = $sub->name;
+        }
+
+        return $return;
+
+    }
+
+}
 
 if (! function_exists('akiassetadd')) {
 

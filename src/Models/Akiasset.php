@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 use AkiCreative\AkiForms\Models\Akiasset;
 use AkiCreative\AkiForms\Models\Akicategory;
+use AkiCreative\AkiForms\Models\Akisubcategory;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -216,7 +217,7 @@ class Akiasset extends Model
 
         $db = config('akiforms.connection.akiasset', config('database.default'));
 
-        $cfg = [];
+        $cfg = ['subcategory' => NULL, 'addsubcategory' => NULL];
 
         foreach($c as $key => $value){
 
@@ -298,6 +299,41 @@ class Akiasset extends Model
                 $a->serverfilename = $serverfilename;
                 $a->filename = $filename;
                 $a->mimetype = $mime;
+
+                if($cfg['addsubcategory'] != NULL){
+
+                    $slug = $category . '-' . Str::of($cfg['addsubcategory'])->slug('');
+
+                    $subcat = Akisubcategory::connection($db)->where('category', $category)->where('slug', $slug)->first();
+
+                    if(empty($subcat)){
+
+                        $subcat = new Akisubcategory;
+                        $subcat->setConnection($db);
+                        $subcat->slug = $slug;
+                        $subcat->category = $category;
+                        $subcat->name = $cfg['addsubcategory'];
+                        $subcat->save();
+
+                        $a->subcategory = $slug;
+                    }else{
+
+                        $a->subcategory = $subcat->slug;
+                    }
+
+                    
+                }elseif($cfg['subcategory'] != NULL){
+
+                    $subcat = Akisubcategory::connection($db)->where('category', $category)->where('slug', $cfg['subecategory'])->first();
+
+                    if(!empty($subcat)){
+
+                        $a->subcategory = $subcat->slug;
+
+                    }
+
+                }
+
                 $a->save();
 
                 if($deleteid > 0){
