@@ -1321,7 +1321,7 @@ if (! function_exists('akiassetcreatesubcategory')) {
 
         $db = config('akiforms.connection.akiasset', config('database.default'));
 
-        $slug = $category . '-' . Str::of($name)->slug('');
+        $slug = $category . '-' . \Illuminate\Support\Str::of($name)->slug('');
 
         $subcat = Akisubcategory::connection($db)->where('category', $category)->where('slug', $slug)->first();
 
