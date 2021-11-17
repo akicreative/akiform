@@ -873,7 +873,14 @@ class Form
 
 						$selected = '';
 
-						if($key == $cfg['default']){
+						if($key == "0"){
+
+							if($key == $cfg['default']){
+
+								$selected = 'selected';
+							}
+
+						}elseif($key == $cfg['default']){
 
 							$selected = 'selected';
 						}
