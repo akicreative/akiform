@@ -869,8 +869,6 @@ class Form
 
 					}
 
-					echo ;
-
 					foreach($cfg['selectoptions'] as $key => $option){
 
 						$selected = '';
@@ -889,7 +887,7 @@ class Form
 							$selected = 'selected';
 						}
 
-						echo '<option value="' . $key . '" ' . $selected . '>' . $option . $cfg['default'] . ' - TEST <br></option>';
+						echo '<option value="' . $key . '" ' . $selected . '>' . $option . '--' . $cfg['default'] . ' - TEST</option>';
 
 					}
 
