@@ -875,7 +875,7 @@ class Form
 
 						if($key == "0"){
 
-							if($key == $cfg['default']){
+							if($key === $cfg['default']){
 
 								$selected = 'selected';
 							}
