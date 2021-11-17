@@ -873,11 +873,9 @@ class Form
 
 						$selected = '';
 
-
-
 						if($key === 0){
 
-							if($key === $cfg['default']){
+							if($key === "$cfg[default]"){
 
 								$selected = 'selected';
 							}
@@ -887,7 +885,7 @@ class Form
 							$selected = 'selected';
 						}
 
-						echo '<option value="' . $key . '" ' . $selected . '>' . $option . '--' . $cfg['default'] . ' - TEST</option>';
+						echo '<option value="' . $key . '" ' . $selected . '>' . $option . '</option>';
 
 					}
 
