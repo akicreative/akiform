@@ -869,9 +869,13 @@ class Form
 
 					}
 
+					echo $cfg['default'] . ' - TEST <br>';
+
 					foreach($cfg['selectoptions'] as $key => $option){
 
 						$selected = '';
+
+
 
 						if($key === 0){
 
