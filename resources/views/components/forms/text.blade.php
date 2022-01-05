@@ -19,4 +19,4 @@ if($id == ''){
 ?>
 
 
-<input type="{{ $type }}" wire:model="{{ $name }}" {{ $atts }}>
+<input type="{{ $type }}"  {{ $atts }}>
