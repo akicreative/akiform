@@ -33,7 +33,7 @@
             require_once __DIR__ . '/redactor.php';
             require_once __DIR__ . '/notifications.php';
 
-            Blade::componentNamespace('Akicreative\\Akiforms\\Resources\\Views\\Components', 'akiforms');
+            Blade::componentNamespace('AkiCreative\\AkiForms\\Resources\\Views\\Components', 'akiforms');
 
         }
         
