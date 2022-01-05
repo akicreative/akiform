@@ -38,11 +38,11 @@ switch($display){
 
 <div class="{{ $groupclass }}">
 
-	@isset($label)
+	@if(isset($label) && $display != 'floating')
 
 	 <label for="{{ $for }}" class="{{ $labelclass }}">{{ $label }}</label>
 
-	@endisset
+	@endif
 
 	@if($display == "horizontal")
 
@@ -51,6 +51,12 @@ switch($display){
 	@endif
 
 	{{ $slot }}
+
+	@if(isset($label) && $display == 'floating')
+
+	 <label for="{{ $for }}" class="{{ $labelclass }}">{{ $label }}</label>
+
+	@endif
 
 	@if($blockhelp)
 
