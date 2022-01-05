@@ -20,7 +20,7 @@ if($id == '' && $atts->has('name')){
 ?>
 
 
-<select wire:model="{{ $name }}" {{ $atts }}>
+<select {{ $atts }}>
 
 	@foreach($options as $value => $label)
 

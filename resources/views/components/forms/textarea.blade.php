@@ -19,5 +19,5 @@ if($id == '' && $atts->has('name')){
 ?>
 
 
-<textarea wire:model="{{ $name }}" {{ $atts }} rows="{{ $rows }}">
+<textarea {{ $atts }} rows="{{ $rows }}">
 </textarea>
