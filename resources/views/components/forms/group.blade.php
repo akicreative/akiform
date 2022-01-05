@@ -18,17 +18,33 @@ if($errors->first($for)){
 
 }
 
+switch($display){
+
+	case "horizontal":
+		$labelclass = $hleft . ' col-form-label';
+		$groupclass = 'mb-2 row';
+		break;
+	case "floating":
+		$labelclass = '';
+		$groupclass = 'form-group form-floating';
+		break;
+	default:
+		$labelclass = 'form-label';
+		$groupclass = 'mb-2';
+		break;
+}
+
 ?>
 
-<div class="mb-2 {{ $display ? 'row' : '' }}">
+<div class="{{ $groupclass }}">
 
 	@isset($label)
 
-	 <label for="{{ $for }}" class="{{ $display ? $hleft . ' col-form-label' : 'form-label' }}">{{ $label }}</label>
+	 <label for="{{ $for }}" class="{{ $labelclass }}">{{ $label }}</label>
 
 	@endisset
 
-	@if($display)
+	@if($display == "horizontal")
 
 		<div class="{{ $hright . ' col-form-label' }}">
 
@@ -48,10 +64,12 @@ if($errors->first($for)){
 
 	@endif
 
-	@if($display)
+	@if($display == 'horizontal')
 
 		</div>
 
 	@endif
+
+
 
 </div>
