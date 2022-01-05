@@ -3,6 +3,7 @@
     namespace AkiCreative\AkiForms;
     
     use Illuminate\Support\ServiceProvider;
+    use Illuminate\Support\Facades\Blade;
     
     class AkiFormsServiceProvider extends ServiceProvider {
 
