@@ -32,6 +32,8 @@
             require_once __DIR__ . '/redactor.php';
             require_once __DIR__ . '/notifications.php';
 
+            Blade::componentNamespace('Akiforms\\Resources\\Views\\Components', 'akiforms');
+
         }
         
         public function register()
