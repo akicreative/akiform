@@ -11,9 +11,9 @@
 
 $atts = $attributes->merge(['class' => 'form-control form-control-sm']); 
 
-if($id == '' && $atts->has('name')){
+if($id == ''){
 
-	$atts = $atts->merge(['id' => $atts->get('name')]);
+	$atts = $atts->merge(['id' => $name]);
 }
 
 ?>
