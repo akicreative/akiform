@@ -38,7 +38,7 @@ switch($display){
 
 <div class="{{ $groupclass }}">
 
-	@if(isset($label) && $display != 'floating')
+	@if($label && $display != 'floating')
 
 	 <label for="{{ $for }}" class="{{ $labelclass }}">{{ $label }}</label>
 
@@ -52,7 +52,7 @@ switch($display){
 
 	{{ $slot }}
 
-	@if(isset($label) && $display == 'floating')
+	@if($label && $display == 'floating')
 
 	 <label for="{{ $for }}" class="{{ $labelclass }}">{{ $label }}</label>
 
