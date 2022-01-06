@@ -283,6 +283,11 @@ class Akiasset extends Model
 
                 $ext = pathinfo($file, PATHINFO_EXTENSION);
 
+                if($mime == 'application/octet-stream'){
+
+                    $mime = Illuminate\Http\Testing\MimeType::from($file);
+                }
+
                 $hashname = Str::orderedUuid() . '.' . $ext;
 
                 $serverfilename = $folder . $hashname;
@@ -358,6 +363,11 @@ class Akiasset extends Model
             $hashname = $file->hashName();
             $mime = $file->getClientMimeType();
             $filename = $file->getClientOriginalName();
+
+            if($mime == 'application/octet-stream'){
+
+                $mime = Illuminate\Http\Testing\MimeType::from($file->getClientOriginalName());
+            }
 
         }
 
