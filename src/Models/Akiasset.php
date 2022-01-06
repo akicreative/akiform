@@ -366,7 +366,7 @@ class Akiasset extends Model
 
             if($mime == 'application/octet-stream'){
 
-                $mime = Illuminate\Http\Testing\MimeType::from($file->getClientOriginalName());
+                $mime = \Illuminate\Http\Testing\MimeType::from($file->getClientOriginalName());
             }
 
         }
