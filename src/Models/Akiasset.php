@@ -217,7 +217,7 @@ class Akiasset extends Model
 
         $db = config('akiforms.connection.akiasset', config('database.default'));
 
-        $cfg = ['subcategory' => NULL, 'addsubcategory' => NULL];
+        $cfg = ['subcategory' => NULL, 'addsubcategory' => NULL, 'referenceid' => 0];
 
         foreach($c as $key => $value){
 
@@ -486,11 +486,35 @@ class Akiasset extends Model
 
         $a->filename = $filename;
         $a->mimetype = $mime;
+
         $a->save();
 
         if($deleteid > 0){
 
             Akiasset::assetdelete($deleteid);
+        }
+
+
+        // Set the order by if Reference ID is set.
+
+        if($cfg['referenceid'] > 0){
+
+            $last = Akiasset::on($db)->where('referenceid', $cfg['referenceid'])->where('category', $cat->slug)->orderBy('orderby', 'DESC')->first();
+
+            if(empty($last)){
+
+                $orderby = 1;
+            
+            }else{
+
+                $orderby = $last->orderby + 1;
+
+            }
+
+            $a->referenceid = $cfg['referenceid'];
+            $a->orderby = $orderby;
+            $a->save();
+
         }
 
         return $a;
