@@ -11,7 +11,7 @@
 
 $atts = $attributes->merge(['class' => 'form-control form-control-sm']); 
 
-if($id == ''){
+if($id == '' && $type != 'file'){
 
 	$atts = $atts->merge(['id' => $name]);
 }
