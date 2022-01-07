@@ -46,6 +46,12 @@ switch($display){
 
 	@if($display == "horizontal")
 
+		@if(!$label)
+
+			<div class="{{ $labelclass }}"></div>
+
+		@endif
+
 		<div class="{{ $hright . ' col-form-label' }}">
 
 	@endif
@@ -71,6 +77,8 @@ switch($display){
 	@endif
 
 	@if($display == 'horizontal')
+
+
 
 		</div>
 
