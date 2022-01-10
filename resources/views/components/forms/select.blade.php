@@ -10,7 +10,7 @@
 
 <? 
 
-$atts = $attributes->merge(['class' => 'form-control form-control-sm']); 
+$atts = $attributes->merge(['class' => 'form-select form-select-sm']); 
 
 if($id == '' && $atts->has('name')){
 
