@@ -20,7 +20,7 @@ if($id == '' && $atts->has('name')){
 ?>
 
 
-<select {{ $atts }}>
+<select name="{{ $name }}" {{ $atts }}>
 
 	@foreach($options as $value => $label)
 
