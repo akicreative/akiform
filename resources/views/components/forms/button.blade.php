@@ -3,14 +3,15 @@
 	'id' => '',
 	'label' => 'Submit',
 	'type' => 'submit',
-	'class' => 'btn-primary'
+	'class' => 'btn-primary',
+	'size' => 'btn-xs'
 ])
 
 
 
 <? 
 
-$atts = $attributes->merge(['class' => 'btn btn-sm ' . $class]); 
+$atts = $attributes->merge(['class' => 'btn ' . $size . ' ' . $class]); 
 
 if($id == '' && $atts->has('name')){
 
