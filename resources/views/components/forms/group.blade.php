@@ -31,7 +31,7 @@ switch($display){
 		$groupclass = 'form-group form-floating';
 		break;
 	case "inline":
-		$groupclass = 'col-12'
+		$groupclass = 'col-12';
 		break;
 	default:
 		$labelclass = 'form-label';
