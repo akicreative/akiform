@@ -18,6 +18,8 @@ if($errors->first($for)){
 
 }
 
+// Form: row row-cols-lg-auto g-3 align-items-center
+
 switch($display){
 
 	case "horizontal":
@@ -27,6 +29,9 @@ switch($display){
 	case "floating":
 		$labelclass = '';
 		$groupclass = 'form-group form-floating';
+		break;
+	case "inline":
+		$groupclass = 'col-12'
 		break;
 	default:
 		$labelclass = 'form-label';
@@ -38,7 +43,7 @@ switch($display){
 
 <div class="{{ $groupclass }}">
 
-	@if($label && $display != 'floating')
+	@if($label && $display != 'floating' && $display != 'inline')
 
 	 <label for="{{ $for }}" class="{{ $labelclass }}">{{ $label }}</label>
 
