@@ -1,9 +1,13 @@
 @props([
     'name' => ''
-    'format' => env('DATEFORMAT', 'MM/DD/YYYY')
+    'format' => ''
 ])
 
+@if($format == '')
 
+    <? $format = env('DATEFORMAT', 'MM/DD/YYYY'); ?>
+
+@endif
 
 <div
      x-data
