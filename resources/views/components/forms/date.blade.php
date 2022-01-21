@@ -1,5 +1,5 @@
 @props([
-    'name' => ''
+    'name' => '',
     'format' => ''
 ])
 
@@ -11,7 +11,7 @@
 
 <div
      x-data
-     x-init="new Pikaday({ field: $refs.input, format: '{{ $format }}' })
+     x-init="new Pikaday({ field: $refs.input, format: '{{ $format }}', 
         onSelect: function() {
             $wire.{{ $name }}db = this.getMoment().format('YYYY-MM-DD')
         }})
@@ -34,3 +34,5 @@
      />
 
  </div>
+
+</div>
