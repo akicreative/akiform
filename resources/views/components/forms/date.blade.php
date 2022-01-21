@@ -1,12 +1,17 @@
 @props([
-
+    'name' => ''
     'format' => env('DATEFORMAT', 'MM/DD/YYYY')
 ])
 
 
+
 <div
      x-data
-     x-init="new Pikaday({ field: $refs.input, format: '{{ $format }}' })"
+     x-init="new Pikaday({ field: $refs.input, format: '{{ $format }}' })
+        onSelect: function() {
+            $wire.{{ $name }}db = this.getMoment().format('YYYY-MM-DD')
+        }})
+    "
      
      class=""
  >
@@ -17,6 +22,7 @@
 
 
      <input
+        wire:model.lazy="{{ $name }}"
          {{ $attributes }}
          x-ref="input"
          @change="$dispatch('input', $event.target.value)"
