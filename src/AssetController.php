@@ -156,7 +156,7 @@ class AssetController extends Controller
 
     public function create(){
 
-        $focus = 'none'
+        $focus = 'none';
 
         $db = config('akiforms.connection.akitextblock', config('database.default'));
 
@@ -215,7 +215,7 @@ class AssetController extends Controller
 
     public function store(Request $request){
 
-        $focus = 'none'
+        $focus = 'none';
 
         $db = config('akiforms.connection.akitextblock', config('database.default'));
 
@@ -472,7 +472,7 @@ class AssetController extends Controller
 
     public function edit($id){
 
-        $focus = 'none'
+        $focus = 'none';
 
         $db = config('akiforms.connection.akitextblock', config('database.default'));
 
@@ -547,7 +547,7 @@ class AssetController extends Controller
 
     public function update($id, Request $request){
 
-        $focus = 'none'
+        $focus = 'none';
 
         $db = config('akiforms.connection.akitextblock', config('database.default'));
 
@@ -783,7 +783,7 @@ class AssetController extends Controller
 
     public function destroy($id, Request $request){
 
-        $focus = 'none'
+        $focus = 'none';
 
         $db = config('akiforms.connection.akitextblock', config('database.default'));
 
