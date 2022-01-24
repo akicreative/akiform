@@ -19,6 +19,4 @@ if($id == '' && $atts->has('name')){
 ?>
 
 
-<textarea {{ $atts }} rows="{{ $rows }}">
-	{{ old($name, $slot) }}
-</textarea>
+<textarea {{ $atts }} rows="{{ $rows }}">{{ old($name, $slot) }}</textarea>
