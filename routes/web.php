@@ -54,6 +54,7 @@ Route::prefix('cms')->middleware(['web', 'isadmin'])->namespace('AkiCreative\Aki
 	Route::post('/assets/{id}/update', 'AssetController@update')->name('aki.asset.update');
 	Route::post('/assets/{id}/destroy', 'AssetController@destroy')->name('aki.asset.destroy');
 
+	/*
 
 	Route::get('/assets/{category?}', 'AssetController@index')->name('aki.asset.category.index');
 	Route::post('/assets/{category?}', 'AssetController@index')->name('aki.asset.category.index');
@@ -62,6 +63,8 @@ Route::prefix('cms')->middleware(['web', 'isadmin'])->namespace('AkiCreative\Aki
 	Route::get('/assets/{id}/{category}/edit', 'AssetController@edit')->name('aki.asset.category.edit');
 	Route::post('/assets/{id}/{category}/update', 'AssetController@update')->name('aki.asset.category.update');
 	Route::post('/assets/{id}/{category}/destroy', 'AssetController@destroy')->name('aki.asset.category.destroy');
+
+	*/
 
 	Route::get('/categories', 'CategoryController@index')->name('aki.categories.index');
 	Route::get('/categories/create', 'CategoryController@create')->name('aki.categories.create');
