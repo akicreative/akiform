@@ -1,5 +1,23 @@
 <?php
 
+if (! function_exists('akiu')) {
+
+    function akiu($field = ''){
+
+        $user = session('akiuser', false);
+
+        if($user){
+
+            if(array_key_exists($field, $user)){
+
+                return $user[$field];
+            }
+        }
+
+        return $user;
+    }
+}
+
 if (! function_exists('akiavalue')) {
 
     function akiavalue($array, $key, $default = '') {
