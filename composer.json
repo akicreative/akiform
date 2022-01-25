@@ -17,6 +17,9 @@
         "laravel-notification-channels/telegram": "^0.5"
     },
     "autoload": {
+        "files": [
+            "helpers.php"
+        ],
         "psr-4": {
             "AkiCreative\\AkiForms\\": "src/"
         },
