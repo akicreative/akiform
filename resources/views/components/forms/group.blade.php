@@ -5,8 +5,8 @@
 	'blockhelp' => false,
 	'error' => false,
 	'display' => false,
-	'hleft' => 'col-sm-3',
-	'hright' => 'col-sm-9'
+	'hleft' => 'col-md-3',
+	'hright' => 'col-md-9'
 
 ])
 
