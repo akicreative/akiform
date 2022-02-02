@@ -71,7 +71,7 @@ switch($display){
 
 	@if($blockhelp)
 
-		<div class="text-muted my-1">{{ $blockhelp }}</div>
+		<div class="text-muted my-1">{!! $blockhelp !!}</div>
 
 	@endif
 
