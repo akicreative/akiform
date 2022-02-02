@@ -2,14 +2,23 @@
 
 	'id' => '',
 	'name',
-	'type' => 'text'
+	'type' => 'text',
+	'validation' => true
 ])
 
 
 
 <? 
 
-$atts = $attributes->merge(['class' => 'form-control:invalid form-control-sm']); 
+$validationclass = '';
+
+if($errors->first($id)){
+
+	$validationclass = 'is-invalid';
+
+}
+
+$atts = $attributes->merge(['class' => 'form-control form-control-sm' . ' ' . $validationclass]); 
 
 if($id == '' && $type != 'file'){
 

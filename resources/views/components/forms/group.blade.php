@@ -6,7 +6,8 @@
 	'error' => false,
 	'display' => false,
 	'hleft' => 'col-md-3',
-	'hright' => 'col-md-9'
+	'hright' => 'col-md-9',
+	'validation' => true
 
 ])
 
@@ -75,9 +76,9 @@ switch($display){
 
 	@endif
 
-	@if($error)
+	@if($error && $validation)
 
-		<div class="mt-1 text-danger">{{ $error }}</div>
+		<div class="mt-1 invalid-feedback">{{ $error }}</div>
 
 	@endif
 
