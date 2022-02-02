@@ -7,6 +7,11 @@
 	'validation' => true
 ])
 
+@aware([
+	'for' => ''
+])
+
+
 <?
 
 $validationclass = '';
