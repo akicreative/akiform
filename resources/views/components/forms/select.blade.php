@@ -1,7 +1,7 @@
 @props([
 
 	'id' => '',
-	'name',
+	'name' => '',
 	'options' => [],
 	'default' => ''
 ])
@@ -12,15 +12,15 @@
 
 $atts = $attributes->merge(['class' => 'form-select form-select-sm']); 
 
-if($id == '' && $atts->has('name')){
+if($id == '' && $name != ''){
 
-	$atts = $atts->merge(['id' => $atts->get('name')]);
+	$id = $name;
 }
 
 ?>
 
 
-<select {{ $atts }} name="{{ $name }}">
+<select {{ $atts }} id="{{ $id }}" name="{{ $name }}">
 
 	@foreach($options as $value => $label)
 
