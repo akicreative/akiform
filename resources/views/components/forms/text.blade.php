@@ -1,18 +1,19 @@
 @props([
-
 	'id' => '',
 	'name',
 	'type' => 'text',
 	'validation' => true
 ])
 
-
+@aware([
+	'for' => ''
+])
 
 <? 
 
 $validationclass = '';
 
-if($errors->first($id)){
+if($errors->first($for)){
 
 	$validationclass = 'is-invalid';
 
@@ -22,7 +23,16 @@ $atts = $attributes->merge(['class' => 'form-control form-control-sm' . ' ' . $v
 
 if($id == '' && $type != 'file'){
 
-	$atts = $atts->merge(['id' => $name]);
+	if($for != ''){
+
+		$atts = $atts->merge(['id' => $for]);
+
+	}else{
+
+		$atts = $atts->merge(['id' => $name]);
+
+	}
+
 }
 
 ?>
