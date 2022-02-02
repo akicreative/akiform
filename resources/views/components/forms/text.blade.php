@@ -9,7 +9,7 @@
 
 <? 
 
-$atts = $attributes->merge(['class' => 'form-control form-control-sm']); 
+$atts = $attributes->merge(['class' => 'form-control:invalid form-control-sm']); 
 
 if($id == '' && $type != 'file'){
 
