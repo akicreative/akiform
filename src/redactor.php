@@ -129,7 +129,24 @@ if (! function_exists('akiredactorxjs')) {
                 $json = [];
             }
 
-            $settings[] = "filelink: " . json_encode($json);
+            $json = 'select: [
+    {
+        "title": "File 1",
+        "name": "1.txt",
+        "url": "/file-url/1.txt",
+        "id": 1,
+        "size": "301Kb"
+    },
+    {
+        "title": "File 2",
+        "name": "2.txt",
+        "url": "/file-url/2.txt",
+        "id": 2,
+        "size": "1MB"
+    }
+]';
+
+            $settings[] = "filelink: " . $json;
         }
 
         if(count($cfg['more']) > 0){
