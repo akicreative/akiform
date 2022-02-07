@@ -12,7 +12,7 @@ if (! function_exists('akiredactorxplugins')) {
 
     function akiredactorxplugins($exclude = [], $include = []) {
 
-        $names = ['alignment', 'blockcode', 'definedlinks', 'handle', 'icons', 'imageposition', 'inlineformat', 'removeformat', 'selector', 'underline'];
+        $names = ['alignment', 'blockcode', 'definedlinks', 'handle', 'imageposition', 'inlineformat', 'removeformat', 'selector', 'underline'];
 
         for($i = 0; $i < count($exclude); $i++){
 
