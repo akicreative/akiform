@@ -26,7 +26,7 @@ if (! function_exists('akiredactorxplugins')) {
 
             $key = $include[$i];
 
-            $name[] = $key;
+            $names[] = $key;
 
         }
 
