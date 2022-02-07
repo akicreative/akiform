@@ -118,6 +118,20 @@ if (! function_exists('akiredactorxjs')) {
             $settings[] = "autosave: { url: '" . $cfg['autosave'] . "'}";
         }
 
+        if(in_array('filelink', $plugins)){
+
+            if(array_key_exists('filelink', $params)){
+
+                $json = [];
+
+            }else{
+
+                $json = [];
+            }
+
+            $settings[] = "filelink: " . json_encode($json);
+        }
+
         if(count($cfg['more']) > 0){
 
             foreach($cfg['more'] as $val){
@@ -127,6 +141,8 @@ if (! function_exists('akiredactorxjs')) {
             }
 
         }
+
+        
 
         echo '<script type="text/javascript">
 
