@@ -1,7 +1,7 @@
 @props([
 
 	'id' => '',
-	'name',
+	'name' => '',
 	'rows' => 5
 ])
 
@@ -11,12 +11,12 @@
 
 $atts = $attributes->merge(['class' => 'form-control form-control-sm']); 
 
-if($id == '' && $atts->has('name')){
+if($id == '' && $name != ''){
 
-	$atts = $atts->merge(['id' => $atts->get('name')]);
+	$atts = $atts->merge(['id' => $name]);
 }
 
 ?>
 
 
-<textarea {{ $atts }} rows="{{ $rows }}">{{ old($name, $slot) }}</textarea>
+<textarea name="{{ $name }}" {{ $atts }} rows="{{ $rows }}">{{ old($name, $slot) }}</textarea>
