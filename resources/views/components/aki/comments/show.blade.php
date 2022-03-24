@@ -2,11 +2,11 @@
 @if($showform)
 <form wire:submit.prevent="add" class="mt-3">
 
-        <x-tw.textarea wire:model.lazy="comments" name="comments"></x-tw.textarea>
+        <x-akiforms::aki.textarea wire:model.lazy="comments" name="comments"></x-akiforms::aki.textarea>
 
        
 
-        <x-tw.button type="submit" >Add Comment</x-tw.button>
+        <x-akiforms::aki.button type="submit" >Add Comment</x-akiforms::aki.button>
 
     </form>
 
@@ -45,6 +45,6 @@
 
 @else
 
-        <x-tw.alert>No comments have been added yet.</x-tw.alert>
+        <x-akiforms::aki.alert>No comments have been added yet.</x-akiforms::aki.alert>
 
 @endif

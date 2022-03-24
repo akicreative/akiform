@@ -19,6 +19,6 @@
 
   @endif
 
-	<x-tw.liststriped></x-tw.liststriped>
+	<x-akiforms::aki.liststriped></x-akiforms::aki.liststriped>
 
 </div>
