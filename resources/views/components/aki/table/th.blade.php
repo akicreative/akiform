@@ -1,7 +1,6 @@
 @props([
 
-    'class' => '',
-    'type' => 'td'
+    'class' => ''
 
 ])
 
@@ -12,4 +11,4 @@ $attributes = $attributes->merge(['class' => 'px-3 py-2 whitespace-nowrap text-s
 
 ?>
 
-<{{ $type }} {{ $attributes }}>{{ $slot }}</{{ $type }}>
+<th {{ $attributes }}>{{ $slot }}</th>

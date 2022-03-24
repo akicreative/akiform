@@ -1,0 +1,1 @@
+<div class="hidden block w-auto w-full py-4 pl-10 text-sm font-medium text-gray-700 border-l-8 border-gray-300 border-red-500 border-blue-500 rounded-md bg-gray-50 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></div>
