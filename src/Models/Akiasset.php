@@ -460,8 +460,6 @@ class Akiasset extends Model
 
                     $file->storeAs('', $hashname, $disk);
 
-
-                
                 }
 
                 $scope = 'full';
