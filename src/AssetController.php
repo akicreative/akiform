@@ -934,7 +934,7 @@ class AssetController extends Controller
         
     }
 
-    public function aws($id, $filename, $fn = '')
+    public function aws($id, $filename, $fn = '', $allow = false)
     {
 
         $filename = preg_replace("!:!", "/", $filename);
@@ -950,6 +950,11 @@ class AssetController extends Controller
         $target = env('AKIASSETPUBLIC', 'local');
 
         if($c->private){
+
+            if(!$allow){
+
+                return false;
+            }
 
             $scope = 'private';
 
