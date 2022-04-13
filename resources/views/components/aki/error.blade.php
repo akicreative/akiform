@@ -5,6 +5,13 @@
 
 @if($for != '')
 
-	@error($for) <span class="text-xs text-red-600">{{ $errormsg }}</span> @enderror
+
+	@error($for) 
+
+	<? if($errormsg == 'auto'){ $errormsg = $message; } ?>
+
+	<span class="text-xs text-red-600">{{ $errormsg }}</span> 
+
+	@enderror
 
 @endif
