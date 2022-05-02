@@ -27,7 +27,15 @@ if($type == 'money'){
 
 }
 
+if($type == 'file'){
+
+	$attributes = $attributes->merge(['class' => 'mt-1 block focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 ' . ' ' . $class]); 
+
+}else{
+
 $attributes = $attributes->merge(['class' => 'mt-1 block shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md' . ' ' . $class]); 
+
+}
 
 ?>
 
