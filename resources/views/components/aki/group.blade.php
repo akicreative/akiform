@@ -7,10 +7,13 @@
 	'id' => '',
 	'formhelp' => '',
 	'class' => '',
-	'errormsg' => ''
+	'errormsg' => '',
+	'cols' => 3,
+	'span' => 2
 ])
 
-<? /* sm:border-t sm:border-gray-200 */ ?>
+<? /* sm:border-t sm:border-gray-200 */ 
+?>
 
 @if($display == 'vertical')
 
@@ -20,16 +23,16 @@
 @elseif($display == 'horizontal')
   	
   	<div class="space-y-2 sm:space-y-2">
-		<div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-3">
+		<div class="sm:grid sm:grid-cols-{{ $cols }} sm:gap-4 sm:items-start sm:pt-3">
 			<label for="{{ $for }}" class="block text-sm sm:mt-px sm:pt-2 {{ $labelclass }}"> {{ $label }} </label>
-	  		<div class="mt-1 sm:mt-0 sm:col-span-2">
+	  		<div class="mt-1 sm:mt-0 sm:col-span-{{ $span }}">
 
 @elseif($display == 'horizontaltight')
   	
   	<div class="space-y-0 sm:space-y-0">
-		<div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-0">
+		<div class="sm:grid sm:grid-cols-{{ $cols }} sm:gap-4 sm:items-start sm:pt-0">
 			<label for="{{ $for }}" class="block text-sm sm:mt-px sm:pt-2 {{ $labelclass }}"> {{ $label }} </label>
-	  		<div class="mt-1 sm:mt-0 sm:col-span-2">
+	  		<div class="mt-1 sm:mt-0 sm:col-span-{{ $span }}">
 @endif
 
  {{ $slot }}
