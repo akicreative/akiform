@@ -19,6 +19,12 @@ class Akiasset extends Model
 
 	protected $table = 'akiform_assets';
 
+    protected $casts = [
+
+        'more' => 'json'
+
+    ];
+
 	public function type(){
 
 		switch($this->mimetype){
