@@ -12,7 +12,9 @@
     "version": "2.0.0",
     "minimum-stability": "dev",
     "require": {
-        "intervention/image": "^2.0"
+        "intervention/image": "^2.0",
+        "league/flysystem-aws-s3-v3": "^1.0",
+        "laravel-notification-channels/telegram": "^2.0"
     },
     "autoload": {
         "files": [
