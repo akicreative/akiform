@@ -713,8 +713,6 @@ class Akiasset extends Model
 
         if($scope == 'both' || $scope == 'sq'){
 
-   
-
             Storage::disk($disk)->delete($a->serverfilenamesq);
             $a->serverfilenamesq = $folder . $sq;
         }
