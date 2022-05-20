@@ -588,6 +588,11 @@ class Akiasset extends Model
         $tn = '';
         $sq = '';
 
+        if($mime == 'application/octet-stream'){
+
+            $mime = \Illuminate\Http\Testing\MimeType::from($file->getClientOriginalName());
+        }
+
         switch($mime){
 
             case "image/jpeg":
