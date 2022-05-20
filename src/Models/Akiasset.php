@@ -17,6 +17,8 @@ class Akiasset extends Model
 
     use Notifiable;
 
+    protected $fillable = ['name', 'orderby', 'category', 'referenceid'];
+
 	protected $table = 'akiform_assets';
 
     protected $casts = [

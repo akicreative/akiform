@@ -9,9 +9,16 @@ class Akicategory extends Model
 
 	protected $table = 'akiform_categories';
 
+    const CATTYPE = [
+
+        'asset' => 'Images / Files',
+        'textblock' => 'Blocks of Text'
+
+    ];
+
     protected $fillable = [
 
-        'slug', 'cattype', 'name', 'description', 'hidden', 'private', 'assetw', 'asseth', 'assettnresize', 'assettnw', 'assettnh'
+        'slug', 'cattype', 'name', 'description', 'hidden', 'private', 'assetw', 'asseth', 'assettnresize', 'assettnw', 'assettnh', 'assetsqw', 'assetsqh'
 
     ];
 
