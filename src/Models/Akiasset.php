@@ -622,30 +622,34 @@ class Akiasset extends Model
 
                     //if($cat->assettnresize == 'resize'){
 
-                        $tnpath = Image::make($file)->resize($cat->assettnw, null, function($constraint){
+                    $tnpath = Image::make($file)->resize($cat->assettnw, null, function($constraint){
 
-                            $constraint->aspectRatio();
-                            $constraint->upsize();
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
 
-                        })->orientate()->save(storage_path('app/') . $tn);
-
-                    //}else{
-
-                        $sqpath = Image::make($file)->fit($cat->assetsqw, $cat->assetsqh, function($constraint){
-
-                            $constraint->upsize();
-
-                        })->orientate()->save(storage_path('app/') . $sq);
-
-                    //}
+                    })->orientate()->save(storage_path('app/') . $tn);
+                    
 
                     $content = File::get(storage_path('app/') . $tn);
                     $result = Storage::disk($disk)->put($folder . $tn, $content);
 
+                    File::delete(storage_path('app/') . $tn);
+
+                }
+
+                if($scope == 'both' || $scope == 'sq'){
+
+                
+                    $sqpath = Image::make($file)->fit($cat->assetsqw, $cat->assetsqh, function($constraint){
+
+                        $constraint->upsize();
+
+                    })->orientate()->save(storage_path('app/') . $sq);
+
                     $content = File::get(storage_path('app/') . $sq);
                     $result = Storage::disk($disk)->put($folder . $sq, $content);
 
-                    File::delete(storage_path('app/') . $tn);
+                    File::delete(storage_path('app/') . $sq);
 
                 }
 
@@ -704,6 +708,12 @@ class Akiasset extends Model
 
             Storage::disk($disk)->delete($a->serverfilenametn);
             $a->serverfilenametn = $folder . $tn;
+
+        }
+
+        if($scope == 'both' || $scope == 'sq'){
+
+   
 
             Storage::disk($disk)->delete($a->serverfilenamesq);
             $a->serverfilenamesq = $folder . $sq;
