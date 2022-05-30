@@ -1442,7 +1442,7 @@ if (! function_exists('akiasseturl')) {
                         return Storage::disk($target)->temporaryUrl($a->serverfilename, now()->addMinutes(5));
                     }
 
-                }elseif($mode == 'sq'){
+                }elseif($mode == 'sq' && $a->serverfilenamesq != ''){
 
                     if($scope == 'public'){
 
