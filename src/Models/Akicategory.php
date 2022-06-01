@@ -18,7 +18,13 @@ class Akicategory extends Model
 
     protected $fillable = [
 
-        'slug', 'cattype', 'name', 'description', 'hidden', 'private', 'assetw', 'asseth', 'assettnresize', 'assettnw', 'assettnh', 'assetsqw', 'assetsqh'
+        'slug', 'cattype', 'name', 'description', 'hidden', 'private', 'assetw', 'asseth', 'assettnresize', 'assettnw', 'assettnh', 'assetsqw', 'assetsqh','cfgs'
+
+    ];
+
+    protected $casts = [
+
+        'cfgs' => 'json'
 
     ];
 
