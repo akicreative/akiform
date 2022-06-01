@@ -13,4 +13,6 @@ class Akitextblock extends Model
 
 	protected $attributes = ['headerasset_id' => 0];
 
+	protected $casts = ['more' => 'json'];
+
 }

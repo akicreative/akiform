@@ -18,6 +18,12 @@ class UpdateAkiformcategorycfgTable extends Migration
             
         });
 
+
+        Schema::table('akiform_textblocks', function (Blueprint $table) {
+            $table->json('more')->nullable();
+            
+        });
+
     }
 
     /**
