@@ -27,11 +27,7 @@
 
         ]
     },
-    "scripts": {
-        "post-update-cmd": [
-            "rsync -a vendor/akicreative/akiforms/resources/views/components/aki/ resources/views/components/aki/"
-        ]
-    },
+  
 
     "extra": {
       "laravel": {
