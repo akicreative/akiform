@@ -1,10 +1,11 @@
 @props([
 
-    'submit' => 'save'
+    'submit' => 'save',
+    'formmessage' => 'formmessage'
 
 ])
 
-<form wire:submit.prevent='{{ $submit }}' {{ $attributes }}>
+<form wire:submit.prevent='{{ $submit }}'>
 
     <x-aki.formmessage />
 
