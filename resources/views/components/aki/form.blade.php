@@ -7,7 +7,7 @@
 
 <form wire:submit.prevent='{{ $submit }}'>
 
-    <x-aki.formmessage />
+    <x-formmessage formmessage="{{ $formmessage }}" />
 
     {{ $slot }}
 
