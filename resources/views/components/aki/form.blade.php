@@ -1,9 +1,13 @@
-<form {{ $attributes }}>
+@props([
 
-	<div class="space-y-4">
+    'submit' => 'save'
 
-	{{ $slot }}
+])
 
-</div>
+<form wire:submit.prevent='{{ $submit }}' {{ $attributes }}>
+
+    <x-aki.formmessage />
+
+    {{ $slot }}
 
 </form>
