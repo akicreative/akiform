@@ -5,7 +5,15 @@
 
 ])
 
-<form wire:submit.prevent='{{ $submit }}'>
+@if($attributes->has('wire:submit.prevent'))
+
+    <form {{ $attributes }}>
+  
+@else
+
+    <form wire:submit.prevent='{{ $submit }}' {{ $attributes->except('wire:submit.prevent') }}>
+
+@endif
 
     <x-formmessage formmessage="{{ $formmessage }}" />
 
