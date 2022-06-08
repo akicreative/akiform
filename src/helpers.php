@@ -1266,6 +1266,8 @@ if (! function_exists('akiassetrandom')) {
 
         }
 
+        return $return;
+
     }
 
 }
