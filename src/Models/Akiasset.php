@@ -10,7 +10,6 @@ use AkiCreative\AkiForms\Models\Akisubcategory;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Illuminate\Filesystem\FilesystemAdapter;
 use Image;
 
 class Akiasset extends Model
