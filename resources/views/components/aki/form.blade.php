@@ -15,7 +15,7 @@
 
 @endif
 
-    <x-formmessage formmessage="{{ $formmessage }}" />
+    <x-aki.formmessage formmessage="{{ $formmessage }}" />
 
     {{ $slot }}
 
