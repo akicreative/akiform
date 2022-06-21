@@ -36,9 +36,9 @@
 
 @elseif($display == 'horizontaltightlines')
   	
-  	<div class="space-y-0 sm:space-y-0">
+  	<div class="space-y-0 sm:space-y-0 hover:bg-gray-50">
 		<div class="sm:grid sm:grid-cols-{{ $cols }} sm:gap-4 sm:items-start sm:pt-0">
-			<label for="{{ $for }}" class="block text-sm sm:mt-px sm:py-3 border-none md:border-bottom {{ $labelclass }}"> {{ $label }} </label>
+			<label for="{{ $for }}" class="block text-sm sm:mt-px sm:py-3 {{ $labelclass }}"> {{ $label }} </label>
 	  		<div class="mt-1 sm:mt-0 sm:col-span-{{ $span }}">
 @endif
 
