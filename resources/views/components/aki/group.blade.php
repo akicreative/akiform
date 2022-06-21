@@ -37,7 +37,7 @@
 
  {{ $slot }}
 
- <x-akiforms::aki.error />
+ <x-aki.error />
 
  @if(in_array($display, ['vertical', 'horizontal', 'horizontaltight']))
 
@@ -45,7 +45,7 @@
  
 	@if($formhelp != '')
 
-	<x-akiforms::aki.formhelp>{!! $formhelp !!}</x-akiforms::aki.formhelp>
+	<x-aki.formhelp>{!! $formhelp !!}</x-aki.formhelp>
 
 	@endif
 
