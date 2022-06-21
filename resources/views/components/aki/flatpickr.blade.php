@@ -26,7 +26,7 @@
         x-ref="input"
         x-bind:value="value"
         type="text"
-        {{ $attributes->merge(['class' => 'bg-white block  focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 ']) }}
+        {{ $attributes->merge(['class' => 'bg-white block rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 ']) }}
     />
 
     <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
