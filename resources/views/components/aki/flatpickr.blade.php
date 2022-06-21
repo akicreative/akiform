@@ -1,5 +1,6 @@
 @props([
-    'options' => []
+    'options' => [],
+    'width' => 'w-64'
 ])
 
 @php
@@ -11,7 +12,7 @@
                     ], $options);
 @endphp
 
-<div class="mt-1 relative rounded-md shadow-sm w-24" wire:ignore>
+<div class="mt-1 relative rounded-md shadow-sm {{ $width }}" wire:ignore>
 
     <input
         x-data="{
