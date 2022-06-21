@@ -34,7 +34,7 @@
 			<label for="{{ $for }}" class="block text-sm sm:mt-px sm:pt-2 {{ $labelclass }}"> {{ $label }} </label>
 	  		<div class="mt-1 sm:mt-0 sm:col-span-{{ $span }}">
 
-@elseif($display == 'horizontaltightlines')
+@elseif($display == 'horizontalhover')
   	
   	<div class="space-y-0 sm:space-y-0 hover:bg-gray-100 px-2 rounded">
 		<div class="sm:grid sm:grid-cols-{{ $cols }} sm:gap-4 sm:items-start sm:pt-0">
@@ -46,7 +46,7 @@
 
  <x-aki.error />
 
- @if(in_array($display, ['vertical', 'horizontal', 'horizontaltight', 'horizontaltightlines']))
+ @if(in_array($display, ['vertical', 'horizontal', 'horizontaltight', 'horizontalhover']))
 
  
  
@@ -60,7 +60,7 @@
 
  @endif
 
-@if($display == 'horizontal' || $display == 'horizontaltight' || $display == 'horizontaltightlines')
+@if($display == 'horizontal' || $display == 'horizontaltight' || $display == 'horizontalhover')
   	
 		</div>
 
