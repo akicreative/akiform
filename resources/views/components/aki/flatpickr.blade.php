@@ -12,7 +12,7 @@
                     ], $options);
 @endphp
 
-<div class="mt-1 relative rounded-md shadow-sm {{ $width }}" wire:ignore>
+<div class="mt-1 relative {{ $width }}" wire:ignore>
 
     <input
         x-data="{
