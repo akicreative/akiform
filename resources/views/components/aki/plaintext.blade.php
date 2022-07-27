@@ -1,0 +1,1 @@
+<div {{ $attributes->merge(['class' => 'mt-2 text-sm']) }}>{!! $slot !!}</div>
