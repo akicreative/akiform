@@ -3,7 +3,7 @@
 	'name' => '',
 	'id' => '',
 	'options' => [],
-	'class' => '',
+	'class' => 'block w-full',
 	'default' => '',
 	'all' => false,
 	'blank' => false,
@@ -31,7 +31,7 @@ if($display == 'inline'){
 
 ?>
 
-<select {{ $attributes }} id="{{ $id }}" name="{{ $name }}" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md {{ $class }}">
+<select {{ $attributes }} id="{{ $id }}" name="{{ $name }}" class="mt-1 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md {{ $class }}">
 
 
 
