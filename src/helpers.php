@@ -132,6 +132,11 @@ if (! function_exists('formatphone')) {
 
        if($version == 'clean'){
 
+            if(substr($text, 0, 1) === 1{
+
+                $text = substr($text, 1);
+            }
+
             return $text;
        }
 
