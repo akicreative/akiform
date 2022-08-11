@@ -1476,7 +1476,20 @@ if (! function_exists('akiasseturl')) {
 
                 $fn = preg_replace("!\/!", ":", $a->serverfilename);
 
+                if($scope == 'public'){
+
+                    return Storage::disk($target)->url($a->serverfilename);
+
+                }else{
+
+                    return Storage::disk($target)->temporaryUrl($a->serverfilename, now()->addMinutes(5));
+                }
+
+                /*
+
                 return route('aki.asset.aws', [$a->id, $fn]);
+
+                */
 
             }
 
