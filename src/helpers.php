@@ -1685,6 +1685,11 @@ if (! function_exists('akimoney')) {
     function akimoney($amount, $integer = false)
     {
 
+        if($amount == NULL){
+
+            $amount = 0;
+        }
+
         if(!$integer && $amount > 0){
 
             $amount  = ($amount * 100) / 100;
