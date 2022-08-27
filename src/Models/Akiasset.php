@@ -223,14 +223,23 @@ class Akiasset extends Model
     static public function assetadd($category, $file, $deleteid, $c = [])
     {
 
-        $db = config('akiforms.connection.akiasset', config('database.default'));
+        
 
-        $cfg = ['subcategory' => NULL, 'addsubcategory' => NULL, 'referenceid' => 0];
+        $cfg = ['subcategory' => NULL, 'addsubcategory' => NULL, 'referenceid' => 0, 'folder' => '', 'db' => ''];
 
         foreach($c as $key => $value){
 
             $cfg[$key] = $value;
         }
+
+        if($cfg['db'] != ''){
+
+            $db = $cfg['db'];
+        }else{
+
+            $db = config('akiforms.connection.akiasset', config('database.default'));
+        }
+
 
         $cat = Akicategory::on($db)->where('slug', $category)->first();
 
@@ -269,9 +278,19 @@ class Akiasset extends Model
 
         if(in_array($disk, ['spaces', 'spacesprivate'])){
 
-            $folder = config('filesystems.disks.' . $disk . '.folder', '');
+            if($cfg['folder'] != ''){
+
+                $folder = $cfg['folder'];
+
+            }else{
+
+                $folder = config('filesystems.disks.' . $disk . '.folder', '');
+
+            }
 
             if($folder != '') $folder = $folder . '/';
+        
+
         }
 
         if(is_string($file)){
@@ -442,7 +461,15 @@ class Akiasset extends Model
 
                 if(in_array($disk, ['spaces', 'spacesprivate'])){
 
-                    $folderonly = config('filesystems.disks.' . $disk . '.folder', '');
+                     if($cfg['folder'] != ''){
+
+                        $folderonly = $cfg['folder'];
+
+                    }else{
+
+                        $folderonly = config('filesystems.disks.' . $disk . '.folder', '');
+
+                    }
 
                     $file->storeAs($folderonly, $hashname, $disk);
 
@@ -460,7 +487,15 @@ class Akiasset extends Model
 
                 if(in_array($disk, ['spaces', 'spacesprivate'])){
 
-                    $folderonly = config('filesystems.disks.' . $disk . '.folder', '');
+                    if($cfg['folder'] != ''){
+
+                        $folderonly = $cfg['folder'];
+
+                    }else{
+
+                        $folderonly = config('filesystems.disks.' . $disk . '.folder', '');
+
+                    }
 
                     $file->storeAs($folderonly, $hashname, $disk);
 
