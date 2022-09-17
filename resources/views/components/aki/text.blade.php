@@ -20,7 +20,7 @@ $showmoney = false;
 
 if($type == 'money'){
 
-	$class .= $class . ' text-righ pl-7';
+	$class .= $class . ' text-right pl-7';
 	$type = 'text';
 
 	$showmoney = true;
