@@ -1574,7 +1574,7 @@ if (! function_exists('akiasseturls')) {
                     $return['square'] = $return['full'];
                 }
 
-                if($a->type() == "gif")
+                if($a->type() == "gif"){
 
                     return $return;
 
@@ -1620,7 +1620,7 @@ if (! function_exists('akiasseturls')) {
                     $return['square'] = $return['full'];
                 }
 
-                return $return;
+
 
                 /*
 
@@ -1629,6 +1629,8 @@ if (! function_exists('akiasseturls')) {
                 */
 
             }
+
+            return $return;
 
 
         }else{
