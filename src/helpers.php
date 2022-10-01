@@ -1516,6 +1516,143 @@ if (! function_exists('akiasseturl')) {
 
 }
 
+if (! function_exists('akiasseturls')) {
+
+    function akiasseturls($id, $auth = false)
+    {
+
+        $db = config('akiforms.connection.akiasset', config('database.default'));
+
+        $a = \AkiCreative\AkiForms\Models\Akiasset::on($db)->where('id', $id)->first();
+
+        $return = [
+
+            'full' => '#',
+            'thumb' => '#',
+            'square' => '#'
+
+        ];
+
+        if(empty($a)){
+
+            return false;
+        }
+
+        $c = \AkiCreative\AkiForms\Models\Akicategory::on($db)->where('slug', $a->category)->first();
+
+        $scope = 'public';
+
+        $target = env('AKIASSETPUBLIC', 'local');
+
+        if($c->private){
+
+            $scope = 'private';
+
+            $target = env('AKIASSETPRIVATE', 'local');
+        }
+
+        if($scope == 'private' && !$auth){
+
+            return false;
+        }
+
+        if($target != 'local'){
+
+            if($a->type() == "image" || $a->type() == "gif"){
+
+
+                if($scope == 'public'){
+
+                    $return['full'] = Storage::disk($target)->url($a->serverfilename);
+                    $return['thumb'] = $return['full'];
+                    $return['square'] = $return['square'];
+
+                }else{
+
+                    $return['full'] = Storage::disk($target)->temporaryUrl($a->serverfilename, now()->addMinutes(5));
+                    $return['thumb'] = $return['full'];
+                    $return['square'] = $return['full'];
+                }
+
+                if($a->type() == "gif")
+
+                    return $return;
+
+                }
+
+                if($a->serverfilenamesq != ''){
+
+                    if($scope == 'public'){
+
+                        $return['square'] = Storage::disk($target)->url($a->serverfilenamesq);
+
+                    }else{
+
+                        $return['square'] = Storage::disk($target)->temporaryUrl($a->serverfilenamesq, now()->addMinutes(5));
+                    }
+
+                }else{
+
+                    if($scope == 'public'){
+
+                        $return['thumb'] = Storage::disk($target)->url($a->serverfilenametn);
+
+                    }else{
+
+                        $return['thumb'] = Storage::disk($target)->temporaryUrl($a->serverfilenametn, now()->addMinutes(5));
+                    }
+                }
+
+            }else{
+
+                $fn = preg_replace("!\/!", ":", $a->serverfilename);
+
+                if($scope == 'public'){
+
+                    $return['full'] = Storage::disk($target)->url($a->serverfilename);
+                    $return['thumb'] = $return['full'];
+                    $return['square'] = $return['full'];
+
+                }else{
+
+                    $return['full'] = Storage::disk($target)->temporaryUrl($a->serverfilename, now()->addMinutes(5));
+                    $return['thumb'] = $return['full'];
+                    $return['square'] = $return['full'];
+                }
+
+                return $return;
+
+                /*
+
+                return route('aki.asset.aws', [$a->id, $fn]);
+
+                */
+
+            }
+
+
+        }else{
+
+            if($mode == 'full' || $a->type() != 'image'){
+
+                $fn = preg_replace("!^(.*?\/)?!", "", $a->serverfilename);
+
+                return route('aki.asset.' . $scope, [$id, $fn]);
+            
+            }else{
+
+                $fn = preg_replace("!^(.*?\/)?!", "", $a->serverfilenametn);
+
+                return route('aki.asset.' . $scope, [$id, $fn]);
+
+            }
+
+        }
+        
+    }
+
+}
+
 if (! function_exists('akiassetpicture')) {
 
     function akiassetpicture($id, $auth = false, $cfgin = [])
