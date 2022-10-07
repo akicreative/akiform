@@ -223,9 +223,9 @@ class Akiasset extends Model
     static public function assetadd($category, $file, $deleteid, $c = [])
     {
 
-        
+        $testarray = [];
 
-        $cfg = ['subcategory' => NULL, 'addsubcategory' => NULL, 'referenceid' => 0, 'folder' => '', 'db' => ''];
+        $cfg = ['subcategory' => NULL, 'addsubcategory' => NULL, 'referenceid' => 0, 'folder' => '', 'db' => '', 'test' => 'N'];
 
         foreach($c as $key => $value){
 
@@ -244,6 +244,11 @@ class Akiasset extends Model
         $cat = Akicategory::on($db)->where('slug', $category)->first();
 
         if(empty($cat)){
+
+            if($test){
+
+                $testarray[] = 'Empty category';
+            }
 
             return false;
         }
@@ -274,6 +279,11 @@ class Akiasset extends Model
             }
         }
 
+        if($test){
+
+            $testarray[] =  'Disk: ' . $disk;
+        }
+
         $folder = '';
 
         if(in_array($disk, ['spaces', 'spacesprivate'])){
@@ -290,7 +300,16 @@ class Akiasset extends Model
 
             if($folder != '') $folder = $folder . '/';
         
+            if($test){
 
+                $testarray[] =  'Folder: ' . $folder;
+            }
+
+        }
+
+        if($test){
+
+            return $testarray;
         }
 
         if(is_string($file)){
