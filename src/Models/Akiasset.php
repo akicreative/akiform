@@ -240,6 +240,7 @@ class Akiasset extends Model
             $db = config('akiforms.connection.akiasset', config('database.default'));
         }
 
+        if($cfg['test'] == 'Y') $test = true; else $test = false;
 
         $cat = Akicategory::on($db)->where('slug', $category)->first();
 
