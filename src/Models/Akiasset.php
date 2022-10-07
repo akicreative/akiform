@@ -251,6 +251,8 @@ class Akiasset extends Model
                 $testarray[] = 'Empty category';
             }
 
+
+
             return false;
         }
 
@@ -306,11 +308,6 @@ class Akiasset extends Model
                 $testarray[] =  'Folder: ' . $folder;
             }
 
-        }
-
-        if($test){
-
-            return $testarray;
         }
 
         if(is_string($file)){
@@ -403,6 +400,13 @@ class Akiasset extends Model
         }else{
 
             if(!$file){
+
+                if($test){
+
+                    $testarray[] =  'Invalid File';
+
+                    return $testarray;
+                }
 
                 return false;
             }
