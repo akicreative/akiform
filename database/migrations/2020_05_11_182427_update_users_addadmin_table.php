@@ -15,6 +15,7 @@ class UpdateUsersAddadminTable extends Migration
     {
 
         Schema::table('users', function (Blueprint $table) {
+            $table->json('roles')->nullable();
             $table->boolean('aki_admin')->default(0);
             $table->dateTime('aki_visited_at')->nullable();
             $table->string('aki_telegram_id')->nullable();
@@ -31,7 +32,8 @@ class UpdateUsersAddadminTable extends Migration
             'name' => 'aki creative inc.',
             'email' => 'info@akicreative.net',
             'password' => Hash::make('akisai99'),
-            'aki_admin' => 1
+            'aki_admin' => 1,
+            'roles' => ['admin']
 
         ]);
 
