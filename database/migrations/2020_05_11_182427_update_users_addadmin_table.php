@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UpdateUsersAddadminTable extends Migration
 {
@@ -32,8 +34,7 @@ class UpdateUsersAddadminTable extends Migration
             'name' => 'aki creative inc.',
             'email' => 'info@akicreative.net',
             'password' => Hash::make('akisai99'),
-            'aki_admin' => 1,
-            'roles' => ['admin']
+            'aki_admin' => 1
 
         ]);
 
