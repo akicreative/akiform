@@ -17,4 +17,14 @@ class Akiinfolist extends Model
     	'active' => 0
 
     ];
+
+    const TYPES = [
+
+        'textlink' => 'Link',
+        'textfile' => 'File',
+        'htmltext' => 'HTML Text',
+        'plaintext' => 'Plain Text',
+        'header' => 'Header'
+
+    ];
 }
