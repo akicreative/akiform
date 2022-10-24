@@ -27,4 +27,10 @@ class Akiinfolist extends Model
         'header' => 'Header'
 
     ];
+
+    protected $fillable = [
+
+        'active', 'category', 'infotype', 'title', 'html', 'description', 'url', 'newwindow', 'spaceafter', 'dividerafter', 'orderby'
+
+    ];
 }
