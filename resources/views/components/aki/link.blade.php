@@ -11,7 +11,7 @@
 
 @else
 
-<div {{ $attributes->merge(['class' => 'text-red-700 hover:underline hover:text-black']) }}>
+<div {{ $attributes->merge(['class' => 'text-red-700']) }}>
 
 @endif
 
