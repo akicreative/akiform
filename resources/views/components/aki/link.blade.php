@@ -4,22 +4,28 @@
 
 ])
 
-<?
 
-$attributes->merge(['class' => 'text-red-700 hover:underline hover:text-black']);
+@if($href != '#' && $href != '')
 
-?>
+<a href="{{ $href }}" {{ $attributes->merge(['class' => 'text-red-700 hover:underline hover:text-black']) }}>
 
-@if($href == '#' || $href == '')
+@else
 
-<a href="{{ $href }}" {{ $attributes }}>
+<div {{ $attributes->merge(['class' => 'text-red-700 hover:underline hover:text-black']) }}>
 
 @endif
+
+
 
 {{ $slot }}
 
 
-@if($href == '#' || $href == '')
+@if($href != '#' && $href != '')
 
 </a>
+
+@else
+
+</div>
+
 @endif
