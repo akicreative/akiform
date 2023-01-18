@@ -1,6 +1,16 @@
+@props([
+
+    'hideloading' => true
+
+])
+
 <x-aki.loading></x-aki.loading>
 
+@if($hideloading)
+
 <div wire:loading.remove>
+
+@endif
 
 <table class="min-w-full">
 
@@ -8,4 +18,9 @@
     
 </table>
 
+@if($hideloading)
+
 </div>
+
+@endif
+
