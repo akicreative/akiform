@@ -1,10 +1,11 @@
 @props([
 
-    'label' => ''
+    'label' => '',
+    'padding' => 'p-2'
 
 ])
 
-<td {{ $attributes->merge(['class' => 'p-2 align-top']) }}>
+<td {{ $attributes->merge(['class' => $padding . ' align-top']) }}>
 
 @if($label != '')
 

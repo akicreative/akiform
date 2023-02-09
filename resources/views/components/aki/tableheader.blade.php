@@ -1,13 +1,15 @@
 @props([
 
-	'class' => 'bg-gray-100',
-	'align' => 'text-left'
-
+	'class' => '',
+	'align' => 'text-left',
+	'padding' => 'px-4 pt-2',
+	'bg' => 'bg-gray-100',
+	'size' => 'text-xs'
 ])
 
 <thead>
 
-	<tr {{ $attributes->merge(['class' => 'shadow-sm sm:rounded-t-lg px-4 pt-2 text-xs font-bold  ' . $class . ' ' . $align]) }}>
+	<tr {{ $attributes->merge(['class' => 'shadow-sm sm:rounded-t-lg font-bold  ' . $padding . ' ' . $class . ' ' . $align . ' ' . $bg . ' ' . $size]) }}>
 
 {{ $slot }}
 

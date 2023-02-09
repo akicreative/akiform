@@ -1,0 +1,1 @@
+<x-aki.button.base {{ $attributes->merge(['class' => 'text-black bg-gray-50 hover:bg-gray-100 active:bg-gray-100 border-gray-600']) }}>{{ $slot }}</x-aki.button.base>

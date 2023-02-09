@@ -12,7 +12,7 @@
 
 @endif
 
-<table class="min-w-full">
+<table {{ $attributes->merge(['class' => 'min-w-full']) }}>
 
     {{ $slot }}
     
