@@ -40,19 +40,43 @@
 		<div class="sm:grid sm:grid-cols-{{ $cols }} sm:gap-4 sm:items-start sm:pt-0">
 			<label for="{{ $for }}" class="block text-sm sm:mt-px sm:py-3 sm:border-bottom border-none {{ $labelclass }}"> {{ $label }} </label>
 	  		<div class="mt-1 sm:mt-0 sm:col-span-{{ $span }}">
+
+@elseif($display == 'labelbelow')
+
+  	
+	<div>
+	
+
 @endif
 
  {{ $slot }}
 
  <x-aki.error />
 
- @if(in_array($display, ['vertical', 'horizontal', 'horizontaltight', 'horizontalhover']))
+ @if(in_array($display, ['vertical', 'horizontal', 'horizontaltight', 'horizontalhover', 'labelbelow']))
 
  
  
 	@if($formhelp != '')
 
 	<x-aki.formhelp>{!! $formhelp !!}</x-aki.formhelp>
+
+	@endif
+
+	@if($display == 'labelbelow')
+
+
+
+	<? if($labelclass == 'text-sm font-bold text-gray-700'){
+
+		$labelclass = 'text-xs font-bold text-gray-500 mt-1 ml-1';
+
+	}
+
+	?>
+
+<label for="{{ $for }}" class="block {{ $labelclass }}">{{ $label }}</label>
+
 
 	@endif
 
