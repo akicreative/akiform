@@ -4,9 +4,11 @@
 
 ])
 
-<x-aki.loading></x-aki.loading>
+
 
 @if($hideloading)
+
+<x-aki.loading></x-aki.loading>
 
 <div wire:loading.remove>
 
