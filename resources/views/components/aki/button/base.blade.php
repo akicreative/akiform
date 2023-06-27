@@ -1,7 +1,9 @@
 @aware([
 
     'size' => 'base',
-    'href' => ''
+    'href' => '',
+    'confirm' => '',
+    'method' => ''
 
 ])
 
@@ -32,16 +34,37 @@
 
 <span class="">
 
-    
+    @if($confirm == '')
 
     <button
         {{ $attributes->merge([
             'type' => 'button',
             'class' => $ypadding .  ' ' . $xpadding . ' border rounded-md text-sm leading-5 font-medium focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition duration-150 ease-in-out' . ($attributes->get('disabled') ? ' opacity-75 cursor-not-allowed' : ''),
         ]) }}
+
+    
+
     >
         {{ $slot }}
     </button>
+
+    @else
+
+    <button
+    {{ $attributes->whereDoesntStartWith('wire:model')->merge([
+        'type' => 'button',
+        'class' => $ypadding .  ' ' . $xpadding . ' border rounded-md text-sm leading-5 font-medium focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition duration-150 ease-in-out' . ($attributes->get('disabled') ? ' opacity-75 cursor-not-allowed' : ''),
+    ]) }}
+
+        @click="confirm('{{ $confirm }}') ? $wire.{{ $method }} : false;"
+
+>
+    {{ $slot }}
+</button>
+
+
+    @endif
+
 </span>
 
 @else
