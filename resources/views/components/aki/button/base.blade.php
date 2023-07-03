@@ -49,7 +49,7 @@
     </button>
 
     @else
-
+    <div x-data="{}">
     <button
     {{ $attributes->whereDoesntStartWith('wire:model')->merge([
         'type' => 'button',
@@ -61,7 +61,8 @@
 >
     {{ $slot }}
 </button>
-
+    </div>
+    
 
     @endif
 
