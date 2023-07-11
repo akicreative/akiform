@@ -35,8 +35,27 @@ if (! function_exists('akiavalue')) {
 
 if (! function_exists('akiformsprovinces')) {
 
-    function akiformsprovinces() {
+    function akiformsprovinces($abbr = false) {
         
+        if($abbr){
+
+            return [
+                'AB' => 'AB',
+                'BC' => 'BC',
+                'MB' => 'MB',
+                'NB' => 'NB',
+                'NL' => 'NL',
+                'NS' => 'NS',
+                'NT' => 'NT',
+                'NU' => 'NU',
+                'ON' => 'ON',
+                'PE' => 'PE',
+                'QC' => 'QC',
+                'SK' => 'SK',
+                'YT' =>  'YT'
+            ];
+        }
+
         return [
 			'AB' => 'Alberta',
 			'BC' => 'British Columbia',
