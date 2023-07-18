@@ -3,6 +3,7 @@
 	'for' => '',
 	'label' => '',
 	'labelclass' => 'text-sm font-bold text-gray-700',
+	'labelnote' => '',
 	'name' => '',
 	'id' => '',
 	'formhelp' => '',
@@ -24,21 +25,33 @@
   	
   	<div class="pt-2 pb-1 space-y-2 md:pt-0 sm:space-y-1">
 		<div class="sm:grid sm:grid-cols-{{ $cols }} sm:gap-4 sm:items-start sm:pt-3">
-			<label for="{{ $for }}" class="block text-sm sm:mt-px sm:pt-2 {{ $labelclass }}"> {{ $label }} </label>
+			<label for="{{ $for }}" class="block text-sm sm:mt-px sm:pt-2 {{ $labelclass }}"> {{ $label }} 
+			
+				{!! $labelnote !!}
+			
+			</label>
 	  		<div class="mt-1 sm:mt-0 sm:col-span-{{ $span }}">
 
 @elseif($display == 'horizontaltight')
   	
   	<div class="space-y-0 sm:space-y-0">
 		<div class="sm:grid sm:grid-cols-{{ $cols }} sm:gap-4 sm:items-start sm:pt-0">
-			<label for="{{ $for }}" class="block text-sm sm:mt-px sm:pt-2 {{ $labelclass }}"> {{ $label }} </label>
+			<label for="{{ $for }}" class="block text-sm sm:mt-px sm:pt-2 {{ $labelclass }}"> {{ $label }} 
+			
+				{!! $labelnote !!}
+			
+			</label>
 	  		<div class="mt-1 sm:mt-0 sm:col-span-{{ $span }}">
 
 @elseif($display == 'horizontalhover')
   	
   	<div class="px-2 space-y-0 rounded sm:space-y-0 hover:bg-gray-50">
 		<div class="sm:grid sm:grid-cols-{{ $cols }} sm:gap-4 sm:items-start sm:pt-0">
-			<label for="{{ $for }}" class="block text-sm sm:mt-px sm:py-3 sm:border-bottom border-none {{ $labelclass }}"> {{ $label }} </label>
+			<label for="{{ $for }}" class="block text-sm sm:mt-px sm:py-3 sm:border-bottom border-none {{ $labelclass }}"> {{ $label }}
+			
+				{!! $labelnote !!}
+			
+			</label>
 	  		<div class="mt-1 sm:mt-0 sm:col-span-{{ $span }}">
 
 @elseif($display == 'labelbelow')
