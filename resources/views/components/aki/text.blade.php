@@ -21,7 +21,7 @@ $showmoney = false;
 
 if($type == 'money'){
 
-	$class .= $class . ' text-right pl-7';
+	$class .= ' text-right pl-7';
 	$type = 'text';
 
 	$showmoney = true;
@@ -34,7 +34,7 @@ if($type == 'file'){
 
 }else{
 
-$attributes = $attributes->merge(['class' => 'mt-1 block shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md' . ' ' . $class]); 
+	$attributes = $attributes->merge(['class' => 'mt-1 block shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md' . ' ' . $class]); 
 
 }
 
