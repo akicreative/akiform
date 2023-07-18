@@ -3,7 +3,8 @@
 	'name' => '',
 	'id' => '',
 	'class' => 'w-full',
-	'type' => 'text'
+	'type' => 'text',
+	'autofocus' => true
 
 ])
 
@@ -51,11 +52,27 @@ $attributes = $attributes->merge(['class' => 'mt-1 block shadow-sm focus:ring-in
     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
       <span class="text-gray-500 sm:text-sm"> $ </span>
     </div>
-    <input type="text" name="{{ $name }}" id="{{ $id }}" {{ $attributes }} placeholder="0.00" aria-describedby="price-currency">
+    <input type="text" name="{{ $name }}" id="{{ $id }}" {{ $attributes }} placeholder="0.00" aria-describedby="price-currency"
+
+    @if($autofocus)
+	  onfocus="this.select();" onmouseup="return false;"
+	  @endif
+
+
+    >
   </div>
 
 @else
 
-<input type="{{ $type }}" name="{{ $name }}" id="{{ $id }}" {{ $attributes }}>
+
+<input type="{{ $type }}" name="{{ $name }}" id="{{ $id }}" 
+  	@if($autofocus)
+	  onfocus="this.select();" onmouseup="return false;"
+	  @endif
+
+
+{{ $attributes }}>
+
+
 
 @endif
