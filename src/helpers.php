@@ -1249,6 +1249,9 @@ if (! function_exists('akiassetitems')) {
 
             $return = $return->where('referenceid', $referenceid);
 
+        }elseif($referenceid == 'zero'){
+
+            $return = $return->where('referenceid', 0);
         }
 
         if($subcategory != NULL){
