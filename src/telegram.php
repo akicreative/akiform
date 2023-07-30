@@ -8,7 +8,12 @@ if (! function_exists('telegramMessage')) {
 
         $params['chat_id'] = $chat_id;
         $params['text'] = urldecode($message);
-        $params['parse_mode'] = 'Markdown';
+
+        if(!in_array('parse_mode', $params)){
+
+            $params['parse_mode'] = 'Markdown';
+
+        }
 
 
         if(array_key_exists('buttons', $params)){
