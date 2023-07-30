@@ -16,7 +16,8 @@
     },
     "autoload": {
         "files": [
-            "src/helpers.php"
+            "src/helpers.php",
+            "src/telegram.php"
         ],
         "psr-4": {
             "AkiCreative\\AkiForms\\": "src/"
