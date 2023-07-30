@@ -9,7 +9,7 @@ if (! function_exists('telegramMessage')) {
         $params['chat_id'] = $chat_id;
         $params['text'] = urldecode($message);
 
-        if(!in_array('parse_mode', $params)){
+        if(!array_key_exists('parse_mode', $params)){
 
             $params['parse_mode'] = 'Markdown';
 
