@@ -6,8 +6,10 @@ if (! function_exists('telegramMessage')) {
 
         $url = 'https://api.telegram.org/bot' . env('TELEGRAM_BOT_TOKEN') . '/sendMessage';
 
-        $params['chat_id'] = $chat_id;
-        $params['text'] = urldecode($message);
+        $post = [];
+
+        $post['chat_id'] = $chat_id;
+        $post['text'] = urldecode($message);
 
         if(!array_key_exists('parse_mode', $params)){
 
@@ -44,7 +46,9 @@ if (! function_exists('telegramMessage')) {
 
         }
 
+        $post['parse_mode'] = $params['parse_mode'];
 
+        $post['reply_markup'] = $params['reply_markup'];
 
         $ch = curl_init();
 
@@ -52,7 +56,7 @@ if (! function_exists('telegramMessage')) {
         curl_setopt($ch,CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch,CURLOPT_POST, true);
-        curl_setopt($ch,CURLOPT_POSTFIELDS, $params);
+        curl_setopt($ch,CURLOPT_POSTFIELDS, $post);
 
         //execute post
         $result = curl_exec($ch);
