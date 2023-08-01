@@ -4,6 +4,11 @@ if (! function_exists('telegramMessage')) {
 
     function telegramMessage($chat_id, $message, $params = []){
 
+        if($chat_id == ''){
+
+            return false;
+        }
+
         $url = 'https://api.telegram.org/bot' . env('TELEGRAM_BOT_TOKEN') . '/sendMessage';
 
         $post = [];
@@ -48,7 +53,11 @@ if (! function_exists('telegramMessage')) {
 
         $post['parse_mode'] = $params['parse_mode'];
 
-        $post['reply_markup'] = $params['reply_markup'];
+        if(array_key_exists('reply_markup', $params)){
+
+            $post['reply_markup'] = $params['reply_markup'];
+
+        }
 
         $ch = curl_init();
 
