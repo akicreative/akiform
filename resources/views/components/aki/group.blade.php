@@ -8,6 +8,7 @@
 	'formhelp' => '',
 	'class' => '',
 	'errormsg' => '',
+	'errorhighlight' => false,
 	'cols' => 3,
 	'span' => 2
 ])
@@ -54,7 +55,12 @@ $labelspan = $cols - $span;
 
  {{ $slot }}
 
+ @if($errormsg != 'hidden')
+
  <x-aki.error />
+
+ @endif
+
 
  @if(in_array($display, ['vertical', 'horizontal', 'horizontaltight', 'horizontalhover', 'labelbelow']))
 

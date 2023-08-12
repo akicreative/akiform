@@ -4,16 +4,22 @@
 	'id' => '',
 	'class' => 'w-full',
 	'type' => 'text',
-	'autofocus' => true
+	'autofocus' => true,
+	'errorfound' => false
 
 ])
 
 @aware([
 	'for' => '',
-	'display' => ''
+	'display' => '',
+	'errorhighlight' => false
 ])
 
+@error($for)
 
+	<? $errorfound = true; ?>
+
+@enderror
 
 <? 
 
@@ -25,6 +31,12 @@ if($type == 'money'){
 	$type = 'text';
 
 	$showmoney = true;
+
+}
+
+if($errorhighlight && $errorfound){
+
+	$class .= ' border border-red-600';
 
 }
 

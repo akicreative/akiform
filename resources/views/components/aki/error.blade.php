@@ -1,9 +1,10 @@
 @aware([
 	'for' => '',
-	'errormsg' => 'REQUIRED FIELD'
+	'errormsg' => 'REQUIRED FIELD',
+	'errorhighlight' => false
 ])
 
-@if($for != '')
+@if($for != '' && $errormsg != 'hidden')
 
 
 	@error($for) 
