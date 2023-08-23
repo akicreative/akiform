@@ -27,6 +27,10 @@ if($id == '' && $for != ''){
 if($display == 'inline'){
 
 	$class = 'inline w-auto';
+
+}elseif($display == 'inlinefull'){
+
+	$class = 'inline w-full';
 }
 
 ?>

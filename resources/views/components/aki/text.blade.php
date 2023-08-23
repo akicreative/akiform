@@ -46,7 +46,7 @@ if($type == 'file'){
 
 }else{
 
-	$attributes = $attributes->merge(['class' => 'mt-1 block shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md' . ' ' . $class]); 
+	$attributes = $attributes->merge(['class' => 'mt-1 block focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md' . ' ' . $class]); 
 
 }
 
