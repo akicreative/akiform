@@ -23,7 +23,7 @@
             <ul role="list" class="-mx-2 space-y-1 tw--mx-2 tw-space-y-1">
                 @foreach($items as $key => $item)
               <li>
-                <x-tabmobilelink url="{{ Arr::get($item, 1, '') }}" :active="$active == $key">{{ $item[0] }}</x-tabmobilelink>
+                <x-aki.tabmobilelink url="{{ Arr::get($item, 1, '') }}" :active="$active == $key">{{ $item[0] }}</x-aki.tabmobilelink>
                
               </li>
                 @endforeach
@@ -39,7 +39,7 @@
           
             @foreach($items as $key => $item)
         
-              <x-tablink url="{{ Arr::get($item, 1, '') }}" :active="$active == $key">{{ $item[0] }}</x-tablink>
+              <x-aki.tablink url="{{ Arr::get($item, 1, '') }}" :active="$active == $key">{{ $item[0] }}</x-aki.tablink>
              
         
               @endforeach
