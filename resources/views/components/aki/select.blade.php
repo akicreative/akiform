@@ -7,15 +7,22 @@
 	'default' => '',
 	'all' => false,
 	'blank' => false,
-	'display' => ''
+	'display' => '',
+	'errorfound' => false
 
 ])
 
 @aware([
 	'for' => '',
-	'display' => ''
+	'display' => '',
+	'errorhighlight' => false
 ])
 
+@error($for)
+
+	<? $errorfound = true; ?>
+
+@enderror
 
 <?
 
@@ -31,6 +38,12 @@ if($display == 'inline'){
 }elseif($display == 'inlinefull'){
 
 	$class = 'inline w-full';
+}
+
+if($errorhighlight && $errorfound){
+
+	$class .= ' border border-red-600';
+
 }
 
 ?>
