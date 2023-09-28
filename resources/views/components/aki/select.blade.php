@@ -4,6 +4,7 @@
 	'id' => '',
 	'options' => [],
 	'class' => 'block w-full',
+	'padding' => 'py-2',
 	'default' => '',
 	'all' => false,
 	'blank' => false,
@@ -48,7 +49,7 @@ if($errorhighlight && $errorfound){
 
 ?>
 
-<select {{ $attributes }} id="{{ $id }}" name="{{ $name }}" class="mt-1 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md {{ $class }}">
+<select {{ $attributes }} id="{{ $id }}" name="{{ $name }}" class="mt-1 pl-3 pr-10 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md {{ $class }} {{ $padding }}">
 
 
 

@@ -2424,3 +2424,117 @@ EOT;
     }
 
 }
+
+if (! function_exists('manageprefs')) {
+
+    function manageprefs($action, $array, $value){
+
+        if(!is_array($array)){
+
+            $array = [];
+        }
+
+        if($action == 'toggle'){
+
+            if(in_array($value, $array)){
+
+                $action = 'remove';
+
+            }else{
+
+                $action = 'add';
+            }
+
+        }
+
+        if($action == 'add'){
+
+            if(!in_array($value, $array)){
+
+                $array[] =  $value;
+            
+            }
+
+            return $array;
+
+        }elseif($action == 'remove'){
+
+            $newarray = [];
+
+            foreach($array as $a){
+
+                if($a != $value){
+
+                    $newarray[] = $a;
+                }
+
+            }
+
+            return $newarray;
+
+        }
+
+        return $array;
+
+    }
+}
+
+if (! function_exists('swapprefs')) {
+
+    function swapprefs($array, $add, $keys){
+
+        if(!is_array($array)){
+
+            $array = [];
+        }
+
+        foreach($keys as $key){
+
+            if($add == $key){
+
+                $array = manageprefs('add', $array, $key);
+
+            }else{
+
+                $array = manageprefs('remove', $array, $key);
+
+            }
+
+        }
+
+        return $array;
+
+    }
+}
+
+if (! function_exists('checkprefs')) {
+
+    function checkprefs($array, $key){
+
+        if(!is_array($array)){
+
+            $array = [];
+        }
+
+        if(!is_array($key)){
+
+            $keyarray = [$key];
+        }else{
+
+            $keyarray = $key;
+        }
+
+        foreach($keyarray as $k){
+
+            if(in_array($k, $array)){
+
+                return $k;
+            
+            }
+
+        }
+
+        return false;
+
+    }
+}
