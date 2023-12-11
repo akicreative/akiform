@@ -249,6 +249,9 @@ class Akiasset extends Model
             if($test){
 
                 $testarray[] = 'Empty category';
+
+                return $testarray;
+
             }
 
 
