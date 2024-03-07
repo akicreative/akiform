@@ -1975,10 +1975,10 @@ if(! function_exists('akiemailbutton')){
 if(! function_exists('akicountry')){
 
 
-    function akicountry()
+    function akicountry($abbr = '')
     {
 
-        return [
+        $arrary = [
             "CA" => "Canada",
             "US" => "United States",
             "AF" => "Afghanistan",
@@ -2219,6 +2219,21 @@ if(! function_exists('akicountry')){
             "ZM" => "Zambia",
             "ZW" => "Zimbabwe"
         ];
+
+        if($abbr == ''){
+
+            return $array;
+        }
+
+        if(array_key_exists($abbr, $array)){
+
+            return $array["$abbr"];
+        
+        }else{
+
+            return '';
+
+        }
 
     }
 
