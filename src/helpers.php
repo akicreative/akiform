@@ -1978,7 +1978,7 @@ if(! function_exists('akicountry')){
     function akicountry($abbr = '')
     {
 
-        $arrary = [
+        $array = [
             "CA" => "Canada",
             "US" => "United States",
             "AF" => "Afghanistan",
