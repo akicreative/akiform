@@ -11,9 +11,6 @@
     ],
     "version": "2.0.0",
     "minimum-stability": "dev",
-    "require": {
-        "intervention/image": "^2.0"
-    },
     "autoload": {
         "files": [
             "src/helpers.php",
