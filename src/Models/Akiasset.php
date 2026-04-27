@@ -439,32 +439,18 @@ class Akiasset extends Model
                 $tn = 'tn_' . $hashname;
                 $sq = 'sq_' . $hashname;
 
-                $fullpath = Image::make($file)->resize($cat->assetw, $cat->asseth, function($constraint){
-
-                        $constraint->aspectRatio();
-                        $constraint->upsize();
-
-                    })->orientate()->save(storage_path('app/') . $hashname);
+                $fullpath = Image::read($file)->scaleDown($cat->assetw, $cat->asseth)->orient()->save(storage_path('app/') . $hashname);
 
                 $content = File::get(storage_path('app/') . $hashname);
                 $result = Storage::disk($disk)->put($folder . $hashname, $content);
 
                 //if($cat->assettnresize == 'resize'){
 
-                    $tnpath = Image::make($file)->resize($cat->assettnw, null, function($constraint){
-
-                        $constraint->aspectRatio();
-                        $constraint->upsize();
-
-                    })->orientate()->save(storage_path('app/') . $tn);
+                    $tnpath = Image::read($file)->scaleDown($cat->assettnw)->orient()->save(storage_path('app/') . $tn);
 
                 //}else{
 
-                    $sqpath = Image::make($file)->fit($cat->assetsqw, $cat->assetsqh, function($constraint){
-
-                        $constraint->upsize();
-
-                    })->orientate()->save(storage_path('app/') . $sq);
+                    $sqpath = Image::read($file)->cover($cat->assetsqw, $cat->assetsqh)->orient()->save(storage_path('app/') . $sq);
 
                 //}
 
@@ -666,12 +652,7 @@ class Akiasset extends Model
 
                 if($scope == 'both' || $scope == 'full'){
 
-                    $fullpath = Image::make($file)->resize($cat->assetw, $cat->asseth, function($constraint){
-
-                            $constraint->aspectRatio();
-                            $constraint->upsize();
-
-                        })->orientate()->save(storage_path('app/') . $hashname);
+                    $fullpath = Image::read($file)->scaleDown($cat->assetw, $cat->asseth)->orient()->save(storage_path('app/') . $hashname);
 
                     $content = File::get(storage_path('app/') . $hashname);
                     $result = Storage::disk($disk)->put($folder . $hashname, $content);
@@ -684,13 +665,8 @@ class Akiasset extends Model
 
                     //if($cat->assettnresize == 'resize'){
 
-                    $tnpath = Image::make($file)->resize($cat->assettnw, null, function($constraint){
+                    $tnpath = Image::read($file)->scaleDown($cat->assettnw)->orient()->save(storage_path('app/') . $tn);
 
-                        $constraint->aspectRatio();
-                        $constraint->upsize();
-
-                    })->orientate()->save(storage_path('app/') . $tn);
-                    
 
                     $content = File::get(storage_path('app/') . $tn);
                     $result = Storage::disk($disk)->put($folder . $tn, $content);
@@ -701,12 +677,8 @@ class Akiasset extends Model
 
                 if($scope == 'both' || $scope == 'sq'){
 
-                
-                    $sqpath = Image::make($file)->fit($cat->assetsqw, $cat->assetsqh, function($constraint){
 
-                        $constraint->upsize();
-
-                    })->orientate()->save(storage_path('app/') . $sq);
+                    $sqpath = Image::read($file)->cover($cat->assetsqw, $cat->assetsqh)->orient()->save(storage_path('app/') . $sq);
 
                     $content = File::get(storage_path('app/') . $sq);
                     $result = Storage::disk($disk)->put($folder . $sq, $content);
